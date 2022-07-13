@@ -1,0 +1,45 @@
+@import '../../scss/variables.scss';
+
+header {
+  position: fixed;
+  height: 130px;
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  z-index: 99;
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    img {
+      height: 55px;
+      width: 55px;
+    }
+    .companyName {
+      font-size: 24px;
+      font-weight: 600;
+      text-shadow: $boxshadow;
+      span {
+        position: relative;
+        font-size: 22px;
+        &::after {
+          content: '.';
+          position: absolute;
+          top: -13.5px;
+          right: 0.5px;
+          color: $highlighted;
+        }
+      }
+    }
+  }
+  .headerLinks {
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

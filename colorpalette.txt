@@ -1,0 +1,5 @@
+main text - #FFFFFF
+secondary text - #9CADBE
+background main - #071B2C
+background second  - #233748
+highlighted elements - #E6007E

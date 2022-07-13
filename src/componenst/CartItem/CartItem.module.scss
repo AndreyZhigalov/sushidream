@@ -1,0 +1,50 @@
+@import '../../scss/variables.scss';
+
+.cartItem {
+  display: grid;
+  min-height: 70px;
+  grid-template-columns: 70px 1fr;
+  grid-template-rows: 35px 15px 20px;
+  overflow: hidden;
+  border-radius: 10px;
+  img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    grid-column: 1\2;
+    grid-row: 1/4;
+    background-image: url(../../../public/img/assort/bck-product-block.jpg);
+  }
+  p {
+    margin: 2px 10px;
+    grid-column: 2\3;
+    grid-row: 1/2;
+    font-size: 12px;
+    text-align: end;
+  }
+  span {
+    margin: 2px 10px;
+    grid-column: 2\3;
+    grid-row: 2/3;
+    font-size: 14px;
+    text-align: end;
+  }
+
+  .itemcount {
+    grid-column: 2\3;
+    grid-row: 3/4;
+    margin: auto;
+    width: 100px;
+    button {
+      background-color: $highlighted;
+      border: none;
+      font-size: 15px;
+      &:active {
+        background-color: $background-second;
+      }
+    }
+    span {
+      font-size: 18px;
+    }
+  }
+}
