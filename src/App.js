@@ -1,17 +1,40 @@
 import React from 'react'
+import axios from 'axios'
+
 import { AssortmentCard } from './componenst/AssortmentCard';
 import { CartItem } from './componenst/CartItem';
-
 import { Header } from './componenst/Header';
 import { MenuNavigation } from './componenst/MenuNavigation';
 
 import styles from './scss/index.module.scss';
 
 function App() {
-  const [itemCount, setItemCount] = React.useState(0)
+  const [assortmentList, setAssortmentList] = React.useState([])
+  const [activeCategory, setActiveCategory] = React.useState(0)
+  const [cartItems, setCartItems] = React.useState([])
 
-  const addToCart = (event) => {
-    return event.currentTarget.value === "-" ? setItemCount(itemCount - 1) : setItemCount(itemCount + 1)
+  console.log(cartItems)
+  React.useEffect(() => {
+    axios.get("https://62cf4dc5826a88972d0b9493.mockapi.io/assortment")
+      .then(resp => setAssortmentList(resp.data))
+  }, [])
+
+  const addToCart = (item) => {
+    if (cartItems.find(obj => obj.id === item.id)) {
+      setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count += 1 } : { ...obj } }))
+    } else {
+      setCartItems(prev => [...prev, item])
+    }
+    // return event.currentTarget.value === "-" ? setItemCount(itemCount - 1) : setItemCount(itemCount + 1)
+  }
+  const removeFromCart = (item) => {
+    item.count < 1 ?
+      setCartItems(prev => prev.filter(obj => obj.id !== item.id)) :
+      setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count -= 1 } : { ...obj } }));
+  }
+
+  const showAssortmentList = (index) => {
+    return assortmentList[0][index].map(item => <AssortmentCard key={item.id} {...item} addToCart={() => addToCart(item)} />)
   }
 
   return (
@@ -22,26 +45,22 @@ function App() {
           <img className={styles.banner} src="img/assort/desserts/webbanner.jpg" alt="banner" />
         </div>
         <div className={styles.catalogWrapper}>
-          <MenuNavigation />
+          <MenuNavigation
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+            renderList={showAssortmentList} />
           <div className={styles.assortment} >
-            <AssortmentCard title={"Обычный чизкейк"} price={5.50} addToCart={addToCart} />
-            <AssortmentCard title={"Обычный чизкейк, но пиздатый"} price={15} addToCart={addToCart} />
-            <AssortmentCard title={"Обычный чизкейк, но ещё пизже чем другие"} price={20.90} addToCart={addToCart} />
-            <AssortmentCard title={"Обычный чизкейк"} price={5.50} addToCart={addToCart} />
-            <AssortmentCard title={"Обычный чизкейк, но пиздатый"} price={15} addToCart={addToCart} />
-            <AssortmentCard title={"Обычный чизкейк, но ещё пизже чем другие"} price={20.90} addToCart={addToCart} />
-            <AssortmentCard title={"Обычный чизкейк"} price={5.50} addToCart={addToCart} />
-            <AssortmentCard title={"Обычный чизкейк, но пиздатый"} price={15} addToCart={addToCart} />
-
+            {assortmentList.length > 0 ? showAssortmentList(activeCategory) : ""}
           </div>
           <div className={styles.check}>
             <h2>ВАШ ЗАКАЗ</h2>
             <div className={styles.itemsBlock}>
-              <CartItem itemCount={itemCount} addToCart={addToCart} />
+              {cartItems.length > 0 ?
+                cartItems.map(item => <CartItem {...item} addToCart={() => addToCart(item)} removeFromCart={() => removeFromCart(item)} />) : ""}
             </div>
             <div className={styles.total}>
               <p>доставка <span>200</span></p>
-              <p>ИТОГО <span>200</span></p>
+              <p>ИТОГО <span>{cartItems.reduce((sum, obj) => sum + obj.price * obj.count, 0).toFixed(2)}</span></p>
             </div>
             <button className={styles.orderButton}>Оформить доставку</button>
           </div>
