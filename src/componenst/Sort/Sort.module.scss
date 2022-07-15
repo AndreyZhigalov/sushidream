@@ -1,0 +1,43 @@
+@import '../../scss/variables.scss';
+
+.sort {
+  position: relative;
+  grid-column: 1/4;
+  grid-row: 1/2;
+  z-index: 5;
+  color: $text-second;
+  justify-self: start;
+  svg {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  span {
+    color: $text-main;
+    cursor: pointer;
+    border-bottom: dashed 2px $text-second;
+  }
+  .optionsList {
+    position: absolute;
+    top: calc(-100% - 150px);
+    left: 150px;
+    width: max-content;
+    background-color: $background-second;
+    border-radius: 20px;
+    overflow: hidden;
+
+    p {
+      padding: 10px;
+      margin: 0;
+      font-size: 16px;
+      height: 100%;
+      cursor: pointer;
+      &:hover {
+        background-color: $highlighted;
+      }
+    }
+    .active {
+      background-color: $highlighted;
+      transition: 0.2s ease-in-out;
+    }
+  }
+}

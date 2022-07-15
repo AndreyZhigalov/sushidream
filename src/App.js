@@ -2,20 +2,23 @@ import React from 'react'
 import axios from 'axios'
 
 import { AssortmentCard } from './componenst/AssortmentCard';
-import { CartItem } from './componenst/CartItem';
 import { Header } from './componenst/Header';
 import { MenuNavigation } from './componenst/MenuNavigation';
+import { Check } from './componenst/Check';
+import { LoadingCard } from './componenst/LoadingCard';
+import { Sort } from './componenst/Sort';
 
 import styles from './scss/index.module.scss';
 
+
 function App() {
   const [assortmentList, setAssortmentList] = React.useState([])
-  const [activeCategory, setActiveCategory] = React.useState(0)
+  const [activeCategory, setActiveCategory] = React.useState("Новинки")
   const [cartItems, setCartItems] = React.useState([])
+  const [deliveryCost, setDeliveryCost] = React.useState(0)
 
-  console.log(cartItems)
   React.useEffect(() => {
-    axios.get("https://62cf4dc5826a88972d0b9493.mockapi.io/assortment")
+    axios.get("https://62d0992b1cc14f8c088c5ec1.mockapi.io/assortment")
       .then(resp => setAssortmentList(resp.data))
   }, [])
 
@@ -25,49 +28,60 @@ function App() {
     } else {
       setCartItems(prev => [...prev, item])
     }
-    // return event.currentTarget.value === "-" ? setItemCount(itemCount - 1) : setItemCount(itemCount + 1)
   }
   const removeFromCart = (item) => {
-    item.count < 1 ?
+    item.count === 1 ?
       setCartItems(prev => prev.filter(obj => obj.id !== item.id)) :
       setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count -= 1 } : { ...obj } }));
   }
 
-  const showAssortmentList = (index) => {
-    return assortmentList[0][index].map(item => <AssortmentCard key={item.id} {...item} addToCart={() => addToCart(item)} />)
+  const deliveryRegionCost = (event) => {
+    const index = event.currentTarget.value
+    const costs = [0, 200, 400, 600]
+    setDeliveryCost(costs[index])
   }
 
   return (
     <div className={styles.wrapper}>
       <Header />
-      <section className={styles.mainContainer}>
+      <main className={styles.mainContainer}>
         <div>
           <img className={styles.banner} src="img/assort/desserts/webbanner.jpg" alt="banner" />
         </div>
         <div className={styles.catalogWrapper}>
+          <select onChange={deliveryRegionCost} className={styles.deliveryRegion} >
+            <option value="0">ВЫБЕРИТЕ РЕГИОН ДОСТАВКИ</option>
+            <option value="0">Самовывоз - 0&#x20bd;</option>
+            <option value="1">Близко - 200&#x20bd;</option>
+            <option value="2">Средне - 400&#x20bd;</option>
+            <option value="3">Далеко - 600&#x20bd;</option>
+          </select>
           <MenuNavigation
             activeCategory={activeCategory}
             setActiveCategory={setActiveCategory}
-            renderList={showAssortmentList} />
+          />
           <div className={styles.assortment} >
-            {assortmentList.length > 0 ? showAssortmentList(activeCategory) : ""}
+            <Sort />
+            {assortmentList.length > 0 ?
+              assortmentList[0][activeCategory].map(item =>
+                <AssortmentCard key={item.id} {...item} addToCart={() => addToCart(item)} />) :
+              [...Array(6)].map((item, i) => <LoadingCard key={i} />)}
           </div>
-          <div className={styles.check}>
-            <h2>ВАШ ЗАКАЗ</h2>
-            <div className={styles.itemsBlock}>
-              {cartItems.length > 0 ?
-                cartItems.map(item => <CartItem {...item} addToCart={() => addToCart(item)} removeFromCart={() => removeFromCart(item)} />) : ""}
-            </div>
-            <div className={styles.total}>
-              <p>доставка <span>200</span></p>
-              <p>ИТОГО <span>{cartItems.reduce((sum, obj) => sum + obj.price * obj.count, 0).toFixed(2)}</span></p>
-            </div>
-            <button className={styles.orderButton}>Оформить доставку</button>
-          </div>
+          <Check
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+            deliveryCost={deliveryCost}
+            cartItems={cartItems} />
         </div>
-      </section >
+      </main>
     </div >
   );
 }
 
 export default App;
+
+
+
+
+
+

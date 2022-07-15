@@ -6,8 +6,8 @@ export const CartItem = ({ addToCart, dishPhoto, title, price, count, removeFrom
     return (
         <div className={styles.cartItem}>
             <img src={dishPhoto} alt="товар" />
-            <p>{title}</p>
-            <span>{(price * count).toFixed(2)} €</span>
+            <p>{count} x {title}</p>
+            <span>{(price * count)}&#x20bd;</span>
             <div className={styles.itemcount}>
                 <button onClick={removeFromCart} >-</button>
                 <span>{count}</span>

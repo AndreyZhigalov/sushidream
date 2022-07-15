@@ -9,10 +9,10 @@ export const AssortmentCard = ({ title, dishPhoto, price, portion, specifics, ad
             <div className={styles.shortDescription}>
                 <div>
                     <p>КОЛ-ВО: {portion}</p>
-                    <span>{price.toFixed(2)} €</span>
+                    <span>{price}&#x20bd;</span>
                 </div>
                 <div>
-                    {specifics.map(pic => <img src={pic} alt="Особенность" />)}
+                    {specifics.map((pic, i) => <img key={i} src={pic} alt="Особенность" />)}
                 </div>
                 <button onClick={addToCart} className={styles.add}></button>
             </div>
