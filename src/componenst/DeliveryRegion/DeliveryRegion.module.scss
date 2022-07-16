@@ -8,7 +8,7 @@
   left: 0;
   top: -50px;
   height: 40px;
-  width: 370px;
+  width: 360px;
   font-weight: 800;
   font-size: 18px;
   margin-left: 50px;
@@ -17,7 +17,10 @@
   user-select: none;
   background-color: $highlighted;
   cursor: pointer;
-  z-index: 2;
+  z-index: 6;
+  @media (max-width: 820px) {
+    left: calc(50% - 230px);
+  }
   svg {
     margin-left: 5px;
     height: 15px;

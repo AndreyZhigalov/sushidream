@@ -4,12 +4,13 @@ header {
   position: fixed;
   height: 130px;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1440px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 50px;
-  z-index: 4;
+  padding: 0 20px;
+  z-index: 7;
+
   .logoContainer {
     display: flex;
     justify-content: center;
@@ -41,5 +42,8 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 30px;
+    @media (max-width: 490px) {
+      gap: 20px;
+    }
   }
 }

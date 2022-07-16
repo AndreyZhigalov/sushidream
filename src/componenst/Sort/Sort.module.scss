@@ -9,6 +9,10 @@
   justify-self: end;
   user-select: none;
   margin: 10px auto;
+  @media (max-width: 490px) {
+    height: min-content;
+    top: 50px;
+  }
   svg {
     margin-left: 5px;
     cursor: pointer;
@@ -20,13 +24,13 @@
   }
   .optionsList {
     position: absolute;
-    top: calc(-100% - 195px);
+    top: 30px;
     right: 0px;
     width: max-content;
     background-color: $background-second;
     border-radius: 20px;
     overflow: hidden;
-    transform-origin: bottom;
+    transform-origin: top;
     animation: popUp 0.2s ease-out;
     user-select: none;
     p {
