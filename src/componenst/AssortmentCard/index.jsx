@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styles from "./AssortmentCard.module.scss"
 
 export const AssortmentCard = ({ title, dishPhoto, price, portion, specifics, addToCart }) => {

@@ -5,7 +5,7 @@ export const Sort = () => {
     const [visibility, setVisibility] = React.useState(false)
     const [activeSortType, setActiveSortType] = React.useState(0)
 
-    const sortType = ["названию", "цене по возрастанию", "цене по убыванию", "популярности"]
+    const sortType = ["названию", "цене по возрастанию", "цене по убыванию", "популярности", "цене за штуку"]
 
     const sortItemsList = (i) => {
         setActiveSortType(i);

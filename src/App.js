@@ -1,80 +1,47 @@
 import React from 'react'
-import axios from 'axios'
 
-import { AssortmentCard } from './componenst/AssortmentCard';
+import { Link, Route, Routes } from 'react-router-dom'
 import { Header } from './componenst/Header';
-import { MenuNavigation } from './componenst/MenuNavigation';
-import { Check } from './componenst/Check';
-import { LoadingCard } from './componenst/LoadingCard';
-import { Sort } from './componenst/Sort';
+import logo from './assets/logo-primary.svg'
+import { Menu } from './pages/Menu';
 
 import styles from './scss/index.module.scss';
-
+import { Restaurants } from './pages/Restaurants';
+import { Loyalty } from './pages/Loyalty';
+import { ServiceCourse } from './pages/ServiceCourse';
+import { Franchise } from './pages/Franchise';
+import { Cart } from './pages/Cart';
+import { Profile } from './pages/Profile';
 
 function App() {
-  const [assortmentList, setAssortmentList] = React.useState([])
-  const [activeCategory, setActiveCategory] = React.useState("Новинки")
-  const [cartItems, setCartItems] = React.useState([])
-  const [deliveryCost, setDeliveryCost] = React.useState(0)
 
-  React.useEffect(() => {
-    axios.get("https://62d0992b1cc14f8c088c5ec1.mockapi.io/assortment")
-      .then(resp => setAssortmentList(resp.data))
-  }, [])
-
-  const addToCart = (item) => {
-    if (cartItems.find(obj => obj.id === item.id)) {
-      setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count += 1 } : { ...obj } }))
-    } else {
-      setCartItems(prev => [...prev, item])
-    }
-  }
-  const removeFromCart = (item) => {
-    item.count === 1 ?
-      setCartItems(prev => prev.filter(obj => obj.id !== item.id)) :
-      setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count -= 1 } : { ...obj } }));
-  }
-
-  const deliveryRegionCost = (event) => {
-    const index = event.currentTarget.value
-    const costs = [0, 200, 400, 600]
-    setDeliveryCost(costs[index])
-  }
+  const [isOpened, setIsOpened] = React.useState(false)
 
   return (
     <div className={styles.wrapper}>
-      <Header />
+      <div className={`${styles.menu} ${isOpened ? styles.openMenu : ""}`}>
+        <img src={logo} alt="Логотип" className="logo" />
+        <Link to="" onClick={() => setIsOpened(false)}>МЕНЮ</Link>
+        <Link to="restaurants" onClick={() => setIsOpened(false)}>РЕСТОРАНЫ</Link>
+        <Link to="loyalty" onClick={() => setIsOpened(false)}>ПРОГРАММА ЛОЯЛЬНОСТИ</Link>
+        <Link to="service-course" onClick={() => setIsOpened(false)}>КУРС ПО ПОДАЧЕ БЛЮД</Link>
+        <Link to="franchise" onClick={() => setIsOpened(false)}>ФРАНШИЗА</Link>
+      </div>
+      <Header openMenu={() => setIsOpened(true)} />
       <main className={styles.mainContainer}>
-        <div>
-          <img className={styles.banner} src="img/assort/desserts/webbanner.jpg" alt="banner" />
-        </div>
-        <div className={styles.catalogWrapper}>
-          <select onChange={deliveryRegionCost} className={styles.deliveryRegion} >
-            <option value="0">ВЫБЕРИТЕ РЕГИОН ДОСТАВКИ</option>
-            <option value="0">Самовывоз - 0&#x20bd;</option>
-            <option value="1">Близко - 200&#x20bd;</option>
-            <option value="2">Средне - 400&#x20bd;</option>
-            <option value="3">Далеко - 600&#x20bd;</option>
-          </select>
-          <MenuNavigation
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-          />
-          <div className={styles.assortment} >
-            <Sort />
-            {assortmentList.length > 0 ?
-              assortmentList[0][activeCategory].map(item =>
-                <AssortmentCard key={item.id} {...item} addToCart={() => addToCart(item)} />) :
-              [...Array(6)].map((item, i) => <LoadingCard key={i} />)}
-          </div>
-          <Check
-            addToCart={addToCart}
-            removeFromCart={removeFromCart}
-            deliveryCost={deliveryCost}
-            cartItems={cartItems} />
-        </div>
+        <Routes>
+          <Route path='' element={<Menu />} />
+          <Route path='restaurants' element={<Restaurants />} />
+          <Route path='loyalty' element={<Loyalty />} />
+          <Route path='service-course' element={<ServiceCourse />} />
+          <Route path='franchise' element={<Franchise />} />
+          <Route path='cart' element={<Cart />} />
+          <Route path='profile' element={<Profile />} />
+          <Route path='*' element={<h1>404</h1>} />
+        </Routes>
       </main>
     </div >
+
   );
 }
 

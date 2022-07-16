@@ -1,6 +1,6 @@
 [
   {
-    "Новинки": [
+    "0": [
       {
         "id": 1,
         "title": "КАРААГЕ С ТРЮФЕЛЬНЫМ СОУСОМ",
@@ -86,7 +86,7 @@
         "rating": 8
       }
     ],
-    "Ланч": [
+    "1": [
       {
         "id": 7,
         "title": "ЛАНЧ ТВОРЕНИЕ",
@@ -144,7 +144,7 @@
         "rating": 8
       }
     ],
-    "Сет на одного": [
+    "2": [
       {
         "id": 11,
         "title": "PLANET МАКС",
@@ -272,95 +272,435 @@
         "rating": 8
       }
     ],
-    "Сет на компанию": [
+    "3": [
       {
-        "id": 1,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
+        "id": 20,
+        "title": "LOVEBOX ПАЛИТРА",
+        "dishPhoto": "img/assort/sets/lovebox-degustation.png",
+        "portion": 34,
+        "price": 2800,
         "contents": "",
         "allergens": "",
         "description": "",
         "specifics": [],
         "count": 1,
         "category": "Сет на компанию",
-        "rating": 5
+        "rating": 8
       },
       {
-        "id": 2,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
+        "id": 21,
+        "title": "LOVEBOX СЁМГА",
+        "dishPhoto": "img/assort/sets/lovebox-saumon.png",
+        "portion": 36,
+        "price": 3200,
         "contents": "",
         "allergens": "",
         "description": "",
         "specifics": [],
         "count": 1,
         "category": "Сет на компанию",
-        "rating": 5
+        "rating": 7
       },
       {
-        "id": 3,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
+        "id": 22,
+        "title": "PARTYBOX ПАЛИТРА",
+        "dishPhoto": "img/assort/sets/partybox-degustation.png",
+        "portion": 50,
+        "price": 4000,
         "contents": "",
         "allergens": "",
         "description": "",
         "specifics": [],
         "count": 1,
         "category": "Сет на компанию",
-        "rating": 5
+        "rating": 8
       },
       {
-        "id": 4,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
+        "id": 23,
+        "title": "PARTYBOX ПРЕМИУМ",
+        "dishPhoto": "img/assort/sets/partybox-premium.png",
+        "portion": 50,
+        "price": 4500,
         "contents": "",
         "allergens": "",
         "description": "",
         "specifics": [],
         "count": 1,
         "category": "Сет на компанию",
-        "rating": 5
-      },
-      {
-        "id": 5,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "Сет на компанию",
-        "rating": 5
-      },
-      {
-        "id": 6,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "Сет на компанию",
-        "rating": 5
+        "rating": 10
       }
     ],
-    "Жаренные роллы": [
+    "4": [
       {
-        "id": 1,
+        "id": 24,
+        "title": "ДРАКОН",
+        "dishPhoto": "img/assort/fried/dragon.png",
+        "portion": 8,
+        "price": 1090,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Жаренные роллы",
+        "rating": 6
+      },
+      {
+        "id": 25,
+        "title": "ТИГР",
+        "dishPhoto": "img/assort/fried/tiger.png",
+        "portion": 8,
+        "price": 1090,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Жаренные роллы",
+        "rating": 7
+      },
+      {
+        "id": 26,
+        "title": "JB ТЕМПУРА",
+        "dishPhoto": "img/assort/fried/jb-tempura.png",
+        "portion": 8,
+        "price": 1090,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Жаренные роллы",
+        "rating": 5
+      },
+      {
+        "id": 27,
+        "title": "КРАСНЫЙ ДРАКОН",
+        "dishPhoto": "img/assort/fried/red-dragon.png",
+        "portion": 8,
+        "price": 1190,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/spicy.svg"],
+        "count": 1,
+        "category": "Жаренные роллы",
+        "rating": 8
+      },
+      {
+        "id": 28,
+        "title": "ХРУСТЯЩИЙ ЛОСОСЬ",
+        "dishPhoto": "img/assort/fried/crispy-saumon.png",
+        "portion": 6,
+        "price": 750,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Жаренные роллы",
+        "rating": 9
+      },
+      {
+        "id": 29,
+        "title": "ХРУСТЯЩАЯ КУРИЦА",
+        "dishPhoto": "img/assort/fried/crispy-poulet.png",
+        "portion": 6,
+        "price": 750,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Жаренные роллы",
+        "rating": 8
+      },
+      {
+        "id": 30,
+        "title": "JB ОСТРЫЙ",
+        "dishPhoto": "img/assort/fried/jb-spicy.png",
+        "portion": 8,
+        "price": 1090,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/spicy.svg"],
+        "count": 1,
+        "category": "Жаренные роллы",
+        "rating": 8
+      },
+      {
+        "id": 31,
+        "title": "ХРУСТЯЩЕЕ МАНГО",
+        "dishPhoto": "img/assort/fried/crispy-mango.png",
+        "portion": 6,
+        "price": 750,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Жаренные роллы",
+        "rating": 6
+      }
+    ],
+    "5": [
+      {
+        "id": 32,
+        "title": "КАЛИФОРНИЙСКИЕ КРЕВЕТКИ КИРИ АВОКАДО",
+        "dishPhoto": "img/assort/california/california-kiri-crevette-avocat.png",
+        "portion": 6,
+        "price": 590,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 7
+      },
+      {
+        "id": 33,
+        "title": "КАЛИФОРНИЙСКИЙ ЛОСОСЬ",
+        "dishPhoto": "img/assort/california/california-saumon.png",
+        "portion": 6,
+        "price": 590,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 8
+      },
+      {
+        "id": 34,
+        "title": "НАРУТО",
+        "dishPhoto": "img/assort/california/japan-naruto.png",
+        "portion": 6,
+        "price": 720,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 6
+      },
+      {
+        "id": 35,
+        "title": "АВОКАДО-ТОП ЛОСОСЬ",
+        "dishPhoto": "img/assort/california/avocadotop-saumon.png",
+        "portion": 6,
+        "price": 790,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 7
+      },
+      {
+        "id": 36,
+        "title": "АВОКАДО-ТОП КОПЧЕНЫЙ ЛОСОСЬ С СЫРОМ",
+        "dishPhoto": "img/assort/california/avocadotop-saumon-fume-cheese.png",
+        "portion": 6,
+        "price": 790,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 6
+      },
+      {
+        "id": 37,
+        "title": "ГРИНРОЛЛ КРЕВЕТКИ ТЕМПУРА",
+        "dishPhoto": "img/assort/california/greenroll-crevette-tempura.png",
+        "portion": 6,
+        "price": 690,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 5
+      },
+      {
+        "id": 38,
+        "title": "ГРИНРОЛЛ ЛОСОСЬ",
+        "dishPhoto": "img/assort/california/greenroll-saumon.png",
+        "portion": 6,
+        "price": 590,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 7
+      },
+      {
+        "id": 39,
+        "title": "МАКИСЛИМ ЛОСОСЬ",
+        "dishPhoto": "img/assort/california/makislim-saumon.png",
+        "portion": 6,
+        "price": 650,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 8
+      },
+      {
+        "id": 40,
+        "title": "МАКИСЛИМ КРЕВЕТКИ ТЕМПУРА",
+        "dishPhoto": "img/assort/california/makislim-crevette-tempura.png",
+        "portion": 6,
+        "price": 790,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 5
+      },
+      {
+        "id": 41,
+        "title": "КАЛИФОРНИЙСКИЙ ЦЫПЛЕНОК АВОКАДО",
+        "dishPhoto": "img/assort/california/california-poulet-avocat.png",
+        "portion": 6,
+        "price": 590,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 10
+      },
+      {
+        "id": 42,
+        "title": "КАЛИФОРНИЙСКИЙ УТОНЧЁННЫЙ ТУНЕЦ",
+        "dishPhoto": "img/assort/california/california-thon-cuit.png",
+        "portion": 6,
+        "price": 590,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 8
+      },
+      {
+        "id": 43,
+        "title": "КАЛИФОРНИЯ КОПЧЁНЫЙ",
+        "dishPhoto": "img/assort/california/california-smoky.png",
+        "portion": 6,
+        "price": 590,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 9
+      },
+      {
+        "id": 44,
+        "title": "КАЛИФОРНИЯ ОСТРАЯ КРЕВЕТКА",
+        "dishPhoto": "img/assort/california/california-spicy-crevette.png",
+        "portion": 6,
+        "price": 720,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 5
+      },
+      {
+        "id": 45,
+        "title": "МАКСЛИМ ВЕГЕТАРИАНСКИЙ",
+        "dishPhoto": "img/assort/california/makislim-veggie.png",
+        "portion": 6,
+        "price": 590,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg", "img/icons/vegan.svg", "img/icons/veggie.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 6
+      },
+      {
+        "id": 46,
+        "title": "МАКСЛИМ С КУРИЦЕЙ",
+        "dishPhoto": "img/assort/california/makislim-chicken.png",
+        "portion": 6,
+        "price": 650,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 7
+      },
+      {
+        "id": 47,
+        "title": "МАКСЛИМ С КРЕВЕТКОЙ",
+        "dishPhoto": "img/assort/california/makislim-crevette.png",
+        "portion": 6,
+        "price": 750,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": [],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 8
+      },
+      {
+        "id": 48,
+        "title": "ГРИНРОЛЛ УТОНЧЁННЫЙ",
+        "dishPhoto": "img/assort/california/greenroll-thon.png",
+        "portion": 6,
+        "price": 620,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 3
+      },
+      {
+        "id": 49,
+        "title": "КАЛИФОРНИЯ ПО-ФРАНЦУЗСКИ",
+        "dishPhoto": "img/assort/california/california-frenchy.png",
+        "portion": 6,
+        "price": 790,
+        "contents": "",
+        "allergens": "",
+        "description": "",
+        "specifics": ["img/icons/glutenFree.svg"],
+        "count": 1,
+        "category": "Калифорния",
+        "rating": 7
+      }
+    ],
+    "6": [
+      {
+        "id": 50,
         "title": "",
         "dishPhoto": "",
         "portion": 1,
@@ -370,7 +710,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Фреш роллы",
         "rating": 5
       },
       {
@@ -444,7 +784,7 @@
         "rating": 5
       }
     ],
-    "Калифорния": [
+    "7": [
       {
         "id": 1,
         "title": "",
@@ -456,7 +796,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Маки",
         "rating": 5
       },
       {
@@ -530,7 +870,7 @@
         "rating": 5
       }
     ],
-    "Фреш роллы": [
+    "8": [
       {
         "id": 1,
         "title": "",
@@ -542,7 +882,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Суши",
         "rating": 5
       },
       {
@@ -616,7 +956,7 @@
         "rating": 5
       }
     ],
-    "Маки": [
+    "9": [
       {
         "id": 1,
         "title": "",
@@ -628,7 +968,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Чаши",
         "rating": 5
       },
       {
@@ -702,7 +1042,7 @@
         "rating": 5
       }
     ],
-    "Суши": [
+    "10": [
       {
         "id": 1,
         "title": "",
@@ -714,7 +1054,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Чираши и Сашими",
         "rating": 5
       },
       {
@@ -788,7 +1128,7 @@
         "rating": 5
       }
     ],
-    "Чаши": [
+    "11": [
       {
         "id": 1,
         "title": "",
@@ -800,7 +1140,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Тартар и Севич",
         "rating": 5
       },
       {
@@ -874,7 +1214,7 @@
         "rating": 5
       }
     ],
-    "Чираши и Сашими": [
+    "12": [
       {
         "id": 1,
         "title": "",
@@ -886,7 +1226,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Якитори, Темпура, Рамён и Карри",
         "rating": 5
       },
       {
@@ -960,7 +1300,7 @@
         "rating": 5
       }
     ],
-    "Тартар и Севич": [
+    "13": [
       {
         "id": 1,
         "title": "",
@@ -972,7 +1312,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "ДЕТСКОЕ МЕНЮ",
         "rating": 5
       },
       {
@@ -1046,7 +1386,7 @@
         "rating": 5
       }
     ],
-    "Якитори, Темпура, Рамён и Карри": [
+    "14": [
       {
         "id": 1,
         "title": "",
@@ -1058,7 +1398,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Аккомпанемент",
         "rating": 5
       },
       {
@@ -1132,7 +1472,7 @@
         "rating": 5
       }
     ],
-    "Детское меню": [
+    "15": [
       {
         "id": 1,
         "title": "",
@@ -1144,7 +1484,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
+        "category": "Десерты",
         "rating": 5
       },
       {
@@ -1218,7 +1558,7 @@
         "rating": 5
       }
     ],
-    "Аккомпанемент": [
+    "16": [
       {
         "id": 1,
         "title": "",
@@ -1230,179 +1570,7 @@
         "description": "",
         "specifics": [],
         "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 2,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 3,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 4,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 5,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 6,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      }
-    ],
-    "Десерты": [
-      {
-        "id": 1,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 2,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 3,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 4,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 5,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      },
-      {
-        "id": 6,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
-        "rating": 5
-      }
-    ],
-    "Напитки": [
-      {
-        "id": 1,
-        "title": "",
-        "dishPhoto": "",
-        "portion": 1,
-        "price": 20,
-        "contents": "",
-        "allergens": "",
-        "description": "",
-        "specifics": [],
-        "count": 1,
-        "category": "",
+        "category": "Напитки",
         "rating": 5
       },
       {
@@ -1476,5 +1644,24 @@
         "rating": 5
       }
     ]
-  }
+  },
+  [
+    "img/assort/new/webbanner.jpg",
+    "img/assort/lunch/webbanner.jpg",
+    "img/assort/plate/webbanner.jpg",
+    "img/assort/sets/webbanner.jpg",
+    "img/assort/fried/webbanner.jpg",
+    "img/assort/california/webbanner.jpg",
+    "img/assort/fresh-roll/webbanner.jpg",
+    "img/assort/maki/webbanner.jpg",
+    "img/assort/sushi/webbanner.jpg",
+    "img/assort/bowls/webbanner.jpg",
+    "img/assort/chirashi-and-sashimi/webbanner.jpg",
+    "img/assort/tartare/webbanner.jpg",
+    "img/assort/yakitori-tempura-ramen-curry/webbanner.jpg",
+    "img/assort/kids-menu/webbanner.jpg",
+    "img/assort/accompaniments/webbanner.jpg",
+    "img/assort/desserts/webbanner.jpg",
+    "img/assort/drinks/webbanner.jpg"
+  ]
 ]

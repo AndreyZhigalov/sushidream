@@ -1,17 +1,18 @@
 @import '../../scss/variables.scss';
 .card {
   height: 330px;
+  min-width: 210px;
   background-color: $background-second;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
   display: grid;
   grid-template-rows: 200px 60px 70px;
-  grid-template-columns: minmax(200px 1fr);
+  grid-template-columns: 1fr;
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     background-image: url(../../../public/img/assort/bck-product-block.jpg);
   }
 

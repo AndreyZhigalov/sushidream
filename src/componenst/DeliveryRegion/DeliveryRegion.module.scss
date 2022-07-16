@@ -1,34 +1,40 @@
 @import '../../scss/variables.scss';
 
-.sort {
-  position: relative;
-  grid-column: 1/4;
-  grid-row: 1/2;
-  z-index: 5;
-  color: $text-second;
-  justify-self: end;
+.deliveryRegion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: -50px;
+  height: 40px;
+  width: 370px;
+  font-weight: 800;
+  font-size: 18px;
+  margin-left: 50px;
+  padding: 0 10px;
+  color: $text-main;
   user-select: none;
-  margin: 10px auto;
+  background-color: $highlighted;
+  cursor: pointer;
+  z-index: 2;
   svg {
     margin-left: 5px;
+    height: 15px;
+    transform: rotate(180deg);
     cursor: pointer;
-  }
-  span {
-    color: $text-main;
-    cursor: pointer;
-    border-bottom: dashed 2px $text-second;
   }
   .optionsList {
     position: absolute;
-    top: calc(-100% - 195px);
-    right: 0px;
-    width: max-content;
+    top: calc(100%);
+    left: 0px;
+    width: 100%;
     background-color: $background-second;
-    border-radius: 20px;
-    overflow: hidden;
-    transform-origin: bottom;
+    transform-origin: top;
     animation: popUp 0.2s ease-out;
     user-select: none;
+    max-height: calc(26 * 4);
+    overflow: auto;
     p {
       padding: 10px;
       margin: 0;

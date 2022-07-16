@@ -4,9 +4,23 @@
   font-family: 'Montserrat', sans-serif;
   color: $text-main;
   box-sizing: border-box;
+  scrollbar-width: auto;
+  scrollbar-color: #e6007e #071b2c;
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #071b2c;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #e6007e;
+    border-radius: 10px;
+    border: 0px solid #ffffff;
+  }
 }
 
-body {
+* body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -19,47 +33,63 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .menu {
+    position: fixed;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: $background-trans;
+    visibility: hidden;
+    transform: scaleY(0%);
+    transition: visibility 0.2s ease-in-out, transform 0.2s ease-out;
+    img {
+      width: min-content;
+    }
+    a {
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 600;
+      text-shadow: $boxShadow;
+      &:first-of-type {
+        text-shadow: $textShadow;
+      }
+    }
+  }
+  .openMenu {
+    visibility: visible;
+    transform: scaleY(100%);
+  }
   .mainContainer {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    .banner {
+    .menuBanner {
       width: 100%;
-      height: 300px;
+      min-height: 300px;
+      max-height: 400px;
       object-fit: cover;
     }
-    .catalogWrapper {
+    .menuWrapper {
       position: relative;
       margin: auto;
       padding: 0 20px 0 50px;
       max-width: 1600px;
       height: 100%;
       display: grid;
-      grid-template-columns: 200px 3fr 1fr;
-      .deliveryRegion {
-        position: absolute;
-        left: 0;
-        top: -60px;
-        height: 40px;
-        margin-left: 50px;
-        padding: 0 10px;
-        font-weight: 800;
-        font-size: 18px;
-        outline: none;
-        border: none;
-        background-color: $highlighted;
-        cursor: pointer;
-        option {
-          background-color: $background-second;
-          cursor: pointer;
-        }
-      }
+      grid-template-columns: 1fr 3fr 1fr;
       .assortment {
         flex: 1;
         display: grid;
         grid-template-rows: 20px 1fr;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        grid-template-rows: repeat(auto-fit, 330px);
         gap: 20px;
         justify-items: center;
         margin: 0 20px;

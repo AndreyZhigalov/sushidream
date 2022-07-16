@@ -1,8 +1,8 @@
 import React from 'react'
 
-import styles from "./MenuNavigation.module.scss"
+import styles from "./Navigation.module.scss"
 
-export const MenuNavigation = ({ setActiveCategory, activeCategory }) => {
+export const Navigation = ({ setActiveCategory, activeCategory }) => {
 
     const categories = [
         "Новинки", "Ланч", "Сет на одного", "Сет на компанию",
@@ -12,12 +12,12 @@ export const MenuNavigation = ({ setActiveCategory, activeCategory }) => {
     ]
 
     return (
-        < nav className={styles.menuNavigation} >
+        < nav className={styles.navigation} >
             <ul>{
-                categories.map((category) =>
+                categories.map((category, index) =>
                     <li key={category}
-                        onClick={() => setActiveCategory(category)}
-                        className={activeCategory === category ? styles.active : ""}>{category}
+                        onClick={() => setActiveCategory(index)}
+                        className={activeCategory === index ? styles.active : ""}>{category}
                     </li>)}
             </ul>
         </nav >

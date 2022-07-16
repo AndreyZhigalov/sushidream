@@ -9,7 +9,6 @@ export const LoadingCard = (props) => (
         viewBox="0 0 200 300"
         backgroundColor="#ebebeb"
         foregroundColor="#f2f2f2"
-        {...props}
     >
         <rect x="0" y="0" rx="10" ry="10" width="200" height="200" />
         <rect x="15" y="209" rx="2" ry="2" width="163" height="11" />

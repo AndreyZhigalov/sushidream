@@ -22,7 +22,7 @@ header {
     .companyName {
       font-size: 24px;
       font-weight: 600;
-      text-shadow: $boxshadow;
+      text-shadow: $boxShadow;
       span {
         position: relative;
         font-size: 22px;
@@ -37,9 +37,9 @@ header {
     }
   }
   .headerLinks {
-    width: 170px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 30px;
   }
 }
