@@ -2,14 +2,11 @@ import React from 'react'
 
 import deliveryBoy from '../../assets/icons/deliveryBoy.svg'
 import warning from '../../assets/icons/warning.svg'
-import Context from '../../Context';
 import { CartItem } from '../CartItem';
 
 import styles from "./Check.module.scss"
 
-export const Check = () => {
-
-    const { addToCart, removeFromCart, cartItems, deliveryCost } = React.useContext(Context)
+export const Check = ({ cartItems, addToCart, removeFromCart, deliveryCost }) => {
 
     return (
         <div className={styles.check}>

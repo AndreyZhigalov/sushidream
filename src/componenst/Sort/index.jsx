@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Sort.module.scss'
 
-export const Sort = () => {
+export const Sort = ({ setAssortmentList, activeCategory, assortmentList }) => {
     const [visibility, setVisibility] = React.useState(false)
     const [activeSortType, setActiveSortType] = React.useState(0)
 
@@ -10,7 +10,8 @@ export const Sort = () => {
     const sortItemsList = (i) => {
         setActiveSortType(i);
         setVisibility(!visibility)
-
+        // setAssortmentList(prev => prev.map(category => category.includes(prev[activeCategory]) ? prev[activeCategory].sort((a, b) => b["price"] - a["price"]) : category))
+        assortmentList[activeCategory].sort((a, b) => b["price"] - a["price"])
     }
 
     return (

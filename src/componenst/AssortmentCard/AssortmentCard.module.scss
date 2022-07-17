@@ -48,7 +48,9 @@
     div:nth-child(2) {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      flex-wrap: wrap;
+      width: 50%;
+      gap: 5px 10px;
       img[alt='Особенность'] {
         width: 25px;
         height: 25px;
