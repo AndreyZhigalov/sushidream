@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/planetsushi/static/css/main.48515563.css",
+    "main.js": "/planetsushi/static/js/main.47d27b7c.js",
+    "static/media/bck-product-block.jpg": "/planetsushi/static/media/bck-product-block.0e7a0245e8f400c36b0e.jpg",
+    "static/media/deliveryBoy.svg": "/planetsushi/static/media/deliveryBoy.8429fb1110ed9ed0015dab46524c0225.svg",
+    "static/media/cart.svg": "/planetsushi/static/media/cart.98ae0f2b0195ad74fe6b5b9919e7e557.svg",
+    "index.html": "/planetsushi/index.html",
+    "static/media/logo-primary.svg": "/planetsushi/static/media/logo-primary.6d381e2f6cd658f4f1aaf6d459dbaba3.svg",
+    "static/media/user.svg": "/planetsushi/static/media/user.99c649ea913bfbe41a95175bd29fef7f.svg",
+    "static/media/menu.svg": "/planetsushi/static/media/menu.c6f7f190b8a5468399a70a7aa2f0ea00.svg",
+    "static/media/warning.svg": "/planetsushi/static/media/warning.527898892613988f82a0c2a47cd05ea6.svg",
+    "main.48515563.css.map": "/planetsushi/static/css/main.48515563.css.map",
+    "main.47d27b7c.js.map": "/planetsushi/static/js/main.47d27b7c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48515563.css",
+    "static/js/main.47d27b7c.js"
+  ]
+}
