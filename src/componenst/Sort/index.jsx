@@ -4,10 +4,7 @@ import styles from './Sort.module.scss'
 export const Sort = ({ sortItemsList, activeSortType }) => {
     const [visibility, setVisibility] = React.useState(false)
 
-
     const sortType = ["названию", "цене по возрастанию", "цене по убыванию", "популярности", "цене за штуку"]
-
-
 
     return (
         <div className={styles.sort}>
