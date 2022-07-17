@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Sort.module.scss'
 
-export const Sort = ({ setAssortmentList, activeCategory, assortmentList }) => {
+export const Sort = ({ setAssortmentList, activeCategory }) => {
     const [visibility, setVisibility] = React.useState(false)
     const [activeSortType, setActiveSortType] = React.useState(0)
 
@@ -10,8 +10,54 @@ export const Sort = ({ setAssortmentList, activeCategory, assortmentList }) => {
     const sortItemsList = (i) => {
         setActiveSortType(i);
         setVisibility(!visibility)
-        // setAssortmentList(prev => prev.map(category => category.includes(prev[activeCategory]) ? prev[activeCategory].sort((a, b) => b["price"] - a["price"]) : category))
-        assortmentList[activeCategory].sort((a, b) => b["price"] - a["price"])
+        if (i === 0) {
+            // сортировка по названию
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => a["title"].charCodeAt(0) - b["title"].charCodeAt(0))) : arr.push(prev[category]);
+                }
+                return arr
+            })
+        } else if (i === 1) {
+            // сортировка по цене по возрастанию
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => a["price"] - b["price"])) : arr.push(prev[category]);
+                }
+                return arr
+            })
+        } else if (i === 2) {
+            // сортировка по цене по убыванию
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => b["price"] - a["price"])) : arr.push(prev[category]);
+                }
+                return arr
+            })
+        } else if (i === 3) {
+            // сортировка по популярности
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => b["rating"] - a["rating"])) : arr.push(prev[category])
+                }
+                return arr
+            })
+        } else if (i === 4) {
+            // сортировка по цене за штуку
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => (a["price"] / a["portion"]) - (b["price"] / b["portion"]))) : arr.push(prev[category]);
+                }
+                return arr
+            })
+        }
+
+
     }
 
     return (

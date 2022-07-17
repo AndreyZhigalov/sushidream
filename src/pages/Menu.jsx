@@ -20,7 +20,7 @@ export const Menu = () => {
     const [deliveryCost, setDeliveryCost] = React.useState(0)
 
     React.useEffect(() => {
-        axios.get("https://62d360c7afb0b03fc5b26d7f.mockapi.io/assortment")
+        axios.get("https://62d42dbc5112e98e484beb8c.mockapi.io/assortment")
             .then((resp) => {
                 setAssortmentList(resp.data[0])
                 setBannerList(resp.data[1])
@@ -54,7 +54,7 @@ export const Menu = () => {
                     activeCategory={activeCategory}
                     setActiveCategory={setActiveCategory}
                 />
-                <Sort setAssortmentList={setAssortmentList} assortmentList={assortmentList} activeCategory={activeCategory} />
+                <Sort setAssortmentList={setAssortmentList} activeCategory={activeCategory} />
                 <div className={styles.assortment} >
                     {isLoading ? [...Array(6)].map((item, i) => <LoadingCard key={i} />) :
                         assortmentList[activeCategory].map(item =>
