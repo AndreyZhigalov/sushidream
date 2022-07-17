@@ -16,7 +16,7 @@ export const Navigation = ({ setActiveCategory, activeCategory }) => {
             <ul>{
                 categories.map((category, index) =>
                     <li key={category}
-                        onClick={() => setActiveCategory(index)}
+                        onClick={() => { setActiveCategory(index) }}
                         className={activeCategory === index ? styles.active : ""}>{category}
                     </li>)}
             </ul>

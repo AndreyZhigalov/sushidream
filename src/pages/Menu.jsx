@@ -18,6 +18,7 @@ export const Menu = () => {
     const [specialsList, setSpecialsList] = React.useState([])
     const [cartItems, setCartItems] = React.useState([])
     const [deliveryCost, setDeliveryCost] = React.useState(0)
+    const [activeSortType, setActiveSortType] = React.useState(0)
 
     React.useEffect(() => {
         axios.get("https://62d42dbc5112e98e484beb8c.mockapi.io/assortment")
@@ -29,7 +30,6 @@ export const Menu = () => {
             })
     }, [])
 
-
     const addToCart = (item) => {
         if (cartItems.find(obj => obj.id === item.id)) {
             setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count += 1 } : { ...obj } }))
@@ -37,11 +37,66 @@ export const Menu = () => {
             setCartItems(prev => [...prev, item])
         }
     }
+
     const removeFromCart = (item) => {
         item.count === 1 ?
             setCartItems(prev => prev.filter(obj => obj.id !== item.id)) :
             setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count -= 1 } : { ...obj } }));
     }
+
+    const sortItemsList = (i) => {
+        setActiveSortType(i);
+        if (i === 0) {
+            // сортировка по названию
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => a["title"].charCodeAt(0) - b["title"].charCodeAt(0))) : arr.push(prev[category]);
+                }
+                return arr
+            })
+        } else if (i === 1) {
+            // сортировка по цене по возрастанию
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => a["price"] - b["price"])) : arr.push(prev[category]);
+                }
+                return arr
+            })
+        } else if (i === 2) {
+            // сортировка по цене по убыванию
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => b["price"] - a["price"])) : arr.push(prev[category]);
+                }
+                return arr
+            })
+        } else if (i === 3) {
+            // сортировка по популярности
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => b["rating"] - a["rating"])) : arr.push(prev[category])
+                }
+                return arr
+            })
+        } else if (i === 4) {
+            // сортировка по цене за штуку
+            setAssortmentList((prev) => {
+                let arr = []
+                for (let category in prev) {
+                    prev[category] === prev[activeCategory] ? arr.push(prev[category].sort((a, b) => (a["price"] / a["portion"]) - (b["price"] / b["portion"]))) : arr.push(prev[category]);
+                }
+                return arr
+            })
+        }
+    }
+
+    React.useEffect(() => {
+        sortItemsList(activeSortType)
+    }, [activeCategory])
 
     return (
         <>
@@ -54,7 +109,7 @@ export const Menu = () => {
                     activeCategory={activeCategory}
                     setActiveCategory={setActiveCategory}
                 />
-                <Sort setAssortmentList={setAssortmentList} activeCategory={activeCategory} />
+                <Sort sortItemsList={sortItemsList} activeSortType={activeSortType} />
                 <div className={styles.assortment} >
                     {isLoading ? [...Array(6)].map((item, i) => <LoadingCard key={i} />) :
                         assortmentList[activeCategory].map(item =>
