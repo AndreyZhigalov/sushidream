@@ -16,7 +16,10 @@
   &::-webkit-scrollbar-thumb {
     background-color: #e6007e;
     border-radius: 10px;
-    border: 0px solid #ffffff;
+    border: 0px solid #071b2c;
+  }
+  &::-webkit-scrollbar-corner {
+    display: none;
   }
 }
 

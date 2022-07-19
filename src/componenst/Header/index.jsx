@@ -8,7 +8,7 @@ import logo from '../../assets/logo-primary.svg'
 
 import styles from "./Header.module.scss"
 
-export const Header = ({ openMenu }) => {
+export const Header = ({ openMenu, cartItemCount }) => {
     return (
         <header>
             <div className={styles.logoContainer}>
@@ -16,7 +16,7 @@ export const Header = ({ openMenu }) => {
                 <h1 className={styles.companyName}>SUSH<span>i</span>DREAM</h1>
             </div>
             <div className={styles.headerLinks}>
-                <Link to="cart"><img src={cart} height={50} alt="корзина" /></Link>
+                <Link to="cart"><img src={cart} height={50} alt="корзина" /><span>{cartItemCount ? cartItemCount : ""}</span></Link>
                 <Link to="profile"><img src={user} height={35} alt="профиль" /></Link>
                 <img src={menu} height={35} onClick={openMenu} alt="меню" />
             </div>

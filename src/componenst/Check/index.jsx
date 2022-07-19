@@ -8,6 +8,10 @@ import styles from "./Check.module.scss"
 
 export const Check = ({ cartItems, addToCart, removeFromCart, deliveryCost }) => {
 
+    const totalPrice = () => {
+        return cartItems.reduce((sum, obj) => sum + obj.price * obj.count, 0) + deliveryCost
+    }
+
     return (
         <div className={styles.check}>
             <h2>ВАШ ЗАКАЗ</h2>
@@ -26,7 +30,7 @@ export const Check = ({ cartItems, addToCart, removeFromCart, deliveryCost }) =>
             </div>
             <div className={styles.total}>
                 <p>доставка <span>{deliveryCost}&#x20bd;</span></p>
-                <p>ИТОГО <span>{cartItems.reduce((sum, obj) => sum + obj.price * obj.count, 0) + deliveryCost}&#x20bd;</span></p>
+                <p>ИТОГО <span>{totalPrice()}&#x20bd;</span></p>
             </div>
             <button className={styles.orderButton}>Оформить доставку
                 <img height={30} src={deliveryBoy} alt="deliveryBoy" />

@@ -10,15 +10,15 @@ import { DeliveryRegion } from '../componenst/DeliveryRegion';
 
 import styles from '../scss/index.module.scss';
 
-export const Menu = () => {
-    const [activeCategory, setActiveCategory] = React.useState(0)
+export const Menu = ({ setCartItemCount }) => {
     const [isLoading, setIsLoading] = React.useState(true)
     const [assortmentList, setAssortmentList] = React.useState([])
     const [bannerList, setBannerList] = React.useState([])
+    const [activeSortType, setActiveSortType] = React.useState(3)
+    const [activeCategory, setActiveCategory] = React.useState(0)
     const [specialsList, setSpecialsList] = React.useState([])
     const [cartItems, setCartItems] = React.useState([])
     const [deliveryCost, setDeliveryCost] = React.useState(0)
-    const [activeSortType, setActiveSortType] = React.useState(0)
 
     React.useEffect(() => {
         axios.get("https://62d42dbc5112e98e484beb8c.mockapi.io/assortment")
@@ -27,6 +27,7 @@ export const Menu = () => {
                 setBannerList(resp.data[1])
                 setSpecialsList(resp.data[2])
                 setIsLoading(false)
+                sortItemsList(activeSortType)
             })
     }, [])
 
@@ -98,6 +99,19 @@ export const Menu = () => {
         sortItemsList(activeSortType)
     }, [activeCategory])
 
+    let assortment = isLoading ? [...Array(6)].map((item, i) => <LoadingCard key={i} />) :
+        assortmentList[activeCategory].map((item) => {
+            return <AssortmentCard
+                key={item.id} {...item}
+                addToCart={() => addToCart(item)}
+                specialsList={specialsList} />
+        })
+
+    React.useEffect(() => {
+        let result = cartItems.reduce((sum, obj) => sum + obj.count, 0)
+        setCartItemCount(result)
+    }, [cartItems])
+
     return (
         <>
             <div>
@@ -111,10 +125,7 @@ export const Menu = () => {
                 />
                 <Sort sortItemsList={sortItemsList} activeSortType={activeSortType} />
                 <div className={styles.assortment} >
-                    {isLoading ? [...Array(6)].map((item, i) => <LoadingCard key={i} />) :
-                        assortmentList[activeCategory].map(item =>
-                            <AssortmentCard key={item.id} {...item} addToCart={() => addToCart(item)} specialsList={specialsList} />)
-                    }
+                    {assortment}
                 </div>
                 <Check
                     deliveryCost={deliveryCost}

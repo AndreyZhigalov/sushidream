@@ -16,24 +16,35 @@ import { Profile } from './pages/Profile';
 function App() {
 
   const [isOpened, setIsOpened] = React.useState(false)
+  const [cartItemCount, setCartItemCount] = React.useState(0)
 
   return (
     <div className={styles.wrapper}>
       <div className={`${styles.menu} ${isOpened ? styles.openMenu : ""}`}>
         <img src={logo} alt="Логотип" className="logo" />
-        <Link to="" onClick={() => setIsOpened(false)}>МЕНЮ</Link>
-        <Link to="restaurants" onClick={() => setIsOpened(false)}>РЕСТОРАНЫ</Link>
-        <Link to="loyalty" onClick={() => setIsOpened(false)}>ПРОГРАММА ЛОЯЛЬНОСТИ</Link>
-        <Link to="service-course" onClick={() => setIsOpened(false)}>КУРС ПО ПОДАЧЕ БЛЮД</Link>
-        <Link to="franchise" onClick={() => setIsOpened(false)}>ФРАНШИЗА</Link>
+        <Link to="" onClick={() => setIsOpened(false)}>
+          МЕНЮ
+        </Link>
+        <Link to="restaurants" onClick={() => setIsOpened(false)}>
+          РЕСТОРАНЫ
+        </Link>
+        <Link to="loyalty" onClick={() => setIsOpened(false)}>
+          ПРОГРАММА ЛОЯЛЬНОСТИ
+        </Link>
+        <Link to="course" onClick={() => setIsOpened(false)}>
+          КУРС ПО ПОДАЧЕ БЛЮД
+        </Link>
+        <Link to="franchise" onClick={() => setIsOpened(false)}>
+          ФРАНШИЗА
+        </Link>
       </div>
-      <Header openMenu={() => setIsOpened(true)} />
+      <Header openMenu={() => setIsOpened(true)} cartItemCount={cartItemCount} />
       <main className={styles.mainContainer}>
         <Routes>
-          <Route path='' element={<Menu />} />
+          <Route path='' element={<Menu setCartItemCount={setCartItemCount} />} />
           <Route path='restaurants' element={<Restaurants />} />
           <Route path='loyalty' element={<Loyalty />} />
-          <Route path='service-course' element={<ServiceCourse />} />
+          <Route path='course' element={<ServiceCourse />} />
           <Route path='franchise' element={<Franchise />} />
           <Route path='cart' element={<Cart />} />
           <Route path='profile' element={<Profile />} />

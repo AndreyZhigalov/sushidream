@@ -1,9 +1,6 @@
 import React from 'react'
 
-
-
 export const Cart = () => {
-
     return (
         <div style={
             {
@@ -14,6 +11,7 @@ export const Cart = () => {
                 fontSize: "70px"
             }}>
             Cart
+
         </div>
     )
 }
