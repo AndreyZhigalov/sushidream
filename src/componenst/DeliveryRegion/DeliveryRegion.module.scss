@@ -4,23 +4,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  left: 0;
-  top: -50px;
+  grid-column: 3/4;
+  grid-row: 1/2;
+  position: relative;
   height: 40px;
-  width: 360px;
+  width: 300px;
   font-weight: 800;
-  font-size: 18px;
-  margin-left: 50px;
+  font-size: 14px;
   padding: 0 10px;
   color: $text-main;
   user-select: none;
   background-color: $highlighted;
+  @media (max-width: 820px) {
+    grid-column: 1/2;
+    grid-row: auto;
+  }
   cursor: pointer;
   z-index: 6;
-  @media (max-width: 820px) {
-    left: calc(50% - 230px);
-  }
   svg {
     margin-left: 5px;
     height: 15px;

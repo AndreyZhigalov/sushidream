@@ -2,11 +2,14 @@ import React from 'react'
 
 import deliveryBoy from '../../assets/icons/deliveryBoy.svg'
 import warning from '../../assets/icons/warning.svg'
+import AppContext from '../../Context';
 import { CartItem } from '../CartItem';
 
 import styles from "./Check.module.scss"
 
-export const Check = ({ cartItems, addToCart, removeFromCart, deliveryCost }) => {
+export const Check = () => {
+
+    const { cartItems, addToCart, removeFromCart, deliveryCost } = React.useContext(AppContext)
 
     const totalPrice = () => {
         return cartItems.reduce((sum, obj) => sum + obj.price * obj.count, 0) + deliveryCost

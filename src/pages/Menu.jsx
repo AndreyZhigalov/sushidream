@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import AppContext from '../Context';
 
 import { AssortmentCard } from '../componenst/AssortmentCard';
 import { Navigation } from '../componenst/Navigation';
@@ -7,18 +8,19 @@ import { Check } from '../componenst/Check';
 import { LoadingCard } from '../componenst/LoadingCard';
 import { Sort } from '../componenst/Sort';
 import { DeliveryRegion } from '../componenst/DeliveryRegion';
+import useScreenSize from "../Hooks/useScreenSize"
 
 import styles from '../scss/index.module.scss';
 
-export const Menu = ({ setCartItemCount }) => {
+export const Menu = () => {
     const [isLoading, setIsLoading] = React.useState(true)
     const [assortmentList, setAssortmentList] = React.useState([])
     const [bannerList, setBannerList] = React.useState([])
     const [activeSortType, setActiveSortType] = React.useState(3)
     const [activeCategory, setActiveCategory] = React.useState(0)
     const [specialsList, setSpecialsList] = React.useState([])
-    const [cartItems, setCartItems] = React.useState([])
-    const [deliveryCost, setDeliveryCost] = React.useState(0)
+    const { addToCart } = React.useContext(AppContext)
+    const screenSize = useScreenSize()
 
     React.useEffect(() => {
         axios.get("https://62d42dbc5112e98e484beb8c.mockapi.io/assortment")
@@ -30,20 +32,6 @@ export const Menu = ({ setCartItemCount }) => {
                 sortItemsList(activeSortType)
             })
     }, [])
-
-    const addToCart = (item) => {
-        if (cartItems.find(obj => obj.id === item.id)) {
-            setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count += 1 } : { ...obj } }))
-        } else {
-            setCartItems(prev => [...prev, item])
-        }
-    }
-
-    const removeFromCart = (item) => {
-        item.count === 1 ?
-            setCartItems(prev => prev.filter(obj => obj.id !== item.id)) :
-            setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count -= 1 } : { ...obj } }));
-    }
 
     const sortItemsList = (i) => {
         setActiveSortType(i);
@@ -99,7 +87,7 @@ export const Menu = ({ setCartItemCount }) => {
         sortItemsList(activeSortType)
     }, [activeCategory])
 
-    let assortment = isLoading ? [...Array(6)].map((item, i) => <LoadingCard key={i} />) :
+    const assortment = isLoading ? [...Array(6)].map((item, i) => <LoadingCard key={i} />) :
         assortmentList[activeCategory].map((item) => {
             return <AssortmentCard
                 key={item.id} {...item}
@@ -107,10 +95,6 @@ export const Menu = ({ setCartItemCount }) => {
                 specialsList={specialsList} />
         })
 
-    React.useEffect(() => {
-        let result = cartItems.reduce((sum, obj) => sum + obj.count, 0)
-        setCartItemCount(result)
-    }, [cartItems])
 
     return (
         <>
@@ -118,20 +102,18 @@ export const Menu = ({ setCartItemCount }) => {
                 <img className={styles.menuBanner} src={bannerList[activeCategory]} alt="banner" />
             </div>
             <div className={styles.menuWrapper}>
-                <DeliveryRegion setDeliveryCost={setDeliveryCost} />
                 <Navigation
                     activeCategory={activeCategory}
                     setActiveCategory={setActiveCategory}
                 />
-                <Sort sortItemsList={sortItemsList} activeSortType={activeSortType} />
+                <Sort
+                    sortItemsList={sortItemsList}
+                    activeSortType={activeSortType} />
                 <div className={styles.assortment} >
                     {assortment}
                 </div>
-                <Check
-                    deliveryCost={deliveryCost}
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                    cartItems={cartItems} />
+                {screenSize.width > 820 && <DeliveryRegion />}
+                {screenSize.width > 820 && <Check />}
             </div>
         </>
     )

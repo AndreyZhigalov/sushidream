@@ -1,16 +1,17 @@
 import React from 'react'
 
+import { Check } from "../componenst/Check"
+import { DeliveryRegion } from '../componenst/DeliveryRegion'
+
+import styles from "../scss/index.module.scss"
+
 export const Cart = () => {
     return (
-        <div style={
-            {
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100vh",
-                fontSize: "70px"
-            }}>
-            Cart
+        <div className={styles.cart}>
+            <div>
+                <DeliveryRegion />
+                <Check />
+            </div>
 
         </div>
     )

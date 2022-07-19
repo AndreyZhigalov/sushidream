@@ -1,11 +1,13 @@
 import React from 'react'
+import AppContext from '../../Context'
 
 import styles from './DeliveryRegion.module.scss'
 
-export const DeliveryRegion = ({ setDeliveryCost }) => {
+export const DeliveryRegion = () => {
     const [visibility, setVisibility] = React.useState(false)
     const [activeDelivery, setActiveDelivery] = React.useState(0)
     const [region, setRegion] = React.useState("")
+    const { setDeliveryCost } = React.useContext(AppContext)
 
     const deliveryType = ["Самовывоз", "Близко", "Средне", "Далеко"]
 

@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { Link, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { Header } from './componenst/Header';
-import logo from './assets/logo-primary.svg'
 import { Menu } from './pages/Menu';
 
 import styles from './scss/index.module.scss';
@@ -12,47 +11,60 @@ import { ServiceCourse } from './pages/ServiceCourse';
 import { Franchise } from './pages/Franchise';
 import { Cart } from './pages/Cart';
 import { Profile } from './pages/Profile';
+import { PagesNavigation } from './componenst/PagesNavigation';
+import AppContext from './Context';
+
 
 function App() {
 
   const [isOpened, setIsOpened] = React.useState(false)
   const [cartItemCount, setCartItemCount] = React.useState(0)
+  const [cartItems, setCartItems] = React.useState([])
+  const [deliveryCost, setDeliveryCost] = React.useState(0)
+
+  const addToCart = (item) => {
+    if (cartItems.find(obj => obj.id === item.id)) {
+      setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count += 1 } : { ...obj } }))
+    } else {
+      setCartItems(prev => [...prev, item])
+    }
+  }
+
+  const removeFromCart = (item) => {
+    item.count === 1 ?
+      setCartItems(prev => prev.filter(obj => obj.id !== item.id)) :
+      setCartItems(prev => prev.map((obj) => { return obj.id === item.id ? { ...obj, count: obj.count -= 1 } : { ...obj } }));
+  }
+
+  React.useEffect(() => {
+    let result = cartItems.reduce((sum, obj) => sum + obj.count, 0)
+    setCartItemCount(result)
+  }, [cartItems])
 
   return (
     <div className={styles.wrapper}>
-      <div className={`${styles.menu} ${isOpened ? styles.openMenu : ""}`}>
-        <img src={logo} alt="Логотип" className="logo" />
-        <Link to="" onClick={() => setIsOpened(false)}>
-          МЕНЮ
-        </Link>
-        <Link to="restaurants" onClick={() => setIsOpened(false)}>
-          РЕСТОРАНЫ
-        </Link>
-        <Link to="loyalty" onClick={() => setIsOpened(false)}>
-          ПРОГРАММА ЛОЯЛЬНОСТИ
-        </Link>
-        <Link to="course" onClick={() => setIsOpened(false)}>
-          КУРС ПО ПОДАЧЕ БЛЮД
-        </Link>
-        <Link to="franchise" onClick={() => setIsOpened(false)}>
-          ФРАНШИЗА
-        </Link>
-      </div>
-      <Header openMenu={() => setIsOpened(true)} cartItemCount={cartItemCount} />
-      <main className={styles.mainContainer}>
-        <Routes>
-          <Route path='' element={<Menu setCartItemCount={setCartItemCount} />} />
-          <Route path='restaurants' element={<Restaurants />} />
-          <Route path='loyalty' element={<Loyalty />} />
-          <Route path='course' element={<ServiceCourse />} />
-          <Route path='franchise' element={<Franchise />} />
-          <Route path='cart' element={<Cart />} />
-          <Route path='profile' element={<Profile />} />
-          <Route path='*' element={<h1>404</h1>} />
-        </Routes>
-      </main>
+      <AppContext.Provider value={
+        {
+          isOpened, setIsOpened, cartItemCount, setCartItemCount, cartItems, setCartItems,
+          deliveryCost, setDeliveryCost, addToCart, removeFromCart
+        }
+      }>
+        <PagesNavigation />
+        <Header />
+        <main className={styles.mainContainer}>
+          <Routes>
+            <Route path='' element={<Menu />} />
+            <Route path='restaurants' element={<Restaurants />} />
+            <Route path='loyalty' element={<Loyalty />} />
+            <Route path='course' element={<ServiceCourse />} />
+            <Route path='franchise' element={<Franchise />} />
+            <Route path='cart' element={<Cart />} />
+            <Route path='profile' element={<Profile />} />
+            <Route path='*' element={<h1>404</h1>} />
+          </Routes>
+        </main>
+      </AppContext.Provider>
     </div >
-
   );
 }
 

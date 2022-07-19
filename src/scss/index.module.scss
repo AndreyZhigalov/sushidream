@@ -37,46 +37,16 @@
   flex-direction: column;
   align-items: center;
 
-  .menu {
-    position: fixed;
-    z-index: 99;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    background-color: $background-trans;
-    visibility: hidden;
-    transform: scaleY(0%);
-    transition: visibility 0.2s ease-in-out, transform 0.2s ease-out;
-    img {
-      width: min-content;
-    }
-    a {
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 600;
-      text-shadow: $boxShadow;
-      &:first-of-type {
-        text-shadow: $textShadow;
-      }
-    }
-  }
-  .openMenu {
-    visibility: visible;
-    transform: scaleY(100%);
-  }
   .mainContainer {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     .menuBanner {
-      width: 100%;
-      min-height: 300px;
-      max-height: 400px;
+      width: 100vw;
+      min-height: 150px;
+      max-height: 300px;
       object-fit: cover;
     }
     .menuWrapper {
@@ -102,6 +72,16 @@
         justify-items: center;
         margin: 0 20px;
       }
+    }
+    .cart {
+      width: 100%;
+      height: 100vh;
+      margin: 130px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      grid-template-rows: min-content;
+      justify-items: center;
+      align-items: flex-start;
     }
   }
 }
