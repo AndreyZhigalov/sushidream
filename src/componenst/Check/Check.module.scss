@@ -39,7 +39,7 @@
     }
   }
   .total {
-    margin: 10px 0 10px 0;
+    margin: 10px 0 0 0;
     width: 100%;
     height: max-content;
     border-top: 2px solid $text-main;
@@ -58,7 +58,7 @@
     width: 100%;
     height: 40px;
     position: absolute;
-    bottom: -40px;
+    bottom: -50px;
     left: 0;
     background-color: $highlighted;
     border: none;

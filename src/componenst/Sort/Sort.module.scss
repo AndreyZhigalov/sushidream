@@ -16,6 +16,7 @@
   svg {
     margin-left: 5px;
     cursor: pointer;
+    transform: rotate(180deg);
   }
   span {
     color: $text-main;

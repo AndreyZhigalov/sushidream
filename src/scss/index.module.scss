@@ -40,9 +40,6 @@
   .mainContainer {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     .menuBanner {
       width: 100vw;
       min-height: 150px;
@@ -63,14 +60,6 @@
       @media (max-width: 490px) {
         grid-template-columns: 1fr;
         padding: 0;
-      }
-      .assortment {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        grid-template-rows: repeat(auto-fit, 330px);
-        gap: 20px;
-        justify-items: center;
-        margin: 0 20px;
       }
     }
     .cart {

@@ -15,4 +15,4 @@ export const Cart = () => {
 
         </div>
     )
-}
+} 
