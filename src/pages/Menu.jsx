@@ -24,8 +24,8 @@ export const Menu = () => {
                 <Navigation />
                 <Sort />
                 <AccortmentBlock />
-                {<DeliveryRegion /> || screenSize.width > 820}
-                {<Check /> || screenSize.width > 820}
+                {screenSize.width > 820 && < DeliveryRegion />}
+                {screenSize.width > 820 && < Check />}
             </div>
         </>
     )
