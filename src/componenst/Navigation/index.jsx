@@ -6,22 +6,16 @@ import styles from "./Navigation.module.scss"
 
 export const Navigation = () => {
     const dispatch = useDispatch()
-    const currentCategory = useSelector(state => state.filters.currentCategory)
-
-    const categories = [
-        "Новинки", "Ланч", "Сет на одного", "Сет на компанию",
-        "Жаренные роллы", "Калифорния", "Фреш роллы", "Маки", "Суши", "Чаши",
-        "Чираши и Сашими", "Тартар и Севич", "Якитори, Темпура, Рамён и Карри",
-        "ДЕТСКОЕ МЕНЮ", "Аккомпанемент", "Десерты", "Напитки"
-    ]
+    const { currentCategory, categories } = useSelector(state => state.filters)
 
     return (
         < nav className={styles.navigation} >
             <ul>{
-                categories.map((category, index) =>
-                    <li key={category}
-                        onClick={() => { dispatch(setCategory(index)) }}
-                        className={currentCategory === index ? styles.active : ""}>{category}
+                categories.map((category) =>
+                    <li key={category.engTitle}
+                        onClick={() => { dispatch(setCategory(category)) }}
+                        className={currentCategory.engTitle === category.engTitle ? styles.active : ""}>
+                        {category.ruTitle}
                     </li>)}
             </ul>
         </nav >

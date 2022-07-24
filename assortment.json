@@ -1,10 +1,10 @@
 [
   {
-    "0": [
+    "new": [
       {
         "id": 1,
         "title": "КАРААГЕ С ТРЮФЕЛЬНЫМ СОУСОМ",
-        "dishPhoto": "img/assort/new/karaage-4-pieces.png",
+        "dishPhoto": "img/assort/new/karaage-4-pieces.webp",
         "portion": 4,
         "price": 690,
         "contents": "",
@@ -18,7 +18,7 @@
       {
         "id": 2,
         "title": "ЯПОНСКИЙ РИС",
-        "dishPhoto": "img/assort/new/riz-japonais.png",
+        "dishPhoto": "img/assort/new/riz-japonais.webp",
         "portion": 1,
         "price": 390,
         "contents": "",
@@ -32,7 +32,7 @@
       {
         "id": 3,
         "title": "АУБЕРГИНСКИЙ МИСО",
-        "dishPhoto": "img/assort/new/aubergine-miso.png",
+        "dishPhoto": "img/assort/new/aubergine-miso.webp",
         "portion": 1,
         "price": 390,
         "contents": "",
@@ -46,7 +46,7 @@
       {
         "id": 4,
         "title": "САЛАТ ИЗ БРОККОЛИ И ШИИТАКЕ",
-        "dishPhoto": "img/assort/new/salade-brocolis-shiitake.png",
+        "dishPhoto": "img/assort/new/salade-brocolis-shiitake.webp",
         "portion": 1,
         "price": 420,
         "contents": "",
@@ -60,7 +60,7 @@
       {
         "id": 5,
         "title": "КУРРИ КАТСУ",
-        "dishPhoto": "img/assort/new/curry-katsu.png",
+        "dishPhoto": "img/assort/new/curry-katsu.webp",
         "portion": 1,
         "price": 1490,
         "contents": "",
@@ -74,7 +74,7 @@
       {
         "id": 6,
         "title": "ХРУСТЯЩИЙ ЛОСОСЬ С СОУСОМ ТАРТАР",
-        "dishPhoto": "img/assort/new/crousty-saumon-sauce-tartare.png",
+        "dishPhoto": "img/assort/new/crousty-saumon-sauce-tartare.webp",
         "portion": 3,
         "price": 750,
         "contents": "",
@@ -86,11 +86,11 @@
         "rating": 8
       }
     ],
-    "1": [
+    "lunch": [
       {
         "id": 7,
         "title": "ЛАНЧ ТВОРЕНИЕ",
-        "dishPhoto": "img/assort/lunch/midi-creation.png",
+        "dishPhoto": "img/assort/lunch/midi-creation.webp",
         "portion": 15,
         "price": 1290,
         "contents": "",
@@ -104,7 +104,7 @@
       {
         "id": 8,
         "title": "ЛАНЧ ИЗ ШАРИКОВ",
-        "dishPhoto": "img/assort/lunch/midi-balls.png",
+        "dishPhoto": "img/assort/lunch/midi-balls.webp",
         "portion": 9,
         "price": 990,
         "contents": "",
@@ -118,7 +118,7 @@
       {
         "id": 9,
         "title": "ЛАНЧ МАКИ",
-        "dishPhoto": "img/assort/lunch/maki-midi.png",
+        "dishPhoto": "img/assort/lunch/maki-midi.webp",
         "portion": 18,
         "price": 1290,
         "contents": "",
@@ -132,7 +132,7 @@
       {
         "id": 10,
         "title": "ЛАНЧ КЛАССИЧЕСКИЙ",
-        "dishPhoto": "img/assort/lunch/midi-classique.png",
+        "dishPhoto": "img/assort/lunch/midi-classique.webp",
         "portion": 12,
         "price": 1290,
         "contents": "",
@@ -144,11 +144,11 @@
         "rating": 8
       }
     ],
-    "2": [
+    "one-person-box": [
       {
         "id": 11,
         "title": "PLANET МАКС",
-        "dishPhoto": "img/assort/plate/planet-max.png",
+        "dishPhoto": "img/assort/plate/planet-max.webp",
         "portion": 24,
         "price": 1990,
         "contents": "",
@@ -162,7 +162,7 @@
       {
         "id": 12,
         "title": "PLANET БИЗНЕС",
-        "dishPhoto": "img/assort/plate/planet-business.png",
+        "dishPhoto": "img/assort/plate/planet-business.webp",
         "portion": 18,
         "price": 1850,
         "contents": "",
@@ -176,7 +176,7 @@
       {
         "id": 13,
         "title": "PLANET СЫРНЫЙ ЛОСОСЬ",
-        "dishPhoto": "img/assort/plate/planet-saumon-cheese.png",
+        "dishPhoto": "img/assort/plate/planet-saumon-cheese.webp",
         "portion": 16,
         "price": 1850,
         "contents": "",
@@ -190,7 +190,7 @@
       {
         "id": 14,
         "title": "PLANET СУШИ ИЗ ЛОСОСЯ",
-        "dishPhoto": "img/assort/plate/planet-sushi-saumon.png",
+        "dishPhoto": "img/assort/plate/planet-sushi-saumon.webp",
         "portion": 10,
         "price": 1690,
         "contents": "",
@@ -204,7 +204,7 @@
       {
         "id": 15,
         "title": "PLANET ФРЕШ",
-        "dishPhoto": "img/assort/plate/planet-fresh.png",
+        "dishPhoto": "img/assort/plate/planet-fresh.webp",
         "portion": 18,
         "price": 1550,
         "contents": "",
@@ -218,7 +218,7 @@
       {
         "id": 16,
         "title": "КАЛИФОРНИЯ МИКС",
-        "dishPhoto": "img/assort/plate/california-mix.png",
+        "dishPhoto": "img/assort/plate/california-mix.webp",
         "portion": 18,
         "price": 1590,
         "contents": "",
@@ -232,7 +232,7 @@
       {
         "id": 17,
         "title": "ЯКИ МАКСИ X8",
-        "dishPhoto": "img/assort/plate/yaki-maxi-x8.png",
+        "dishPhoto": "img/assort/plate/yaki-maxi-x8.webp",
         "portion": 8,
         "price": 1990,
         "contents": "",
@@ -246,7 +246,7 @@
       {
         "id": 18,
         "title": "ЯКИ МАКСИ X5",
-        "dishPhoto": "img/assort/plate/yaki-maxi-x5.png",
+        "dishPhoto": "img/assort/plate/yaki-maxi-x5.webp",
         "portion": 5,
         "price": 1390,
         "contents": "",
@@ -260,7 +260,7 @@
       {
         "id": 19,
         "title": "ЯКИ ТВОРЕНИЕ",
-        "dishPhoto": "img/assort/plate/yaki-creation.png",
+        "dishPhoto": "img/assort/plate/yaki-creation.webp",
         "portion": 15,
         "price": 1790,
         "contents": "",
@@ -272,11 +272,11 @@
         "rating": 8
       }
     ],
-    "3": [
+    "company-box": [
       {
         "id": 20,
         "title": "LOVEBOX ПАЛИТРА",
-        "dishPhoto": "img/assort/sets/lovebox-degustation.png",
+        "dishPhoto": "img/assort/sets/lovebox-degustation.webp",
         "portion": 34,
         "price": 2800,
         "contents": "",
@@ -290,7 +290,7 @@
       {
         "id": 21,
         "title": "LOVEBOX СЁМГА",
-        "dishPhoto": "img/assort/sets/lovebox-saumon.png",
+        "dishPhoto": "img/assort/sets/lovebox-saumon.webp",
         "portion": 36,
         "price": 3200,
         "contents": "",
@@ -304,7 +304,7 @@
       {
         "id": 22,
         "title": "PARTYBOX ПАЛИТРА",
-        "dishPhoto": "img/assort/sets/partybox-degustation.png",
+        "dishPhoto": "img/assort/sets/partybox-degustation.webp",
         "portion": 50,
         "price": 4000,
         "contents": "",
@@ -318,7 +318,7 @@
       {
         "id": 23,
         "title": "PARTYBOX ПРЕМИУМ",
-        "dishPhoto": "img/assort/sets/partybox-premium.png",
+        "dishPhoto": "img/assort/sets/partybox-premium.webp",
         "portion": 50,
         "price": 4500,
         "contents": "",
@@ -330,11 +330,11 @@
         "rating": 10
       }
     ],
-    "4": [
+    "fried-roll": [
       {
         "id": 24,
         "title": "ДРАКОН",
-        "dishPhoto": "img/assort/fried/dragon.png",
+        "dishPhoto": "img/assort/fried/dragon.webp",
         "portion": 8,
         "price": 1090,
         "contents": "",
@@ -348,7 +348,7 @@
       {
         "id": 25,
         "title": "ТИГР",
-        "dishPhoto": "img/assort/fried/tiger.png",
+        "dishPhoto": "img/assort/fried/tiger.webp",
         "portion": 8,
         "price": 1090,
         "contents": "",
@@ -362,7 +362,7 @@
       {
         "id": 26,
         "title": "JB ТЕМПУРА",
-        "dishPhoto": "img/assort/fried/jb-tempura.png",
+        "dishPhoto": "img/assort/fried/jb-tempura.webp",
         "portion": 8,
         "price": 1090,
         "contents": "",
@@ -376,7 +376,7 @@
       {
         "id": 27,
         "title": "КРАСНЫЙ ДРАКОН",
-        "dishPhoto": "img/assort/fried/red-dragon.png",
+        "dishPhoto": "img/assort/fried/red-dragon.webp",
         "portion": 8,
         "price": 1190,
         "contents": "",
@@ -390,7 +390,7 @@
       {
         "id": 28,
         "title": "ХРУСТЯЩИЙ ЛОСОСЬ",
-        "dishPhoto": "img/assort/fried/crispy-saumon.png",
+        "dishPhoto": "img/assort/fried/crispy-saumon.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -404,7 +404,7 @@
       {
         "id": 29,
         "title": "ХРУСТЯЩАЯ КУРИЦА",
-        "dishPhoto": "img/assort/fried/crispy-poulet.png",
+        "dishPhoto": "img/assort/fried/crispy-poulet.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -418,7 +418,7 @@
       {
         "id": 30,
         "title": "JB ОСТРЫЙ",
-        "dishPhoto": "img/assort/fried/jb-spicy.png",
+        "dishPhoto": "img/assort/fried/jb-spicy.webp",
         "portion": 8,
         "price": 1090,
         "contents": "",
@@ -432,7 +432,7 @@
       {
         "id": 31,
         "title": "ХРУСТЯЩЕЕ МАНГО",
-        "dishPhoto": "img/assort/fried/crispy-mango.png",
+        "dishPhoto": "img/assort/fried/crispy-mango.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -444,11 +444,11 @@
         "rating": 6
       }
     ],
-    "5": [
+    "california": [
       {
         "id": 32,
         "title": "КАЛИФОРНИЙСКИЕ КРЕВЕТКИ КИРИ АВОКАДО",
-        "dishPhoto": "img/assort/california/california-kiri-crevette-avocat.png",
+        "dishPhoto": "img/assort/california/california-kiri-crevette-avocat.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -462,7 +462,7 @@
       {
         "id": 33,
         "title": "КАЛИФОРНИЙСКИЙ ЛОСОСЬ",
-        "dishPhoto": "img/assort/california/california-saumon.png",
+        "dishPhoto": "img/assort/california/california-saumon.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -476,7 +476,7 @@
       {
         "id": 34,
         "title": "НАРУТО",
-        "dishPhoto": "img/assort/california/japan-naruto.png",
+        "dishPhoto": "img/assort/california/japan-naruto.webp",
         "portion": 6,
         "price": 720,
         "contents": "",
@@ -490,7 +490,7 @@
       {
         "id": 35,
         "title": "АВОКАДО-ТОП ЛОСОСЬ",
-        "dishPhoto": "img/assort/california/avocadotop-saumon.png",
+        "dishPhoto": "img/assort/california/avocadotop-saumon.webp",
         "portion": 6,
         "price": 790,
         "contents": "",
@@ -504,7 +504,7 @@
       {
         "id": 36,
         "title": "АВОКАДО-ТОП КОПЧЕНЫЙ ЛОСОСЬ С СЫРОМ",
-        "dishPhoto": "img/assort/california/avocadotop-saumon-fume-cheese.png",
+        "dishPhoto": "img/assort/california/avocadotop-saumon-fume-cheese.webp",
         "portion": 6,
         "price": 790,
         "contents": "",
@@ -518,7 +518,7 @@
       {
         "id": 37,
         "title": "ГРИНРОЛЛ КРЕВЕТКИ ТЕМПУРА",
-        "dishPhoto": "img/assort/california/greenroll-crevette-tempura.png",
+        "dishPhoto": "img/assort/california/greenroll-crevette-tempura.webp",
         "portion": 6,
         "price": 690,
         "contents": "",
@@ -532,7 +532,7 @@
       {
         "id": 38,
         "title": "ГРИНРОЛЛ ЛОСОСЬ",
-        "dishPhoto": "img/assort/california/greenroll-saumon.png",
+        "dishPhoto": "img/assort/california/greenroll-saumon.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -546,7 +546,7 @@
       {
         "id": 39,
         "title": "МАКИСЛИМ ЛОСОСЬ",
-        "dishPhoto": "img/assort/california/makislim-saumon.png",
+        "dishPhoto": "img/assort/california/makislim-saumon.webp",
         "portion": 6,
         "price": 650,
         "contents": "",
@@ -560,7 +560,7 @@
       {
         "id": 40,
         "title": "МАКИСЛИМ КРЕВЕТКИ ТЕМПУРА",
-        "dishPhoto": "img/assort/california/makislim-crevette-tempura.png",
+        "dishPhoto": "img/assort/california/makislim-crevette-tempura.webp",
         "portion": 6,
         "price": 790,
         "contents": "",
@@ -574,7 +574,7 @@
       {
         "id": 41,
         "title": "КАЛИФОРНИЙСКИЙ ЦЫПЛЕНОК АВОКАДО",
-        "dishPhoto": "img/assort/california/california-poulet-avocat.png",
+        "dishPhoto": "img/assort/california/california-poulet-avocat.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -588,7 +588,7 @@
       {
         "id": 42,
         "title": "КАЛИФОРНИЙСКИЙ УТОНЧЁННЫЙ ТУНЕЦ",
-        "dishPhoto": "img/assort/california/california-thon-cuit.png",
+        "dishPhoto": "img/assort/california/california-thon-cuit.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -602,7 +602,7 @@
       {
         "id": 43,
         "title": "КАЛИФОРНИЯ КОПЧЁНЫЙ",
-        "dishPhoto": "img/assort/california/california-smoky.png",
+        "dishPhoto": "img/assort/california/california-smoky.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -616,7 +616,7 @@
       {
         "id": 44,
         "title": "КАЛИФОРНИЯ ОСТРАЯ КРЕВЕТКА",
-        "dishPhoto": "img/assort/california/california-spicy-crevette.png",
+        "dishPhoto": "img/assort/california/california-spicy-crevette.webp",
         "portion": 6,
         "price": 720,
         "contents": "",
@@ -630,7 +630,7 @@
       {
         "id": 45,
         "title": "МАКСЛИМ ВЕГЕТАРИАНСКИЙ",
-        "dishPhoto": "img/assort/california/makislim-veggie.png",
+        "dishPhoto": "img/assort/california/makislim-veggie.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -644,7 +644,7 @@
       {
         "id": 46,
         "title": "МАКСЛИМ С КУРИЦЕЙ",
-        "dishPhoto": "img/assort/california/makislim-chicken.png",
+        "dishPhoto": "img/assort/california/makislim-chicken.webp",
         "portion": 6,
         "price": 650,
         "contents": "",
@@ -658,7 +658,7 @@
       {
         "id": 47,
         "title": "МАКСЛИМ С КРЕВЕТКОЙ",
-        "dishPhoto": "img/assort/california/makislim-crevette.png",
+        "dishPhoto": "img/assort/california/makislim-crevette.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -672,7 +672,7 @@
       {
         "id": 48,
         "title": "ГРИНРОЛЛ ТУНЕЦ",
-        "dishPhoto": "img/assort/california/greenroll-thon.png",
+        "dishPhoto": "img/assort/california/greenroll-thon.webp",
         "portion": 6,
         "price": 620,
         "contents": "",
@@ -686,7 +686,7 @@
       {
         "id": 49,
         "title": "КАЛИФОРНИЯ ПО-ФРАНЦУЗСКИ",
-        "dishPhoto": "img/assort/california/california-frenchy.png",
+        "dishPhoto": "img/assort/california/california-frenchy.webp",
         "portion": 6,
         "price": 790,
         "contents": "",
@@ -698,11 +698,11 @@
         "rating": 7
       }
     ],
-    "6": [
+    "fresh-roll": [
       {
         "id": 50,
         "title": "FLOCON ЛОСОСЬ С СЫРОМ",
-        "dishPhoto": "img/assort/fresh-roll/flocon-saumon-cheese.png",
+        "dishPhoto": "img/assort/fresh-roll/flocon-saumon-cheese.webp",
         "portion": 6,
         "price": 490,
         "contents": "",
@@ -716,7 +716,7 @@
       {
         "id": 51,
         "title": "FLOCON ЗАПЕЧЁНЫЙ ТУНЕЦ",
-        "dishPhoto": "img/assort/fresh-roll/flocon-thon-cuit.png",
+        "dishPhoto": "img/assort/fresh-roll/flocon-thon-cuit.webp",
         "portion": 6,
         "price": 490,
         "contents": "",
@@ -730,7 +730,7 @@
       {
         "id": 52,
         "title": "ФРЕШ АВОКАДО",
-        "dishPhoto": "img/assort/fresh-roll/fresh-avocat.png",
+        "dishPhoto": "img/assort/fresh-roll/fresh-avocat.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -744,7 +744,7 @@
       {
         "id": 53,
         "title": "ФРЕШ СЫР",
-        "dishPhoto": "img/assort/fresh-roll/fresh-cheese.png",
+        "dishPhoto": "img/assort/fresh-roll/fresh-cheese.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -758,7 +758,7 @@
       {
         "id": 54,
         "title": "TOBIKO СЁМГА",
-        "dishPhoto": "img/assort/fresh-roll/tobiko-saumon.png",
+        "dishPhoto": "img/assort/fresh-roll/tobiko-saumon.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -772,7 +772,7 @@
       {
         "id": 55,
         "title": "TOBIKO ТУНЕЦ",
-        "dishPhoto": "img/assort/fresh-roll/tobiko-thon.png",
+        "dishPhoto": "img/assort/fresh-roll/tobiko-thon.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -786,7 +786,7 @@
       {
         "id": 56,
         "title": "ФРЕШ TATAKI",
-        "dishPhoto": "img/assort/fresh-roll/fresh-tataki.png",
+        "dishPhoto": "img/assort/fresh-roll/fresh-tataki.webp",
         "portion": 6,
         "price": 750,
         "contents": "",
@@ -800,7 +800,7 @@
       {
         "id": 57,
         "title": "ФРЕШ КАЛИФОРНИЯ",
-        "dishPhoto": "img/assort/fresh-roll/fresh-california.png",
+        "dishPhoto": "img/assort/fresh-roll/fresh-california.webp",
         "portion": 6,
         "price": 790,
         "contents": "",
@@ -814,7 +814,7 @@
       {
         "id": 58,
         "title": "ФРЕШ КОПЧЁНЫЙ ТУНЕЦ",
-        "dishPhoto": "img/assort/fresh-roll/fresh-saumon-fume.png",
+        "dishPhoto": "img/assort/fresh-roll/fresh-saumon-fume.webp",
         "portion": 6,
         "price": 790,
         "contents": "",
@@ -828,7 +828,7 @@
       {
         "id": 59,
         "title": "ФРЕШ TATAKI АВОКАДО",
-        "dishPhoto": "img/assort/fresh-roll/fresh-tataki-avocat.png",
+        "dishPhoto": "img/assort/fresh-roll/fresh-tataki-avocat.webp",
         "portion": 6,
         "price": 790,
         "contents": "",
@@ -842,7 +842,7 @@
       {
         "id": 60,
         "title": "FLOCON КУРИЦА С АВОКАДО",
-        "dishPhoto": "img/assort/fresh-roll/flocon-poulet-avocat.png",
+        "dishPhoto": "img/assort/fresh-roll/flocon-poulet-avocat.webp",
         "portion": 6,
         "price": 490,
         "contents": "",
@@ -854,11 +854,11 @@
         "rating": 5
       }
     ],
-    "7": [
+    "maki": [
       {
         "id": 61,
         "title": "МАКИ АВОКАДО С ЛОСОСЕМ",
-        "dishPhoto": "img/assort/maki/maki-saumon-avocat.png",
+        "dishPhoto": "img/assort/maki/maki-saumon-avocat.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -872,7 +872,7 @@
       {
         "id": 62,
         "title": "МАКИ ЛОСОСЬ",
-        "dishPhoto": "img/assort/maki/maki-saumon.png",
+        "dishPhoto": "img/assort/maki/maki-saumon.webp",
         "portion": 6,
         "price": 560,
         "contents": "",
@@ -886,7 +886,7 @@
       {
         "id": 63,
         "title": "МАКИ ЛОСОСЬ С СЫРОМ",
-        "dishPhoto": "img/assort/maki/maki-saumon-cheese.png",
+        "dishPhoto": "img/assort/maki/maki-saumon-cheese.webp",
         "portion": 6,
         "price": 590,
         "contents": "",
@@ -900,7 +900,7 @@
       {
         "id": 64,
         "title": "МАКИ АВОКАДО",
-        "dishPhoto": "img/assort/maki/maki-avocat.png",
+        "dishPhoto": "img/assort/maki/maki-avocat.webp",
         "portion": 6,
         "price": 440,
         "contents": "",
@@ -914,7 +914,7 @@
       {
         "id": 65,
         "title": "МАКИ АВОКАДО С СЫРОМ",
-        "dishPhoto": "img/assort/maki/maki-avocat-cheese.png",
+        "dishPhoto": "img/assort/maki/maki-avocat-cheese.webp",
         "portion": 6,
         "price": 470,
         "contents": "",
@@ -928,7 +928,7 @@
       {
         "id": 66,
         "title": "МАКИ АВОКАДО С КРЕВЕТКАМИ",
-        "dishPhoto": "img/assort/maki/maki-avocat-crevette.png",
+        "dishPhoto": "img/assort/maki/maki-avocat-crevette.webp",
         "portion": 6,
         "price": 520,
         "contents": "",
@@ -942,7 +942,7 @@
       {
         "id": 67,
         "title": "МАКИ ТУНЕЦ",
-        "dishPhoto": "img/assort/maki/maki-thon.png",
+        "dishPhoto": "img/assort/maki/maki-thon.webp",
         "portion": 6,
         "price": 560,
         "contents": "",
@@ -956,7 +956,7 @@
       {
         "id": 68,
         "title": "МАКИ С ОГУРЦОМ И СЫРОМ",
-        "dishPhoto": "img/assort/maki/maki-concombre-cheese.png",
+        "dishPhoto": "img/assort/maki/maki-concombre-cheese.webp",
         "portion": 6,
         "price": 470,
         "contents": "",
@@ -970,7 +970,7 @@
       {
         "id": 69,
         "title": "МАКИ ОГУРЕЦ",
-        "dishPhoto": "img/assort/maki/maki-concombre.png",
+        "dishPhoto": "img/assort/maki/maki-concombre.webp",
         "portion": 6,
         "price": 440,
         "contents": "",
@@ -982,11 +982,11 @@
         "rating": 3
       }
     ],
-    "8": [
+    "sushi": [
       {
         "id": 70,
         "title": "СУШИ TATAKI",
-        "dishPhoto": "img/assort/sushi/sushi-tataki.png",
+        "dishPhoto": "img/assort/sushi/sushi-tataki.webp",
         "portion": 2,
         "price": 450,
         "contents": "",
@@ -1000,7 +1000,7 @@
       {
         "id": 71,
         "title": "СУШИ ЛОСОСЬ С АВОКАДО",
-        "dishPhoto": "img/assort/sushi/sushi-saumon-avocat.png",
+        "dishPhoto": "img/assort/sushi/sushi-saumon-avocat.webp",
         "portion": 2,
         "price": 450,
         "contents": "",
@@ -1014,7 +1014,7 @@
       {
         "id": 72,
         "title": "СУШИ ЛОСОСЬ С СЫРОМ",
-        "dishPhoto": "img/assort/sushi/sushi-saumon-cheese.png",
+        "dishPhoto": "img/assort/sushi/sushi-saumon-cheese.webp",
         "portion": 2,
         "price": 420,
         "contents": "",
@@ -1028,7 +1028,7 @@
       {
         "id": 73,
         "title": "СУШИ ЛОСОСЬ",
-        "dishPhoto": "img/assort/sushi/sushi-saumon.png",
+        "dishPhoto": "img/assort/sushi/sushi-saumon.webp",
         "portion": 2,
         "price": 420,
         "contents": "",
@@ -1042,7 +1042,7 @@
       {
         "id": 74,
         "title": "СУШИ ТУНЕЦ",
-        "dishPhoto": "img/assort/sushi/sushi-thon.png",
+        "dishPhoto": "img/assort/sushi/sushi-thon.webp",
         "portion": 2,
         "price": 490,
         "contents": "",
@@ -1054,11 +1054,11 @@
         "rating": 7
       }
     ],
-    "9": [
+    "bowels": [
       {
         "id": 75,
         "title": "ПОК ЧАША",
-        "dishPhoto": "img/assort/bowls/poke-bowl.png",
+        "dishPhoto": "img/assort/bowls/poke-bowl.webp",
         "portion": 1,
         "price": 1590,
         "contents": "",
@@ -1072,7 +1072,7 @@
       {
         "id": 76,
         "title": "ЧИРАШИ САЛЬСА",
-        "dishPhoto": "img/assort/bowls/chirashi-salsa.png",
+        "dishPhoto": "img/assort/bowls/chirashi-salsa.webp",
         "portion": 1,
         "price": 1590,
         "contents": "",
@@ -1086,7 +1086,7 @@
       {
         "id": 77,
         "title": "ЧАША САШИМИ",
-        "dishPhoto": "img/assort/bowls/sashimi-bowl.png",
+        "dishPhoto": "img/assort/bowls/sashimi-bowl.webp",
         "portion": 12,
         "price": 1750,
         "contents": "",
@@ -1100,7 +1100,7 @@
       {
         "id": 78,
         "title": "ОВОЩНАЯ ЧАША",
-        "dishPhoto": "img/assort/bowls/veggie-bowl.png",
+        "dishPhoto": "img/assort/bowls/veggie-bowl.webp",
         "portion": 1,
         "price": 1290,
         "contents": "",
@@ -1114,7 +1114,7 @@
       {
         "id": 79,
         "title": "ЧАША ТЕМПУРА",
-        "dishPhoto": "img/assort/bowls/tempura-bowl.png",
+        "dishPhoto": "img/assort/bowls/tempura-bowl.webp",
         "portion": 1,
         "price": 1520,
         "contents": "",
@@ -1126,11 +1126,11 @@
         "rating": 5
       }
     ],
-    "10": [
+    "chirashi-sashimi": [
       {
         "id": 80,
         "title": "ЧИРАШИ САЛЬСА",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-salsa.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-salsa.webp",
         "portion": 16,
         "price": 1750,
         "contents": "",
@@ -1144,7 +1144,7 @@
       {
         "id": 81,
         "title": "ЧИРАШИ ЛОСОСЬ",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-saumon.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-saumon.webp",
         "portion": 16,
         "price": 1590,
         "contents": "",
@@ -1158,7 +1158,7 @@
       {
         "id": 82,
         "title": "ЧИРАШИ СЫРНЫЙ ТАТАКИ",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-cheesy-tataki.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-cheesy-tataki.webp",
         "portion": 16,
         "price": 1750,
         "contents": "",
@@ -1172,7 +1172,7 @@
       {
         "id": 83,
         "title": "ЧИРАШИ ТАЙСКИЙ МИКС",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-marinade-thai.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-marinade-thai.webp",
         "portion": 16,
         "price": 1750,
         "contents": "",
@@ -1186,7 +1186,7 @@
       {
         "id": 84,
         "title": "ЧИРАШИ ТУНЕЦ",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-thon.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/chirashi-thon.webp",
         "portion": 16,
         "price": 1690,
         "contents": "",
@@ -1200,7 +1200,7 @@
       {
         "id": 85,
         "title": "САШИМИ ЛОСОСЬ X8",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-saumon-x8.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-saumon-x8.webp",
         "portion": 8,
         "price": 900,
         "contents": "",
@@ -1214,7 +1214,7 @@
       {
         "id": 86,
         "title": "САШИМИ ЛОСОСЬ X16",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-saumon-x16.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-saumon-x16.webp",
         "portion": 16,
         "price": 1690,
         "contents": "",
@@ -1228,7 +1228,7 @@
       {
         "id": 87,
         "title": "САШИМИ МИКС X16",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-mix-x16.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-mix-x16.webp",
         "portion": 16,
         "price": 1690,
         "contents": "",
@@ -1242,7 +1242,7 @@
       {
         "id": 88,
         "title": "САШИМИ МИКС X8",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-mix-x8.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-mix-x8.webp",
         "portion": 8,
         "price": 900,
         "contents": "",
@@ -1256,7 +1256,7 @@
       {
         "id": 89,
         "title": "САШИМИ ТУНЕЦ X8",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-thon-x8.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-thon-x8.webp",
         "portion": 8,
         "price": 990,
         "contents": "",
@@ -1270,7 +1270,7 @@
       {
         "id": 90,
         "title": "САШИМИ ТУНЕЦ X16",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-thon-x16.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/sashimi-thon-x16.webp",
         "portion": 16,
         "price": 1750,
         "contents": "",
@@ -1284,7 +1284,7 @@
       {
         "id": 91,
         "title": "ТАТАКИ ЛОСОСЬ X8",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/tataki-saumon-x8.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/tataki-saumon-x8.webp",
         "portion": 8,
         "price": 990,
         "contents": "",
@@ -1298,7 +1298,7 @@
       {
         "id": 92,
         "title": "ТАТАКИ ЛОСОСЬ X16",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/tataki-saumon-x16.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/tataki-saumon-x16.webp",
         "portion": 16,
         "price": 1750,
         "contents": "",
@@ -1312,7 +1312,7 @@
       {
         "id": 93,
         "title": "ТАТАКИ ТУНЕЦ X8",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/tataki-thon-x8.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/tataki-thon-x8.webp",
         "portion": 8,
         "price": 1050,
         "contents": "",
@@ -1326,7 +1326,7 @@
       {
         "id": 94,
         "title": "ТАТАКИ ТУНЕЦ X16",
-        "dishPhoto": "img/assort/chirashi-and-sashimi/tataki-thon-x16.png",
+        "dishPhoto": "img/assort/chirashi-and-sashimi/tataki-thon-x16.webp",
         "portion": 16,
         "price": 1850,
         "contents": "",
@@ -1338,11 +1338,11 @@
         "rating": 5
       }
     ],
-    "11": [
+    "tartar-sevich": [
       {
         "id": 95,
         "title": "ТАРТАР ИЗ ЛОСОСЯ С АВОКАДО",
-        "dishPhoto": "img/assort/tartare/tartare-saumon-avocat.png",
+        "dishPhoto": "img/assort/tartare/tartare-saumon-avocat.webp",
         "portion": 1,
         "price": 1390,
         "contents": "",
@@ -1356,7 +1356,7 @@
       {
         "id": 96,
         "title": "ТАРТАР ИЗ ТУНЦА С АВОКАДО",
-        "dishPhoto": "img/assort/tartare/tartare-thon-avocat.png",
+        "dishPhoto": "img/assort/tartare/tartare-thon-avocat.webp",
         "portion": 1,
         "price": 1490,
         "contents": "",
@@ -1370,7 +1370,7 @@
       {
         "id": 97,
         "title": "СЕВИЧ ИЗ ТУНЦА",
-        "dishPhoto": "img/assort/tartare/ceviche-thon.png",
+        "dishPhoto": "img/assort/tartare/ceviche-thon.webp",
         "portion": 1,
         "price": 1590,
         "contents": "",
@@ -1384,7 +1384,7 @@
       {
         "id": 98,
         "title": "СЕВИЧ ИЗ ЛОСОСЯ",
-        "dishPhoto": "img/assort/tartare/ceviche-saumon.png",
+        "dishPhoto": "img/assort/tartare/ceviche-saumon.webp",
         "portion": 1,
         "price": 1590,
         "contents": "",
@@ -1396,11 +1396,11 @@
         "rating": 7
       }
     ],
-    "12": [
+    "yakitory-tempura-ramen-curry": [
       {
         "id": 99,
         "title": "ХРУСТЯЩИЙ ЛОСОСЬ С СОУСОМ ТАРТАР",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/crousty-saumon-sauce-tartare.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/crousty-saumon-sauce-tartare.webp",
         "portion": 3,
         "price": 750,
         "contents": "",
@@ -1414,7 +1414,7 @@
       {
         "id": 100,
         "title": "КАРРИ КАТСУ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/curry-katsu.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/curry-katsu.webp",
         "portion": 1,
         "price": 1490,
         "contents": "",
@@ -1428,7 +1428,7 @@
       {
         "id": 101,
         "title": "РАМEН НАРУТО",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-naruto.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-naruto.webp",
         "portion": 1,
         "price": 1350,
         "contents": "",
@@ -1442,7 +1442,7 @@
       {
         "id": 102,
         "title": "РАМЕН НАРУТО (С ЯЙЦОМ ВСМЯТКУ)",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-naruto.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-naruto.webp",
         "portion": 1,
         "price": 1490,
         "contents": "",
@@ -1456,7 +1456,7 @@
       {
         "id": 103,
         "title": "РАМЕН ПЕЛЬМЕНИ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-dumpling.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-dumpling.webp",
         "portion": 1,
         "price": 1350,
         "contents": "",
@@ -1470,7 +1470,7 @@
       {
         "id": 104,
         "title": "ПЕЛЬМЕНИ РАМЕН (С ЯЙЦОМ ВСМЯТКУ)",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-dumpling-avec-oeuf-mollet-.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-dumpling-avec-oeuf-mollet-.webp",
         "portion": 1,
         "price": 1490,
         "contents": "",
@@ -1484,7 +1484,7 @@
       {
         "id": 105,
         "title": "ЯПОНСКАЯ ЛАПША С КУРИНЫМИ ШАРИКАМИ САТЭ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/nouilles-a-la-japonaise-aux-boulettes-de-poulet-satay.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/nouilles-a-la-japonaise-aux-boulettes-de-poulet-satay.webp",
         "portion": 1,
         "price": 1490,
         "contents": "",
@@ -1498,7 +1498,7 @@
       {
         "id": 106,
         "title": "ЯПОНСКАЯ ЛАПША С ОВОЩНЫМИ СТРИПСАМИ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/nouilles-a-la-japonaise-aux-aiguillettes-vegetales.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/nouilles-a-la-japonaise-aux-aiguillettes-vegetales.webp",
         "portion": 1,
         "price": 1490,
         "contents": "",
@@ -1512,7 +1512,7 @@
       {
         "id": 107,
         "title": "ЯКИТОРИ ЛОСОСЬ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-saumon.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-saumon.webp",
         "portion": 2,
         "price": 650,
         "contents": "",
@@ -1526,7 +1526,7 @@
       {
         "id": 108,
         "title": "ЯПОНСКОЕ КАРРИ С ЛОСОСЕМ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/curry-japonais-crousty-saumon.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/curry-japonais-crousty-saumon.webp",
         "portion": 1,
         "price": 1550,
         "contents": "",
@@ -1540,7 +1540,7 @@
       {
         "id": 109,
         "title": "ВЕГАНСКИЙ РАМЁН С ОВОЩНЫМИ СТРИПСАМИ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-vegan-aiguillettes-vegetales.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/ramen-vegan-aiguillettes-vegetales.webp",
         "portion": 1,
         "price": 1490,
         "contents": "",
@@ -1554,7 +1554,7 @@
       {
         "id": 110,
         "title": "КУРИНЫЕ БЁДРА ФРИ С ТРЮФЕЛЬНЫМ СОУСОМ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/karaage-4-pieces.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/karaage-4-pieces.webp",
         "portion": 4,
         "price": 690,
         "contents": "",
@@ -1568,7 +1568,7 @@
       {
         "id": 111,
         "title": "ЯКИТОРИ ИЗ ГОВЯДИНЫ С СЫРОМ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-boeuf-fromage.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-boeuf-fromage.webp",
         "portion": 2,
         "price": 570,
         "contents": "",
@@ -1582,7 +1582,7 @@
       {
         "id": 112,
         "title": "ЯКИТОРИ ИЗ КУРИЦЫ И ЛЕМОНГРАС",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-poulet-citronnelle.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-poulet-citronnelle.webp",
         "portion": 2,
         "price": 590,
         "contents": "",
@@ -1596,7 +1596,7 @@
       {
         "id": 113,
         "title": "ЯКИТОРИ КУРИНЫЕ ШАРИКИ САТАЙ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-boulettes-poulet-satay.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-boulettes-poulet-satay.webp",
         "portion": 2,
         "price": 570,
         "contents": "",
@@ -1610,7 +1610,7 @@
       {
         "id": 114,
         "title": "ЯКИТОРИ КУРИНЫЕ ШАРИКИ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-boulettes-poulet.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-boulettes-poulet.webp",
         "portion": 2,
         "price": 550,
         "contents": "",
@@ -1624,7 +1624,7 @@
       {
         "id": 115,
         "title": "КУРИЦА ЯКИТОРИ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-poulet.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/yakitori-poulet.webp",
         "portion": 2,
         "price": 570,
         "contents": "",
@@ -1638,7 +1638,7 @@
       {
         "id": 116,
         "title": "КРЕВЕТКИ ТЕМПУРА",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/crevettes-tempura.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/crevettes-tempura.webp",
         "portion": 3,
         "price": 670,
         "contents": "",
@@ -1652,7 +1652,7 @@
       {
         "id": 117,
         "title": "ГЁЗА КУРИНЫЕ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/gyoza-poulet.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/gyoza-poulet.webp",
         "portion": 4,
         "price": 650,
         "contents": "",
@@ -1666,7 +1666,7 @@
       {
         "id": 118,
         "title": "ГЁЗА ОВОЩНЫЕ",
-        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/gyoza-veggie.png",
+        "dishPhoto": "img/assort/yakitori-tempura-ramen-curry/gyoza-veggie.webp",
         "portion": 4,
         "price": 650,
         "contents": "",
@@ -1678,11 +1678,11 @@
         "rating": 7
       }
     ],
-    "13": [
+    "kids-menu": [
       {
         "id": 119,
         "title": "ДЕТСКИЕ РОЛЛЫ",
-        "dishPhoto": "img/assort/kids-menu/sushikid-roll.png",
+        "dishPhoto": "img/assort/kids-menu/sushikid-roll.webp",
         "portion": 8,
         "price": 990,
         "contents": "",
@@ -1696,7 +1696,7 @@
       {
         "id": 120,
         "title": "ДЕТСКИЕ ЯКИТОРИ",
-        "dishPhoto": "img/assort/kids-menu/sushikid-yaki.png",
+        "dishPhoto": "img/assort/kids-menu/sushikid-yaki.webp",
         "portion": 3,
         "price": 990,
         "contents": "",
@@ -1710,7 +1710,7 @@
       {
         "id": 121,
         "title": "ДЕТСКАЯ КУРИЦА ВО ФРИТЮРЕ",
-        "dishPhoto": "img/assort/kids-menu/sushikid-karaage.png",
+        "dishPhoto": "img/assort/kids-menu/sushikid-karaage.webp",
         "portion": 4,
         "price": 990,
         "contents": "",
@@ -1722,11 +1722,11 @@
         "rating": 7
       }
     ],
-    "14": [
+    "accompaniment": [
       {
         "id": 122,
         "title": "САЛАТ ЭДЕМ",
-        "dishPhoto": "img/assort/accompaniments/salade-edamame.png",
+        "dishPhoto": "img/assort/accompaniments/salade-edamame.webp",
         "portion": 1,
         "price": 450,
         "contents": "",
@@ -1740,7 +1740,7 @@
       {
         "id": 123,
         "title": "ХРУСТЯЩИЙ ЛОСОСЬ С СОУСОМ ТАРТАР",
-        "dishPhoto": "img/assort/accompaniments/crousty-saumon-sauce-tartare.png",
+        "dishPhoto": "img/assort/accompaniments/crousty-saumon-sauce-tartare.webp",
         "portion": 3,
         "price": 750,
         "contents": "",
@@ -1754,7 +1754,7 @@
       {
         "id": 124,
         "title": "САЛАТ ИЗ БРОККОЛИ И ШИИТАКЕ",
-        "dishPhoto": "img/assort/accompaniments/salade-brocolis-shiitake.png",
+        "dishPhoto": "img/assort/accompaniments/salade-brocolis-shiitake.webp",
         "portion": 1,
         "price": 420,
         "contents": "",
@@ -1768,7 +1768,7 @@
       {
         "id": 125,
         "title": "МИСО С БАКЛАЖАНАМИ",
-        "dishPhoto": "img/assort/accompaniments/aubergine-miso.png",
+        "dishPhoto": "img/assort/accompaniments/aubergine-miso.webp",
         "portion": 1,
         "price": 390,
         "contents": "",
@@ -1782,7 +1782,7 @@
       {
         "id": 126,
         "title": "ЯПОНСКИЙ РИС",
-        "dishPhoto": "img/assort/accompaniments/riz-japonais.png",
+        "dishPhoto": "img/assort/accompaniments/riz-japonais.webp",
         "portion": 1,
         "price": 390,
         "contents": "",
@@ -1796,7 +1796,7 @@
       {
         "id": 127,
         "title": "СУП МИСО",
-        "dishPhoto": "img/assort/accompaniments/soupe-miso.png",
+        "dishPhoto": "img/assort/accompaniments/soupe-miso.webp",
         "portion": 1,
         "price": 300,
         "contents": "",
@@ -1810,7 +1810,7 @@
       {
         "id": 128,
         "title": "КАПУСТНЫЙ САЛАТ",
-        "dishPhoto": "img/assort/accompaniments/salade-de-chou.png",
+        "dishPhoto": "img/assort/accompaniments/salade-de-chou.webp",
         "portion": 1,
         "price": 310,
         "contents": "",
@@ -1824,7 +1824,7 @@
       {
         "id": 129,
         "title": "ЧАША С РИСОМ В УКСУСЕ",
-        "dishPhoto": "img/assort/accompaniments/bol-de-riz-vinaigre.png",
+        "dishPhoto": "img/assort/accompaniments/bol-de-riz-vinaigre.webp",
         "portion": 1,
         "price": 290,
         "contents": "",
@@ -1838,7 +1838,7 @@
       {
         "id": 130,
         "title": "ЧАША С РИСОМ",
-        "dishPhoto": "img/assort/accompaniments/bol-de-riz-nature.png",
+        "dishPhoto": "img/assort/accompaniments/bol-de-riz-nature.webp",
         "portion": 1,
         "price": 270,
         "contents": "",
@@ -1852,7 +1852,7 @@
       {
         "id": 131,
         "title": "САЛАТ ОСАКА",
-        "dishPhoto": "img/assort/accompaniments/salade-osaka.png",
+        "dishPhoto": "img/assort/accompaniments/salade-osaka.webp",
         "portion": 1,
         "price": 480,
         "contents": "",
@@ -1864,11 +1864,11 @@
         "rating": 7
       }
     ],
-    "15": [
+    "dessert": [
       {
         "id": 132,
         "title": "ЯПОНСКИЙ ЖЕМЧУГ МАНГО",
-        "dishPhoto": "img/assort/desserts/perles-du-japon-mangue.png",
+        "dishPhoto": "img/assort/desserts/perles-du-japon-mangue.webp",
         "portion": 6,
         "price": 550,
         "contents": "",
@@ -1882,7 +1882,7 @@
       {
         "id": 133,
         "title": "ЯПОНСКИЙ ЖЕМЧУГ БАНАН",
-        "dishPhoto": "img/assort/desserts/perles-du-japon-banane.png",
+        "dishPhoto": "img/assort/desserts/perles-du-japon-banane.webp",
         "portion": 6,
         "price": 550,
         "contents": "",
@@ -1896,7 +1896,7 @@
       {
         "id": 134,
         "title": "МОТИ ВАНИЛЬ И ШОКОЛАД",
-        "dishPhoto": "img/assort/desserts/mochi-vanille-chocolat.png",
+        "dishPhoto": "img/assort/desserts/mochi-vanille-chocolat.webp",
         "portion": 6,
         "price": 490,
         "contents": "",
@@ -1910,7 +1910,7 @@
       {
         "id": 135,
         "title": "МОТИ МАНГО МАРАКУЙЯ И ЛИЧИ",
-        "dishPhoto": "img/assort/desserts/mochi-mangue-passion-litchi.png",
+        "dishPhoto": "img/assort/desserts/mochi-mangue-passion-litchi.webp",
         "portion": 6,
         "price": 490,
         "contents": "",
@@ -1924,7 +1924,7 @@
       {
         "id": 136,
         "title": "ФРУКТОВЫЙ САЛАТ",
-        "dishPhoto": "img/assort/desserts/salade-de-fruits-mix.png",
+        "dishPhoto": "img/assort/desserts/salade-de-fruits-mix.webp",
         "portion": 6,
         "price": 470,
         "contents": "",
@@ -1938,7 +1938,7 @@
       {
         "id": 137,
         "title": "ШОКОЛАДНЫЙ КЕКС",
-        "dishPhoto": "img/assort/desserts/mi-cuit-chocolat.png",
+        "dishPhoto": "img/assort/desserts/mi-cuit-chocolat.webp",
         "portion": 6,
         "price": 490,
         "contents": "",
@@ -1952,7 +1952,7 @@
       {
         "id": 138,
         "title": "ЧИЗКЕЙК",
-        "dishPhoto": "img/assort/desserts/cheesecake-nature.png",
+        "dishPhoto": "img/assort/desserts/cheesecake-nature.webp",
         "portion": 6,
         "price": 450,
         "contents": "",
@@ -1966,7 +1966,7 @@
       {
         "id": 139,
         "title": "МАКИ НУТЕЛЛА БАНАН",
-        "dishPhoto": "img/assort/desserts/maki-nutella-banane-x4.png",
+        "dishPhoto": "img/assort/desserts/maki-nutella-banane-x4.webp",
         "portion": 6,
         "price": 320,
         "contents": "",
@@ -1980,7 +1980,7 @@
       {
         "id": 140,
         "title": "МАКИ НУТЕЛЛА",
-        "dishPhoto": "img/assort/desserts/maki-nutella-nature-x4.png",
+        "dishPhoto": "img/assort/desserts/maki-nutella-nature-x4.webp",
         "portion": 6,
         "price": 290,
         "contents": "",
@@ -1992,11 +1992,11 @@
         "rating": 8
       }
     ],
-    "16": [
+    "drinkables": [
       {
         "id": 141,
         "title": "WATWILLER (50 CL)",
-        "dishPhoto": "img/assort/drinkables/watwiller-50-cl.png",
+        "dishPhoto": "img/assort/drinkables/watwiller-50-cl.webp",
         "portion": 1,
         "price": 90,
         "contents": "",
@@ -2011,7 +2011,7 @@
       {
         "id": 142,
         "title": "SAN PELLEGRINO (50 CL)",
-        "dishPhoto": "img/assort/drinkables/san-pellegrino-50-cl.png",
+        "dishPhoto": "img/assort/drinkables/san-pellegrino-50-cl.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2026,7 +2026,7 @@
       {
         "id": 143,
         "title": "PULCO CITRONNADE (33 CL)",
-        "dishPhoto": "img/assort/drinkables/pulco-citronnade-33-cl.png",
+        "dishPhoto": "img/assort/drinkables/pulco-citronnade-33-cl.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2041,7 +2041,7 @@
       {
         "id": 144,
         "title": "MAY TEA MENTHE (33 CL)",
-        "dishPhoto": "img/assort/drinkables/may-tea-menthe-33-cl-.png",
+        "dishPhoto": "img/assort/drinkables/may-tea-menthe-33-cl-.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2056,7 +2056,7 @@
       {
         "id": 145,
         "title": "OASIS TROPICAL (33 CL)",
-        "dishPhoto": "img/assort/drinkables/oasis-tropical-33-cl.png",
+        "dishPhoto": "img/assort/drinkables/oasis-tropical-33-cl.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2071,7 +2071,7 @@
       {
         "id": 146,
         "title": "FUZETEA PECHE (33 CL)",
-        "dishPhoto": "img/assort/drinkables/fuzetea-peche-33-cl.png",
+        "dishPhoto": "img/assort/drinkables/fuzetea-peche-33-cl.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2086,7 +2086,7 @@
       {
         "id": 147,
         "title": "ORANGINA (33 CL)",
-        "dishPhoto": "img/assort/drinkables/orangina-33-cl.png",
+        "dishPhoto": "img/assort/drinkables/orangina-33-cl.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2101,7 +2101,7 @@
       {
         "id": 148,
         "title": "SCHWEPPES ЦИТРУС (33 CL)",
-        "dishPhoto": "img/assort/drinkables/schweppes-agrum-33-cl.png",
+        "dishPhoto": "img/assort/drinkables/schweppes-agrum-33-cl.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2116,7 +2116,7 @@
       {
         "id": 149,
         "title": "COCA-COLA ZÉRO (33 CL)",
-        "dishPhoto": "img/assort/drinkables/coca-cola-zero-33-cl.png",
+        "dishPhoto": "img/assort/drinkables/coca-cola-zero-33-cl.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2131,7 +2131,7 @@
       {
         "id": 150,
         "title": "COCA-COLA (33 CL)",
-        "dishPhoto": "img/assort/drinkables/coca-cola-33-cl.png",
+        "dishPhoto": "img/assort/drinkables/coca-cola-33-cl.webp",
         "portion": 1,
         "price": 100,
         "contents": "",
@@ -2146,7 +2146,7 @@
       {
         "id": 151,
         "title": "ЯПОНСКИЙ ЛЕМОНАД",
-        "dishPhoto": "img/assort/drinkables/limonade-japonaise.png",
+        "dishPhoto": "img/assort/drinkables/limonade-japonaise.webp",
         "portion": 1,
         "price": 150,
         "contents": "",
@@ -2161,7 +2161,7 @@
       {
         "id": 152,
         "title": "KIRIN (33CL)",
-        "dishPhoto": "img/assort/drinkables/kirin-33cl.png",
+        "dishPhoto": "img/assort/drinkables/kirin-33cl.webp",
         "portion": 1,
         "price": 350,
         "contents": "",
@@ -2176,7 +2176,7 @@
       {
         "id": 153,
         "title": "KIRIN (50CL)",
-        "dishPhoto": "img/assort/drinkables/kirin-50cl.png",
+        "dishPhoto": "img/assort/drinkables/kirin-50cl.webp",
         "portion": 1,
         "price": 500,
         "contents": "",
@@ -2191,7 +2191,7 @@
       {
         "id": 154,
         "title": "LE JAJA DE JAU IGP ROUGE",
-        "dishPhoto": "img/assort/drinkables/jaja-de-jau-igp-oc-merlot-rouge-75-cl.png",
+        "dishPhoto": "img/assort/drinkables/jaja-de-jau-igp-oc-merlot-rouge-75-cl.webp",
         "portion": 1,
         "price": 990,
         "contents": "",
@@ -2206,7 +2206,7 @@
       {
         "id": 155,
         "title": "LE JAJA DE JAU IGP BLANC",
-        "dishPhoto": "img/assort/drinkables/jaja-de-jau-igp-oc-chardonnay-blanc-75-cl.png",
+        "dishPhoto": "img/assort/drinkables/jaja-de-jau-igp-oc-chardonnay-blanc-75-cl.webp",
         "portion": 1,
         "price": 990,
         "contents": "",
@@ -2221,7 +2221,7 @@
       {
         "id": 156,
         "title": "LE JAJA DE JAU IGP ROSE",
-        "dishPhoto": "img/assort/drinkables/igpoc-rose-jaja-de-jau-cepage-syrah-btl-vis-75cl-x-6.png",
+        "dishPhoto": "img/assort/drinkables/igpoc-rose-jaja-de-jau-cepage-syrah-btl-vis-75cl-x-6.webp",
         "portion": 1,
         "price": 990,
         "contents": "",
@@ -2236,7 +2236,7 @@
       {
         "id": 157,
         "title": "POUILLY FUME AOC LES CLAIRIÈRES, VALLÉE DE LA LOIRE (375CL)",
-        "dishPhoto": "img/assort/drinkables/pouilly-fume-aoc-375cl.png",
+        "dishPhoto": "img/assort/drinkables/pouilly-fume-aoc-375cl.webp",
         "portion": 1,
         "price": 1600,
         "contents": "",
@@ -2251,7 +2251,7 @@
       {
         "id": 158,
         "title": "CHARDONNAY IGP PAYS D'OC, DOMAINE PEIRIERE (25CL)",
-        "dishPhoto": "img/assort/drinkables/chardonnay-igp-pays-d-oc.png",
+        "dishPhoto": "img/assort/drinkables/chardonnay-igp-pays-d-oc.webp",
         "portion": 1,
         "price": 700,
         "contents": "",
@@ -2266,7 +2266,7 @@
       {
         "id": 159,
         "title": "GRENACHE IGP PAYS D'OC, DOMAINE PEIRIÈRE (25CL)",
-        "dishPhoto": "img/assort/drinkables/grenache-igp-pays-d-oc.png",
+        "dishPhoto": "img/assort/drinkables/grenache-igp-pays-d-oc.webp",
         "portion": 1,
         "price": 700,
         "contents": "",
@@ -2281,7 +2281,7 @@
       {
         "id": 160,
         "title": "AOC BOURGOGNE CHARDONNAY (75CL)",
-        "dishPhoto": "img/assort/drinkables/bourgogne-aoc-75-cl.png",
+        "dishPhoto": "img/assort/drinkables/bourgogne-aoc-75-cl.webp",
         "portion": 1,
         "price": 2300,
         "contents": "",
@@ -2296,7 +2296,7 @@
       {
         "id": 161,
         "title": "AOC BOURGOGNE CHARDONNAY (37,5CL)",
-        "dishPhoto": "img/assort/drinkables/bourgogne-aoc-375-cl.png",
+        "dishPhoto": "img/assort/drinkables/bourgogne-aoc-375-cl.webp",
         "portion": 1,
         "price": 1300,
         "contents": "",
@@ -2311,7 +2311,7 @@
       {
         "id": 162,
         "title": "CÔTES DE PROVENCE AOP CÔTÉ PRESQU'ÎLE DE MINUTY (75CL)",
-        "dishPhoto": "img/assort/drinkables/cote-de-provence-aoc-75cl.png",
+        "dishPhoto": "img/assort/drinkables/cote-de-provence-aoc-75cl.webp",
         "portion": 1,
         "price": 2300,
         "contents": "",
@@ -2326,7 +2326,7 @@
       {
         "id": 163,
         "title": "CÔTES DE PROVENCE AOP CÔTÉ PRESQU'ÎLE DE MINUTY (37,5 CL)",
-        "dishPhoto": "img/assort/drinkables/cote-de-provence-aoc-375cl.png",
+        "dishPhoto": "img/assort/drinkables/cote-de-provence-aoc-375cl.webp",
         "portion": 1,
         "price": 1300,
         "contents": "",
@@ -2341,7 +2341,7 @@
       {
         "id": 164,
         "title": "POUILLY FUME AOC LES CLAIRIÈRES, VALLÉE DE LA LOIRE (75 CL)",
-        "dishPhoto": "img/assort/drinkables/pouilly-fume-aoc-75cl.png",
+        "dishPhoto": "img/assort/drinkables/pouilly-fume-aoc-75cl.webp",
         "portion": 1,
         "price": 2900,
         "contents": "",
@@ -2356,23 +2356,23 @@
     ]
   },
   [
-    "img/assort/new/webbanner.jpg",
-    "img/assort/lunch/webbanner.jpg",
-    "img/assort/plate/webbanner.jpg",
-    "img/assort/sets/webbanner.jpg",
-    "img/assort/fried/webbanner.jpg",
-    "img/assort/california/webbanner.jpg",
-    "img/assort/fresh-roll/webbanner.jpg",
-    "img/assort/maki/webbanner.jpg",
-    "img/assort/sushi/webbanner.jpg",
-    "img/assort/bowls/webbanner.jpg",
-    "img/assort/chirashi-and-sashimi/webbanner.jpg",
-    "img/assort/tartare/webbanner.jpg",
-    "img/assort/yakitori-tempura-ramen-curry/webbanner.jpg",
-    "img/assort/kids-menu/webbanner.jpg",
-    "img/assort/accompaniments/webbanner.jpg",
-    "img/assort/desserts/webbanner.jpg",
-    "img/assort/drinkables/webbanner.jpg"
+    "img/assort/new/webbanner.webp",
+    "img/assort/lunch/webbanner.webp",
+    "img/assort/plate/webbanner.webp",
+    "img/assort/sets/webbanner.webp",
+    "img/assort/fried/webbanner.webp",
+    "img/assort/california/webbanner.webp",
+    "img/assort/fresh-roll/webbanner.webp",
+    "img/assort/maki/webbanner.webp",
+    "img/assort/sushi/webbanner.webp",
+    "img/assort/bowls/webbanner.webp",
+    "img/assort/chirashi-and-sashimi/webbanner.webp",
+    "img/assort/tartare/webbanner.webp",
+    "img/assort/yakitori-tempura-ramen-curry/webbanner.webp",
+    "img/assort/kids-menu/webbanner.webp",
+    "img/assort/accompaniments/webbanner.webp",
+    "img/assort/desserts/webbanner.webp",
+    "img/assort/drinkables/webbanner.webp"
   ],
   ["img/icons/glutenFree.svg", "img/icons/spicy.svg", "img/icons/vegan.svg", "img/icons/veggie.svg"]
 ]

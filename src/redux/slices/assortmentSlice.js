@@ -18,21 +18,15 @@ export const assortmentSlice = createSlice({
         sortItems(state, action) {
             let sortType = action.payload[0]
             let category = action.payload[1]
-            if (sortType === 0) {
-                // сортировка по названию
+            if (sortType === "title") {
                 state.assortment[category].sort((a, b) => a["title"].charCodeAt(0) - b["title"].charCodeAt(0));
-            }
-            else if (sortType === 1) {
-                // сортировка по цене по возрастанию
+            } else if (sortType === "+price") {
                 state.assortment[category].sort((a, b) => a["price"] - b["price"]);
-            } else if (sortType === 2) {
-                // сортировка по цене по убыванию
+            } else if (sortType === "price") {
                 state.assortment[category].sort((a, b) => b["price"] - a["price"]);
-            } else if (sortType === 3) {
-                // сортировка по популярности
+            } else if (sortType === "rating") {
                 state.assortment[category].sort((a, b) => b["rating"] - a["rating"])
-            } else if (sortType === 4) {
-                // сортировка по цене за штуку
+            } else if (sortType === "cheapest") {
                 state.assortment[category].sort((a, b) => (a["price"] / a["portion"]) - (b["price"] / b["portion"]));
             }
         }

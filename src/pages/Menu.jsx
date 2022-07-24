@@ -12,13 +12,17 @@ import styles from '../scss/index.module.scss';
 
 export const Menu = () => {
     const screenSize = useScreenSize()
-    const { currentCategory } = useSelector(state => state.filters)
+    const { currentCategory, categories } = useSelector(state => state.filters)
     const { banners } = useSelector(state => state.assortment)
+
+    const setBanner = () => {
+        return banners[categories.indexOf(currentCategory)] ? banners[categories.indexOf(currentCategory)] : banners[0];
+    }
 
     return (
         <>
-            <div>
-                <img className={styles.menuBanner} src={banners[currentCategory]} alt="banner" />
+            <div className={styles.bannerWrapper}>
+                <img className={styles.menuBanner} src={setBanner()} alt="banner" />
             </div>
             <div className={styles.menuWrapper}>
                 <Navigation />

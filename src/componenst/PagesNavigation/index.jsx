@@ -4,6 +4,7 @@ import { openNavbar } from "../../redux/slices/navbarSlice"
 import { Link } from 'react-router-dom'
 
 import logo from '../../assets/logo-primary.svg'
+import closeIcon from '../../assets/icons/close.svg'
 
 import styles from "./PagesNavigation.module.scss"
 
@@ -29,6 +30,7 @@ export const PagesNavigation = () => {
             <Link to="franchise" onClick={() => dispatch(openNavbar(false))}>
                 ФРАНШИЗА
             </Link>
+            <img src={closeIcon} alt="close" onClick={() => dispatch(openNavbar(false))} />
         </div>
     )
 }

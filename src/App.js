@@ -1,10 +1,8 @@
 import React from 'react'
-
 import { Route, Routes } from 'react-router-dom'
+
 import { Header } from './componenst/Header';
 import { Menu } from './pages/Menu';
-
-import styles from './scss/index.module.scss';
 import { Restaurants } from './pages/Restaurants';
 import { Loyalty } from './pages/Loyalty';
 import { ServiceCourse } from './pages/ServiceCourse';
@@ -13,6 +11,8 @@ import { Cart } from './pages/Cart';
 import { Profile } from './pages/Profile';
 import { PagesNavigation } from './componenst/PagesNavigation';
 
+
+import styles from './scss/index.module.scss';
 
 function App() {
 

@@ -2,12 +2,13 @@
 
 header {
   position: fixed;
-  height: 130px;
+  height: min-content;
+  top: 50px;
   width: 100%;
   max-width: 1440px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding: 0 20px;
   z-index: 7;
 
@@ -21,6 +22,7 @@ header {
       width: 55px;
     }
     .companyName {
+      margin: 0%;
       font-size: 24px;
       font-weight: 600;
       text-shadow: $boxShadow;
@@ -30,9 +32,11 @@ header {
         &::after {
           content: '.';
           position: absolute;
-          top: -13.5px;
-          right: 0.5px;
+          top: -2.3px;
+          right: -0.5px;
           color: $highlighted;
+          font-size: 30px;
+          line-height: 0%;
         }
       }
     }

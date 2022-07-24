@@ -8,21 +8,19 @@ import styles from './Sort.module.scss'
 
 export const Sort = () => {
     const [visibility, setVisibility] = React.useState(false)
-    const { currentSortType, currentCategory } = useSelector(state => state.filters)
+    const { currentSortType, currentCategory, sortTypes } = useSelector(state => state.filters)
     const dispatch = useDispatch()
 
-    const sortTypes = ["названию", "цене по возрастанию", "цене по убыванию", "популярности", "цене за штуку"]
-
-    const switchSortType = (index) => {
-        dispatch(sortItems([index, currentCategory]));
-        dispatch(setSort(index));
+    const switchSortType = (type) => {
+        dispatch(sortItems([type.engTitle, currentCategory.engTitle]));
+        dispatch(setSort(type));
         setVisibility(!visibility)
     }
 
     return (
         <div className={styles.sort}>
             Сортировка по <span onClick={() => setVisibility(!visibility)}>
-                {sortTypes[currentSortType]}
+                {currentSortType.ruTitle}
             </span>
             <svg onClick={() => setVisibility(!visibility)}
                 width="15" height="10" viewBox="0 0 30 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +29,8 @@ export const Sort = () => {
             {visibility &&
                 <div className={styles.optionsList}>
                     {sortTypes.map((type, i) =>
-                        <p onClick={() => switchSortType(i)}
-                            className={currentSortType === i ? styles.active : ''} key={i}>{type}</p>)}
+                        <p onClick={() => switchSortType(type)}
+                            className={currentSortType.engTitle === type.engTitle ? styles.active : ''} key={type.engTitle}>{type.ruTitle}</p>)}
                 </div>}
         </div >
     )
