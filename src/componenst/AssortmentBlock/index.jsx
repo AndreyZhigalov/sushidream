@@ -20,12 +20,11 @@ export const AccortmentBlock = () => {
 
     React.useEffect(() => {
         if (window.location.search) {
-            let searchParameters = qs.parse(window.location.search.substring(1).replace("(asc)", "%2B"))
-            let category = categories.find(obj => obj.engTitle === searchParameters.category)
-            let sort = sortTypes.find(obj => obj.engTitle === searchParameters.sortBy)
-            dispatch(setCategory(category))
-            dispatch(setSort(sort))
-            console.log("search")
+            let searchParameters = qs.parse(window.location.search.substring(1).replace("(asc)", "%2B"));
+            let category = categories.find(obj => obj.engTitle === searchParameters.category);
+            let sort = sortTypes.find(obj => obj.engTitle === searchParameters.sortBy);
+            return category ? dispatch(setCategory(category)) :
+                sort ? dispatch(setSort(sort)) : false;
         }
     }, [])
 
@@ -41,7 +40,6 @@ export const AccortmentBlock = () => {
             alert("Не удалось получить список товаров с сервера")
             console.error(error)
         }
-        console.log("main")
     }, [])
 
     React.useEffect(() => {
@@ -51,7 +49,6 @@ export const AccortmentBlock = () => {
                 sortBy: currentSortType.engTitle
             })
             navigate(`?${filterParameter.replace("%2B", "(asc)")}`)
-            console.log("navLink")
         }
     }, [currentSortType, currentCategory])
 

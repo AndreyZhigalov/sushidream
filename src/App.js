@@ -13,6 +13,7 @@ import { PagesNavigation } from './componenst/PagesNavigation';
 
 
 import styles from './scss/index.module.scss';
+import { NotFound } from './pages/NotFound';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
           <Route path='franchise' element={<Franchise />} />
           <Route path='cart' element={<Cart />} />
           <Route path='profile' element={<Profile />} />
-          <Route path='*' element={<h1>404</h1>} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </main>
     </div >

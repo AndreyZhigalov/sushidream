@@ -113,11 +113,8 @@ export const filtersSlice = createSlice({
         setSort(state, action) {
             state.currentSortType = action.payload
         },
-        setFilters(state, action) {
-            console.log(action.payload)
-        }
     }
 })
 
-export const { setCategory, setSort, setFilters } = filtersSlice.actions;
+export const { setCategory, setSort } = filtersSlice.actions;
 export default filtersSlice.reducer
