@@ -17,6 +17,18 @@
     grid-column: 1/2;
     grid-row: auto;
   }
+  img[alt='Clear cart'] {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 24px;
+    opacity: 50%;
+    transition: opacity 0.2s ease-in;
+    cursor: pointer;
+    &:hover {
+      opacity: 100%;
+    }
+  }
   h2 {
     text-shadow: $textShadow;
     text-indent: 15px;

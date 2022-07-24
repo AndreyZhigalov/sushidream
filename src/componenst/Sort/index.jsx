@@ -10,6 +10,7 @@ export const Sort = () => {
     const [visibility, setVisibility] = React.useState(false)
     const { currentSortType, currentCategory, sortTypes } = useSelector(state => state.filters)
     const dispatch = useDispatch()
+    const sortRef = React.useRef()
 
     const switchSortType = (type) => {
         dispatch(sortItems([type.engTitle, currentCategory.engTitle]));
@@ -17,8 +18,16 @@ export const Sort = () => {
         setVisibility(!visibility)
     }
 
+    React.useEffect(() => {
+        const handleClickSort = event => {
+            if (!event.path.includes(sortRef.current)) setVisibility(false)
+        }
+        document.body.addEventListener("click", handleClickSort)
+        return () => document.body.removeEventListener("click", handleClickSort)
+    }, [])
+
     return (
-        <div className={styles.sort}>
+        <div ref={sortRef} className={styles.sort}>
             Сортировка по <span onClick={() => setVisibility(!visibility)}>
                 {currentSortType.ruTitle}
             </span>

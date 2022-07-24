@@ -8,14 +8,25 @@ export const DeliveryRegion = () => {
     const [visibility, setVisibility] = React.useState(false)
     const dispatch = useDispatch()
     const { regions, currentRegion } = useSelector(state => state.delivery)
+    const deliveryRef = React.useRef()
 
     const deliveryRegionCost = (i) => {
         setVisibility(!visibility)
         dispatch(setDeliveryCost(i))
     }
 
+    React.useEffect(() => {
+        const handleClickDelivery = event => {
+            if (!event.path.includes(deliveryRef.current)) {
+                setVisibility(false)
+            }
+        }
+        document.body.addEventListener("click", handleClickDelivery)
+        return () => document.body.removeEventListener("click", handleClickDelivery)
+    }, [])
+
     return (
-        <div onClick={() => setVisibility(!visibility)} className={styles.deliveryRegion}>
+        <div ref={deliveryRef} onClick={() => setVisibility(!visibility)} className={styles.deliveryRegion}>
             {currentRegion || "ВЫБЕРИТЕ ОБЛАСТЬ ДОСТАВКИ"}
             <svg onClick={() => setVisibility(!visibility)} width="15" height="10" viewBox="0 0 30 21"
                 fill="none" xmlns="http://www.w3.org/2000/svg">

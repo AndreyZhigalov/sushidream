@@ -23,8 +23,8 @@ export const AccortmentBlock = () => {
             let searchParameters = qs.parse(window.location.search.substring(1).replace("(asc)", "%2B"));
             let category = categories.find(obj => obj.engTitle === searchParameters.category);
             let sort = sortTypes.find(obj => obj.engTitle === searchParameters.sortBy);
-            return category ? dispatch(setCategory(category)) :
-                sort ? dispatch(setSort(sort)) : false;
+            if (category) dispatch(setCategory(category));
+            if (sort) dispatch(setSort(sort));
         }
     }, [])
 
