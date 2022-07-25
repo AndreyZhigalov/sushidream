@@ -17,6 +17,28 @@ export const AccortmentBlock = () => {
     const [isLoading, setIsLoading] = React.useState(true)
     const { currentSortType, currentCategory, categories, sortTypes } = useSelector(state => state.filters)
     const { assortment } = useSelector(state => state.assortment)
+    const [postFiltering, setPostFiltering] = React.useState(false)
+
+    React.useEffect(() => {
+        if (postFiltering) {
+            dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]));
+        }
+    }, [postFiltering])
+
+    React.useEffect(() => {
+        try {
+            axios.get("https://62dc526b4438813a2614c8e7.mockapi.io/assortment")
+                .then((resp) => {
+                    dispatch(setAssortment(resp.data))
+                    setIsLoading(false)
+                    setPostFiltering(true)
+                    dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]));
+                })
+        } catch (error) {
+            alert("Не удалось получить список товаров с сервера")
+            console.error(error)
+        }
+    }, [])
 
     React.useEffect(() => {
         if (window.location.search) {
@@ -28,19 +50,6 @@ export const AccortmentBlock = () => {
         }
     }, [])
 
-    React.useEffect(() => {
-        try {
-            axios.get("https://62dc526b4438813a2614c8e7.mockapi.io/assortment")
-                .then((resp) => {
-                    dispatch(setAssortment(resp.data))
-                    setIsLoading(false)
-                    dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]))
-                })
-        } catch (error) {
-            alert("Не удалось получить список товаров с сервера")
-            console.error(error)
-        }
-    }, [])
 
     React.useEffect(() => {
         if (!isLoading) {
