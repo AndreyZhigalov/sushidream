@@ -11,6 +11,11 @@
       "src": "logo-primary.svg",
       "type": "image/svg",
       "sizes": "124x124"
+    },
+    {
+      "src": "logo-primary.svg",
+      "type": "image/svg",
+      "sizes": "256x256"
     }
   ],
   "start_url": ".",

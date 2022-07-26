@@ -17,8 +17,8 @@ export const AccortmentBlock = () => {
     const { assortment, status } = useSelector(state => state.assortment)
 
     React.useEffect(() => {
-        if (status === "success") dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]));
-    }, [status])
+        if (status === "success") dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]))
+    }, [currentCategory, status])
 
     React.useEffect(() => {
         if (window.location.search) {
@@ -28,9 +28,6 @@ export const AccortmentBlock = () => {
             if (category) dispatch(setCategory(category));
             if (sort) dispatch(setSort(sort));
         }
-    }, [])
-
-    React.useEffect(() => {
         dispatch(fetchAssortment())
     }, [])
 
@@ -43,10 +40,6 @@ export const AccortmentBlock = () => {
             navigate(`?${filterParameter.replace("%2B", "(asc)")}`)
         }
     }, [currentSortType, currentCategory])
-
-    React.useEffect(() => {
-        if (status === "success") dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]))
-    }, [currentCategory])
 
     return (
         <div className={styles.assortment} >
