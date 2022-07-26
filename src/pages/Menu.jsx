@@ -22,7 +22,7 @@ export const Menu = () => {
     return (
         <>
             <div className={styles.bannerWrapper}>
-                <img className={styles.menuBanner} src={setBanner()} alt="banner" />
+                <img className={styles.menuBanner} src={setBanner() || "https://via.placeholder.com/1/ebebeb"} alt="banner" />
             </div>
             <div className={styles.menuWrapper}>
                 <Navigation />

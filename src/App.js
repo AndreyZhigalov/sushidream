@@ -23,14 +23,14 @@ function App() {
       <Header />
       <main className={styles.mainContainer}>
         <Routes>
-          <Route path='' element={<Menu />} />
-          <Route path='restaurants' element={<Restaurants />} />
-          <Route path='loyalty' element={<Loyalty />} />
-          <Route path='course' element={<ServiceCourse />} />
-          <Route path='franchise' element={<Franchise />} />
-          <Route path='cart' element={<Cart />} />
-          <Route path='profile' element={<Profile />} />
-          <Route path='*' element={<NotFound />} />
+          <Route path='sushidream/' element={<Menu />} />
+          <Route path='sushidream/restaurants' element={<Restaurants />} />
+          <Route path='sushidream/loyalty' element={<Loyalty />} />
+          <Route path='sushidream/course' element={<ServiceCourse />} />
+          <Route path='sushidream/franchise' element={<Franchise />} />
+          <Route path='sushidream/cart' element={<Cart />} />
+          <Route path='sushidream/profile' element={<Profile />} />
+          <Route path='sushidream/*' element={<NotFound />} />
         </Routes>
       </main>
     </div >

@@ -78,7 +78,7 @@ const initialState = {
         },
         {
             "ruTitle": "цене по возрастанию",
-            "engTitle": "+price"
+            "engTitle": "price+"
         },
         {
             "ruTitle": "цене по убыванию",

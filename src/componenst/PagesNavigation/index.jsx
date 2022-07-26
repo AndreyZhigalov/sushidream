@@ -15,19 +15,19 @@ export const PagesNavigation = () => {
     return (
         <div className={`${styles.menu} ${isOpened ? styles.openMenu : ""}`}>
             <img src={logo} alt="Логотип" className="logo" />
-            <Link to="" onClick={() => dispatch(openNavbar(false))}>
+            <Link to="sushidream/" onClick={() => dispatch(openNavbar(false))}>
                 МЕНЮ
             </Link>
-            <Link to="restaurants" onClick={() => dispatch(openNavbar(false))}>
+            <Link to="sushidream/restaurants" onClick={() => dispatch(openNavbar(false))}>
                 РЕСТОРАНЫ
             </Link>
-            <Link to="loyalty" onClick={() => dispatch(openNavbar(false))}>
+            <Link to="sushidream/loyalty" onClick={() => dispatch(openNavbar(false))}>
                 ПРОГРАММА ЛОЯЛЬНОСТИ
             </Link>
-            <Link to="course" onClick={() => dispatch(openNavbar(false))}>
+            <Link to="sushidream/course" onClick={() => dispatch(openNavbar(false))}>
                 КУРС ПО ПОДАЧЕ БЛЮД
             </Link>
-            <Link to="franchise" onClick={() => dispatch(openNavbar(false))}>
+            <Link to="sushidream/franchise" onClick={() => dispatch(openNavbar(false))}>
                 ФРАНШИЗА
             </Link>
             <img src={closeIcon} alt="close" onClick={() => dispatch(openNavbar(false))} />
