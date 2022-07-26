@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sushidream/static/css/main.702f4e1c.css",
-    "main.js": "/sushidream/static/js/main.29ff4ea3.js",
+    "main.js": "/sushidream/static/js/main.d9cd659b.js",
     "static/media/bck-product-block.webp": "/sushidream/static/media/bck-product-block.5b9ae5878a15091dd3a0.webp",
     "static/media/trash.svg": "/sushidream/static/media/trash.62d4b30e33c9b7bdc50d24462468bfbf.svg",
     "static/media/deliveryBoy.svg": "/sushidream/static/media/deliveryBoy.8429fb1110ed9ed0015dab46524c0225.svg",
@@ -14,10 +14,10 @@
     "static/media/warning.svg": "/sushidream/static/media/warning.527898892613988f82a0c2a47cd05ea6.svg",
     "static/media/close.svg": "/sushidream/static/media/close.3c2e23b6b63e63a84034c0454ec27c32.svg",
     "main.702f4e1c.css.map": "/sushidream/static/css/main.702f4e1c.css.map",
-    "main.29ff4ea3.js.map": "/sushidream/static/js/main.29ff4ea3.js.map"
+    "main.d9cd659b.js.map": "/sushidream/static/js/main.d9cd659b.js.map"
   },
   "entrypoints": [
     "static/css/main.702f4e1c.css",
-    "static/js/main.29ff4ea3.js"
+    "static/js/main.d9cd659b.js"
   ]
 }
