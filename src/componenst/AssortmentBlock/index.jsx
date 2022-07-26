@@ -27,6 +27,9 @@ export const AccortmentBlock = () => {
             let sort = sortTypes.find(obj => obj.engTitle === searchParameters.sortBy);
             if (category) dispatch(setCategory(category));
             if (sort) dispatch(setSort(sort));
+        } else {
+            dispatch(setSort(sortTypes[3]))
+            dispatch(setCategory(categories[0]))
         }
         dispatch(fetchAssortment())
     }, [])

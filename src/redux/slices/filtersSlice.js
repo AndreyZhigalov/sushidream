@@ -93,14 +93,8 @@ const initialState = {
             "engTitle": "cheapest"
         }
     ],
-    currentSortType: {
-        "ruTitle": "популярности",
-        "engTitle": "rating"
-    },
-    currentCategory: {
-        "ruTitle": "Новинки",
-        "engTitle": "new"
-    }
+    currentSortType: {},
+    currentCategory: {}
 }
 
 export const filtersSlice = createSlice({

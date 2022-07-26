@@ -21,8 +21,14 @@ export const Header = () => {
                 <h1 className={styles.companyName}>SUSH<span>i</span>DREAM</h1>
             </div>
             <div className={styles.headerLinks}>
-                <Link to="sushidream/cart"><img src={cart} height={50} alt="корзина" /><span>{cartItemCount ? cartItemCount : ""}</span></Link>
-                <Link to="sushidream/profile"><img src={user} height={35} alt="профиль" /></Link>
+                <Link to="sushidream/cart">
+                    <img src={cart} height={50} alt="корзина" />
+                    <span>{cartItemCount ? cartItemCount : ""}
+                    </span>
+                </Link>
+                <Link to="sushidream/profile">
+                    <img src={user} height={35} alt="профиль" />
+                </Link>
                 <img src={menu} height={35} onClick={() => dispatch(openNavbar(true))} alt="меню" />
             </div>
         </header>
