@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { openNavbar } from "../../redux/slices/navbarSlice"
 
@@ -17,16 +17,18 @@ export const Header = () => {
     return (
         <header>
             <div className={styles.logoContainer}>
-                <img src={logo} alt="Логотип" className="logo" />
-                <h1 className={styles.companyName}>SUSH<span>i</span>DREAM</h1>
+                <Link to="./">
+                    <img src={logo} alt="Логотип" className="logo" />
+                    <h1 className={styles.companyName}>SUSH<span>i</span>DREAM</h1>
+                </Link>
             </div>
             <div className={styles.headerLinks}>
-                <Link to="sushidream/cart">
+                <Link to="cart">
                     <img src={cart} height={50} alt="корзина" />
                     <span>{cartItemCount ? cartItemCount : ""}
                     </span>
                 </Link>
-                <Link to="sushidream/profile">
+                <Link to="profile">
                     <img src={user} height={35} alt="профиль" />
                 </Link>
                 <img src={menu} height={35} onClick={() => dispatch(openNavbar(true))} alt="меню" />

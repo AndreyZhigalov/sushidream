@@ -6,14 +6,16 @@ import { Navigation } from '../componenst/Navigation';
 import { Check } from '../componenst/Check';
 import { Sort } from '../componenst/Sort';
 import { DeliveryRegion } from '../componenst/DeliveryRegion';
+import { selectFilters } from '../redux/slices/filtersSlice';
 import useScreenSize from "../Hooks/useScreenSize"
+import { selectAssortment } from '../redux/slices/assortmentSlice';
 
 import styles from '../scss/index.module.scss';
 
 export const Menu = () => {
     const screenSize = useScreenSize()
-    const { currentCategory, categories } = useSelector(state => state.filters)
-    const { banners, status } = useSelector(state => state.assortment)
+    const { currentCategory, categories } = useSelector(selectFilters)
+    const { banners, status } = useSelector(selectAssortment)
 
     const setBanner = () => {
         return status === "loading" ? "https://via.placeholder.com/1/ebebeb" : banners[categories.indexOf(currentCategory)];

@@ -13,30 +13,33 @@ header {
   z-index: 7;
 
   .logoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    img {
-      height: 55px;
-      width: 55px;
-    }
-    .companyName {
-      margin: 0%;
-      font-size: 24px;
-      font-weight: 600;
-      text-shadow: $boxShadow;
-      span {
-        position: relative;
-        font-size: 22px;
-        &::after {
-          content: '.';
-          position: absolute;
-          top: -2.3px;
-          right: -0.5px;
-          color: $highlighted;
-          font-size: 30px;
-          line-height: 0%;
+    cursor: pointer;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      img {
+        height: 55px;
+        width: 55px;
+      }
+      .companyName {
+        margin: 0%;
+        font-size: 24px;
+        font-weight: 600;
+        text-shadow: $boxShadow;
+        span {
+          position: relative;
+          font-size: 22px;
+          &::after {
+            content: '.';
+            position: absolute;
+            top: -2.3px;
+            right: -0.5px;
+            color: $highlighted;
+            font-size: 30px;
+            line-height: 0%;
+          }
         }
       }
     }

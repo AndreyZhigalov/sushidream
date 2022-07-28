@@ -1,16 +1,20 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux"
+import { selectAssortment } from '../../redux/slices/assortmentSlice'
 import { addToCart } from "../../redux/slices/cartSlice"
-
 
 import styles from "./AssortmentCard.module.scss"
 
 export const AssortmentCard = ({ item }) => {
     const dispatch = useDispatch()
+    const { specials } = useSelector(selectAssortment)
 
-    const specials = useSelector(state => state.assortment.specials).filter((pic) => item.specifics.find(title => pic.toLowerCase().includes(title.toLowerCase())))
-        .map(icon => <img key={icon} src={icon} alt="Особенность" />)
-
+    const setSpecials = () => {
+        return specials.map((icon) => {
+            return item.specifics.find(link => icon.toLowerCase().includes(link.toLowerCase())) ?
+                <img key={icon} src={icon} alt="Особенность" /> : false
+        })
+    }
 
     return (
         <div className={styles.card}>
@@ -21,9 +25,7 @@ export const AssortmentCard = ({ item }) => {
                     <p>КОЛ-ВО: {item.portion}</p>
                     <span>{item.price}&#x20bd;</span>
                 </div>
-                <div>
-                    {specials}
-                </div>
+                <div>{setSpecials()}</div>
                 <button onClick={() => dispatch(addToCart(item))} className={styles.add}></button>
             </div>
         </div>

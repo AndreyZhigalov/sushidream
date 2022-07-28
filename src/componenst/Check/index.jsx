@@ -20,13 +20,15 @@ export const Check = () => {
             {cartItems[0] && <img src={trash} alt="Clear cart" onClick={() => dispatch(clearCart())} />}
             <h2>ВАШ ЗАКАЗ</h2>
             <div className={styles.itemsBlock}>
-                {cartItems.length > 0 ?
-                    cartItems.map(item =>
-                        <CartItem item={item} key={item.id} />) :
-                    <div className={styles.empty}>
-                        <img src={warning} alt="Внимание" />
-                        <p>Вы ничего не выбрали.<br />Добавьте что-то в ваш чек.</p>
-                    </div>
+                {
+                    cartItems.length > 0 ?
+                        cartItems.map(item =>
+                            <CartItem item={item} key={item.id} />)
+                        :
+                        <div className={styles.empty}>
+                            <img src={warning} alt="Внимание" />
+                            <p>Вы ничего не выбрали.<br />Добавьте что-то в ваш чек.</p>
+                        </div>
                 }
             </div>
             <div className={styles.total}>

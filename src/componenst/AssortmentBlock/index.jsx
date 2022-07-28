@@ -1,10 +1,10 @@
 import React from 'react'
 import qs from "qs"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 
 import { useDispatch, useSelector } from "react-redux"
-import { sortItems, fetchAssortment } from "../../redux/slices/assortmentSlice"
-import { setCategory, setSort } from "../../redux/slices/filtersSlice"
+import { sortItems, fetchAssortment, selectAssortment } from "../../redux/slices/assortmentSlice"
+import { selectFilters, setCategory, setSort } from "../../redux/slices/filtersSlice"
 import { AssortmentCard } from '../AssortmentCard';
 import { LoadingCard } from '../LoadingCard';
 
@@ -13,16 +13,17 @@ import styles from "./AssortmentBlock.module.scss"
 export const AccortmentBlock = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { currentSortType, currentCategory, categories, sortTypes } = useSelector(state => state.filters)
-    const { assortment, status } = useSelector(state => state.assortment)
+    const { search } = useLocation()
+    const { currentSortType, currentCategory, categories, sortTypes } = useSelector(selectFilters)
+    const { assortment, status } = useSelector(selectAssortment)
 
     React.useEffect(() => {
         if (status === "success") dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]))
     }, [currentCategory, status])
 
     React.useEffect(() => {
-        if (window.location.search) {
-            let searchParameters = qs.parse(window.location.search.substring(1).replace("(asc)", "%2B"));
+        if (search) {
+            let searchParameters = qs.parse(search.substring(1).replace("(asc)", "%2B"));
             let category = categories.find(obj => obj.engTitle === searchParameters.category);
             let sort = sortTypes.find(obj => obj.engTitle === searchParameters.sortBy);
             if (category) dispatch(setCategory(category));

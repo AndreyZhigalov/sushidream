@@ -1,14 +1,14 @@
 import React from 'react'
 
 import { useSelector, useDispatch } from "react-redux"
-import { setSort } from "../../redux/slices/filtersSlice"
+import { selectFilters, setSort } from "../../redux/slices/filtersSlice"
 import { sortItems } from "../../redux/slices/assortmentSlice"
 
 import styles from './Sort.module.scss'
 
 export const Sort = () => {
     const [visibility, setVisibility] = React.useState(false)
-    const { currentSortType, currentCategory, sortTypes } = useSelector(state => state.filters)
+    const { currentSortType, currentCategory, sortTypes } = useSelector(selectFilters)
     const dispatch = useDispatch()
     const sortRef = React.useRef()
 
@@ -39,7 +39,9 @@ export const Sort = () => {
                 <div className={styles.optionsList}>
                     {sortTypes.map((type, i) =>
                         <p onClick={() => switchSortType(type)}
-                            className={currentSortType.engTitle === type.engTitle ? styles.active : ''} key={type.engTitle}>{type.ruTitle}</p>)}
+                            className={currentSortType.engTitle === type.engTitle ? styles.active : ''}
+                            key={type.engTitle}>{type.ruTitle}
+                        </p>)}
                 </div>}
         </div >
     )

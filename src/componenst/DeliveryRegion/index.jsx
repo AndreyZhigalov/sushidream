@@ -17,9 +17,7 @@ export const DeliveryRegion = () => {
 
     React.useEffect(() => {
         const handleClickDelivery = event => {
-            if (!event.path.includes(deliveryRef.current)) {
-                setVisibility(false)
-            }
+            if (!event.path.includes(deliveryRef.current)) setVisibility(false)
         }
         document.body.addEventListener("click", handleClickDelivery)
         return () => document.body.removeEventListener("click", handleClickDelivery)
@@ -35,7 +33,9 @@ export const DeliveryRegion = () => {
             {visibility && <div className={styles.optionsList}>
                 {regions.map((type, i) =>
                     <p onClick={() => deliveryRegionCost(i)}
-                        className={currentRegion === type ? styles.active : ''} key={i}>{type}</p>)}
+                        className={currentRegion === type ? styles.active : ''}
+                        key={i}>{type}
+                    </p>)}
             </div>}
 
         </div>
