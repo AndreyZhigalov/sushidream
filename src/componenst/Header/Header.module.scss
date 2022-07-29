@@ -1,6 +1,6 @@
 @import '../../scss/variables.scss';
 
-header {
+.header {
   position: fixed;
   height: min-content;
   top: 50px;
@@ -11,63 +11,4 @@ header {
   align-items: flex-end;
   padding: 0 20px;
   z-index: 7;
-
-  .logoContainer {
-    cursor: pointer;
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      img {
-        height: 55px;
-        width: 55px;
-      }
-      .companyName {
-        margin: 0%;
-        font-size: 24px;
-        font-weight: 600;
-        text-shadow: $boxShadow;
-        span {
-          position: relative;
-          font-size: 22px;
-          &::after {
-            content: '.';
-            position: absolute;
-            top: -2.3px;
-            right: -0.5px;
-            color: $highlighted;
-            font-size: 30px;
-            line-height: 0%;
-          }
-        }
-      }
-    }
-  }
-  .headerLinks {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-    @media (max-width: 490px) {
-      gap: 20px;
-    }
-    a {
-      text-decoration: none;
-      span {
-        position: absolute;
-        top: 20px;
-        left: 13px;
-        text-align: center;
-        border-radius: 50%;
-        background-color: $highlighted;
-        width: 20px;
-        font-size: 14px;
-      }
-    }
-    img[alt='меню'] {
-      cursor: pointer;
-    }
-  }
 }

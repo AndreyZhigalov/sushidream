@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
-export const fetchAssortment = createAsyncThunk("assortment/fetchAssortmentStatus", async () => {
-    const { data } = await axios.get("https://62e206223891dd9ba8def88d.mockapi.io/assortment")
-    return data
-})
+export const fetchAssortment = createAsyncThunk("assortment/fetchAssortmentStatus",
+    async () => {
+        const { data } = await axios.get("https://62e206223891dd9ba8def88d.mockapi.io/assortment")
+        return data
+    })
 
 const initialState = {
     assortment: [],

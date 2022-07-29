@@ -1,0 +1,28 @@
+@import '../../../scss/variables.scss';
+
+.headerLinks {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  @media (max-width: 490px) {
+    gap: 20px;
+  }
+  a {
+    text-decoration: none;
+    span {
+      position: absolute;
+      top: 20px;
+      left: 13px;
+      text-align: center;
+      border-radius: 50%;
+      background-color: $highlighted;
+      width: 20px;
+      font-size: 14px;
+    }
+  }
+  img[alt='меню'] {
+    cursor: pointer;
+  }
+}

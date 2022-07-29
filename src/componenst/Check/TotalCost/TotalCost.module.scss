@@ -1,0 +1,17 @@
+@import '../../../scss/variables.scss';
+
+.total {
+  margin: 10px 0 0 0;
+  width: 100%;
+  height: max-content;
+  border-top: 2px solid $text-main;
+  font-size: 14px;
+  p {
+    position: relative;
+    margin: 10px 0%;
+    span {
+      position: absolute;
+      right: 0;
+    }
+  }
+}

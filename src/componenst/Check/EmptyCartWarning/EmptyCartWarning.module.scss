@@ -1,0 +1,12 @@
+@import '../../../scss/variables.scss';
+
+.empty {
+  margin: auto;
+  img {
+    width: 100%;
+    height: 30px;
+  }
+  p {
+    text-align: center;
+  }
+}

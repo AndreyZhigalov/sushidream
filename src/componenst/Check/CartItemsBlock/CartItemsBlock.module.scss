@@ -1,0 +1,9 @@
+@import '../../../scss/variables.scss';
+
+.itemsBlock {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: auto;
+  gap: 10px;
+}
