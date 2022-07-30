@@ -26,7 +26,7 @@ export const Menu: React.FC = () => {
   return (
     <>
       <div className={styles.bannerWrapper}>
-        <img className={styles.menuBanner} src={setBanner()} alt="banner" />
+        {status !== 'error' && <img className={styles.menuBanner} src={setBanner()} alt="banner" />}
       </div>
       <div className={styles.menuWrapper}>
         <Navigation />

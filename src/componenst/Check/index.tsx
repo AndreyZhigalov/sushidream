@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../Hooks/hooks';
 
 import trash from '../../assets/icons/trash.svg';
 
-import { clearCart } from '../../redux/slices/cartSlice';
+import { cartSelector, clearCart } from '../../redux/slices/cartSlice';
 import { TotalCost } from './TotalCost';
 import { OrderButton } from './OrderButton';
 
@@ -12,7 +12,7 @@ import { CartItemsBlock } from './CartItemsBlock';
 
 export const Check: React.FC = () => {
   const dispatch = useAppDispatch();
-  const count = useAppSelector((state) => state.cart.count);
+  const { count } = useAppSelector(cartSelector);
 
   return (
     <div className={styles.check}>

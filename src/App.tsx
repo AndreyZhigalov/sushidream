@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Menu } from './pages/Menu';
@@ -11,7 +12,7 @@ import { Profile } from './pages/Profile';
 import { NotFound } from './pages/NotFound';
 import MainLayout from './layouts/MainLayout';
 
-function App() {
+const App: React.FC = () => {
   return (
     <Routes>
       <Route path="sushidream" element={<MainLayout />}>
@@ -26,6 +27,6 @@ function App() {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

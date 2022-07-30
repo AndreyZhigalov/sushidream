@@ -6,21 +6,26 @@ import { sortItems } from '../../redux/slices/assortmentSlice';
 
 import styles from './Sort.module.scss';
 
+type SortParams = {
+  ruTitle: string;
+  engTitle: string;
+};
+
 export const Sort: React.FC = () => {
   const [visibility, setVisibility] = React.useState(false);
   const { currentSortType, currentCategory, sortTypes } = useAppSelector(selectFilters);
   const dispatch = useAppDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const switchSortType = (type: any) => {
-    dispatch(sortItems([type.engTitle, currentCategory.engTitle]));
-    dispatch(setSort(type));
+  const switchSortType = (sortType: SortParams) => {
+    dispatch(sortItems([sortType.engTitle, currentCategory.engTitle]));
+    dispatch(setSort(sortType));
     setVisibility(!visibility);
   };
 
   React.useEffect(() => {
-    const handleClickSort = (event: any) => {
-      if (!event.path.includes(sortRef.current)) setVisibility(false);
+    const handleClickSort = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) setVisibility(false);
     };
     document.body.addEventListener('click', handleClickSort);
     return () => document.body.removeEventListener('click', handleClickSort);
@@ -41,7 +46,7 @@ export const Sort: React.FC = () => {
       </svg>
       {visibility && (
         <div className={styles.optionsList}>
-          {sortTypes.map((type: any) => (
+          {sortTypes.map((type) => (
             <p
               onClick={() => switchSortType(type)}
               className={currentSortType.engTitle === type.engTitle ? styles.active : ''}

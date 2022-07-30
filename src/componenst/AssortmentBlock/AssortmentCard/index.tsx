@@ -1,21 +1,11 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
-import { selectAssortment } from '../../redux/slices/assortmentSlice';
-import { addToCart } from '../../redux/slices/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
+import { AssortmentItem, selectAssortment } from '../../../redux/slices/assortmentSlice';
+import { addToCart } from '../../../redux/slices/cartSlice';
 
 import styles from './AssortmentCard.module.scss';
 
-type AssortmentProps = {
-  item: {
-    dishPhoto: string;
-    title: string;
-    portion: number;
-    price: number;
-    specifics: string[];
-  };
-};
-
-export const AssortmentCard: React.FC<AssortmentProps> = ({ item }) => {
+export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => {
   const dispatch = useAppDispatch();
   const { specials } = useAppSelector(selectAssortment);
 

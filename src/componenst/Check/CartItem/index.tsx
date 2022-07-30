@@ -1,20 +1,12 @@
 import React from 'react';
 
 import { useAppDispatch } from '../../../Hooks/hooks';
+import { AssortmentItem } from '../../../redux/slices/assortmentSlice';
 import { addToCart, removeFromCart } from '../../../redux/slices/cartSlice';
 
 import styles from './CartItem.module.scss';
 
-type CartItemProps = {
-  item: {
-    dishPhoto: string;
-    count: number;
-    title: string;
-    price: number;
-  };
-};
-
-export const CartItem: React.FC<CartItemProps> = ({ item }) => {
+export const CartItem: React.FC<{ item: AssortmentItem }> = ({ item }) => {
   const dispatch = useAppDispatch();
 
   return (

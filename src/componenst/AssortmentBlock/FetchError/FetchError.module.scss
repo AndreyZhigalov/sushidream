@@ -1,0 +1,15 @@
+.fetchBlock {
+  height: 100%;
+  width: 320px;
+  display: grid;
+  grid-auto-flow: row;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  img {
+    align-self: flex-end;
+  }
+  h2 {
+    align-self: flex-start;
+  }
+}

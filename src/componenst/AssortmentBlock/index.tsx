@@ -3,10 +3,16 @@ import qs from 'qs';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '../../Hooks/hooks';
-import { sortItems, fetchAssortment, selectAssortment } from '../../redux/slices/assortmentSlice';
+import {
+  sortItems,
+  fetchAssortment,
+  selectAssortment,
+  AssortmentItem,
+} from '../../redux/slices/assortmentSlice';
 import { selectFilters, setCategory, setSort } from '../../redux/slices/filtersSlice';
-import { AssortmentCard } from '../AssortmentCard';
+import { AssortmentCard } from './AssortmentCard';
 import { LoadingCard } from '../LoadingCard';
+import { FetchError } from './FetchError';
 
 import styles from './AssortmentBlock.module.scss';
 
@@ -46,15 +52,17 @@ export const AccortmentBlock: React.FC = () => {
     }
   }, [currentSortType, currentCategory]);
 
-  return (
-    <div className={styles.assortment}>
-      {status === 'loading'
-        ? [...Array(6)].map((_, i) => <LoadingCard key={i} />)
-        : status === 'error'
-        ? null
-        : assortment[currentCategory.engTitle].map((item: any) => (
-            <AssortmentCard key={item.id} item={item} />
-          ))}
-    </div>
-  );
+  const showAssortment = (status: string) => {
+    if (status === 'loading') {
+      return [...Array(6)].map((_, i) => <LoadingCard key={i} />);
+    } else if (status === 'error') {
+      return <FetchError />;
+    } else {
+      return assortment[currentCategory.engTitle].map((item: AssortmentItem) => (
+        <AssortmentCard key={item.id} item={item} />
+      ));
+    }
+  };
+
+  return <div className={styles.assortment}>{showAssortment(status)}</div>;
 };

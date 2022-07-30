@@ -1,6 +1,7 @@
+import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-export const LoadingCard = () => (
+export const LoadingCard: React.FC = () => (
   <ContentLoader
     speed={2}
     width="100%"

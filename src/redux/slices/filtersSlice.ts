@@ -1,29 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from './../store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// interface filtersState {
-//   categories: {
-//     ruTitle: string;
-//     engTitle: string;
-//   }[];
-//   sortTypes: {
-//     ruTitle: string;
-//     engTitle: string;
-//   }[];
-//   currentSortType:
-//     | {
-//         ruTitle: string;
-//         engTitle: string;
-//       }
-//     | {};
-//   currentCategory:
-//     | {
-//         ruTitle: string;
-//         engTitle: string;
-//       }
-//     | {};
-// }
+type SortState = {
+  ruTitle: string;
+  engTitle: string;
+}[];
 
-const initialState = {
+type CurrentSortState = {
+  ruTitle: string;
+  engTitle: string;
+};
+
+interface filtersState {
+  categories: SortState;
+  sortTypes: SortState;
+  currentSortType: CurrentSortState;
+  currentCategory: CurrentSortState;
+}
+
+const initialState: filtersState = {
   categories: [
     {
       ruTitle: 'Новинки',
@@ -116,24 +111,30 @@ const initialState = {
       engTitle: 'cheapest',
     },
   ],
-  currentSortType: {},
-  currentCategory: {},
+  currentSortType: {
+    ruTitle: 'Новинки',
+    engTitle: 'new',
+  },
+  currentCategory: {
+    ruTitle: 'названию',
+    engTitle: 'title',
+  },
 };
 
 export const filtersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    setCategory(state, action) {
+    setCategory(state, action: PayloadAction<CurrentSortState>) {
       state.currentCategory = action.payload;
     },
-    setSort(state, action) {
+    setSort(state, action: PayloadAction<CurrentSortState>) {
       state.currentSortType = action.payload;
     },
   },
 });
 
-export const selectFilters = (state) => state.filters;
+export const selectFilters = (state: RootState) => state.filters;
 
 export const { setCategory, setSort } = filtersSlice.actions;
 export default filtersSlice.reducer;

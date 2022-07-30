@@ -16,8 +16,9 @@ export const DeliveryRegion: React.FC = () => {
   };
 
   React.useEffect(() => {
-    const handleClickDelivery = (event: any) => {
-      if (!event.path.includes(deliveryRef.current)) setVisibility(false);
+    const handleClickDelivery = (event: MouseEvent) => {
+      if (deliveryRef.current && !event.composedPath().includes(deliveryRef.current))
+        setVisibility(false);
     };
     document.body.addEventListener('click', handleClickDelivery);
     return () => document.body.removeEventListener('click', handleClickDelivery);

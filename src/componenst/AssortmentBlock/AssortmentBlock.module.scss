@@ -1,7 +1,7 @@
 .assortment {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  grid-template-rows: repeat(auto-fit, 330px);
+  grid-template-rows: repeat(auto-fit, minmax(330px, 1fr));
   gap: 20px;
   justify-items: center;
   margin: 0 20px;
