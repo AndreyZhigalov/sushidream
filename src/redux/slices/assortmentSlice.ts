@@ -31,18 +31,24 @@ export type AssortmentItem = {
 
 type FetchData = [Assortment, string[], string[]];
 
+export enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
 interface AssortmentState {
   assortment: Assortment;
   banners: string[];
   specials: string[];
-  status: 'loading' | 'success' | 'error';
+  status: Status;
 }
 
 const initialState: AssortmentState = {
   assortment: {},
   banners: [],
   specials: [],
-  status: 'loading',
+  status: Status.LOADING,
 };
 
 export const assortmentSlice = createSlice({
@@ -74,16 +80,16 @@ export const assortmentSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAssortment.pending, (state) => {
-      state.status = 'loading';
+      state.status = Status.LOADING;
     });
     builder.addCase(fetchAssortment.fulfilled, (state, action: PayloadAction<FetchData>) => {
-      state.status = 'success';
+      state.status = Status.SUCCESS;
       state.assortment = action.payload[0];
       state.banners = action.payload[1];
       state.specials = action.payload[2];
     });
     builder.addCase(fetchAssortment.rejected, (state, action) => {
-      state.status = 'error';
+      state.status = Status.ERROR;
       console.error(action);
       alert('Ошибка при получении списка товаров');
     });

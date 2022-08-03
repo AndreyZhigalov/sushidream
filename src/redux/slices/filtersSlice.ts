@@ -6,7 +6,7 @@ type SortState = {
   engTitle: string;
 }[];
 
-type CurrentSortState = {
+export type CurrentSortState = {
   ruTitle: string;
   engTitle: string;
 };
@@ -112,12 +112,12 @@ const initialState: filtersState = {
     },
   ],
   currentSortType: {
-    ruTitle: 'Новинки',
-    engTitle: 'new',
-  },
-  currentCategory: {
     ruTitle: 'названию',
     engTitle: 'title',
+  },
+  currentCategory: {
+    ruTitle: 'Новинки',
+    engTitle: 'new',
   },
 };
 

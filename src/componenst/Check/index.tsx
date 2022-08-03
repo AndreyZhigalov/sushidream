@@ -10,7 +10,7 @@ import { OrderButton } from './OrderButton';
 import styles from './Check.module.scss';
 import { CartItemsBlock } from './CartItemsBlock';
 
-export const Check: React.FC = () => {
+export const Check: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
   const { count } = useAppSelector(cartSelector);
 
@@ -23,4 +23,4 @@ export const Check: React.FC = () => {
       <OrderButton />
     </div>
   );
-};
+});

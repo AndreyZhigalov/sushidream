@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
 import { AssortmentItem, selectAssortment } from '../../../redux/slices/assortmentSlice';
 import { addToCart } from '../../../redux/slices/cartSlice';
@@ -8,6 +10,7 @@ import styles from './AssortmentCard.module.scss';
 export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => {
   const dispatch = useAppDispatch();
   const { specials } = useAppSelector(selectAssortment);
+  const navigate = useNavigate();
 
   const setSpecials = () => {
     return specials.map((icon: string) => {
@@ -21,7 +24,7 @@ export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => 
 
   return (
     <div className={styles.card}>
-      <img src={item.dishPhoto} alt="" />
+      <img src={item.dishPhoto} alt="" onClick={() => navigate(`?item=${item.id}`)} />
       <h3>{item.title}</h3>
       <div className={styles.shortDescription}>
         <div>

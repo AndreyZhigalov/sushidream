@@ -9,7 +9,12 @@ import {
   selectAssortment,
   AssortmentItem,
 } from '../../redux/slices/assortmentSlice';
-import { selectFilters, setCategory, setSort } from '../../redux/slices/filtersSlice';
+import {
+  CurrentSortState,
+  selectFilters,
+  setCategory,
+  setSort,
+} from '../../redux/slices/filtersSlice';
 import { AssortmentCard } from './AssortmentCard';
 import { LoadingCard } from '../LoadingCard';
 import { FetchError } from './FetchError';
@@ -31,8 +36,12 @@ export const AccortmentBlock: React.FC = () => {
   React.useEffect(() => {
     if (search) {
       let searchParameters = qs.parse(search.substring(1).replace('(asc)', '%2B'));
-      let category = categories.find((obj: any) => obj.engTitle === searchParameters.category);
-      let sort = sortTypes.find((obj: any) => obj.engTitle === searchParameters.sortBy);
+      let category = categories.find(
+        (obj: CurrentSortState) => obj.engTitle === searchParameters.category,
+      );
+      let sort = sortTypes.find(
+        (obj: CurrentSortState) => obj.engTitle === searchParameters.sortBy,
+      );
       if (category) dispatch(setCategory(category));
       if (sort) dispatch(setSort(sort));
     } else {

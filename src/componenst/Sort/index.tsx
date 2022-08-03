@@ -18,9 +18,9 @@ export const Sort: React.FC = () => {
   const sortRef = React.useRef<HTMLDivElement>(null);
 
   const switchSortType = (sortType: SortParams) => {
-    dispatch(sortItems([sortType.engTitle, currentCategory.engTitle]));
     dispatch(setSort(sortType));
     setVisibility(!visibility);
+    dispatch(sortItems([sortType.engTitle, currentCategory.engTitle]));
   };
 
   React.useEffect(() => {
