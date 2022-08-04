@@ -17,9 +17,9 @@ export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => 
   const { pathname } = useLocation();
 
   const setSpecials = () => {
-    return specials.map((icon: string) => {
-      return item.specifics.find((link) => icon.toLowerCase().includes(link.toLowerCase())) ? (
-        <img key={icon} src={icon} alt="Особенность" />
+    return specials.map((link: string) => {
+      return item.specifics.find((icon) => link.toLowerCase().includes(icon.toLowerCase())) ? (
+        <img key={link} src={link} alt="Особенность" />
       ) : (
         false
       );
