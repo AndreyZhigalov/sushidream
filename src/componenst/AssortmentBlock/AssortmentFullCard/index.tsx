@@ -17,6 +17,7 @@ export const AssortmentFullCard: React.FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const item = searchedItem;
+  const overlayRef = React.useRef<HTMLDivElement>(null);
 
   const setSpecials = () => {
     if (item?.specifics[0]) {
@@ -55,10 +56,22 @@ export const AssortmentFullCard: React.FC = () => {
     setAdditionalInfo(text);
   };
 
+  React.useEffect(() => {
+    const overlayHandler = (event: MouseEvent) => {
+      if (overlayRef.current === event.target) {
+        onClickClose();
+      }
+    };
+
+    document.body.addEventListener('click', overlayHandler);
+
+    return () => document.body.removeEventListener('click', overlayHandler);
+  }, []);
+
   return (
-    <div className={styles.overlay}>
-      <img src={closeIcon} alt="close" onClick={onClickClose} />
+    <div ref={overlayRef} className={styles.overlay}>
       <div className={styles.card}>
+        <img src={closeIcon} className={styles.closeButton} onClick={onClickClose} />
         <img src={item?.dishPhoto} alt="" />
         <div className={styles.descriptionBlock}>
           <h3>{item?.title}</h3>
