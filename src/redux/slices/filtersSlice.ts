@@ -16,6 +16,7 @@ interface filtersState {
   sortTypes: SortState;
   currentSortType: CurrentSortState;
   currentCategory: CurrentSortState;
+  searchedItemId: number;
 }
 
 const initialState: filtersState = {
@@ -69,10 +70,6 @@ const initialState: filtersState = {
       engTitle: 'tartar-sevich',
     },
     {
-      ruTitle: 'Якитори, Темпура, Рамён и Карри',
-      engTitle: 'yakitory-tempura-ramen-curry',
-    },
-    {
       ruTitle: 'ДЕТСКОЕ МЕНЮ',
       engTitle: 'kids-menu',
     },
@@ -87,6 +84,14 @@ const initialState: filtersState = {
     {
       ruTitle: 'Напитки',
       engTitle: 'drinkables',
+    },
+    {
+      ruTitle: 'Дополнительно',
+      engTitle: 'additionals',
+    },
+    {
+      ruTitle: 'Соусы',
+      engTitle: 'souces',
     },
   ],
   sortTypes: [
@@ -119,6 +124,7 @@ const initialState: filtersState = {
     ruTitle: 'Новинки',
     engTitle: 'new',
   },
+  searchedItemId: 0,
 };
 
 export const filtersSlice = createSlice({
@@ -131,10 +137,13 @@ export const filtersSlice = createSlice({
     setSort(state, action: PayloadAction<CurrentSortState>) {
       state.currentSortType = action.payload;
     },
+    setSearchedItemId(state, action: PayloadAction<number>) {
+      state.searchedItemId = action.payload;
+    },
   },
 });
 
 export const selectFilters = (state: RootState) => state.filters;
 
-export const { setCategory, setSort } = filtersSlice.actions;
+export const { setCategory, setSort, setSearchedItemId } = filtersSlice.actions;
 export default filtersSlice.reducer;

@@ -8,7 +8,7 @@ import { Sort } from '../componenst/Sort';
 import { DeliveryRegion } from '../componenst/DeliveryRegion';
 import { selectFilters } from '../redux/slices/filtersSlice';
 import useScreenSize from '../Hooks/useScreenSize';
-import { selectAssortment } from '../redux/slices/assortmentSlice';
+import { selectAssortment, Status } from '../redux/slices/assortmentSlice';
 
 import styles from '../scss/index.module.scss';
 
@@ -18,7 +18,7 @@ export const Menu: React.FC = () => {
   const { banners, status } = useAppSelector(selectAssortment);
 
   const setBanner = () => {
-    return status === 'loading'
+    return status === Status.LOADING
       ? 'https://via.placeholder.com/1/ebebeb'
       : banners[categories.indexOf(currentCategory)];
   };
@@ -29,7 +29,7 @@ export const Menu: React.FC = () => {
         {status !== 'error' && <img className={styles.menuBanner} src={setBanner()} alt="banner" />}
       </div>
       <div className={styles.menuWrapper}>
-        <Navigation />
+        <Navigation navRange={[0, -2]} />
         <Sort />
         <AccortmentBlock />
         {screenSize.width > 820 && <DeliveryRegion />}

@@ -65,6 +65,7 @@
       background-color: $highlighted;
       border-radius: 50%;
       border: none;
+      font-size: 20px;
       &::before {
         z-index: 0;
         content: '';

@@ -1,16 +1,20 @@
+import qs from 'qs';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { AssortmentItem, selectAssortment } from '../../../redux/slices/assortmentSlice';
+import { AssortmentItem, findItem, selectAssortment } from '../../../redux/slices/assortmentSlice';
 import { addToCart } from '../../../redux/slices/cartSlice';
+import { selectFilters } from '../../../redux/slices/filtersSlice';
 
 import styles from './AssortmentCard.module.scss';
 
 export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => {
   const dispatch = useAppDispatch();
   const { specials } = useAppSelector(selectAssortment);
+  const { currentCategory, currentSortType } = useAppSelector(selectFilters);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const setSpecials = () => {
     return specials.map((icon: string) => {
@@ -22,9 +26,24 @@ export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => 
     });
   };
 
+  let itemLink: string = pathname.includes('cart')
+    ? qs.stringify({
+        item: item.id,
+      })
+    : qs.stringify({
+        category: currentCategory.engTitle,
+        sortBy: currentSortType.engTitle,
+        item: item.id,
+      });
+
+  const getItem = (id: number, link: string) => {
+    dispatch(findItem(id));
+    navigate(`?${link}`);
+  };
+
   return (
     <div className={styles.card}>
-      <img src={item.dishPhoto} alt="" onClick={() => navigate(`?item=${item.id}`)} />
+      <img src={item.dishPhoto} alt="" onClick={() => getItem(item.id, itemLink)} />
       <h3>{item.title}</h3>
       <div className={styles.shortDescription}>
         <div>

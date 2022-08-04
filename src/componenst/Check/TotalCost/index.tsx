@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAppSelector } from '../../../Hooks/hooks';
-import { cartSelector } from '../../../redux/slices/cartSlice';
+import { selectCart } from '../../../redux/slices/cartSlice';
 
 import styles from './TotalCost.module.scss';
 
 export const TotalCost: React.FC = () => {
   const deliveryCost = useAppSelector((state) => state.delivery.currentCost);
-  const { totalPrice } = useAppSelector(cartSelector);
+  const { totalPrice } = useAppSelector(selectCart);
   return (
     <div className={styles.total}>
       <p>

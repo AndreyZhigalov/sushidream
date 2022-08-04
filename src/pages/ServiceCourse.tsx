@@ -8,7 +8,7 @@ export const ServiceCourse: React.FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        fontSize: '70px',
+        fontSize: '6vh',
       }}>
       ServiceCourse
     </div>

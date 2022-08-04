@@ -11,37 +11,53 @@ import qs from 'qs';
 
 export const AssortmentFullCard: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { specials, assortment } = useAppSelector(selectAssortment);
+  const { searchedItem, specials } = useAppSelector(selectAssortment);
   const { currentCategory, currentSortType } = useAppSelector(selectFilters);
-  const { search } = useLocation();
+  const [additionalInfo, setAdditionalInfo] = React.useState(searchedItem?.contents);
   const navigate = useNavigate();
-  const id = search.replace('?item=', '');
+  const { pathname } = useLocation();
+  const item = searchedItem;
 
-  const item = assortment[currentCategory.engTitle].find((item) => +item.id === +id);
+  const setSpecials = () => {
+    if (item?.specifics[0]) {
+      return specials.map((icon: string) => {
+        return item?.specifics.find((link: string) =>
+          icon.toLowerCase().includes(link.toLowerCase()),
+        ) ? (
+          <img key={icon} src={icon} alt="Особенность" />
+        ) : (
+          false
+        );
+      });
+    }
+  };
 
   const previousSearch = qs.stringify({
     category: currentCategory.engTitle,
     sortBy: currentSortType.engTitle,
   });
 
-  const setSpecials = () => {
-    return specials.map((icon: string) => {
-      return item?.specifics.find((link) => icon.toLowerCase().includes(link.toLowerCase())) ? (
-        <img key={icon} src={icon} alt="Особенность" />
-      ) : (
-        false
-      );
-    });
+  const onClickAdd = (obj: AssortmentItem) => {
+    if (pathname.includes('cart')) {
+      dispatch(addToCart(obj));
+      navigate(pathname);
+    } else {
+      dispatch(addToCart(obj));
+      navigate(`?${previousSearch}`);
+    }
   };
 
-  const onClickAdd = (obj: AssortmentItem) => {
-    dispatch(addToCart(obj));
-    navigate(`?${previousSearch}`);
+  const onClickClose = () => {
+    return pathname.includes('cart') ? navigate(pathname) : navigate(`?${previousSearch}`);
+  };
+
+  const switchInfo = (text: string) => {
+    setAdditionalInfo(text);
   };
 
   return (
     <div className={styles.overlay}>
-      <img src={closeIcon} alt="close" onClick={() => navigate(`?${previousSearch}`)} />
+      <img src={closeIcon} alt="close" onClick={onClickClose} />
       <div className={styles.card}>
         <img src={item?.dishPhoto} alt="" />
         <div className={styles.descriptionBlock}>
@@ -51,36 +67,23 @@ export const AssortmentFullCard: React.FC = () => {
               <p>КОЛ-ВО: {item?.portion}</p>
               <span>{item?.price}&#x20bd;</span>
             </div>
-            <div className={styles.specials}>{setSpecials()}</div>
-            <button onClick={() => item && onClickAdd(item)} className={styles.add}>
+            {item?.specifics[0] && <div className={styles.specials}>{setSpecials()}</div>}
+            <button onClick={() => searchedItem && onClickAdd(searchedItem)} className={styles.add}>
               ДОБАВИТЬ В КОРЗИНУ
             </button>
           </div>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla eligendi earum atque
-            consequatur tenetur delectus deserunt soluta ipsa optio aliquam illo quos, impedit
-            nostrum ducimus cum enim ipsum repudiandae asperiores incidunt odit alias ut qui! Enim
-            alias praesentium harum nulla quis similique odit. Rerum, quae minus! Officia rerum
-            corrupti tempore asperiores consequatur vitae quis doloremque, in facere exercitationem?
-            Quaerat quasi suscipit cum dignissimos quis molestiae, repudiandae accusamus laudantium
-            provident, aut magnam ex praesentium rerum non ratione, incidunt recusandae distinctio
-            nobis maiores culpa iusto dolorum. Impedit voluptatibus soluta, eos reprehenderit,
-            voluptates ducimus laborum, blanditiis porro pariatur praesentium quasi!
-          </p>
-          <button className={styles.infoButton}>Состав</button>
-          <button className={styles.infoButton}>Аллергены</button>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla eligendi earum atque
-            consequatur tenetur delectus deserunt soluta ipsa optio aliquam illo quos, impedit
-            nostrum ducimus cum enim ipsum repudiandae asperiores incidunt odit alias ut qui! Enim
-            alias praesentium harum nulla quis similique odit.
-          </p>
-          {/* <p className={styles.description}>
-            Quaerat quasi suscipit cum dignissimos quis molestiae, repudiandae accusamus laudantium
-            provident, aut magnam ex praesentium rerum non ratione, incidunt recusandae distinctio
-            nobis maiores culpa iusto dolorum. Impedit voluptatibus soluta, eos reprehenderit,
-            voluptates ducimus laborum, blanditiis porro pariatur praesentium quasi!
-          </p> */}
+          <p className={styles.description}>{item?.description}</p>
+          <button
+            className={styles.infoButton}
+            onClick={() => (item?.contents ? switchInfo(item.contents) : false)}>
+            Состав
+          </button>
+          <button
+            className={styles.infoButton}
+            onClick={() => (item?.allergens ? switchInfo(item?.allergens) : false)}>
+            Аллергены
+          </button>
+          <p className={styles.description}>{additionalInfo}</p>
         </div>
       </div>
     </div>

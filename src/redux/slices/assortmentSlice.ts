@@ -8,6 +8,7 @@ export const fetchAssortment = createAsyncThunk<FetchData>(
     const { data } = await axios.get<FetchData>(
       'https://62e206223891dd9ba8def88d.mockapi.io/assortment',
     );
+    if (data[0] === undefined) return Promise.reject();
     return data;
   },
 );
@@ -15,7 +16,8 @@ export const fetchAssortment = createAsyncThunk<FetchData>(
 type Assortment = Record<string, AssortmentItem[]>;
 
 export type AssortmentItem = {
-  id: string;
+  cartID?: string;
+  id: number;
   title: string;
   dishPhoto: string;
   portion: number;
@@ -41,6 +43,7 @@ interface AssortmentState {
   assortment: Assortment;
   banners: string[];
   specials: string[];
+  searchedItem?: AssortmentItem | null;
   status: Status;
 }
 
@@ -48,6 +51,7 @@ const initialState: AssortmentState = {
   assortment: {},
   banners: [],
   specials: [],
+  searchedItem: null,
   status: Status.LOADING,
 };
 
@@ -77,6 +81,15 @@ export const assortmentSlice = createSlice({
         );
       }
     },
+    findItem(state, action: PayloadAction<number>) {
+      for (let key in state.assortment) {
+        let item = state.assortment[key].find((item) => item.id === action.payload);
+        if (item) {
+          state.searchedItem = item;
+          break;
+        }
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAssortment.pending, (state) => {
@@ -98,5 +111,5 @@ export const assortmentSlice = createSlice({
 
 export const selectAssortment = (state: RootState) => state.assortment;
 
-export const { setAssortment, sortItems } = assortmentSlice.actions;
+export const { setAssortment, sortItems, findItem } = assortmentSlice.actions;
 export default assortmentSlice.reducer;

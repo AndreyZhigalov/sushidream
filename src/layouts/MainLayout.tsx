@@ -14,7 +14,7 @@ const MainLayout: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      {status === Status.SUCCESS && search.includes('?item=') && <AssortmentFullCard />}
+      {status === Status.SUCCESS && search.includes('item=') && <AssortmentFullCard />}
       <PagesNavigation />
       <Header />
       <main className={styles.mainContainer}>

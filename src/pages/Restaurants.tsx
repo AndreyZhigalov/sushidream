@@ -8,7 +8,7 @@ export const Restaurants: React.FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        fontSize: '70px',
+        fontSize: '7vh',
       }}>
       Restaurants
     </div>

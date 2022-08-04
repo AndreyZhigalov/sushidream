@@ -29,3 +29,22 @@
     transition: right 0.2s ease-out;
   }
 }
+.sendingOrder {
+  box-shadow: 0px 0px 30px $highlighted;
+  animation: buttonShining 2s ease-in-out infinite;
+}
+
+@keyframes buttonShining {
+  0% {
+    filter: brightness(100%);
+    box-shadow: 0px 0px 30px $highlighted;
+  }
+  50% {
+    filter: brightness(150%);
+    box-shadow: 0px 0px 60px $highlighted;
+  }
+  100% {
+    filter: brightness(100%);
+    box-shadow: 0px 0px 30px $highlighted;
+  }
+}
