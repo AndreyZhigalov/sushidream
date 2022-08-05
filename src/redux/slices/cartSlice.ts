@@ -41,8 +41,11 @@ export const addToCart = createAsyncThunk<AssortmentItem, AssortmentItem>(
   'cart/addToCartStatus',
   async (item, thunkAPI) => {
     const {
-      cart: { cartItems },
+      cart: { cartItems, orderStatus },
     } = thunkAPI.getState() as RootState;
+    if (orderStatus === OrderStatus.SUCCESS) {
+      thunkAPI.dispatch(clearOrderStatus());
+    }
     let findItem = cartItems.find((obj) => obj.id === item.id);
     if (findItem && findItem.count === 1) {
       const { data } = await axios.post<AssortmentItem>(
@@ -54,6 +57,7 @@ export const addToCart = createAsyncThunk<AssortmentItem, AssortmentItem>(
     if (findItem && findItem.count > 1) {
       return findItem;
     }
+
     return findItem as AssortmentItem;
   },
 );
@@ -82,15 +86,22 @@ const deleteAllItem = (i: number, id: string) => {
     axios.delete(`https://62e206223891dd9ba8def88d.mockapi.io/cart/${id}`);
   }, (i + 1) * 200);
 };
+
 export const getOrder = createAsyncThunk('cart/getOrderStatus', async (_, thunkAPI) => {
   const {
-    cart: { cartItems },
+    cart: { cartItems, totalPrice },
+    delivery: { currentRegion, currentCost },
   } = thunkAPI.getState() as RootState;
+
   const {
     data: { orderID },
   } = await axios.post<OrderItem>(`https://62e206223891dd9ba8def88d.mockapi.io/orders`, {
     items: cartItems,
+    adress: currentRegion,
+    deliveryCost: currentCost,
+    TotalCost: totalPrice,
   });
+
   return orderID;
 });
 
@@ -117,6 +128,9 @@ export const cartSlice = createSlice({
         state.count = 0;
         state.totalPrice = 0;
       }
+    },
+    clearOrderStatus(state) {
+      state.orderStatus = '';
     },
   },
   extraReducers(builder) {
@@ -190,5 +204,5 @@ export const cartSlice = createSlice({
 
 export const selectCart = (state: RootState) => state.cart;
 
-export const { clearCart } = cartSlice.actions;
+export const { clearCart, clearOrderStatus } = cartSlice.actions;
 export default cartSlice.reducer;

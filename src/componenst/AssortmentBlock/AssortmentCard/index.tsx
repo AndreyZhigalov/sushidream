@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
 import { AssortmentItem, findItem, selectAssortment } from '../../../redux/slices/assortmentSlice';
 import { addToCart } from '../../../redux/slices/cartSlice';
 import { selectFilters } from '../../../redux/slices/filtersSlice';
+import { setSpecials } from '../../../utils/setSpecials';
 
 import styles from './AssortmentCard.module.scss';
 
@@ -15,16 +16,6 @@ export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => 
   const { currentCategory, currentSortType } = useAppSelector(selectFilters);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  const setSpecials = () => {
-    return specials.map((link: string) => {
-      return item.specifics.find((icon) => link.toLowerCase().includes(icon.toLowerCase())) ? (
-        <img key={link} src={link} alt="Особенность" />
-      ) : (
-        false
-      );
-    });
-  };
 
   let itemLink: string = pathname.includes('cart')
     ? qs.stringify({
@@ -50,7 +41,7 @@ export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => 
           <p>КОЛ-ВО: {item.portion}</p>
           <span>{item.price}&#x20bd;</span>
         </div>
-        <div>{setSpecials()}</div>
+        <div>{setSpecials(item, specials)}</div>
         <button onClick={() => dispatch(addToCart(item))} className={styles.add}></button>
       </div>
     </div>

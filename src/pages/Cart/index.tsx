@@ -21,9 +21,10 @@ export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const { currentCategory, categories } = useAppSelector(selectFilters);
   const { assortment, status } = useAppSelector(selectAssortment);
+  window.scrollTo(0, 0);
 
   React.useEffect(() => {
-    dispatch(setCategory(categories[14]));
+    dispatch(setCategory(categories[16]));
     if (status === Status.LOADING) {
       dispatch(fetchAssortment());
     }

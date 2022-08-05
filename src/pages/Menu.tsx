@@ -9,6 +9,7 @@ import { DeliveryRegion } from '../componenst/DeliveryRegion';
 import { selectFilters } from '../redux/slices/filtersSlice';
 import useScreenSize from '../Hooks/useScreenSize';
 import { selectAssortment, Status } from '../redux/slices/assortmentSlice';
+import bannerLoader from '../assets/banner_loader.webp';
 
 import styles from '../scss/index.module.scss';
 
@@ -16,11 +17,21 @@ export const Menu: React.FC = () => {
   const screenSize = useScreenSize();
   const { currentCategory, categories } = useAppSelector(selectFilters);
   const { banners, status } = useAppSelector(selectAssortment);
+  window.scrollTo(0, 0);
 
   const setBanner = () => {
-    return status === Status.LOADING
-      ? 'https://via.placeholder.com/1/ebebeb'
-      : banners[categories.indexOf(currentCategory)];
+    if (status === Status.LOADING) {
+      return bannerLoader;
+    } else {
+      if (screenSize.width > 820) {
+        console.log(banners[categories.indexOf(currentCategory)]['1600']);
+        return banners[categories.indexOf(currentCategory)]['1600'];
+      } else if (screenSize.width > 420) {
+        return banners[categories.indexOf(currentCategory)]['820'];
+      } else if (screenSize.width <= 420) {
+        return banners[categories.indexOf(currentCategory)]['420'];
+      }
+    }
   };
 
   return (

@@ -1,18 +1,23 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from '../../Hooks/hooks';
-import { setDeliveryCost } from '../../redux/slices/deliverySlice';
+import { clearOrderStatus, OrderStatus, selectCart } from '../../redux/slices/cartSlice';
+import { selectDelivery, setDeliveryCost } from '../../redux/slices/deliverySlice';
 
 import styles from './DeliveryRegion.module.scss';
 
 export const DeliveryRegion: React.FC = () => {
   const [visibility, setVisibility] = React.useState(false);
   const dispatch = useAppDispatch();
-  const { regions, currentRegion } = useAppSelector((state) => state.delivery);
+  const { regions, currentRegion } = useAppSelector(selectDelivery);
+  const { orderStatus } = useAppSelector(selectCart);
   const deliveryRef = React.useRef<HTMLDivElement>(null);
 
   const deliveryRegionCost = (i: number) => {
     setVisibility(!visibility);
     dispatch(setDeliveryCost(i));
+    if (orderStatus === OrderStatus.SUCCESS) {
+      dispatch(clearOrderStatus());
+    }
   };
 
   React.useEffect(() => {

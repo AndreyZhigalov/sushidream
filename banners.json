@@ -1,19 +1,87 @@
 [
-  "img/assort/new/webbanner.jpg",
-  "img/assort/lunch/webbanner.jpg",
-  "img/assort/plate/webbanner.jpg",
-  "img/assort/sets/webbanner.jpg",
-  "img/assort/fried/webbanner.jpg",
-  "img/assort/california/webbanner.jpg",
-  "img/assort/fresh-roll/webbanner.jpg",
-  "img/assort/maki/webbanner.jpg",
-  "img/assort/sushi/webbanner.jpg",
-  "img/assort/bowls/webbanner.jpg",
-  "img/assort/chirashi-and-sashimi/webbanner.jpg",
-  "img/assort/tartare/webbanner.jpg",
-  "img/assort/yakitori-tempura-ramen-curry/webbanner.jpg",
-  "img/assort/kids-menu/webbanner.jpg",
-  "img/assort/accompaniments/webbanner.jpg",
-  "img/assort/desserts/webbanner.jpg",
-  "img/assort/drinks/webbanner.jpg"
+  {
+    "1600": "img/assort/new/webbanner.webp",
+    "820": "img/assort/new/webbanner 820.webp",
+    "420": "img/assort/new/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/lunch/webbanner.webp",
+    "820": "img/assort/lunch/webbanner 820.webp",
+    "420": "img/assort/lunch/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/plate/webbanner.webp",
+    "820": "img/assort/plate/webbanner 820.webp",
+    "420": "img/assort/plate/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/sets/webbanner.webp",
+    "820": "img/assort/sets/webbanner 820.webp",
+    "420": "img/assort/sets/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/fried/webbanner.webp",
+    "820": "img/assort/fried/webbanner 820.webp",
+    "420": "img/assort/fried/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/california/webbanner.webp",
+    "820": "img/assort/california/webbanner 820.webp",
+    "420": "img/assort/california/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/fresh-roll/webbanner.webp",
+    "820": "img/assort/fresh-roll/webbanner 820.webp",
+    "420": "img/assort/fresh-roll/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/maki/webbanner.webp",
+    "820": "img/assort/maki/webbanner 820.webp",
+    "420": "img/assort/maki/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/sushi/webbanner.webp",
+    "820": "img/assort/sushi/webbanner 820.webp",
+    "420": "img/assort/sushi/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/bowls/webbanner.webp",
+    "820": "img/assort/bowls/webbanner 820.webp",
+    "420": "img/assort/bowls/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/chirashi-and-sashimi/webbanner.webp",
+    "820": "img/assort/chirashi-and-sashimi/webbanner 820.webp",
+    "420": "img/assort/chirashi-and-sashimi/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/tartare/webbanner.webp",
+    "820": "img/assort/tartare/webbanner 820.webp",
+    "420": "img/assort/tartare/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/yakitori-tempura-ramen-curry/webbanner.webp",
+    "820": "img/assort/yakitori-tempura-ramen-curry/webbanner 820.webp",
+    "420": "img/assort/yakitori-tempura-ramen-curry/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/kids-menu/webbanner.webp",
+    "820": "img/assort/kids-menu/webbanner 820.webp",
+    "420": "img/assort/kids-menu/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/accompaniments/webbanner.webp",
+    "820": "img/assort/accompaniments/webbanner 820.webp",
+    "420": "img/assort/accompaniments/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/desserts/webbanner.webp",
+    "820": "img/assort/desserts/webbanner 820.webp",
+    "420": "img/assort/desserts/webbanner 420.webp"
+  },
+  {
+    "1600": "img/assort/drinks/webbanner.webp",
+    "820": "img/assort/drinks/webbanner 820.webp",
+    "420": "img/assort/drinks/webbanner 420.webp"
+  }
 ]

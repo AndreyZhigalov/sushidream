@@ -16,13 +16,13 @@ export const Navbar: React.FC = () => {
   return (
     <div className={styles.headerLinks}>
       <Link to="cart">
-        <img src={cart} height={50} alt="корзина" />
+        <img src={cart} alt="корзина" />
         <span>{count > 0 ? count : ''}</span>
       </Link>
       <Link to="profile">
-        <img src={user} height={35} alt="профиль" />
+        <img src={user} alt="профиль" />
       </Link>
-      <img src={menu} height={35} onClick={() => dispatch(openNavbar(true))} alt="меню" />
+      <img src={menu} onClick={() => dispatch(openNavbar(true))} alt="меню" />
     </div>
   );
 };

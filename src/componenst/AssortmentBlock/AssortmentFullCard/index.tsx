@@ -1,37 +1,24 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { AssortmentItem, selectAssortment, Status } from '../../../redux/slices/assortmentSlice';
+import { AssortmentItem, selectAssortment } from '../../../redux/slices/assortmentSlice';
 import { addToCart } from '../../../redux/slices/cartSlice';
 import { selectFilters } from '../../../redux/slices/filtersSlice';
 import closeIcon from '../../../assets/icons/close.svg';
 
 import styles from './AssortmentFullCard.module.scss';
 import qs from 'qs';
+import { setSpecials } from '../../../utils/setSpecials';
 
 export const AssortmentFullCard: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { searchedItem, specials, status } = useAppSelector(selectAssortment);
+  const { searchedItem, specials } = useAppSelector(selectAssortment);
   const { currentCategory, currentSortType } = useAppSelector(selectFilters);
   const [additionalInfo, setAdditionalInfo] = React.useState(searchedItem?.contents);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const item = searchedItem;
   const overlayRef = React.useRef<HTMLDivElement>(null);
-
-  const setSpecials = () => {
-    if (item?.specifics[0]) {
-      return specials.map((icon: string) => {
-        return item?.specifics.find((link: string) =>
-          icon.toLowerCase().includes(link.toLowerCase()),
-        ) ? (
-          <img key={icon} src={icon} alt="Особенность" />
-        ) : (
-          false
-        );
-      });
-    }
-  };
 
   const previousSearch = qs.stringify({
     category: currentCategory.engTitle,
@@ -62,9 +49,7 @@ export const AssortmentFullCard: React.FC = () => {
         onClickClose();
       }
     };
-
     document.body.addEventListener('click', overlayHandler);
-
     return () => document.body.removeEventListener('click', overlayHandler);
   }, []);
 
@@ -80,7 +65,9 @@ export const AssortmentFullCard: React.FC = () => {
               <p>КОЛ-ВО: {item?.portion}</p>
               <span>{item?.price}&#x20bd;</span>
             </div>
-            {item?.specifics[0] && <div className={styles.specials}>{setSpecials()}</div>}
+            {item?.specifics[0] && (
+              <div className={styles.specials}>{setSpecials(item, specials)}</div>
+            )}
             <button onClick={() => searchedItem && onClickAdd(searchedItem)} className={styles.add}>
               ДОБАВИТЬ В КОРЗИНУ
             </button>

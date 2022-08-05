@@ -1,3 +1,4 @@
+import { RootState } from './../store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface DeliveryState {
@@ -22,8 +23,14 @@ export const deliverySlice = createSlice({
       state.currentRegion = state.regions[action.payload];
       state.currentCost = state.costs[action.payload];
     },
+    clearDelivery(state) {
+      state.currentRegion = '';
+      state.currentCost = 0;
+    },
   },
 });
 
-export const { setDeliveryCost } = deliverySlice.actions;
+export const selectDelivery = (state: RootState) => state.delivery;
+
+export const { setDeliveryCost, clearDelivery } = deliverySlice.actions;
 export default deliverySlice.reducer;

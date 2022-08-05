@@ -22,7 +22,17 @@
       font-size: 14px;
     }
   }
+  img[alt='корзина'] {
+    width: 50px;
+    height: 50px;
+  }
+  img[alt='профиль'] {
+    width: 35px;
+    height: 35px;
+  }
   img[alt='меню'] {
+    width: 35px;
+    height: 35px;
     cursor: pointer;
   }
 }
