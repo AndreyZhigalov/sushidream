@@ -14,7 +14,7 @@
 ✅ React Content Loader
 
 ## `Подробности`
-* Google Page Speed показывает диапазон производительности от 85 до 96 на мобильных и 100 на ПК \
+* Google Page Speed показывает диапазон производительности от 91 на мобильных и 100 на ПК \
 https://pagespeed.web.dev/report?url=https%3A%2F%2Fandreyzhigalov.github.io%2Fsushidream%2F \
 Некоторые аспекты оптимизации будут дорабатываться позже. 
 
