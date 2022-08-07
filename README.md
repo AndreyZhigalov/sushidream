@@ -1,6 +1,6 @@
 # SUSHIDREAM
 Пэт проект SPA ресторана с доставкой\
-⭐https://andreyzhigalov.github.io/sushidream/⭐
+⭐https://andreyzhigalov.github.io/sushidream/ ⭐
 
 ## `Стек`
 ✅ React.js \
