@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkplanetsushi=self.webpackChunkplanetsushi||[]).push([[668],{7240:function(e,t,n){n.r(t);n(2791);var s=n(184);t.default=function(){return(0,s.jsx)("div",{style:{display:"flex",justifyContent:"center",alignItems:"center",height:"100vh",fontSize:"7vh"},children:"Restaurants"})}}}]);
+//# sourceMappingURL=Restaurants.a9d6f437.chunk.js.map
