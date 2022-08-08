@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Restaurants: React.FC = () => {
+const Restaurants: React.FC = () => {
   return (
     <div
       style={{
@@ -14,3 +14,4 @@ export const Restaurants: React.FC = () => {
     </div>
   );
 };
+export default Restaurants;

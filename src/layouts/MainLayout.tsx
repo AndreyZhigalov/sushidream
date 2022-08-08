@@ -1,8 +1,8 @@
+import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { AssortmentFullCard } from '../componenst/AssortmentBlock/AssortmentFullCard';
 
-import { Header } from '../componenst/Header';
-import { PagesNavigation } from '../componenst/PagesNavigation';
+import { Header, PagesNavigation, AssortmentFullCard } from '../componenst';
+
 import { useAppSelector } from '../Hooks/hooks';
 import { selectAssortment, Status } from '../redux/slices/assortmentSlice';
 

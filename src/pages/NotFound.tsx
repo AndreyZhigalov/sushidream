@@ -1,7 +1,8 @@
 import React from 'react';
+
 import notFoundImage from '../assets/notFound.svg';
 
-export const NotFound: React.FC = () => {
+const NotFound: React.FC = () => {
   return (
     <div
       style={{
@@ -25,3 +26,4 @@ export const NotFound: React.FC = () => {
     </div>
   );
 };
+export default NotFound;

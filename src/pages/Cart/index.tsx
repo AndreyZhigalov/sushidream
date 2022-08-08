@@ -1,12 +1,15 @@
 import React from 'react';
-
-import { AssortmentCard } from '../../componenst/AssortmentBlock/AssortmentCard';
-import { FetchError } from '../../componenst/AssortmentBlock/FetchError';
-import { Check } from '../../componenst/Check';
-import { DeliveryRegion } from '../../componenst/DeliveryRegion';
-import { LoadingCard } from '../../componenst/LoadingCard';
-import { Navigation } from '../../componenst/Navigation';
 import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
+
+import {
+  AssortmentCard,
+  FetchError,
+  Check,
+  DeliveryRegion,
+  LoadingCard,
+  Navigation,
+} from '../../componenst';
+
 import {
   AssortmentItem,
   fetchAssortment,
@@ -17,11 +20,14 @@ import { selectFilters, setCategory } from '../../redux/slices/filtersSlice';
 
 import styles from './Cart.module.scss';
 
-export const Cart: React.FC = () => {
+const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const { currentCategory, categories } = useAppSelector(selectFilters);
   const { assortment, status } = useAppSelector(selectAssortment);
-  window.scrollTo(0, 0);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   React.useEffect(() => {
     dispatch(setCategory(categories[16]));
@@ -58,3 +64,5 @@ export const Cart: React.FC = () => {
     </div>
   );
 };
+
+export default Cart;

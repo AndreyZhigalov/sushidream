@@ -23,7 +23,6 @@ import { LoadingCard } from '../LoadingCard';
 import { FetchError } from './FetchError';
 
 import styles from './AssortmentBlock.module.scss';
-import { fetchCart } from '../../redux/slices/cartSlice';
 
 export const AccortmentBlock: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -32,11 +31,6 @@ export const AccortmentBlock: React.FC = () => {
   const { currentSortType, currentCategory, categories, sortTypes, searchedItemId } =
     useAppSelector(selectFilters);
   const { assortment, status } = useAppSelector(selectAssortment);
-
-  React.useEffect(() => {
-    if (status === Status.SUCCESS)
-      dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]));
-  }, [currentCategory, status]);
 
   React.useEffect(() => {
     if (status === Status.SUCCESS && searchedItemId) {
@@ -63,6 +57,11 @@ export const AccortmentBlock: React.FC = () => {
     }
     if (status === Status.LOADING) dispatch(fetchAssortment());
   }, []);
+
+  React.useEffect(() => {
+    if (status === Status.SUCCESS)
+      dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]));
+  }, [currentCategory, status]);
 
   React.useEffect(() => {
     if (status === Status.SUCCESS) {

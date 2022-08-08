@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Franchise: React.FC = () => {
+const Franchise: React.FC = () => {
   return (
     <div
       style={{
@@ -14,3 +14,5 @@ export const Franchise: React.FC = () => {
     </div>
   );
 };
+
+export default Franchise;

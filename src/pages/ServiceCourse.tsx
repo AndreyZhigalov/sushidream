@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ServiceCourse: React.FC = () => {
+const ServiceCourse: React.FC = () => {
   return (
     <div
       style={{
@@ -14,3 +14,4 @@ export const ServiceCourse: React.FC = () => {
     </div>
   );
 };
+export default ServiceCourse;

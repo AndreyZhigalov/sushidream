@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Loyalty: React.FC = () => {
+const Loyalty: React.FC = () => {
   return (
     <div
       style={{
@@ -14,3 +14,4 @@ export const Loyalty: React.FC = () => {
     </div>
   );
 };
+export default Loyalty;

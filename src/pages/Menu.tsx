@@ -1,35 +1,38 @@
 import React from 'react';
-
-import { AccortmentBlock } from '../componenst/AssortmentBlock';
 import { useAppSelector } from '../Hooks/hooks';
-import { Navigation } from '../componenst/Navigation';
-import { Check } from '../componenst/Check';
-import { Sort } from '../componenst/Sort';
-import { DeliveryRegion } from '../componenst/DeliveryRegion';
-import { selectFilters } from '../redux/slices/filtersSlice';
 import useScreenSize from '../Hooks/useScreenSize';
+
+import { AccortmentBlock, Navigation, Check, Sort, DeliveryRegion } from '../componenst';
+
+import { selectFilters } from '../redux/slices/filtersSlice';
 import { selectAssortment, Status } from '../redux/slices/assortmentSlice';
+
 import bannerLoader from '../assets/banner_loader.webp';
 
 import styles from '../scss/index.module.scss';
 
-export const Menu: React.FC = () => {
+const Menu: React.FC = () => {
   const screenSize = useScreenSize();
   const { currentCategory, categories } = useAppSelector(selectFilters);
   const { banners, status } = useAppSelector(selectAssortment);
-  window.scrollTo(0, 0);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const setBanner = () => {
+    const banner = banners[categories.indexOf(currentCategory)];
     if (status === Status.LOADING) {
       return bannerLoader;
     } else {
-      if (screenSize.width > 820) {
-        console.log(banners[categories.indexOf(currentCategory)]['1600']);
-        return banners[categories.indexOf(currentCategory)]['1600'];
-      } else if (screenSize.width > 420) {
-        return banners[categories.indexOf(currentCategory)]['820'];
-      } else if (screenSize.width <= 420) {
-        return banners[categories.indexOf(currentCategory)]['420'];
+      if (screenSize.width) {
+        if (screenSize.width > 820) {
+          return banner['1600'] ? banner['1600'] : bannerLoader;
+        } else if (screenSize.width > 420) {
+          return banner['820'] ? banner['820'] : bannerLoader;
+        } else if (screenSize.width <= 420) {
+          return banner['420'] ? banner['420'] : bannerLoader;
+        }
       }
     }
   };
@@ -43,9 +46,11 @@ export const Menu: React.FC = () => {
         <Navigation navRange={[0, -2]} />
         <Sort />
         <AccortmentBlock />
-        {screenSize.width > 820 && <DeliveryRegion />}
-        {screenSize.width > 820 && <Check />}
+        {screenSize.width ? screenSize.width > 820 && <DeliveryRegion /> : false}
+        {screenSize.width ? screenSize.width > 820 && <Check /> : false}
       </div>
     </>
   );
 };
+
+export default Menu;

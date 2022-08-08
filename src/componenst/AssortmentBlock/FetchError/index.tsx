@@ -1,13 +1,13 @@
 import React from 'react';
 
-import fetchError from '../../../assets/sushi.svg';
+import SadSushi from '../../../assets/SadSushi.svg';
 
 import styles from './FetchError.module.scss';
 
 export const FetchError: React.FC = () => {
   return (
     <div className={styles.fetchBlock}>
-      <img src={fetchError} alt="Грустрое суши" />
+      <img src={SadSushi} alt="Грустрое суши" />
       <h2>
         Прости, я потерялся и не смог прийти.
         <br /> Попробуй попозже ❤

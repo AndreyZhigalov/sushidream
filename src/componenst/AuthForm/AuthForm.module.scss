@@ -1,0 +1,40 @@
+@import '../../scss/variables.scss';
+
+.auth_form {
+  display: grid;
+  height: max-content;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, max-content);
+  h2 {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+  p:nth-of-type(1) {
+    margin: 0 0 10px;
+  }
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fit, max-content);
+    grid-gap: 15px;
+    margin-bottom: 15px;
+    input[type='email'],
+    input[type='password'] {
+      background-color: $background-main;
+      box-shadow: $boxShadow;
+      border: none;
+      outline: none;
+      height: 35px;
+      width: 100%;
+      font-size: 16px;
+    }
+    label {
+      cursor: pointer;
+      font-size: 14px;
+    }
+  }
+}
+.forgotPass {
+  margin-bottom: 20px;
+  text-align: end;
+}
