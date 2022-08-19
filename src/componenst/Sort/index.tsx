@@ -39,7 +39,7 @@ export const Sort: React.FC = () => {
         onClick={() => setVisibility(!visibility)}
         width="15"
         height="10"
-        viewBox={['0 0 30 21']}
+        viewBox={'0 0 30 21'}
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path d="M2.5 19L15 4L27.5 19" stroke="white" strokeWidth="4" strokeLinecap="round" />

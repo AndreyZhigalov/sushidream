@@ -1,0 +1,32 @@
+.userPage_wrapper {
+  width: 50%;
+  grid-template-columns: repeat(autofit, minmax(360px 1fr));
+  grid-template-rows: 100px 1fr;
+  .header {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    h1 {
+    }
+  }
+  .loyaltyProgramm {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    h1 {
+    }
+    .card {
+      h2 {
+      }
+      p {
+      }
+    }
+  }
+
+  .userData {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    p {
+      span {
+      }
+    }
+  }
+}

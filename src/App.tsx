@@ -15,6 +15,15 @@ const ServiceCourse = React.lazy(
 );
 const Franchise = React.lazy(() => import(/* webpackChunkName: "Franchise" */ './pages/Franchise'));
 const Profile = React.lazy(() => import(/* webpackChunkName: "Profile" */ './pages/Profile'));
+const UserPage = React.lazy(
+  () => import(/* webpackChunkName: "UserPage" */ './pages/Profile/UserPage'),
+);
+const AuthForm = React.lazy(
+  () => import(/* webpackChunkName: "AuthForm" */ './componenst/AuthForm'),
+);
+const RegisterForm = React.lazy(
+  () => import(/* webpackChunkName: "RegisterForm" */ './componenst/RegisterForm'),
+);
 const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/NotFound'));
 
 const App: React.FC = () => {
@@ -28,7 +37,11 @@ const App: React.FC = () => {
           <Route path="course" element={<ServiceCourse />} />
           <Route path="franchise" element={<Franchise />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile" element={<Profile />}>
+            <Route path="" element={<UserPage />} />
+            <Route path="auth" element={<AuthForm />} />
+            <Route path="signup" element={<RegisterForm />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

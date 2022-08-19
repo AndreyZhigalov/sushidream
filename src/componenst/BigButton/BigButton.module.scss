@@ -11,9 +11,6 @@
     transform: translateY(2px);
   }
   &:hover {
-    img {
-      right: 20px;
-    }
     box-shadow: 0px 0px 30px $highlighted;
     transition: 0.2s ease-out;
   }
@@ -24,7 +21,18 @@
     transform: scaleX(-100%);
     transition: right 0.2s ease-out;
   }
+  &:disabled {
+    background-color: gray;
+    &:hover {
+      box-shadow: none;
+    }
+    &:active {
+      filter: none;
+      transform: none;
+    }
+  }
 }
+
 .pressed {
   box-shadow: 0px 0px 30px $highlighted;
   animation: buttonShining 2s ease-in-out infinite;

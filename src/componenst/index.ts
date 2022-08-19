@@ -21,3 +21,4 @@ export * from './LoadingWarning';
 export * from './BigButton';
 export * from './AuthForm';
 export * from './RegisterForm';
+export * from '../pages/Profile/UserPage';

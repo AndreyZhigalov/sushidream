@@ -4,6 +4,7 @@ import assortment from './slices/assortmentSlice';
 import filters from './slices/filtersSlice';
 import delivery from './slices/deliverySlice';
 import navbar from './slices/navbarSlice';
+import user from './slices/userSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     filters,
     delivery,
     navbar,
+    user,
   },
 });
 

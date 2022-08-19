@@ -6,7 +6,8 @@ export const LoadingCard: React.FC = () => (
     speed={2}
     width="100%"
     height="330px"
-    viewBox={[`0`, `0`, `100%`, `330`]}
+    preserveAspectRatio="none"
+    viewBox="0, 0, 300, 330"
     backgroundColor="#ebebeb"
     foregroundColor="#f2f2f2">
     <rect x="0" y="0" rx="10" ry="10" width={'100%'} height="200" />

@@ -1,13 +1,12 @@
 import React from 'react';
-import { AuthForm, RegisterForm } from '../../componenst';
+import { Outlet } from 'react-router-dom';
 
 import styles from './Profile.module.scss';
 
 const Profile: React.FC = () => {
   return (
     <div className={styles.profile_wrapper}>
-      <AuthForm />
-      <RegisterForm />
+      <Outlet />
     </div>
   );
 };

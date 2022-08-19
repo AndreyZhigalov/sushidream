@@ -5,12 +5,12 @@ import styles from './BigButton.module.scss';
 type BigButtonType = {
   text: string;
   anyFunc?: () => any;
-  disable?: boolean;
+  isFormValid?: boolean;
 };
 
-export const BigButton: React.FC<BigButtonType> = ({ text, anyFunc, disable }) => {
+export const BigButton: React.FC<BigButtonType> = ({ text, anyFunc, isFormValid }) => {
   return (
-    <button className={styles.button} onClick={anyFunc} disabled={disable}>
+    <button className={styles.button} type={'button'} onClick={anyFunc}>
       {text}
     </button>
   );
