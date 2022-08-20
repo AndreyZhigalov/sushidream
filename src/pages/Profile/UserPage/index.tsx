@@ -15,19 +15,19 @@ const UserPage = () => {
     if (!user.uid) {
       navigate('auth');
     }
-  }, [user.accessToken]);
+  }, [user.uid]);
 
   return (
     <div className={styles.userPage_wrapper}>
       <div className={styles.header}>
-        <h1>Салют, {user.name}!</h1>
+        <h1>Здравствуйте, {user.name}!</h1>
       </div>
       <div className={styles.loyaltyProgramm}>
         <h1>Ваша программа лояльности</h1>
         <div className={styles.card}>
           <h2>SUSHIDREAM</h2>
           <p>5555 5555 5555 5555</p>
-          <p>{user.name + ' ' + user.lastName}</p>
+          <p>{`${user.name} ${user.lastName}`}</p>
         </div>
       </div>
       <div className={styles.userData}>
