@@ -9,6 +9,14 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0 20px;
+  padding: 0 15px;
   z-index: 7;
+
+    @media (max-width: 420px) { 
+    background-color: $background-trans;      
+    // flex-direction: column;               ВАРИАНТ С НАВИГАЦИЕЙ ПОД ЛОГОТИПОМ
+    // align-items: center;                   
+    // justify-content: flex-start;
+    // top: 20px;   
+  }
 }

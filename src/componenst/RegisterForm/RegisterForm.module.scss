@@ -108,4 +108,7 @@
       margin: 10px 0 0 0;
     }
   }
+   @media (max-width: 420px) {
+    grid-template-columns: 330px;
+  }
 }

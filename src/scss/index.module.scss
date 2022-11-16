@@ -51,6 +51,8 @@ a {
       height: 300px;
       @media (max-width: 450px) {
         height: 200px;
+        // height: 140px; Вариант с отключением банера
+        // opacity: 0;    Вариант с отключением банера
       }
       .menuBanner {
         width: 100%;
