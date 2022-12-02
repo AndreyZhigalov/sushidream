@@ -12,7 +12,7 @@ export const PagesNavigation = () => {
   const isOpened = useAppSelector((state) => state.navbar.isOpened);
 
   return (
-    <div className={`${styles.menu} ${isOpened ? styles.openMenu : ''}`}>
+    <div className={`${styles.menu} ${isOpened ? styles.open_menu : ''}`}>
       <img src={logo} alt="Логотип" className="logo" />
       <Link to="./" onClick={() => dispatch(openNavbar(false))}>
         МЕНЮ

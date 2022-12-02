@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BigButton } from '../../../componenst';
 import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { removeUserData } from '../../../redux/slices/userSlice';
+import { removeuser_data } from '../../../redux/slices/userSlice';
 
 import styles from './UserPage.module.scss';
 
@@ -18,11 +18,11 @@ const UserPage = () => {
   }, [user.uid]);
 
   return (
-    <div className={styles.userPage_wrapper}>
+    <div className={styles.user_page__wrapper}>
       <div className={styles.header}>
         <h1>Здравствуйте, {user.name}!</h1>
       </div>
-      <div className={styles.loyaltyProgramm}>
+      <div className={styles.loyalty_programm}>
         <h1>Ваша программа лояльности</h1>
         <div className={styles.card}>
           <h2>SUSHIDREAM</h2>
@@ -30,7 +30,7 @@ const UserPage = () => {
           <p>{`${user.name} ${user.lastName}`}</p>
         </div>
       </div>
-      <div className={styles.userData}>
+      <div className={styles.user_data}>
         <p>
           <span>Имя: </span>
           {user.name}
@@ -52,7 +52,7 @@ const UserPage = () => {
           {user.birthDay}
         </p>
       </div>
-      <BigButton text={'Выйти из аккаунта'} anyFunc={() => dispatch(removeUserData())} />
+      <BigButton text={'Выйти из аккаунта'} anyFunc={() => dispatch(removeuser_data())} />
     </div>
   );
 };

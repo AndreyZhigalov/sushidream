@@ -1,5 +1,5 @@
 @import '../../../scss/variables.scss';
-.userPage_wrapper {
+.user_page__wrapper {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -11,7 +11,7 @@
       font-size: 22px;
     }
   }
-  .loyaltyProgramm {
+  .loyalty_programm {
     justify-self: center;
     h1 {
       font-size: 22px;
@@ -42,7 +42,7 @@
     }
   }
 
-  .userData {
+  .user_data {
     min-width: 360px;
     background-color: $background-second;
     box-shadow: $boxShadow;
@@ -58,19 +58,19 @@
 }
 
 @media (min-width: 768px) {
-  .userPage_wrapper {
+  .user_page__wrapper {
     width: 100%;
     padding: 20px;
     .header {
       grid-column: 1/3;
       grid-row: 1/2;
     }
-    .loyaltyProgramm {
+    .loyalty_programm {
       grid-column: 1/2;
       grid-row: 2/3;
     }
 
-    .userData {
+    .user_data {
       grid-column: 2/3;
       grid-row: 2/3;
     }

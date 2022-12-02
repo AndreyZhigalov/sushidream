@@ -74,7 +74,7 @@ const RegisterForm: React.FC = () => {
   while (years.length < 100) years.push(`${fullYear.current - 18 - years.length}`);
 
   return (
-    <div className={styles.createAccount_form}>
+    <div className={styles.create_account__form}>
       <h2>СОЗДАТЬ АККАУНТ</h2>
       <p>Создайте аккаунт и присоединитесь к нашему сообществу любителей суши</p>
       <Formik

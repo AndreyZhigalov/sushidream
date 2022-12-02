@@ -12,7 +12,7 @@ export const DeliveryRegion: React.FC = () => {
   const { orderStatus } = useAppSelector(selectCart);
   const deliveryRef = React.useRef<HTMLDivElement>(null);
 
-  const deliveryRegionCost = (i: number) => {
+  const delivery_regionCost = (i: number) => {
     setVisibility(!visibility);
     dispatch(setDeliveryCost(i));
     if (orderStatus === OrderStatus.SUCCESS) {
@@ -33,7 +33,7 @@ export const DeliveryRegion: React.FC = () => {
     <div
       ref={deliveryRef}
       onClick={() => setVisibility(!visibility)}
-      className={styles.deliveryRegion}>
+      className={styles.delivery_region}>
       {currentRegion || 'ВЫБЕРИТЕ ОБЛАСТЬ ДОСТАВКИ'}
       <svg
         onClick={() => setVisibility(!visibility)}
@@ -45,10 +45,10 @@ export const DeliveryRegion: React.FC = () => {
         <path d="M2.5 19L15 4L27.5 19" stroke="white" strokeWidth="4" strokeLinecap="round" />
       </svg>
       {visibility && (
-        <div className={styles.optionsList}>
+        <div className={styles.options_list}>
           {regions.map((type, i: number) => (
             <p
-              onClick={() => deliveryRegionCost(i)}
+              onClick={() => delivery_regionCost(i)}
               className={currentRegion === type ? styles.active : ''}
               key={i}>
               {type}

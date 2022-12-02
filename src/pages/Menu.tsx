@@ -39,10 +39,10 @@ const Menu: React.FC = () => {
 
   return (
     <>
-      <div className={styles.bannerWrapper}>
-        {status !== 'error' && <img className={styles.menuBanner} src={setBanner()} alt="banner" />}
+      <div className={styles.banner_wrapper}>
+        {status !== 'error' && <img className={styles.menu_banner} src={setBanner()} alt="banner" />}
       </div>
-      <div className={styles.menuWrapper}>
+      <div className={styles.menu_wrapper}>
         <Navigation navRange={[0, -2]} />
         <Sort />
         <AccortmentBlock />

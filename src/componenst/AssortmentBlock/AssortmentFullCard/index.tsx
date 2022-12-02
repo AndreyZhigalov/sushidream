@@ -56,11 +56,11 @@ export const AssortmentFullCard: React.FC = () => {
   return (
     <div ref={overlayRef} className={styles.overlay}>
       <div className={styles.card}>
-        <img src={closeIcon} className={styles.closeButton} onClick={onClickClose} />
+        <img src={closeIcon} className={styles.close_button} onClick={onClickClose} />
         <img src={item?.dishPhoto} alt={item?.title} />
-        <div className={styles.descriptionBlock}>
+        <div className={styles.description_block}>
           <h3>{item?.title}</h3>
-          <div className={styles.addBlock}>
+          <div className={styles.add_block}>
             <div>
               <p>КОЛ-ВО: {item?.portion}</p>
               <span>{item?.price}&#x20bd;</span>
@@ -74,12 +74,12 @@ export const AssortmentFullCard: React.FC = () => {
           </div>
           <p className={styles.description}>{item?.description}</p>
           <button
-            className={styles.infoButton}
+            className={styles.info_button}
             onClick={() => (item?.contents ? switchInfo(item.contents) : false)}>
             Состав
           </button>
           <button
-            className={styles.infoButton}
+            className={styles.info_button}
             onClick={() => (item?.allergens ? switchInfo(item?.allergens) : false)}>
             Аллергены
           </button>

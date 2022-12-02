@@ -13,9 +13,9 @@ export const Navigation: React.FC<{ navRange: number[] }> = ({ navRange }) => {
 
   const setClass = (category: CurrentSortState, location: string) => {
     if (currentCategory.engTitle === category.engTitle) {
-      return pathname.includes('cart') ? styles.active : styles.active + ' ' + styles.li_Margin;
+      return pathname.includes('cart') ? styles.active : styles.active + ' ' + styles.li_margin;
     } else {
-      return pathname.includes('cart') ? '' : '' + styles.li_Margin;
+      return pathname.includes('cart') ? '' : '' + styles.li_margin;
     }
   };
 

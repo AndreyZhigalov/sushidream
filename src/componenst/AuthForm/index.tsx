@@ -8,7 +8,7 @@ import { Formik, Field, Form } from 'formik';
 import styles from './AuthForm.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../Hooks/hooks';
-import { setUserData } from '../../redux/slices/userSlice';
+import { setuser_data } from '../../redux/slices/userSlice';
 
 type AuthFormType = {
   authEmail: string;
@@ -49,7 +49,7 @@ const AuthForm: React.FC = () => {
                   `https://62e206223891dd9ba8def88d.mockapi.io/user/?uid=${userCredential.user.uid}`,
                 )
                 .then((resp) => {
-                  dispatch(setUserData(resp.data));
+                  dispatch(setuser_data(resp.data));
                   navigate('../');
                 });
             })
@@ -91,7 +91,7 @@ const AuthForm: React.FC = () => {
                 <p className={styles.error}>{errors.password}</p>
               )}
             </label>
-            <a href="" className={styles.forgotPass}>
+            <a href="" className={styles.forgot_password}>
               Забыли пароль?
             </a>
 

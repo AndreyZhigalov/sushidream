@@ -38,23 +38,23 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUserData(state, action: PayloadAction<userSlice[]>) {
-      const userData = action.payload[0];
-      state.accessToken = userData.accessToken;
-      state.birthDay = userData.birthDay;
-      state.uid = userData.uid;
-      state.createdAt = userData.createdAt;
-      state.gender = userData.gender;
-      state.name = userData.name;
-      state.lastName = userData.lastName;
-      state.phoneNumber = userData.phoneNumber;
-      state.email = userData.email;
-      state.password = userData.password;
-      state.terms = userData.terms;
-      state.loyalty = userData.loyalty;
-      state.news = userData.news;
+    setuser_data(state, action: PayloadAction<userSlice[]>) {
+      const user_data = action.payload[0];
+      state.accessToken = user_data.accessToken;
+      state.birthDay = user_data.birthDay;
+      state.uid = user_data.uid;
+      state.createdAt = user_data.createdAt;
+      state.gender = user_data.gender;
+      state.name = user_data.name;
+      state.lastName = user_data.lastName;
+      state.phoneNumber = user_data.phoneNumber;
+      state.email = user_data.email;
+      state.password = user_data.password;
+      state.terms = user_data.terms;
+      state.loyalty = user_data.loyalty;
+      state.news = user_data.news;
     },
-    removeUserData(state) {
+    removeuser_data(state) {
       state.accessToken = '';
       state.birthDay = '';
       state.uid = '';
@@ -72,5 +72,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserData, removeUserData } = userSlice.actions;
+export const { setuser_data, removeuser_data } = userSlice.actions;
 export default userSlice.reducer;

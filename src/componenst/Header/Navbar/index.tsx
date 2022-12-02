@@ -14,7 +14,7 @@ export const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { count } = useAppSelector(selectCart);
   return (
-    <div className={styles.headerLinks}>
+    <div className={styles.header_links}>
       <Link to="cart">
         <img src={cart} alt="корзина" />
         <span>{count > 0 ? count : ''}</span>

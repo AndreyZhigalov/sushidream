@@ -12,7 +12,7 @@ export const CartItemsBlock: React.FC = () => {
   const { cartItems, orderStatus } = useAppSelector(selectCart);
 
   return (
-    <div className={styles.itemsBlock}>
+    <div className={styles.items_block}>
       {cartItems.length > 0 ? (
         cartItems.map((item: any) => <CartItem item={item} key={item.id} />)
       ) : orderStatus === OrderStatus.SUCCESS ? (

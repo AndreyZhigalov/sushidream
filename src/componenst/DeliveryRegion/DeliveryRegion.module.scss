@@ -1,6 +1,6 @@
 @import '../../scss/variables.scss';
 
-.deliveryRegion {
+.delivery_region {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,7 +27,7 @@
     transform: rotate(180deg);
     cursor: pointer;
   }
-  .optionsList {
+  .options_list {
     position: absolute;
     top: calc(100%);
     left: 0px;

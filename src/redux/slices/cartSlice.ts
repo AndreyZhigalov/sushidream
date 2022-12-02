@@ -63,7 +63,7 @@ export const addToCart = createAsyncThunk<AssortmentItem, AssortmentItem>(
 );
 
 export const removeFromCart = createAsyncThunk<AssortmentItem, AssortmentItem>(
-  'cart/removeCartItemStatus',
+  'cart/removecartItemStatus',
   async (item, thunkAPI) => {
     const {
       cart: { cartItems },

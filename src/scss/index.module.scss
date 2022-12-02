@@ -43,10 +43,10 @@ a {
   flex-direction: column;
   align-items: center;
 
-  .mainContainer {
+  .main_container {
     width: 100%;
     height: 100%;
-    .bannerWrapper {
+    .banner_wrapper {
       width: 100%;
       height: 300px;
       @media (max-width: 450px) {
@@ -54,7 +54,7 @@ a {
         // height: 140px; Вариант с отключением банера
         // opacity: 0;    Вариант с отключением банера
       }
-      .menuBanner {
+      .menu_banner {
         width: 100%;
         height: 300px;
         object-fit: cover;
@@ -64,7 +64,7 @@ a {
       }
     }
 
-    .menuWrapper {
+    .menu_wrapper {
       position: relative;
       margin: auto;
       max-width: 1440px;
@@ -72,10 +72,8 @@ a {
       height: 100%;
       display: grid;
       grid-template-columns: 1fr 3fr 1fr;
-      @media (max-width: 820px) {
-        grid-template-columns: 1fr 3fr;
-      }
-      @media (max-width: 490px) {
+
+      @media (max-width:  820px) {
         grid-template-columns: 1fr;
         padding: 0;
       }

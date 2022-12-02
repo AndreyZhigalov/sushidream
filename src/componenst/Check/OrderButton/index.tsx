@@ -17,8 +17,8 @@ export const OrderButton: React.FC = () => {
 
   const orderButtonClass =
     orderStatus === OrderStatus.SENDING
-      ? styles.orderButton + ` ` + styles.sendingOrder
-      : styles.orderButton;
+      ? styles.order_button + ` ` + styles.sending_order
+      : styles.order_button;
 
   return (
     <button

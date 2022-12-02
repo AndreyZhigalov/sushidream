@@ -17,7 +17,7 @@ const MainLayout: React.FC = () => {
       {status === Status.SUCCESS && search.includes('item=') && <AssortmentFullCard />}
       <PagesNavigation />
       <Header />
-      <main className={styles.mainContainer}>
+      <main className={styles.main_container}>
         <Outlet />
       </main>
     </div>

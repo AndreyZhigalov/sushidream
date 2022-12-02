@@ -36,7 +36,7 @@ export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => 
     <div className={styles.card}>
       <img src={item.dishPhoto} alt="" onClick={() => getItem(item.id, itemLink)} />
       <h3>{item.title}</h3>
-      <div className={styles.shortDescription}>
+      <div className={styles.short_description}>
         <div>
           <p>КОЛ-ВО: {item.portion}</p>
           <span>{item.price}&#x20bd;</span>

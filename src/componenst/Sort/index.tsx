@@ -45,7 +45,7 @@ export const Sort: React.FC = () => {
         <path d="M2.5 19L15 4L27.5 19" stroke="white" strokeWidth="4" strokeLinecap="round" />
       </svg>
       {visibility && (
-        <div className={styles.optionsList}>
+        <div className={styles.options_list}>
           {sortTypes.map((type) => (
             <p
               onClick={() => switchSortType(type)}

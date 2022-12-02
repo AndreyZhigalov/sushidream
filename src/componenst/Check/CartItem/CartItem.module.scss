@@ -1,6 +1,6 @@
 @import '../../../scss/variables.scss';
 
-.cartItem {
+.cart_item {
   display: grid;
   min-height: 70px;
   grid-template-columns: 70px 1fr;
@@ -31,7 +31,7 @@
     text-align: end;
   }
 
-  .itemcount {
+  .item_count {
     align-self: center;
     grid-column: 2/3;
     grid-row: 2/3;
