@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/sushidream/static/css/main.d3b6348b.css",
-    "main.js": "/sushidream/static/js/main.df13c323.js",
-    "Menu.js": "/sushidream/static/js/Menu.2751205a.chunk.js",
-    "Cart.css": "/sushidream/static/css/Cart.6fb0cab9.chunk.css",
+    "main.css": "/sushidream/static/css/main.0c88d354.css",
+    "main.js": "/sushidream/static/js/main.880e6228.js",
+    "Menu.js": "/sushidream/static/js/Menu.fee5e1b4.chunk.js",
+    "Cart.css": "/sushidream/static/css/Cart.64b9ef9b.chunk.css",
     "Cart.js": "/sushidream/static/js/Cart.c2035dee.chunk.js",
     "Restaurants.js": "/sushidream/static/js/Restaurants.a9d6f437.chunk.js",
     "Loyalty.js": "/sushidream/static/js/Loyalty.d749b0d2.chunk.js",
@@ -16,10 +16,10 @@
     "static/media/bck-product-block.webp": "/sushidream/static/media/bck-product-block.6cf54cc9a57727418353.webp",
     "static/media/banner_loader.webp": "/sushidream/static/media/banner_loader.a1cc8d55f8b976489679.webp",
     "static/media/trash.svg": "/sushidream/static/media/trash.62d4b30e33c9b7bdc50d24462468bfbf.svg",
+    "index.html": "/sushidream/index.html",
     "static/media/deliveryBoyColor.svg": "/sushidream/static/media/deliveryBoyColor.7017076ad6943c8071b704ad1e529f22.svg",
     "static/media/deliveryBoy.svg": "/sushidream/static/media/deliveryBoy.8429fb1110ed9ed0015dab46524c0225.svg",
     "static/media/cart.svg": "/sushidream/static/media/cart.98ae0f2b0195ad74fe6b5b9919e7e557.svg",
-    "index.html": "/sushidream/index.html",
     "static/media/ordered.svg": "/sushidream/static/media/ordered.58348fe9af0ab79e11b9de683dcf60ad.svg",
     "static/media/logo-primary.svg": "/sushidream/static/media/logo-primary.6d381e2f6cd658f4f1aaf6d459dbaba3.svg",
     "static/media/notFound.svg": "/sushidream/static/media/notFound.7a22b772f3aa95f12f830aa3450756b8.svg",
@@ -27,10 +27,10 @@
     "static/media/menu.svg": "/sushidream/static/media/menu.c6f7f190b8a5468399a70a7aa2f0ea00.svg",
     "static/media/warning.svg": "/sushidream/static/media/warning.527898892613988f82a0c2a47cd05ea6.svg",
     "static/media/close.svg": "/sushidream/static/media/close.3c2e23b6b63e63a84034c0454ec27c32.svg",
-    "main.d3b6348b.css.map": "/sushidream/static/css/main.d3b6348b.css.map",
-    "main.df13c323.js.map": "/sushidream/static/js/main.df13c323.js.map",
-    "Menu.2751205a.chunk.js.map": "/sushidream/static/js/Menu.2751205a.chunk.js.map",
-    "Cart.6fb0cab9.chunk.css.map": "/sushidream/static/css/Cart.6fb0cab9.chunk.css.map",
+    "main.0c88d354.css.map": "/sushidream/static/css/main.0c88d354.css.map",
+    "main.880e6228.js.map": "/sushidream/static/js/main.880e6228.js.map",
+    "Menu.fee5e1b4.chunk.js.map": "/sushidream/static/js/Menu.fee5e1b4.chunk.js.map",
+    "Cart.64b9ef9b.chunk.css.map": "/sushidream/static/css/Cart.64b9ef9b.chunk.css.map",
     "Cart.c2035dee.chunk.js.map": "/sushidream/static/js/Cart.c2035dee.chunk.js.map",
     "Restaurants.a9d6f437.chunk.js.map": "/sushidream/static/js/Restaurants.a9d6f437.chunk.js.map",
     "Loyalty.d749b0d2.chunk.js.map": "/sushidream/static/js/Loyalty.d749b0d2.chunk.js.map",
@@ -41,7 +41,7 @@
     "NotFound.c31738dd.chunk.js.map": "/sushidream/static/js/NotFound.c31738dd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d3b6348b.css",
-    "static/js/main.df13c323.js"
+    "static/css/main.0c88d354.css",
+    "static/js/main.880e6228.js"
   ]
 }
