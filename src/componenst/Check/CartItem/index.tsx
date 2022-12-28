@@ -17,7 +17,7 @@ export const CartItem: React.FC<{ item: AssortmentItem }> = ({ item }) => {
       </p>
       <span>{item.price * item.count}&#x20bd;</span>
       <div className={styles.item_count}>
-        <button onClick={() => dispatch(removeFromCart(item))}>-</button>
+        <button onClick={() => dispatch(removeFromCart(item.id))}>-</button>
         <span>{item.count}</span>
         <button onClick={() => dispatch(addToCart(item))}>+</button>
       </div>

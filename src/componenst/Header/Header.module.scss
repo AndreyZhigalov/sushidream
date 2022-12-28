@@ -2,21 +2,13 @@
 
 .header {
   position: fixed;
-  height: min-content;
-  top: 50px;
-  width: 100%;
-  max-width: 1440px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 0 15px;
+  align-items: center;
+  padding: 50px 15px 0;
+  height: min-content;
+  width: 100%;
+  max-width: 1440px;
   z-index: 7;
-
-    @media (max-width: 420px) { 
-    background-color: $background-trans;      
-    // flex-direction: column;               ВАРИАНТ С НАВИГАЦИЕЙ ПОД ЛОГОТИПОМ
-    // align-items: center;                   
-    // justify-content: flex-start;
-    // top: 20px;   
-  }
+  
 }

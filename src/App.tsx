@@ -1,8 +1,10 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { LoadingWarning } from './componenst/';
+import { useAppDispatch } from './Hooks/hooks';
 
 import MainLayout from './layouts/MainLayout';
+import { getuser_data } from './redux/slices/userSlice';
 
 const Menu = React.lazy(() => import(/* webpackChunkName: "Menu" */ './pages/Menu'));
 const Cart = React.lazy(() => import(/* webpackChunkName: "Cart" */ './pages/Cart'));
@@ -27,6 +29,13 @@ const RegisterForm = React.lazy(
 const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/NotFound'));
 
 const App: React.FC = () => {
+  const dispatch = useAppDispatch()
+  React.useEffect(() => {
+    let email = localStorage.getItem("email")
+    if(email) {
+      dispatch(getuser_data());
+    }
+  },[])
   return (
     <Suspense fallback={<LoadingWarning />}>
       <Routes>

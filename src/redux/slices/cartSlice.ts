@@ -30,62 +30,62 @@ export enum OrderStatus {
   ERROR = 'error',
 }
 
-export const fetchCart = createAsyncThunk<AssortmentItem[]>('cart/fetchCartStatus', async () => {
-  const { data } = await axios.get<AssortmentItem[]>(
-    `https://62e206223891dd9ba8def88d.mockapi.io/cart`,
-  );
-  return data;
-});
+// export const fetchCart = createAsyncThunk<AssortmentItem[]>('cart/fetchCartStatus', async () => {
+//   const { data } = await axios.get<AssortmentItem[]>(
+//     `https://62e206223891dd9ba8def88d.mockapi.io/cart`,
+//   );
+//   return data;
+// });
 
-export const addToCart = createAsyncThunk<AssortmentItem, AssortmentItem>(
-  'cart/addToCartStatus',
-  async (item, thunkAPI) => {
-    const {
-      cart: { cartItems, orderStatus },
-    } = thunkAPI.getState() as RootState;
-    if (orderStatus === OrderStatus.SUCCESS) {
-      thunkAPI.dispatch(clearOrderStatus());
-    }
-    let findItem = cartItems.find((obj) => obj.id === item.id);
-    if (findItem && findItem.count === 1) {
-      const { data } = await axios.post<AssortmentItem>(
-        `https://62e206223891dd9ba8def88d.mockapi.io/cart`,
-        item,
-      );
-      return data as AssortmentItem;
-    }
-    if (findItem && findItem.count > 1) {
-      return findItem;
-    }
+// export const addToCart = createAsyncThunk<AssortmentItem, AssortmentItem>(
+//   'cart/addToCartStatus',
+//   async (item, thunkAPI) => {
+//     const {
+//       cart: { cartItems, orderStatus },
+//     } = thunkAPI.getState() as RootState;
+//     if (orderStatus === OrderStatus.SUCCESS) {
+//       thunkAPI.dispatch(clearOrderStatus());
+//     }
+//     let findItem = cartItems.find((obj) => obj.id === item.id);
+//     if (findItem && findItem.count === 1) {
+//       const { data } = await axios.post<AssortmentItem>(
+//         `https://62e206223891dd9ba8def88d.mockapi.io/cart`,
+//         item,
+//       );
+//       return data as AssortmentItem;
+//     }
+//     if (findItem && findItem.count > 1) {
+//       return findItem;
+//     }
 
-    return findItem as AssortmentItem;
-  },
-);
+//     return findItem as AssortmentItem;
+//   },
+// );
 
-export const removeFromCart = createAsyncThunk<AssortmentItem, AssortmentItem>(
-  'cart/removecartItemStatus',
-  async (item, thunkAPI) => {
-    const {
-      cart: { cartItems },
-    } = thunkAPI.getState() as RootState;
-    let findItem = cartItems.find((obj) => obj.id === item.id);
-    if (findItem) {
-      if (item.count === 1) {
-        if (window.confirm(`Удалить ${item.title} из корзины?`)) {
-          await axios.delete(`https://62e206223891dd9ba8def88d.mockapi.io/cart/${findItem.cartID}`);
-          return item;
-        }
-      }
-    }
-    return item;
-  },
-);
+// export const removeFromCart = createAsyncThunk<AssortmentItem, AssortmentItem>(
+//   'cart/removecartItemStatus',
+//   async (item, thunkAPI) => {
+//     const {
+//       cart: { cartItems },
+//     } = thunkAPI.getState() as RootState;
+//     let findItem = cartItems.find((obj) => obj.id === item.id);
+//     if (findItem) {
+//       if (item.count === 1) {
+//         if (window.confirm(`Удалить ${item.title} из корзины?`)) {
+//           await axios.delete(`https://62e206223891dd9ba8def88d.mockapi.io/cart/${findItem.cartID}`);
+//           return item;
+//         }
+//       }
+//     }
+//     return item;
+//   },
+// );
 
-const deleteAllItem = (i: number, id: string) => {
-  setTimeout(() => {
-    axios.delete(`https://62e206223891dd9ba8def88d.mockapi.io/cart/${id}`);
-  }, (i + 1) * 200);
-};
+// const deleteAllItem = (i: number, id: string) => {
+//   setTimeout(() => {
+//     axios.delete(`https://62e206223891dd9ba8def88d.mockapi.io/cart/${id}`);
+//   }, (i + 1) * 200);
+// };
 
 export const getOrder = createAsyncThunk('cart/getOrderStatus', async (_, thunkAPI) => {
   const {
@@ -118,12 +118,87 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    fetchCart(state) {
+      state.cartItems = JSON.parse(localStorage.getItem('cart') ?? '[]');
+      state.count = Number(localStorage.getItem('count')) ?? 0;
+      state.totalPrice = Number(localStorage.getItem('totalPrice'));
+    },
+    addToCart(state, action: PayloadAction<AssortmentItem>) {
+      let cart: AssortmentItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
+      let findItem = state.cartItems.find((obj) => obj.id === action.payload.id);
+
+      if (state.orderStatus === OrderStatus.SUCCESS) {
+        state.orderStatus = '';
+      }
+
+      if (!findItem) {
+        state.cartItems = [...state.cartItems, action.payload];
+        localStorage.setItem('cart', JSON.stringify([...cart, action.payload]));
+
+        state.count = ++state.count;
+        localStorage.setItem('count', `${state.count}`);
+      }
+
+      if (findItem && findItem.count >= 1) {
+        state.count = ++state.count;
+        localStorage.setItem('count', `${state.count}`);
+
+        state.cartItems = state.cartItems.map((item) =>
+          item.id === action.payload.id ? { ...item, count: item.count + 1 } : item,
+        );
+        localStorage.setItem(
+          'cart',
+          JSON.stringify(
+            cart.map((item) =>
+              item.id === action.payload.id ? { ...item, count: item.count + 1 } : item,
+            ),
+          ),
+        );
+      }
+
+      state.totalPrice = state.cartItems.reduce((sum, item) => sum + item.price * item.count, 0);
+      localStorage.setItem('totalPrice', `${state.totalPrice}`);
+    },
+    removeFromCart(state, action: PayloadAction<number>) {
+      let cart: AssortmentItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
+
+      let findItem = state.cartItems.find((obj) => obj.id === action.payload);
+
+      if (findItem && findItem.count > 1) {
+        state.count = --state.count;
+        localStorage.setItem('count', `${state.count}`);
+
+        state.cartItems = state.cartItems.map((item) =>
+          item.id === action.payload ? { ...item, count: item.count - 1 } : item,
+        );
+        localStorage.setItem(
+          'cart',
+          JSON.stringify(
+            cart.map((item) =>
+              item.id === action.payload ? { ...item, count: item.count - 1 } : item,
+            ),
+          ),
+        );
+      }
+
+      if (findItem && findItem.count === 1) {
+        if (window.confirm(`Удалить ${findItem.title} из корзины?`)) {
+          state.count = --state.count;
+          localStorage.setItem('count', `${state.count}`);
+
+          cart = cart.filter((item) => item.id !== action.payload);
+          state.cartItems = cart;
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+      }
+      state.totalPrice = state.cartItems.reduce((sum, item) => sum + item.price * item.count, 0);
+      localStorage.setItem('totalPrice', `${state.totalPrice}`);
+    },
     clearCart(state) {
       if (window.confirm('Отчистить корзину?')) {
-        for (let i = 0; i <= state.cartItems.length - 1; i++) {
-          let id = state.cartItems[i].cartID;
-          if (id) deleteAllItem(i, id);
-        }
+        localStorage.removeItem('cart');
+        localStorage.removeItem('count');
+        localStorage.removeItem('totalPrice');
         state.cartItems = [];
         state.count = 0;
         state.totalPrice = 0;
@@ -134,63 +209,18 @@ export const cartSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(fetchCart.pending, (state) => {
-      state.cartStatus = CartStatus.LOADING;
-    });
-    builder.addCase(fetchCart.fulfilled, (state, action: PayloadAction<AssortmentItem[]>) => {
-      state.cartStatus = CartStatus.SUCCESS;
-      state.cartItems = action.payload;
-      state.totalPrice = state.cartItems.reduce((sum, obj) => sum + obj.price * obj.count, 0);
-      state.count = state.cartItems.reduce((sum, obj) => sum + obj.count, 0);
-    });
-    builder.addCase(fetchCart.rejected, (state) => {
-      state.cartStatus = CartStatus.ERROR;
-      alert('Не удалось загрузить вашу корзину');
-    });
-    builder.addCase(addToCart.pending, (state, action: { meta: { arg: AssortmentItem } }) => {
-      let item = action.meta.arg;
-      let findItem = state.cartItems.find((obj) => obj.id === item.id);
-      if (findItem) {
-        findItem.count++;
-      } else {
-        state.cartItems.push(item);
-      }
-    });
-    builder.addCase(addToCart.fulfilled, (state, action: PayloadAction<AssortmentItem>) => {
-      let item = action.payload;
-      state.cartItems = state.cartItems.map((obj) => {
-        return obj.id === item.id ? item : obj;
-      });
-      state.totalPrice = state.cartItems.reduce((sum, obj) => sum + obj.price * obj.count, 0);
-      state.count += 1;
-    });
-    builder.addCase(addToCart.rejected, () => {
-      alert('При добавлении товара в корзину произошла ошибка.');
-    });
-    builder.addCase(removeFromCart.fulfilled, (state, action: PayloadAction<AssortmentItem>) => {
-      let item = action.payload;
-      let findItem = state.cartItems.find((obj) => obj.id === item.id);
-      if (item.count === 1) {
-        state.cartItems = state.cartItems.filter((obj) => obj.id !== item.id);
-      } else {
-        if (findItem) findItem.count--;
-      }
-      state.totalPrice = state.cartItems.reduce((sum, obj) => sum + obj.price * obj.count, 0);
-      state.count -= 1;
-    });
-    builder.addCase(removeFromCart.rejected, () => {
-      alert('Произошла ошибка при удалении товара из корзины');
-    });
+    // GETTIN ORDER
+
     builder.addCase(getOrder.pending, (state) => {
       state.orderStatus = OrderStatus.SENDING;
     });
     builder.addCase(getOrder.fulfilled, (state, action: PayloadAction<string>) => {
       state.orderStatus = OrderStatus.SUCCESS;
       state.orderId = action.payload;
-      for (let i = 0; i <= state.cartItems.length - 1; i++) {
-        let id = state.cartItems[i].cartID;
-        if (id) deleteAllItem(i, id);
-      }
+
+      localStorage.removeItem('cart');
+      localStorage.removeItem('count');
+      localStorage.removeItem('totalPrice');
       state.cartItems = [];
       state.count = 0;
       state.totalPrice = 0;
@@ -204,5 +234,6 @@ export const cartSlice = createSlice({
 
 export const selectCart = (state: RootState) => state.cart;
 
-export const { clearCart, clearOrderStatus } = cartSlice.actions;
+export const { clearOrderStatus, fetchCart, addToCart, removeFromCart, clearCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;

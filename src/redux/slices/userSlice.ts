@@ -38,6 +38,15 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+     getuser_data(state) {
+      state.birthDay = localStorage.getItem('birthDay') ?? "";
+      state.gender = localStorage.getItem('gender') ?? '';
+      state.name = localStorage.getItem('name') ?? '';
+      state.lastName = localStorage.getItem('lastName') ?? '';
+      state.phoneNumber = localStorage.getItem('phoneNumber') ?? '';
+      state.email = localStorage.getItem('email') ?? '';
+      state.password = localStorage.getItem('password') ?? '';
+    },
     setuser_data(state, action: PayloadAction<userSlice[]>) {
       const user_data = action.payload[0];
       state.accessToken = user_data.accessToken;
@@ -53,6 +62,14 @@ const userSlice = createSlice({
       state.terms = user_data.terms;
       state.loyalty = user_data.loyalty;
       state.news = user_data.news;
+
+      localStorage.setItem('birthDay', user_data.birthDay);
+      localStorage.setItem('gender', user_data.gender);
+      localStorage.setItem('name', user_data.name);
+      localStorage.setItem('lastName', user_data.lastName);
+      localStorage.setItem('phoneNumber', user_data.phoneNumber);
+      localStorage.setItem('email', user_data.email);
+      localStorage.setItem('password', user_data.password);
     },
     removeuser_data(state) {
       state.accessToken = '';
@@ -68,9 +85,17 @@ const userSlice = createSlice({
       state.terms = false;
       state.loyalty = false;
       state.news = false;
+
+      localStorage.removeItem('birthDay');
+      localStorage.removeItem('gender');
+      localStorage.removeItem('name');
+      localStorage.removeItem('lastName');
+      localStorage.removeItem('phoneNumber');
+      localStorage.removeItem('email');
+      localStorage.removeItem('password');
     },
   },
 });
 
-export const { setuser_data, removeuser_data } = userSlice.actions;
+export const { setuser_data, removeuser_data, getuser_data } = userSlice.actions;
 export default userSlice.reducer;

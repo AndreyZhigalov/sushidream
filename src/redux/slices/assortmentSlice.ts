@@ -67,19 +67,27 @@ export const assortmentSlice = createSlice({
     sortItems(state, action: PayloadAction<string[]>) {
       let sortType = action.payload[0];
       let category = action.payload[1];
-      if (sortType === 'title') {
-        state.assortment[category].sort((a, b) => a['title'].localeCompare(b['title']));
-      } else if (sortType === 'price+') {
-        state.assortment[category].sort((a, b) => a['price'] - b['price']);
-      } else if (sortType === 'price') {
-        state.assortment[category].sort((a, b) => b['price'] - a['price']);
-      } else if (sortType === 'rating') {
-        state.assortment[category].sort((a, b) => b['rating'] - a['rating']);
-      } else if (sortType === 'cheapest') {
-        state.assortment[category].sort(
-          (a, b) => a['price'] / a['portion'] - b['price'] / b['portion'],
-        );
-      }
+
+      switch (sortType) {
+        case 'title':
+          state.assortment[category].sort((a, b) => a['title'].localeCompare(b['title']));
+          break;
+        case 'price+':
+          state.assortment[category].sort((a, b) => a['price'] - b['price']);
+          break;
+        case 'price':
+          state.assortment[category].sort((a, b) => b['price'] - a['price']);
+          break;
+        case 'rating':
+          state.assortment[category].sort((a, b) => b['rating'] - a['rating']);
+          break;
+        case 'cheapest':
+          state.assortment[category].sort(
+            (a, b) => a['price'] / a['portion'] - b['price'] / b['portion'],
+          );
+          break;
+      }     
+      
     },
     findItem(state, action: PayloadAction<number>) {
       for (let key in state.assortment) {

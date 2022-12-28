@@ -19,14 +19,7 @@ const AuthForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const formValidation = yup.object().shape({
-    authEmail: yup.string().email('Некорректный Email').required('Обязательное поле'),
-    password: yup
-      .string()
-      .min(8, `от 8 символов`)
-      .matches(/[A-ZА-ЯЁ]+/u, 'Минимум одна заглавная буква')
-      .matches(/[a-zа-яё]+/u, 'Минимум одна строчная буква')
-      .matches(/\W+/, 'Минимум один символ "!"№;%:?*()_+{}[]<>?/.,"')
-      .required('Обязательное поле'),
+    authEmail: yup.string().email('Некорректный Email').required('Обязательное поле'),   
   });
 
   return (
@@ -53,9 +46,9 @@ const AuthForm: React.FC = () => {
                   navigate('../');
                 });
             })
-            .catch((error) => {
-              console.error(error);
-              alert('Неверные данные пользователя');
+            .catch((error) => {              
+              alert('Неверный логин или пароль');
+              throw new Error(error);
             });
         }}>
         {({ values, handleChange, handleSubmit, errors, touched, handleBlur, isValid, dirty }) => (
@@ -86,15 +79,11 @@ const AuthForm: React.FC = () => {
                 value={values.password}
                 onBlur={handleBlur}
                 placeholder="*******"
-                required></Field>
-              {touched.password && errors.password && (
-                <p className={styles.error}>{errors.password}</p>
-              )}
+                required></Field>              
             </label>
             <a href="" className={styles.forgot_password}>
               Забыли пароль?
             </a>
-
             <BigButton text={'Авторизоваться'} anyFunc={handleSubmit} isFormValid={isValid} />
           </Form>
         )}

@@ -11,7 +11,8 @@
   background-color: $background-trans;
 
   .card {
-    height: 600px;
+    height: 100%;
+    max-height: 600px;
     min-width: 360px;
     width: 80%;
     max-width: 1080px;
@@ -21,6 +22,7 @@
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    animation: showCard 0.5s ease-in-out 1;
     @media (max-width: 820px) {
       height: max-content;
       max-height: 800px;
@@ -171,5 +173,14 @@
         padding: 5px 10px;
       }
     }
+  }
+}
+
+@keyframes showCard {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
   }
 }

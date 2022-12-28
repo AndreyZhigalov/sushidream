@@ -19,18 +19,26 @@ export const deliverySlice = createSlice({
   name: 'delivery',
   initialState,
   reducers: {
+    fetchRegion(state) {
+      state.currentRegion = localStorage.getItem('address') ?? '';
+      state.currentCost = Number(localStorage.getItem('delivery-cost'));
+    },
     setDeliveryCost(state, action: PayloadAction<number>) {
       state.currentRegion = state.regions[action.payload];
       state.currentCost = state.costs[action.payload];
+      localStorage.setItem('delivery-cost', `${state.currentCost}`);
+      localStorage.setItem('address', `${state.currentRegion}`);
     },
     clearDelivery(state) {
       state.currentRegion = '';
       state.currentCost = 0;
+      localStorage.removeItem('delivery-cost');
+      localStorage.removeItem('address');
     },
   },
 });
 
 export const selectDelivery = (state: RootState) => state.delivery;
 
-export const { setDeliveryCost, clearDelivery } = deliverySlice.actions;
+export const { setDeliveryCost, clearDelivery, fetchRegion } = deliverySlice.actions;
 export default deliverySlice.reducer;

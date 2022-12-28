@@ -6,7 +6,7 @@ import { selectCart, clearCart, CartStatus, fetchCart } from '../../redux/slices
 import { TotalCost } from './TotalCost';
 import { OrderButton } from './OrderButton';
 import { CartItemsBlock } from './CartItemsBlock';
-import { selectDelivery } from '../../redux/slices/deliverySlice';
+import { fetchRegion, selectDelivery } from '../../redux/slices/deliverySlice';
 
 import styles from './Check.module.scss';
 
@@ -18,6 +18,7 @@ export const Check: React.FC = React.memo(() => {
   React.useEffect(() => {
     if (cartStatus === CartStatus.LOADING) {
       dispatch(fetchCart());
+      dispatch(fetchRegion());
     }
   }, []);
 

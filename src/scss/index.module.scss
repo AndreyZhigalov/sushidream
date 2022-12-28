@@ -48,19 +48,19 @@ a {
     height: 100%;
     .banner_wrapper {
       width: 100%;
-      height: 300px;
-      @media (max-width: 450px) {
-        height: 200px;
-        // height: 140px; Вариант с отключением банера
-        // opacity: 0;    Вариант с отключением банера
-      }
+      height: 150px;
+      // @media (max-width: 450px) {
+      //   height: 200px;
+      //   // height: 140px; Вариант с отключением банера
+      //   // opacity: 0;    Вариант с отключением банера
+      // }
       .menu_banner {
         width: 100%;
-        height: 300px;
+        height: 150px;
         object-fit: cover;
-        @media (max-width: 450px) {
-          height: 200px;
-        }
+        // @media (max-width: 450px) {
+        //   height: 200px;
+        // }
       }
     }
 
@@ -73,7 +73,7 @@ a {
       display: grid;
       grid-template-columns: 1fr 3fr 1fr;
 
-      @media (max-width:  820px) {
+      @media (max-width: 820px) {
         grid-template-columns: 1fr;
         padding: 0;
       }

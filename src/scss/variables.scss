@@ -8,5 +8,7 @@ $boxShadow: rgba(0, 0, 0, 0.5) 0px 0px 26px;
 $textShadow: rgb(230, 0, 126) 0px 0px 5px, rgb(230, 0, 126) 5px 0px 15px,
   rgb(230, 0, 126) 0px -5px 10px, rgb(230, 0, 126) 0px -5px 15px, rgb(230, 0, 126) -5px 0px 10px,
   rgb(230, 0, 126) 0px 2px 5px;
+$iconShadow: drop-shadow(rgb(230, 0, 126) 0px 0px 5px) drop-shadow(rgb(230, 0, 126) 5px 0px 15px)
+  drop-shadow(rgb(230, 0, 126) 0px -5px 10px);
 
 $button-animation: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -1, 0, 0, 0, 1);
