@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.b3634180.css",
-    "main.js": "/static/js/main.1abffca3.js",
+    "main.css": "/static/css/main.8709457d.css",
+    "main.js": "/static/js/main.0a745461.js",
     "Menu.css": "/static/css/Menu.6381b750.chunk.css",
     "Menu.js": "/static/js/Menu.0280792b.chunk.js",
     "Cart.css": "/static/css/Cart.e7caaf02.chunk.css",
     "Cart.js": "/static/js/Cart.31900edc.chunk.js",
-    "Restaurants.js": "/static/js/Restaurants.a9d6f437.chunk.js",
+    "Restaurants.css": "/static/css/Restaurants.9ac3e392.chunk.css",
+    "Restaurants.js": "/static/js/Restaurants.78a61221.chunk.js",
     "Loyalty.js": "/static/js/Loyalty.d749b0d2.chunk.js",
     "ServiceCourse.js": "/static/js/ServiceCourse.63231a07.chunk.js",
     "Franchise.js": "/static/js/Franchise.bc2d3c94.chunk.js",
@@ -16,6 +17,7 @@
     "static/media/SadSushi.svg": "/static/media/SadSushi.2514d8345742e67a879459440785f9d2.svg",
     "static/media/bck-product-block.webp": "/static/media/bck-product-block.6cf54cc9a57727418353.webp",
     "static/media/banner_loader.webp": "/static/media/banner_loader.a1cc8d55f8b976489679.webp",
+    "static/media/star.svg": "/static/media/star.ea353b4f00daa4ed019fbd8fd1f70263.svg",
     "static/media/trash.svg": "/static/media/trash.62d4b30e33c9b7bdc50d24462468bfbf.svg",
     "index.html": "/index.html",
     "static/media/deliveryBoyColor.svg": "/static/media/deliveryBoyColor.7017076ad6943c8071b704ad1e529f22.svg",
@@ -29,13 +31,14 @@
     "static/media/warning.svg": "/static/media/warning.527898892613988f82a0c2a47cd05ea6.svg",
     "static/media/close.svg": "/static/media/close.3c2e23b6b63e63a84034c0454ec27c32.svg",
     "static/media/ArrowHead.svg": "/static/media/ArrowHead.c2a0fdb50bb327019f13dd2af983ec50.svg",
-    "main.b3634180.css.map": "/static/css/main.b3634180.css.map",
-    "main.1abffca3.js.map": "/static/js/main.1abffca3.js.map",
+    "main.8709457d.css.map": "/static/css/main.8709457d.css.map",
+    "main.0a745461.js.map": "/static/js/main.0a745461.js.map",
     "Menu.6381b750.chunk.css.map": "/static/css/Menu.6381b750.chunk.css.map",
     "Menu.0280792b.chunk.js.map": "/static/js/Menu.0280792b.chunk.js.map",
     "Cart.e7caaf02.chunk.css.map": "/static/css/Cart.e7caaf02.chunk.css.map",
     "Cart.31900edc.chunk.js.map": "/static/js/Cart.31900edc.chunk.js.map",
-    "Restaurants.a9d6f437.chunk.js.map": "/static/js/Restaurants.a9d6f437.chunk.js.map",
+    "Restaurants.9ac3e392.chunk.css.map": "/static/css/Restaurants.9ac3e392.chunk.css.map",
+    "Restaurants.78a61221.chunk.js.map": "/static/js/Restaurants.78a61221.chunk.js.map",
     "Loyalty.d749b0d2.chunk.js.map": "/static/js/Loyalty.d749b0d2.chunk.js.map",
     "ServiceCourse.63231a07.chunk.js.map": "/static/js/ServiceCourse.63231a07.chunk.js.map",
     "Franchise.bc2d3c94.chunk.js.map": "/static/js/Franchise.bc2d3c94.chunk.js.map",
@@ -44,7 +47,7 @@
     "NotFound.c31738dd.chunk.js.map": "/static/js/NotFound.c31738dd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3634180.css",
-    "static/js/main.1abffca3.js"
+    "static/css/main.8709457d.css",
+    "static/js/main.0a745461.js"
   ]
 }
