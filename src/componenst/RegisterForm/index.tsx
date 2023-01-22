@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -8,6 +8,9 @@ import { BigButton } from '../../componenst';
 import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './RegisterForm.module.scss';
+import { toggleTerms } from '../../redux/slices/modalWindowSlice';
+import { useAppDispatch } from '../../Hooks/hooks';
+import Terms from '../ModalWindows/Terms';
 
 type CreateAccountForm = {
   gender: string;
@@ -29,7 +32,9 @@ const phoneRegExp =
   /^(\+7|7|8)?[\s\\-]?\(?[489][0-9]{2}\)?[\s\\-]?[0-9]{3}[\s\\-]?[0-9]{2}[\s\\-]?[0-9]{2}$/;
 
 const RegisterForm: React.FC = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate();
+
   const RegisterFormValidation = yup.object().shape({
     gender: yup.string().required('Выберите пол'),
     name: yup
@@ -75,6 +80,7 @@ const RegisterForm: React.FC = () => {
 
   return (
     <div className={styles.create_account__form}>
+      <Terms />
       <h2>СОЗДАТЬ АККАУНТ</h2>
       <p>Создайте аккаунт и присоединитесь к нашему сообществу любителей суши</p>
       <Formik
@@ -261,7 +267,10 @@ const RegisterForm: React.FC = () => {
             <label htmlFor="terms">
               <Field type="checkbox" name="terms" id="terms" required />
               <div>
-                <p>Я прочёл и согласен с условиями создания аккаунта</p>
+                <p>
+                  Я прочёл и согласен с{' '}
+                  <span className={styles.terms_link} onClick={() => dispatch(toggleTerms())}>условиями создания аккаунта</span>
+                </p>
               </div>
             </label>
             <label htmlFor="news">

@@ -1,0 +1,14 @@
+.close_button {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 100;
+  top: 5%;
+  left: 3%;
+  cursor: pointer;
+  @media (max-width: 1024px) {
+    top: 5%;
+    right: 7%;
+    left: unset;
+  }
+}

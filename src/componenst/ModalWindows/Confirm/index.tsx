@@ -17,7 +17,7 @@ const Confirm = () => {
 
   const acceptModal = () => {
     setShowModal(false);
-    console.log(removeID)
+
     switch (type) {
       case 'clear':
         dispatch(clearCart());

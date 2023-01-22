@@ -7,6 +7,7 @@ interface ModalSlice {
   type: string;
   removeID: number | null;
   status: string;
+  showTerms: boolean
 }
 
 enum ModalWindowStatus {
@@ -20,6 +21,7 @@ const initialState: ModalSlice = {
   type: '',
   removeID: null,
   status: ModalWindowStatus.HIDDEN,
+  showTerms: false
 };
 
 const modalWindowSlice = createSlice({
@@ -42,11 +44,14 @@ const modalWindowSlice = createSlice({
       state.type = action.payload.type;
       state.removeID = action.payload.removeID || null;      
     },
+    toggleTerms(state) {
+      state.showTerms = !state.showTerms
+    }
   },
 });
 
 
 export const modalSelector = (state: RootState) => state.modals;
 
-export const { setAlert, closeAlert, confirmAlert } = modalWindowSlice.actions;
+export const { setAlert, closeAlert, confirmAlert, toggleTerms } = modalWindowSlice.actions;
 export default modalWindowSlice.reducer;

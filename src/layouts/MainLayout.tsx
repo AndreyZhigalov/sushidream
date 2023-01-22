@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { Header, PagesNavigation, AssortmentFullCard } from '../componenst';
 import Alert from '../componenst/ModalWindows/Alert';
 import Confirm from '../componenst/ModalWindows/Confirm';
+import Terms from '../componenst/ModalWindows/Terms';
 
 import styles from '../scss/index.module.scss';
 

@@ -84,6 +84,9 @@
       width: 100%;
       border-bottom: 2px solid $text-main;
     }
+    .terms_link {
+      color: $highlighted;
+    }
     label[for='terms'],
     label[for='news'],
     label[for='loyalty'] {

@@ -7,8 +7,7 @@ import { AssortmentItem, selectAssortment, Status } from '../../../redux/slices/
 import { addToCart } from '../../../redux/slices/cartSlice';
 import { selectFilters } from '../../../redux/slices/filtersSlice';
 import { setSpecials } from '../../../utils/setSpecials';
-
-import closeIcon from '../../../assets/icons/close.svg';
+import CloseButton from '../../CloseButton';
 
 import styles from './AssortmentFullCard.module.scss';
 
@@ -58,9 +57,11 @@ export const AssortmentFullCard: React.FC = () => {
   return (
     <div
       ref={overlayRef}
-      className={`${styles.overlay} ${status === Status.SUCCESS && search.includes('item=') ? styles.show : ""}`}>
+      className={`${styles.overlay} ${
+        status === Status.SUCCESS && search.includes('item=') ? styles.show : ''
+      }`}>
       <div className={styles.card}>
-        <img src={closeIcon} className={styles.close_button} onClick={onClickClose} />
+        <CloseButton handleClick={onClickClose} />
         <img src={item?.dishPhoto} alt={item?.title} />
         <div className={styles.description_block}>
           <h3>{item?.title}</h3>
