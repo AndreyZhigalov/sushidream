@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkplanetsushi=self.webpackChunkplanetsushi||[]).push([[97],{8075:function(e,n,s){s.r(n),s.d(n,{default:function(){return t}});s(2791);var u=s(6871),r="Profile_profile_wrapper__uKQ-E",i=s(184),t=function(){return(0,i.jsx)("div",{className:r,children:(0,i.jsx)(u.j3,{})})}}}]);
+//# sourceMappingURL=Profile.c5afa988.chunk.js.map
