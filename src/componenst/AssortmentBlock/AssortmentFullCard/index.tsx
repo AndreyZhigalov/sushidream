@@ -1,22 +1,24 @@
 import React from 'react';
+import qs from 'qs';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { AssortmentItem, selectAssortment } from '../../../redux/slices/assortmentSlice';
+
+import { AssortmentItem, selectAssortment, Status } from '../../../redux/slices/assortmentSlice';
 import { addToCart } from '../../../redux/slices/cartSlice';
 import { selectFilters } from '../../../redux/slices/filtersSlice';
+import { setSpecials } from '../../../utils/setSpecials';
+
 import closeIcon from '../../../assets/icons/close.svg';
 
 import styles from './AssortmentFullCard.module.scss';
-import qs from 'qs';
-import { setSpecials } from '../../../utils/setSpecials';
 
 export const AssortmentFullCard: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { searchedItem, specials } = useAppSelector(selectAssortment);
+  const { searchedItem, specials, status } = useAppSelector(selectAssortment);
   const { currentCategory, currentSortType } = useAppSelector(selectFilters);
   const [additionalInfo, setAdditionalInfo] = React.useState(searchedItem?.contents);
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const item = searchedItem;
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -54,7 +56,9 @@ export const AssortmentFullCard: React.FC = () => {
   }, []);
 
   return (
-    <div ref={overlayRef} className={styles.overlay}>
+    <div
+      ref={overlayRef}
+      className={`${styles.overlay} ${status === Status.SUCCESS && search.includes('item=') ? styles.show : ""}`}>
       <div className={styles.card}>
         <img src={closeIcon} className={styles.close_button} onClick={onClickClose} />
         <img src={item?.dishPhoto} alt={item?.title} />

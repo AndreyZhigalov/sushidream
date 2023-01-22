@@ -5,11 +5,10 @@
   z-index: 99;
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background-color: $background-trans;
-
   .card {
     height: 100%;
     max-height: 600px;
@@ -175,7 +174,9 @@
     }
   }
 }
-
+.show {
+ display: flex;
+}
 @keyframes showCard {
   0% {
     transform: translateY(100%);

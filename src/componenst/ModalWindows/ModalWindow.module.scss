@@ -1,0 +1,59 @@
+@import '../../scss/variables.scss';
+
+.overlay {
+  position: fixed;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: $background-trans;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: opacity display;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.modal_window {
+  z-index: 20;
+  position: fixed;
+  margin: auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 320px;
+  gap: 20px;
+  background-color: $background-second;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition-property: opacity transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  @media (max-width: 500px) {
+    width: 90%;
+  }
+}
+.buttons_container {
+    display: flex;
+    gap: 20px;
+}
+.showModal {
+  visibility: visible;
+  opacity: 1;
+  .modal_window {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.message {
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}

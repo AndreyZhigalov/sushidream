@@ -5,23 +5,24 @@ import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import { CurrentSortState, selectFilters, setCategory } from '../../redux/slices/filtersSlice';
 
 import styles from './Navigation.module.scss';
+import mainStyles from "../../scss/index.module.scss"
 
-export const Navigation: React.FC<{ navRange: number[] }> = ({ navRange }) => {
+export const Navigation: React.FC<{ navRange: number[], isFixed: boolean }> = ({ navRange, isFixed }) => {
   const dispatch = useAppDispatch();
   const { currentCategory, categories } = useAppSelector(selectFilters);
   const { pathname } = useLocation();
 
   const setClass = (category: CurrentSortState, location: string) => {
     if (currentCategory.engTitle === category.engTitle) {
-      return pathname.includes('cart') ? styles.active : styles.active + ' ' + styles.li_margin;
+      return location.includes('cart') ? styles.active : styles.active + ' ' + styles.li_margin;
     } else {
-      return pathname.includes('cart') ? '' : '' + styles.li_margin;
+      return location.includes('cart') ? '' : '' + styles.li_margin;
     }
   };
 
   return (
     <nav className={styles.navigation}>
-      <ul>
+      <ul className={isFixed ? mainStyles.fixed : ""}>
         {categories.slice(navRange[0], navRange[1]).map((category: any) => (
           <li
             key={category.engTitle}

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
 type ScreenProps = {
-  width: number | undefined;
-  height: number | undefined;
+  width: number ;
+  height: number ;
 };
 
 const useScreenSize = () => {
   const [screenSize, setScreenSize] = useState<ScreenProps>({
-    width: undefined,
-    height: undefined,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {

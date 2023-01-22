@@ -1,14 +1,16 @@
 import React from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
 import axios from 'axios';
 import * as yup from 'yup';
 import { BigButton } from '../../componenst';
 import { Formik, Field, Form } from 'formik';
-
-import styles from './AuthForm.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../Hooks/hooks';
 import { setuser_data } from '../../redux/slices/userSlice';
+import { setAlert } from '../../redux/slices/modalWindowSlice';
+
+import styles from './AuthForm.module.scss';
 
 type AuthFormType = {
   authEmail: string;
@@ -34,7 +36,6 @@ const AuthForm: React.FC = () => {
         validateOnBlur
         validationSchema={formValidation}
         onSubmit={(values: AuthFormType) => {
-          const auth = getAuth();
           signInWithEmailAndPassword(auth, values.authEmail, values.password)
             .then((userCredential) => {
               axios
@@ -44,10 +45,10 @@ const AuthForm: React.FC = () => {
                 .then((resp) => {
                   dispatch(setuser_data(resp.data));
                   navigate('../');
-                });
+                })
             })
-            .catch((error) => {              
-              alert('Неверный логин или пароль');
+            .catch((error) => {
+              dispatch(setAlert('Неверный логин или пароль'))
               throw new Error(error);
             });
         }}>
@@ -79,11 +80,11 @@ const AuthForm: React.FC = () => {
                 value={values.password}
                 onBlur={handleBlur}
                 placeholder="*******"
-                required></Field>              
+                required></Field>
             </label>
-            <a href="" className={styles.forgot_password}>
+            <Link to={'../forgot-password'} className={styles.forgot_password}>
               Забыли пароль?
-            </a>
+            </Link>          
             <BigButton text={'Авторизоваться'} anyFunc={handleSubmit} isFormValid={isValid} />
           </Form>
         )}

@@ -1,24 +1,33 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
+import { Outlet } from 'react-router-dom';
 
 import { Header, PagesNavigation, AssortmentFullCard } from '../componenst';
-
-import { useAppSelector } from '../Hooks/hooks';
-import { selectAssortment, Status } from '../redux/slices/assortmentSlice';
+import Alert from '../componenst/ModalWindows/Alert';
+import Confirm from '../componenst/ModalWindows/Confirm';
 
 import styles from '../scss/index.module.scss';
 
+export type OutletContextType = {
+  isHeaderInView: boolean;
+};
+
 const MainLayout: React.FC = () => {
-  const { status } = useAppSelector(selectAssortment);
-  const { search } = useLocation();
+  const { ref: inViewRef, inView } = useInView();
+
+  const setRef = (node: HTMLElement) => {
+    inViewRef(node);
+  };
 
   return (
     <div className={styles.wrapper}>
-      {status === Status.SUCCESS && search.includes('item=') && <AssortmentFullCard />}
+      <AssortmentFullCard />
+      <Alert />
+      <Confirm />
       <PagesNavigation />
-      <Header />
+      <Header setRef={setRef} />
       <main className={styles.main_container}>
-        <Outlet />
+        <Outlet context={{ isHeaderInView: inView } as OutletContextType} />
       </main>
     </div>
   );

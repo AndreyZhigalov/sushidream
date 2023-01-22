@@ -57,7 +57,7 @@ const Cart: React.FC = () => {
       <div className={styles.categories}>
         <h3>ДОБАВИТЬ ЧТО-ТО ЕЩЁ?</h3>
         <div>
-          <Navigation navRange={[-4, categories.length]} />
+          <Navigation navRange={[-4, categories.length]} isFixed={false}/>
         </div>
       </div>
       <div className={styles.items}>{showAssortment(status)}</div>

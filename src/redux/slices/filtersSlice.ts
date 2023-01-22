@@ -132,6 +132,7 @@ export const filtersSlice = createSlice({
   initialState,
   reducers: {
     setCategory(state, action: PayloadAction<CurrentSortState>) {
+      window.scrollTo(0, 0)
       state.currentCategory = action.payload;
     },
     setSort(state, action: PayloadAction<CurrentSortState>) {

@@ -1,17 +1,7 @@
 import { RootState } from './../store';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-export const fetchAssortment = createAsyncThunk<FetchData>(
-  'assortment/fetchAssortmentStatus',
-  async () => {
-    const { data } = await axios.get<FetchData>(
-      'https://62e206223891dd9ba8def88d.mockapi.io/assortment',
-    );
-    if (data[0] === undefined) return Promise.reject();
-    return data;
-  },
-);
+import { setAlert } from './modalWindowSlice';
 
 type Assortment = Record<string, AssortmentItem[]>;
 
@@ -86,8 +76,7 @@ export const assortmentSlice = createSlice({
             (a, b) => a['price'] / a['portion'] - b['price'] / b['portion'],
           );
           break;
-      }     
-      
+      }
     },
     findItem(state, action: PayloadAction<number>) {
       for (let key in state.assortment) {
@@ -112,12 +101,24 @@ export const assortmentSlice = createSlice({
     builder.addCase(fetchAssortment.rejected, (state, action) => {
       state.status = Status.ERROR;
       console.error(action);
-      alert('Ошибка при получении списка товаров');
     });
   },
 });
 
-export const selectAssortment = (state: RootState) => state.assortment;
+export const fetchAssortment = createAsyncThunk<FetchData>(
+  'assortment/fetchAssortmentStatus',
+  async (_, Thunk) => {
+    return await axios
+      .get<FetchData>('https://62e206223891dd9ba8def88d.mockapi.io/assortment')
+      .then(({ data }) => data)
+      .catch((error) => {
+        Thunk.dispatch(setAlert('Ошибка при получении списка товаров'));
+        throw new Error(error);
+      });
+  },
+);
+
+export const selectAssortment = (state: RootState) => state.assortmentSlice;
 
 export const { setAssortment, sortItems, findItem } = assortmentSlice.actions;
 export default assortmentSlice.reducer;

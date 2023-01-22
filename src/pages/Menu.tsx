@@ -10,11 +10,15 @@ import { selectAssortment, Status } from '../redux/slices/assortmentSlice';
 import bannerLoader from '../assets/banner_loader.webp';
 
 import styles from '../scss/index.module.scss';
+import ScrollTopButton from '../componenst/ScrollTopButton';
+import { useOutletContext } from 'react-router-dom';
+import { OutletContextType } from '../layouts/MainLayout';
 
 const Menu: React.FC = () => {
   const screenSize = useScreenSize();
   const { currentCategory, categories } = useAppSelector(selectFilters);
   const { banners, status } = useAppSelector(selectAssortment);
+  const { isHeaderInView } = useOutletContext<OutletContextType>();
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,14 +44,21 @@ const Menu: React.FC = () => {
   return (
     <>
       <div className={styles.banner_wrapper}>
-        {status !== 'error' && <img className={styles.menu_banner} src={setBanner()} alt="banner" />}
+        {status !== 'error' && (
+          <img className={styles.menu_banner} src={setBanner()} alt="banner" />
+        )}
       </div>
       <div className={styles.menu_wrapper}>
-        <Navigation navRange={[0, -2]} />
+        <Navigation navRange={[0, -2]} isFixed={!isHeaderInView} />
         <Sort />
         <AccortmentBlock />
-        {screenSize.width ? screenSize.width > 820 && <DeliveryRegion /> : false}
-        {screenSize.width ? screenSize.width > 820 && <Check /> : false}
+        <ScrollTopButton isShown={!isHeaderInView} />
+        {screenSize.width > 820 && (
+          <div className={`${styles.check_wrapper} ${!isHeaderInView ? styles.fixed : ""}`}>
+            <DeliveryRegion />
+            <Check />
+          </div>
+        )}
       </div>
     </>
   );

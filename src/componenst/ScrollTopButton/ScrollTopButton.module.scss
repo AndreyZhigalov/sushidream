@@ -1,0 +1,20 @@
+@import '../../scss/variables.scss';
+
+.scroll_top_button {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  background-color: $highlighted;
+  padding: 23px 20px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition-property: opacity transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0px);
+}

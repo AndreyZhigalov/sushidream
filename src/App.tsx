@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { LoadingWarning } from './componenst/';
+import ForgotPasswordForm from './componenst/ForgotPasswordForm';
 import { useAppDispatch } from './Hooks/hooks';
 
 import MainLayout from './layouts/MainLayout';
@@ -39,7 +40,7 @@ const App: React.FC = () => {
   return (
     <Suspense fallback={<LoadingWarning />}>
       <Routes>
-        <Route path="sushidream" element={<MainLayout />}>
+        <Route path="" element={<MainLayout />}>
           <Route path="" element={<Menu />} />
           <Route path="restaurants" element={<Restaurants />} />
           <Route path="loyalty" element={<Loyalty />} />
@@ -50,6 +51,7 @@ const App: React.FC = () => {
             <Route path="" element={<UserPage />} />
             <Route path="auth" element={<AuthForm />} />
             <Route path="signup" element={<RegisterForm />} />
+            <Route path="forgot-password" element={<ForgotPasswordForm />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Route>

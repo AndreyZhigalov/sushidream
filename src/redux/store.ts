@@ -1,19 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cart from './slices/cartSlice';
-import assortment from './slices/assortmentSlice';
+import assortmentSlice from './slices/assortmentSlice';
 import filters from './slices/filtersSlice';
 import delivery from './slices/deliverySlice';
 import navbar from './slices/navbarSlice';
 import user from './slices/userSlice';
+import modals from './slices/modalWindowSlice';
 
 export const store = configureStore({
   reducer: {
     cart,
-    assortment,
+    assortmentSlice,
     filters,
     delivery,
     navbar,
     user,
+    modals,
   },
 });
 
