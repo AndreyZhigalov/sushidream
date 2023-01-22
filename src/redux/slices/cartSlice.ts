@@ -13,6 +13,7 @@ export enum CartStatus {
 interface CartState {
   cartItems: AssortmentItem[];
   count: number;
+  discount: number;
   totalPrice: number;
   cartStatus: CartStatus;
   orderId: string | null;
@@ -34,6 +35,7 @@ export enum OrderStatus {
 const initialState: CartState = {
   cartItems: [],
   count: 0,
+  discount: 0,
   totalPrice: 0,
   cartStatus: CartStatus.LOADING,
   orderId: null,
@@ -48,6 +50,7 @@ export const cartSlice = createSlice({
       state.cartItems = JSON.parse(localStorage.getItem('cart') ?? '[]');
       state.count = Number(localStorage.getItem('count')) ?? 0;
       state.totalPrice = Number(localStorage.getItem('totalPrice'));
+      state.discount = Number(localStorage.getItem('discount')) ?? 0;
     },
     addToCart(state, action: PayloadAction<AssortmentItem>) {
       let cart: AssortmentItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
@@ -108,14 +111,12 @@ export const cartSlice = createSlice({
       }
 
       if (findItem && findItem.count === 1) {
-       
-          state.count = --state.count;
-          localStorage.setItem('count', `${state.count}`);
+        state.count = --state.count;
+        localStorage.setItem('count', `${state.count}`);
 
-          cart = cart.filter((item) => item.id !== action.payload);
-          state.cartItems = cart;
-          localStorage.setItem('cart', JSON.stringify(cart));
-        
+        cart = cart.filter((item) => item.id !== action.payload);
+        state.cartItems = cart;
+        localStorage.setItem('cart', JSON.stringify(cart));
       }
       state.totalPrice = state.cartItems.reduce((sum, item) => sum + item.price * item.count, 0);
       localStorage.setItem('totalPrice', `${state.totalPrice}`);
@@ -123,6 +124,7 @@ export const cartSlice = createSlice({
     clearCart(state) {
       localStorage.removeItem('cart');
       localStorage.removeItem('count');
+      localStorage.removeItem('discount');
       localStorage.removeItem('totalPrice');
       state.cartItems = [];
       state.count = 0;
@@ -130,6 +132,10 @@ export const cartSlice = createSlice({
     },
     clearOrderStatus(state) {
       state.orderStatus = '';
+    },
+    setDiscount(state) {
+      state.discount = 30;
+      localStorage.setItem('discount', `30`);
     },
   },
   extraReducers(builder) {
@@ -144,6 +150,7 @@ export const cartSlice = createSlice({
 
       localStorage.removeItem('cart');
       localStorage.removeItem('count');
+      localStorage.removeItem('discount');
       localStorage.removeItem('totalPrice');
       state.cartItems = [];
       state.count = 0;
@@ -157,7 +164,7 @@ export const cartSlice = createSlice({
 
 export const getOrder = createAsyncThunk('cart/getOrderStatus', async (_, Thunk) => {
   const {
-    cart: { cartItems, totalPrice },
+    cart: { cartItems, totalPrice, discount },
     delivery: { currentRegion, currentCost },
   } = Thunk.getState() as RootState;
 
@@ -168,7 +175,11 @@ export const getOrder = createAsyncThunk('cart/getOrderStatus', async (_, Thunk)
       items: cartItems,
       adress: currentRegion,
       deliveryCost: currentCost,
-      TotalCost: totalPrice,
+      discount,
+      TotalCost:
+        discount > 0 && totalPrice > 0
+          ? totalPrice + currentCost - ((totalPrice + currentCost) / 100) * 30
+          : totalPrice + currentCost,
     })
     .catch((error) => {
       Thunk.dispatch(setAlert('Ошибка при отправке заказа. \n Попробуйте ещё раз'));
@@ -180,6 +191,6 @@ export const getOrder = createAsyncThunk('cart/getOrderStatus', async (_, Thunk)
 
 export const selectCart = (state: RootState) => state.cart;
 
-export const { clearOrderStatus, fetchCart, addToCart, removeFromCart, clearCart } =
+export const { clearOrderStatus, fetchCart, addToCart, removeFromCart, clearCart, setDiscount } =
   cartSlice.actions;
 export default cartSlice.reducer;

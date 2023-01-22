@@ -1,6 +1,8 @@
 import { RootState } from './../store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import restaurants from '../../assets/restaurants.json';
+
 interface DeliveryState {
   regions: string[];
   currentRegion: string;
@@ -9,9 +11,9 @@ interface DeliveryState {
 }
 
 const initialState: DeliveryState = {
-  regions: ['Самовывоз', 'Близко', 'Средне', 'Далеко'],
+  regions: ['Самовывоз', ...restaurants.map((rest) => `${rest.city}, ${rest.street}`)],
   currentRegion: '',
-  costs: [0, 200, 400, 600],
+  costs: [0, 100, 300, 400, 600, 800],
   currentCost: 0,
 };
 

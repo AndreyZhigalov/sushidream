@@ -25,14 +25,31 @@ const UserPage = () => {
           <div className={styles.header}>
             <h1>Здравствуйте, {user.name}!</h1>
           </div>
-          <div className={styles.loyalty_programm}>
-            <h1>Ваша программа лояльности</h1>
-            <div className={styles.card}>
-              <h2>SUSHIDREAM</h2>
-              <p>5555 5555 5555 5555</p>
-              <p>{`${user.name} ${user.lastName}`}</p>
+          <figure className={styles.card_container}>
+            <h3 className={styles.card_title}>sushidream</h3>
+            <ul className={styles.card_number}>
+              <li className={styles.card_number_part}>5436</li>
+              <li className={styles.card_number_part}>2623</li>
+              <li className={styles.card_number_part}>7754</li>
+              <li className={styles.card_number_part}>1347</li>
+            </ul>
+            <div className={styles.card_data_wrapper}>
+              <div className={styles.card_data}>
+                <small className={styles.card_data_header}>Владелец</small>
+                <p>
+                  <span className={styles.card_name}>{user.name}</span>{' '}
+                  <span className={styles.card_surname}>{user.lastName}</span>
+                </p>
+              </div>
+              <div className={styles.card_data}>
+                <small className={styles.card_data_header}>Срок</small>
+                <p>
+                  <span className={styles.card_month}>09</span>/
+                  <span className={styles.card_year}>26</span>
+                </p>
+              </div>
             </div>
-          </div>
+          </figure>
           <div className={styles.user_data}>
             <p>
               <span>Имя: </span>

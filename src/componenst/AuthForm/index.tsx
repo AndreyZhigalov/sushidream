@@ -11,6 +11,7 @@ import { setuser_data } from '../../redux/slices/userSlice';
 import { setAlert } from '../../redux/slices/modalWindowSlice';
 
 import styles from './AuthForm.module.scss';
+import { setDiscount } from '../../redux/slices/cartSlice';
 
 type AuthFormType = {
   authEmail: string;
@@ -43,6 +44,7 @@ const AuthForm: React.FC = () => {
                   `https://62e206223891dd9ba8def88d.mockapi.io/user/?uid=${userCredential.user.uid}`,
                 )
                 .then((resp) => {
+                  dispatch(setDiscount());
                   dispatch(setuser_data(resp.data));
                   navigate('../');
                 })

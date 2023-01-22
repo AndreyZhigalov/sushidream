@@ -92,6 +92,7 @@ const userSlice = createSlice({
       localStorage.removeItem('lastName');
       localStorage.removeItem('phoneNumber');
       localStorage.removeItem('email');
+      localStorage.removeItem('discount');
       localStorage.removeItem('password');
     },
   },

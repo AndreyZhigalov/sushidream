@@ -2,6 +2,7 @@ import { RootState } from './../store';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setAlert } from './modalWindowSlice';
+import { fetchCart } from './cartSlice';
 
 type Assortment = Record<string, AssortmentItem[]>;
 
@@ -110,7 +111,10 @@ export const fetchAssortment = createAsyncThunk<FetchData>(
   async (_, Thunk) => {
     return await axios
       .get<FetchData>('https://62e206223891dd9ba8def88d.mockapi.io/assortment')
-      .then(({ data }) => data)
+      .then(({ data }) => {
+        Thunk.dispatch(fetchCart());
+        return data;
+      })
       .catch((error) => {
         Thunk.dispatch(setAlert('Ошибка при получении списка товаров'));
         throw new Error(error);

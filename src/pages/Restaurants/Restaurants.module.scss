@@ -1,0 +1,90 @@
+@import '../../scss/variables.scss';
+
+.restaurants {
+  padding: 150px 50px 20px;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  grid-template-rows: 1fr;
+}
+.addressies {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  gap: 10px;
+  list-style: none;
+}
+.address_card {
+  cursor: pointer;
+  padding: 5px 10px;
+  max-width: 320px;
+  min-height: 150px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  border-radius: 10px;
+  background-color: $background-second;
+  .title {
+    grid-area: 1 / 1 / 2 / 4;
+    margin: 0;
+  }
+  .address {
+    grid-area: 2 / 1 / 3 / 4;
+    margin: 0;
+  }
+  .rating {
+    display: flex;
+    grid-area: 3 / 1 / 4 / 2;
+    div {
+      margin-top: 3px;
+      margin-left: 5px;
+    }
+  }
+  .workingTime {
+    grid-area: 3 / 2 / 4 / 4;
+  }
+}
+.map_wrapper {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  width: 100%;
+  height: calc(100vh - 200px);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .restaurants {
+    padding: 150px 20px 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 1fr;
+  }
+  .addressies {
+    margin: 0;
+    padding: 0 0 10px;
+    height: min-content;
+    display: flex;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    gap: 10px;
+    list-style: none;
+    overflow-x: scroll;
+  }
+  .address_card {
+    max-width: 320px;
+    min-width: 320px;
+    min-height: 150px;
+    max-height: 200px;
+    height: min-content;
+  }
+  .map_wrapper {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    width: 100%;
+    height: calc(100vh - 200px);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}

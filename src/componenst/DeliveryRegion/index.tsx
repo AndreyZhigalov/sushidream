@@ -34,7 +34,7 @@ export const DeliveryRegion: React.FC = () => {
       ref={deliveryRef}
       onClick={() => setVisibility(!visibility)}
       className={styles.delivery_region}>
-      {currentRegion || 'ВЫБЕРИТЕ ОБЛАСТЬ ДОСТАВКИ'}
+      {currentRegion || 'ВЫБЕРИТЕ РЕСТОРАН ДОСТАВКИ'}
       <svg
         onClick={() => setVisibility(!visibility)}
         width="15"

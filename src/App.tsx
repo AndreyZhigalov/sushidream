@@ -3,9 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import { LoadingWarning } from './componenst/';
 import ForgotPasswordForm from './componenst/ForgotPasswordForm';
 import { useAppDispatch } from './Hooks/hooks';
+import { setDiscount } from './redux/slices/cartSlice';
+import { getuser_data } from './redux/slices/userSlice';
 
 import MainLayout from './layouts/MainLayout';
-import { getuser_data } from './redux/slices/userSlice';
 
 const Menu = React.lazy(() => import(/* webpackChunkName: "Menu" */ './pages/Menu'));
 const Cart = React.lazy(() => import(/* webpackChunkName: "Cart" */ './pages/Cart'));
@@ -31,12 +32,15 @@ const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './p
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
+
   React.useEffect(() => {
     let email = localStorage.getItem("email")
     if(email) {
+      dispatch(setDiscount())
       dispatch(getuser_data());
     }
   },[])
+
   return (
     <Suspense fallback={<LoadingWarning />}>
       <Routes>
