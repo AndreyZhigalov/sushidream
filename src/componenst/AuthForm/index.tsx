@@ -1,22 +1,40 @@
 import React from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth, firestoreDB } from '../../firebase';
 import axios from 'axios';
 import * as yup from 'yup';
 import { BigButton } from '../../componenst';
 import { Formik, Field, Form } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../Hooks/hooks';
-import { setuser_data } from '../../redux/slices/userSlice';
+import { setuser_data, userSlice } from '../../redux/slices/userSlice';
 import { setAlert } from '../../redux/slices/modalWindowSlice';
 
 import styles from './AuthForm.module.scss';
 import { setDiscount } from '../../redux/slices/cartSlice';
+import { doc, getDoc } from 'firebase/firestore';
 
 type AuthFormType = {
   authEmail: string;
   password: string;
 };
+
+export interface AuthUserData {
+  accessToken: string;
+  birthDay: string;
+  uid: string;
+  createdAt: string;
+  gender: string;
+  name: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
+  confirmPass: string;
+  terms: boolean;
+  loyalty: boolean;
+  news: boolean;
+}
 
 const AuthForm: React.FC = () => {
   const navigate = useNavigate();
@@ -39,15 +57,21 @@ const AuthForm: React.FC = () => {
         onSubmit={(values: AuthFormType) => {
           signInWithEmailAndPassword(auth, values.authEmail, values.password)
             .then((userCredential) => {
-              axios
-                .get(
-                  `https://62e206223891dd9ba8def88d.mockapi.io/user/?uid=${userCredential.user.uid}`,
-                )
-                .then((resp) => {
+
+              getDoc(doc(firestoreDB, "users", userCredential.user.uid)).then(res => {
+                const user = res.data() as AuthUserData;
+                if (user) {
                   dispatch(setDiscount());
-                  dispatch(setuser_data(resp.data));
+                  dispatch(setuser_data(user));
                   navigate('../');
-                })
+                } else {
+                  throw new Error("User in not found")
+                }
+              }).catch(error => {
+                dispatch(setAlert('Пользователь с такими данными не найден. Обратитесь в поддержку'));
+                throw new Error(error);
+              })
+
             })
             .catch((error) => {
               dispatch(setAlert('Неверный логин или пароль'))

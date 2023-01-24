@@ -2,16 +2,17 @@ import React from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../Hooks/hooks';
-import { auth } from '../../firebase';
+import { auth, firestoreDB } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import * as yup from 'yup';
 
-import { toggleTerms } from '../../redux/slices/modalWindowSlice';
+import { setAlert, toggleTerms } from '../../redux/slices/modalWindowSlice';
 import { Field, Form, Formik } from 'formik';
 import Terms from '../ModalWindows/Terms';
 import { BigButton } from '../../componenst';
 
 import styles from './RegisterForm.module.scss';
+import { doc, setDoc } from 'firebase/firestore';
 
 type CreateAccountForm = {
   gender: string;
@@ -103,12 +104,18 @@ const RegisterForm: React.FC = () => {
         onSubmit={(values: CreateAccountForm) => {
           createUserWithEmailAndPassword(auth, values.email, values.pass)
             .then((userCredential) => {
-              axios.post(`https://62e206223891dd9ba8def88d.mockapi.io/user`, {
+
+              setDoc(doc(firestoreDB, 'users', userCredential.user.uid), {
                 ...values,
                 uid: userCredential.user.uid,
                 birthDay: values.day + '.' + values.month + '.' + values.year,
+              }).then(() => {
+                navigate('../auth');
+              }).catch(error => {
+                dispatch(setAlert('Не удалось зарегистрироваться. Попробуйте ещё раз'));
+                throw new Error(error)
               });
-              navigate('../auth');
+
             })
             .catch((error) => {
               console.error(error);
