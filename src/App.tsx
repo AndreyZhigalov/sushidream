@@ -31,20 +31,20 @@ const RegisterForm = React.lazy(
 const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/NotFound'));
 
 const App: React.FC = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
-  React.useEffect(() => {
-    let email = localStorage.getItem("email")
-    if(email) {
-      dispatch(setDiscount())
+  React.useEffect(() => {   
+    let email = localStorage.getItem('email');
+    if (email) {
+      dispatch(setDiscount());
       dispatch(getuser_data());
     }
-  },[])
+  }, []);
 
   return (
     <Suspense fallback={<LoadingWarning />}>
       <Routes>
-        <Route path="" element={<MainLayout />}>
+        <Route path="sushidream" element={<MainLayout />}>
           <Route path="" element={<Menu />} />
           <Route path="restaurants" element={<Restaurants />} />
           <Route path="loyalty" element={<Loyalty />} />

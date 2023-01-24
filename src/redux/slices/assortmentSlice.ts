@@ -1,8 +1,10 @@
+import { firestoreDB } from './../../firebase';
 import { RootState } from './../store';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setAlert } from './modalWindowSlice';
 import { fetchCart } from './cartSlice';
+import { collection, getDocs } from 'firebase/firestore';
 
 type Assortment = Record<string, AssortmentItem[]>;
 
@@ -19,10 +21,19 @@ export type AssortmentItem = {
   specifics: string[];
   count: number;
   category: string;
+  subcategory?: string;
   rating: number;
 };
 
-type FetchData = [Assortment, string[], string[]];
+type Banners = {
+  [key: string]: {
+    420: string;
+    820: string;
+    1600: string;
+  };
+};
+
+type FetchData = [Assortment, Banners, string[]];
 
 export enum Status {
   LOADING = 'loading',
@@ -32,7 +43,7 @@ export enum Status {
 
 interface AssortmentState {
   assortment: Assortment;
-  banners: string[];
+  banners: Banners;
   specials: string[];
   searchedItem?: AssortmentItem | null;
   status: Status;
@@ -40,7 +51,7 @@ interface AssortmentState {
 
 const initialState: AssortmentState = {
   assortment: {},
-  banners: [],
+  banners: {},
   specials: [],
   searchedItem: null,
   status: Status.LOADING,
@@ -109,11 +120,15 @@ export const assortmentSlice = createSlice({
 export const fetchAssortment = createAsyncThunk<FetchData>(
   'assortment/fetchAssortmentStatus',
   async (_, Thunk) => {
-    return await axios
-      .get<FetchData>('https://62e206223891dd9ba8def88d.mockapi.io/assortment')
-      .then(({ data }) => {
+    const assortRef = collection(firestoreDB, 'assortment');
+    return await getDocs(assortRef)
+      .then((res) => {
         Thunk.dispatch(fetchCart());
-        return data;
+        return [
+          res.docs[1].data(),
+          res.docs[0].data(),
+          Object.values(res.docs[2].data()),
+        ] as FetchData;
       })
       .catch((error) => {
         Thunk.dispatch(setAlert('Ошибка при получении списка товаров'));

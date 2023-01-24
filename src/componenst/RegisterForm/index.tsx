@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { Field, Form, Formik } from 'formik';
-import * as yup from 'yup';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import React from 'react';
 import axios from 'axios';
-
-import { BigButton } from '../../componenst';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../Hooks/hooks';
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import * as yup from 'yup';
+
+import { toggleTerms } from '../../redux/slices/modalWindowSlice';
+import { Field, Form, Formik } from 'formik';
+import Terms from '../ModalWindows/Terms';
+import { BigButton } from '../../componenst';
 
 import styles from './RegisterForm.module.scss';
-import { toggleTerms } from '../../redux/slices/modalWindowSlice';
-import { useAppDispatch } from '../../Hooks/hooks';
-import Terms from '../ModalWindows/Terms';
 
 type CreateAccountForm = {
   gender: string;
@@ -32,7 +33,7 @@ const phoneRegExp =
   /^(\+7|7|8)?[\s\\-]?\(?[489][0-9]{2}\)?[\s\\-]?[0-9]{3}[\s\\-]?[0-9]{2}[\s\\-]?[0-9]{2}$/;
 
 const RegisterForm: React.FC = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const RegisterFormValidation = yup.object().shape({
@@ -100,7 +101,6 @@ const RegisterForm: React.FC = () => {
           news: false,
         }}
         onSubmit={(values: CreateAccountForm) => {
-          const auth = getAuth();
           createUserWithEmailAndPassword(auth, values.email, values.pass)
             .then((userCredential) => {
               axios.post(`https://62e206223891dd9ba8def88d.mockapi.io/user`, {
@@ -219,10 +219,9 @@ const RegisterForm: React.FC = () => {
                 ))}
               </select>
             </label>
-            {(touched.day || touched.month || touched.year) &&
-              (errors.day || errors.month || errors.year) && (
-                <p className={styles.error}>{errors.day || errors.month || errors.year}</p>
-              )}
+            {touched.day && errors.day && <p className={styles.error}>{errors.day}</p>}
+            {touched.month && errors.month && <p className={styles.error}>{errors.month}</p>}
+            {touched.year && errors.year && <p className={styles.error}>{errors.year}</p>}
             <label htmlFor="email">
               Email
               <Field
@@ -269,7 +268,9 @@ const RegisterForm: React.FC = () => {
               <div>
                 <p>
                   Я прочёл и согласен с{' '}
-                  <span className={styles.terms_link} onClick={() => dispatch(toggleTerms())}>условиями создания аккаунта</span>
+                  <span className={styles.terms_link} onClick={() => dispatch(toggleTerms())}>
+                    условиями создания аккаунта
+                  </span>
                 </p>
               </div>
             </label>

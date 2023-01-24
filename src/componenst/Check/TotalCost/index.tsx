@@ -8,6 +8,7 @@ import styles from './TotalCost.module.scss';
 export const TotalCost: React.FC = () => {
   const { currentCost } = useAppSelector(selectDelivery);
   const { totalPrice, discount } = useAppSelector(selectCart);
+  const finalDiscount = (10e10 * (((totalPrice + currentCost) / 100) * 30)) / 10e10;
 
   return (
     <div className={styles.total}>
@@ -16,14 +17,14 @@ export const TotalCost: React.FC = () => {
       </p>
       {discount > 0 && totalPrice > 0 && (
         <p>
-          Скидка <span>{((totalPrice + currentCost) / 100) * 30}&#x20bd;</span>
+          Скидка <span>{finalDiscount}&#x20bd;</span>
         </p>
       )}
       <p>
         ИТОГО{' '}
         <span>
           {discount > 0 && totalPrice > 0
-            ? totalPrice + currentCost - ((totalPrice + currentCost) / 100) * 30
+            ? totalPrice + currentCost - finalDiscount
             : totalPrice + currentCost}
           &#x20bd;
         </span>

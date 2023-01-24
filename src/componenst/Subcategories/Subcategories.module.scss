@@ -1,0 +1,54 @@
+@import '../../scss/variables.scss';
+
+.subcategories {
+  position: absolute;
+  top: 30px;
+  margin: 20px 0 0;
+  width: max-content;
+  @media (max-width: 1024px) {
+    position: relative;
+    top: 0;
+    left: 20px;
+    &:last-of-type {
+      margin-right: 20px;
+    }
+  }
+  ul {
+    margin: 10px;
+    padding: 10px;
+    @media (max-width: 1024px) {
+      width: max-content;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: auto;
+    }
+    li {
+      padding: 20px;
+      cursor: pointer;
+      list-style: none;
+      margin-bottom: 5px;
+      transition: color 0.2s ease-in-out;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 600;
+      &:hover {
+        color: $highlighted;
+      }
+    }
+  }
+}
+
+.active {
+  color: $highlighted !important;
+}
+
+.subcategory_cart {
+  top: -55px;
+  left: 180px;
+  @media (max-width: 1024px) {
+    position: relative;
+    top: 0;
+    left: 0px;
+  }
+}

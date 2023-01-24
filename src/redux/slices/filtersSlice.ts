@@ -13,7 +13,9 @@ export type CurrentSortState = {
 
 interface filtersState {
   categories: SortState;
+  subcategories: SortState;
   sortTypes: SortState;
+  currentSubcategory: CurrentSortState;
   currentSortType: CurrentSortState;
   currentCategory: CurrentSortState;
   searchedItemId: number;
@@ -70,6 +72,10 @@ const initialState: filtersState = {
       engTitle: 'tartar-sevich',
     },
     {
+      ruTitle: 'Якитори, Темпура, Рамён и Карри',
+      engTitle: 'yakitory-tempura-ramen-curry',
+    },
+    {
       ruTitle: 'ДЕТСКОЕ МЕНЮ',
       engTitle: 'kids-menu',
     },
@@ -94,6 +100,20 @@ const initialState: filtersState = {
       engTitle: 'souces',
     },
   ],
+  subcategories: [
+    {
+      ruTitle: 'Безалкогольное',
+      engTitle: 'non-alcohol',
+    },
+    {
+      ruTitle: 'Пиво',
+      engTitle: 'beer',
+    },
+    {
+      ruTitle: 'Вино',
+      engTitle: 'wine',
+    },
+  ],
   sortTypes: [
     {
       ruTitle: 'названию',
@@ -116,6 +136,10 @@ const initialState: filtersState = {
       engTitle: 'cheapest',
     },
   ],
+  currentSubcategory: {
+    ruTitle: 'Безалкогольное',
+    engTitle: 'non-alcohol',
+  },
   currentSortType: {
     ruTitle: 'названию',
     engTitle: 'title',
@@ -131,8 +155,10 @@ export const filtersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
+    setSubcategory(state, action: PayloadAction<CurrentSortState>) {
+      state.currentSubcategory = action.payload;
+    },
     setCategory(state, action: PayloadAction<CurrentSortState>) {
-      window.scrollTo(0, 0)
       state.currentCategory = action.payload;
     },
     setSort(state, action: PayloadAction<CurrentSortState>) {
@@ -146,5 +172,5 @@ export const filtersSlice = createSlice({
 
 export const selectFilters = (state: RootState) => state.filters;
 
-export const { setCategory, setSort, setSearchedItemId } = filtersSlice.actions;
+export const { setCategory, setSort, setSearchedItemId, setSubcategory } = filtersSlice.actions;
 export default filtersSlice.reducer;

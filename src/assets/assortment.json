@@ -2353,26 +2353,209 @@
         "subcategory": "Вино",
         "rating": 10
       }
-    ]
-  },
+    ],
+    "additionals": [
+   {
+    "id": 165,
+    "title": "ГОРЧИЦА",
+    "dishPhoto": "img/assort/additionals/gingembre.webp",
+    "portion": 1,
+    "price": 30,
+    "contents": "",
+    "allergens": "",
+    "description": "",
+    "specifics": [
+     "glutenFree"
+    ],
+    "count": 1,
+    "category": "ДОПОЛНИТЕЛЬНО",
+    "rating": 5
+   },
+   {
+    "id": 166,
+    "title": "ВАСАБИ",
+    "dishPhoto": "img/assort/additionals/wasabi.webp",
+    "portion": 1,
+    "price": 30,
+    "contents": "",
+    "allergens": "",
+    "description": "",
+    "specifics": [
+     "glutenFree"
+    ],
+    "count": 1,
+    "category": "ДОПОЛНИТЕЛЬНО",
+    "rating": 5
+   },
+   {
+    "id": 167,
+    "title": "ПАЛОЧКИ",
+    "dishPhoto": "img/assort/additionals/sticks.webp",
+    "portion": 1,
+    "price": 30,
+    "contents": "",
+    "allergens": "",
+    "description": "",
+    "specifics": [],
+    "count": 1,
+    "category": "ДОПОЛНИТЕЛЬНО",
+    "rating": 5
+   }
+  ],
+  "souces": [
+   {
+    "id": 168,
+    "title": "СОЕВЫЙ СОУС",
+    "dishPhoto": "img/assort/souces/salt-sauce.webp",
+    "portion": 1,
+    "price": 60,
+    "contents": "",
+    "allergens": "",
+    "description": "",
+    "specifics": [
+     "glutenFree"
+    ],
+    "count": 1,
+    "category": "СОУСЫ",
+    "rating": 6
+   },
+   {
+    "id": 169,
+    "title": "ОСТРЫЙ СОУС",
+    "dishPhoto": "img/assort/souces/spicy-mayo-sauce.webp",
+    "portion": 1,
+    "price": 60,
+    "contents": "",
+    "allergens": "",
+    "description": "",
+    "specifics": [
+     "glutenFree"
+    ],
+    "count": 1,
+    "category": "СОУСЫ",
+    "rating": 6
+   },
+   {
+    "id": 170,
+    "title": "СЛАДКИЙ СОУС",
+    "dishPhoto": "img/assort/souces/sweet-sauce.webp",
+    "portion": 1,
+    "price": 60,
+    "contents": "",
+    "allergens": "",
+    "description": "",
+    "specifics": [
+     "glutenFree"
+    ],
+    "count": 1,
+    "category": "СОУСЫ",
+    "rating": 6
+   },
+   {
+    "id": 171,
+    "title": "СЛАДКО-ОСТРЫЙ СОУС",
+    "dishPhoto": "img/assort/souces/sweet-spicy-sauce.webp",
+    "portion": 1,
+    "price": 60,
+    "contents": "",
+    "allergens": "",
+    "description": "",
+    "specifics": [
+     "glutenFree"
+    ],
+    "count": 1,
+    "category": "СОУСЫ",
+    "rating": 6
+   }
+  ]
+ }
+  ,
   [
-    "img/assort/new/webbanner.webp",
-    "img/assort/lunch/webbanner.webp",
-    "img/assort/plate/webbanner.webp",
-    "img/assort/sets/webbanner.webp",
-    "img/assort/fried/webbanner.webp",
-    "img/assort/california/webbanner.webp",
-    "img/assort/fresh-roll/webbanner.webp",
-    "img/assort/maki/webbanner.webp",
-    "img/assort/sushi/webbanner.webp",
-    "img/assort/bowls/webbanner.webp",
-    "img/assort/chirashi-and-sashimi/webbanner.webp",
-    "img/assort/tartare/webbanner.webp",
-    "img/assort/yakitori-tempura-ramen-curry/webbanner.webp",
-    "img/assort/kids-menu/webbanner.webp",
-    "img/assort/accompaniments/webbanner.webp",
-    "img/assort/desserts/webbanner.webp",
-    "img/assort/drinkables/webbanner.webp"
+    {
+      "420": "img/assort/new/webbanner_420.webp",
+      "820": "img/assort/new/webbanner_820.webp",
+      "1600": "img/assort/new/webbanner.webp"
+    },
+    {
+      "420": "img/assort/lunch/webbanner_420.webp",
+      "820": "img/assort/lunch/webbanner_820.webp",
+      "1600": "img/assort/lunch/webbanner.webp"
+    },
+    {
+      "420": "img/assort/plate/webbanner_420.webp",
+      "820": "img/assort/plate/webbanner_820.webp",
+      "1600": "img/assort/plate/webbanner.webp"
+    },
+    {
+      "420": "img/assort/sets/webbanner_420.webp",
+      "820": "img/assort/sets/webbanner_820.webp",
+      "1600": "img/assort/sets/webbanner.webp"
+    },
+    {
+      "420": "img/assort/fried/webbanner_420.webp",
+      "820": "img/assort/fried/webbanner_820.webp",
+      "1600": "img/assort/fried/webbanner.webp"
+    },
+    {
+      "420": "img/assort/california/webbanner_420.webp",
+      "820": "img/assort/california/webbanner_820.webp",
+      "1600": "img/assort/california/webbanner.webp"
+    },
+    {
+      "420": "img/assort/fresh-roll/webbanner_420.webp",
+      "820": "img/assort/fresh-roll/webbanner_820.webp",
+      "1600": "img/assort/fresh-roll/webbanner.webp"
+    },
+    {
+      "420": "img/assort/maki/webbanner_420.webp",
+      "820": "img/assort/maki/webbanner_820.webp",
+      "1600": "img/assort/maki/webbanner.webp"
+    },
+    {
+      "420": "img/assort/sushi/webbanner_420.webp",
+      "820": "img/assort/sushi/webbanner_820.webp",
+      "1600": "img/assort/sushi/webbanner.webp"
+    },
+    {
+      "420": "img/assort/bowls/webbanner_420.webp",
+      "820": "img/assort/bowls/webbanner_820.webp",
+      "1600": "img/assort/bowls/webbanner.webp"
+    },
+    {
+      "420": "img/assort/chirashi-and-sashimi/webbanner_420.webp",
+      "820": "img/assort/chirashi-and-sashimi/webbanner_820.webp",
+      "1600": "img/assort/chirashi-and-sashimi/webbanner.webp"
+    },
+    {
+      "420": "img/assort/tartare/webbanner_420.webp",
+      "820": "img/assort/tartare/webbanner_820.webp",
+      "1600": "img/assort/tartare/webbanner.webp"
+    },
+    {
+      "420": "img/assort/yakitori-tempura-ramen-curry/webbanner_420.webp",
+      "820": "img/assort/yakitori-tempura-ramen-curry/webbanner_820.webp",
+      "1600": "img/assort/yakitori-tempura-ramen-curry/webbanner.webp"
+    },
+    {
+      "420": "img/assort/kids-menu/webbanner_420.webp",
+      "820": "img/assort/kids-menu/webbanner_820.webp",
+      "1600": "img/assort/kids-menu/webbanner.webp"
+    },
+    {
+      "420": "img/assort/accompaniments/webbanner_420.webp",
+      "820": "img/assort/accompaniments/webbanner_820.webp",
+      "1600": "img/assort/accompaniments/webbanner.webp"
+    },
+    {
+      "420": "img/assort/desserts/webbanner_420.webp",
+      "820": "img/assort/desserts/webbanner_820.webp",
+      "1600": "img/assort/desserts/webbanner.webp"
+    },
+    {
+      "420": "img/assort/drinks/webbanner_420.webp",
+      "820": "img/assort/drinks/webbanner_820.webp",
+      "1600": "img/assort/drinks/webbanner.webp"
+    }
   ],
   ["img/icons/glutenFree.svg", "img/icons/spicy.svg", "img/icons/vegan.svg", "img/icons/veggie.svg"]
 ]

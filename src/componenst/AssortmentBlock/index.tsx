@@ -17,6 +17,7 @@ import {
   setCategory,
   setSearchedItemId,
   setSort,
+  setSubcategory,
 } from '../../redux/slices/filtersSlice';
 import { AssortmentCard } from './AssortmentCard';
 import { LoadingCard } from '../LoadingCard';
@@ -28,8 +29,15 @@ export const AccortmentBlock: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { search } = useLocation();
-  const { currentSortType, currentCategory, categories, sortTypes, searchedItemId } =
-    useAppSelector(selectFilters);
+  const {
+    currentSortType,
+    currentCategory,
+    categories,
+    sortTypes,
+    searchedItemId,
+    currentSubcategory,
+    subcategories,
+  } = useAppSelector(selectFilters);
   const { assortment, status } = useAppSelector(selectAssortment);
 
   React.useEffect(() => {
@@ -44,11 +52,15 @@ export const AccortmentBlock: React.FC = () => {
       let category = categories.find(
         (obj: CurrentSortState) => obj.engTitle === searchParameters.category,
       );
+      let subcategory = subcategories.find(
+        (obj: CurrentSortState) => obj.engTitle === searchParameters.subcategory,
+      );
       let sort = sortTypes.find(
         (obj: CurrentSortState) => obj.engTitle === searchParameters.sortBy,
       );
       let item = searchParameters.item;
       if (category) dispatch(setCategory(category));
+      if (subcategory) dispatch(setSubcategory(subcategory));
       if (sort) dispatch(setSort(sort));
       if (item) dispatch(setSearchedItemId(+item as number));
     } else {
@@ -65,13 +77,21 @@ export const AccortmentBlock: React.FC = () => {
 
   React.useEffect(() => {
     if (status === Status.SUCCESS) {
-      let filterParameter = qs.stringify({
-        category: currentCategory.engTitle,
-        sortBy: currentSortType.engTitle,
-      });
+      let filterParameter = qs.stringify(
+        currentCategory.engTitle === 'drinkables'
+          ? {
+              category: currentCategory.engTitle,
+              subcategory: currentSubcategory.engTitle,
+              sortBy: currentSortType.engTitle,
+            }
+          : {
+              category: currentCategory.engTitle,
+              sortBy: currentSortType.engTitle,
+            },
+      );
       navigate(`?${filterParameter.replace('%2B', '(asc)')}`);
     }
-  }, [currentSortType, currentCategory]);
+  }, [currentSortType, currentCategory, currentSubcategory]);
 
   const showAssortment = (status: string) => {
     if (status === Status.LOADING) {
@@ -79,9 +99,17 @@ export const AccortmentBlock: React.FC = () => {
     } else if (status === Status.ERROR) {
       return <FetchError />;
     } else {
-      return assortment[currentCategory.engTitle].map((item: AssortmentItem) => (
-        <AssortmentCard key={item.id} item={item} />
-      ));
+      return assortment[currentCategory.engTitle].map((item: AssortmentItem) => {
+        if (currentCategory.engTitle === 'drinkables') {
+          return (
+            item.subcategory === currentSubcategory.ruTitle && (
+              <AssortmentCard key={item.id} item={item} />
+            )
+          );
+        } else {
+          return <AssortmentCard key={item.id} item={item} />;
+        }
+      });
     }
   };
 
