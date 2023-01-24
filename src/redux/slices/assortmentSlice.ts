@@ -1,7 +1,6 @@
 import { firestoreDB } from './../../firebase';
 import { RootState } from './../store';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { setAlert } from './modalWindowSlice';
 import { fetchCart } from './cartSlice';
 import { collection, getDocs } from 'firebase/firestore';

@@ -27,7 +27,7 @@ export const OrderedWarning: React.FC = () => {
         <>
           <img src={deliveryBoy} alt="Внимание" />
           <p>
-            {`Доставка заказа №${orderId} оформлена!`}
+            {`Доставка заказа №${orderId}\n оформлена!`}
             <br />
             Скоро с вами свяжется курьер.
           </p>

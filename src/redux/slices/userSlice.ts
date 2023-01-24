@@ -27,6 +27,9 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setPhone(state, action:PayloadAction<string>) {
+      state.phoneNumber = action.payload
+    },
     getuser_data(state) {
       state.uid = localStorage.getItem('uid') ?? '';
       state.loyalty = JSON.parse(localStorage.getItem('loyalty') ?? "false");
@@ -80,5 +83,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setuser_data, removeuser_data, getuser_data } = userSlice.actions;
+export const { setuser_data, removeuser_data, getuser_data, setPhone } = userSlice.actions;
 export default userSlice.reducer;

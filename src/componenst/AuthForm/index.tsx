@@ -1,13 +1,12 @@
 import React from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, firestoreDB } from '../../firebase';
-import axios from 'axios';
 import * as yup from 'yup';
 import { BigButton } from '../../componenst';
 import { Formik, Field, Form } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../Hooks/hooks';
-import { setuser_data, userSlice } from '../../redux/slices/userSlice';
+import { setuser_data } from '../../redux/slices/userSlice';
 import { setAlert } from '../../redux/slices/modalWindowSlice';
 
 import styles from './AuthForm.module.scss';

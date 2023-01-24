@@ -1,7 +1,8 @@
+import { firestoreDB } from './../../firebase';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { AssortmentItem } from './assortmentSlice';
 import { RootState } from './../store';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { setAlert } from './modalWindowSlice';
 
 export enum CartStatus {
@@ -21,9 +22,12 @@ interface CartState {
 }
 
 type OrderItem = {
-  createdAt: string;
-  items: AssortmentItem[];
   orderID: string;
+  items: AssortmentItem[];
+  address: string;
+  deliveryCost: number;
+  discount: number;
+  TotalCost: number;
 };
 
 export enum OrderStatus {
@@ -166,27 +170,50 @@ export const getOrder = createAsyncThunk('cart/getOrderStatus', async (_, Thunk)
   const {
     cart: { cartItems, totalPrice, discount },
     delivery: { currentRegion, currentCost },
+    user: { uid, phoneNumber },
   } = Thunk.getState() as RootState;
 
-  const {
-    data: { orderID },
-  } = await axios
-    .post<OrderItem>(`https://62e206223891dd9ba8def88d.mockapi.io/orders`, {
-      items: cartItems,
-      adress: currentRegion,
-      deliveryCost: currentCost,
-      discount,
-      TotalCost:
-        discount > 0 && totalPrice > 0
-          ? totalPrice + currentCost - ((totalPrice + currentCost) / 100) * 30
-          : totalPrice + currentCost,
+  const userID = uid
+    ? uid
+    : `anon_user_${Math.floor(Math.random() * 10e16)
+        .toString(16)
+        .toLocaleUpperCase()}`;
+
+  const orderID = Math.floor(Math.random() * 10e16)
+    .toString(16)
+    .toLocaleUpperCase();
+
+  const orderslist =
+    (await getDoc(doc(firestoreDB, 'orders', userID)).then(
+      (res) => res.data() as { orderslist: OrderItem[] },
+    )) ?? ({} as { orderslist: OrderItem[] });
+
+  const finalDiscount = (10e10 * ((totalPrice + currentCost) / 100) * 30) / 10e10;
+  const newOrder = {
+    orderID,
+    items: cartItems,
+    address: currentRegion,
+    deliveryCost: currentCost,
+    discount,
+    TotalCost:
+      discount > 0 && totalPrice > 0
+        ? totalPrice + currentCost - finalDiscount
+        : totalPrice + currentCost,
+  };
+
+  return await setDoc(
+    doc(firestoreDB, 'orders', userID),
+    orderslist.orderslist
+      ? { orderslist: [...orderslist.orderslist, newOrder], phone: phoneNumber }
+      : { orderslist: [newOrder], phone: phoneNumber },
+  )
+    .then(() => {
+      return orderID;
     })
     .catch((error) => {
-      Thunk.dispatch(setAlert('Ошибка при отправке заказа. \n Попробуйте ещё раз'));
+      Thunk.dispatch(setAlert('Ошибка при отправке заказа. Попробуйте ещё раз'));
       throw new Error(error);
     });
-
-  return orderID;
 });
 
 export const selectCart = (state: RootState) => state.cart;

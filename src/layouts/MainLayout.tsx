@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { Header, PagesNavigation, AssortmentFullCard } from '../componenst';
 import Alert from '../componenst/ModalWindows/Alert';
 import Confirm from '../componenst/ModalWindows/Confirm';
-import Terms from '../componenst/ModalWindows/Terms';
+import GetPhone from '../componenst/ModalWindows/GetPhone';
 
 import styles from '../scss/index.module.scss';
 
@@ -23,6 +23,7 @@ const MainLayout: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <AssortmentFullCard />
+      <GetPhone />
       <Alert />
       <Confirm />
       <PagesNavigation />

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../Hooks/hooks';
 import { auth, firestoreDB } from '../../firebase';
@@ -30,7 +29,7 @@ type CreateAccountForm = {
   news: boolean;
 };
 
-const phoneRegExp =
+export const phoneRegExp =
   /^(\+7|7|8)?[\s\\-]?\(?[489][0-9]{2}\)?[\s\\-]?[0-9]{3}[\s\\-]?[0-9]{2}[\s\\-]?[0-9]{2}$/;
 
 const RegisterForm: React.FC = () => {
@@ -112,13 +111,14 @@ const RegisterForm: React.FC = () => {
               }).then(() => {
                 navigate('../auth');
               }).catch(error => {
-                dispatch(setAlert('Не удалось зарегистрироваться. Попробуйте ещё раз'));
+                dispatch(setAlert('Не удалось сохранить ваши данные. Попробуйте ещё раз'));
                 throw new Error(error)
               });
 
             })
             .catch((error) => {
-              console.error(error);
+              dispatch(setAlert('Ошибка регистрации. Попробуйте ещё раз'));
+              throw new Error(error);
             });
         }}
         validationSchema={RegisterFormValidation}>
