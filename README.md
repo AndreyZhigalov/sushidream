@@ -6,7 +6,6 @@
 ✅ React.js \
 ✅ Redux Toolkit \
 ✅ TypeScript \
-✅ MockAPI \
 ✅ Firebase \
 ✅ Formik \
 ✅ yup \
