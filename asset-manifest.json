@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sushidream/static/css/main.b897a483.css",
-    "main.js": "/sushidream/static/js/main.bb6282af.js",
+    "main.js": "/sushidream/static/js/main.3479aeb9.js",
     "Menu.css": "/sushidream/static/css/Menu.45afe97d.chunk.css",
     "Menu.js": "/sushidream/static/js/Menu.e3cf7cb6.chunk.js",
     "Cart.css": "/sushidream/static/css/Cart.3c851c70.chunk.css",
@@ -31,7 +31,7 @@
     "static/media/close.svg": "/sushidream/static/media/close.3c2e23b6b63e63a84034c0454ec27c32.svg",
     "static/media/ArrowHead.svg": "/sushidream/static/media/ArrowHead.c2a0fdb50bb327019f13dd2af983ec50.svg",
     "main.b897a483.css.map": "/sushidream/static/css/main.b897a483.css.map",
-    "main.bb6282af.js.map": "/sushidream/static/js/main.bb6282af.js.map",
+    "main.3479aeb9.js.map": "/sushidream/static/js/main.3479aeb9.js.map",
     "Menu.45afe97d.chunk.css.map": "/sushidream/static/css/Menu.45afe97d.chunk.css.map",
     "Menu.e3cf7cb6.chunk.js.map": "/sushidream/static/js/Menu.e3cf7cb6.chunk.js.map",
     "Cart.3c851c70.chunk.css.map": "/sushidream/static/css/Cart.3c851c70.chunk.css.map",
@@ -47,6 +47,6 @@
   },
   "entrypoints": [
     "static/css/main.b897a483.css",
-    "static/js/main.bb6282af.js"
+    "static/js/main.3479aeb9.js"
   ]
 }
