@@ -1,8 +1,10 @@
 @import '../../scss/variables.scss';
 
 .restaurants {
+  margin: auto;
   padding: 150px 50px 20px;
   display: grid;
+  max-width: 1440px;
   grid-template-columns: 400px 1fr;
   grid-template-rows: 1fr;
 }

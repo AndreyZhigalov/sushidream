@@ -1,22 +1,23 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../Hooks/hooks';
-import { clearOrderStatus, OrderStatus, selectCart } from '../../redux/slices/cartSlice';
-import { selectDelivery, setDeliveryCost } from '../../redux/slices/deliverySlice';
+import { FetchStatus } from '../../models';
+import { useAppStore } from '../../redux/store';
 
 import styles from './DeliveryRegion.module.scss';
 
 export const DeliveryRegion: React.FC = () => {
   const [visibility, setVisibility] = React.useState(false);
-  const dispatch = useAppDispatch();
-  const { regions, currentRegion } = useAppSelector(selectDelivery);
-  const { orderStatus } = useAppSelector(selectCart);
+  const { orderStore, deliveryStore } = useAppStore()
+  const { regions, currentRegion } = deliveryStore.getters;
+  const { setDeliveryCost } = deliveryStore.actions;
+  const { status } = orderStore.getters;
+  const { setOrderStatus } = orderStore.actions;
   const deliveryRef = React.useRef<HTMLDivElement>(null);
 
   const delivery_regionCost = (i: number) => {
     setVisibility(!visibility);
-    dispatch(setDeliveryCost(i));
-    if (orderStatus === OrderStatus.SUCCESS) {
-      dispatch(clearOrderStatus());
+    setDeliveryCost(i);
+    if (status === FetchStatus.SUCCESS) {
+      setOrderStatus(FetchStatus.WAITING);
     }
   };
 
@@ -33,8 +34,8 @@ export const DeliveryRegion: React.FC = () => {
     <div
       ref={deliveryRef}
       onClick={() => setVisibility(!visibility)}
-      className={styles.delivery_region}>
-      {currentRegion || 'ВЫБЕРИТЕ РЕСТОРАН ДОСТАВКИ'}
+      className={styles.region}>
+      {currentRegion.length > 28 ? currentRegion.slice(0, 25) + "..." : currentRegion || 'ВЫБЕРИТЕ РЕСТОРАН ДОСТАВКИ'}
       <svg
         onClick={() => setVisibility(!visibility)}
         width="15"
@@ -45,11 +46,11 @@ export const DeliveryRegion: React.FC = () => {
         <path d="M2.5 19L15 4L27.5 19" stroke="white" strokeWidth="4" strokeLinecap="round" />
       </svg>
       {visibility && (
-        <div className={styles.options_list}>
+        <div className={styles.list}>
           {regions.map((type, i: number) => (
             <p
               onClick={() => delivery_regionCost(i)}
-              className={currentRegion === type ? styles.active : ''}
+              className={`${styles.option} ${currentRegion === type ? styles.active : ""}`}
               key={i}>
               {type}
             </p>

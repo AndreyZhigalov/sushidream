@@ -1,14 +1,31 @@
-import React from 'react';
-
-import { useAppDispatch } from '../../../Hooks/hooks';
-import { AssortmentItem } from '../../../redux/slices/assortmentSlice';
-import { addToCart, removeFromCart } from '../../../redux/slices/cartSlice';
-import { confirmAlert } from '../../../redux/slices/modalWindowSlice';
+import { FetchStatus } from '../../../models';
+import { useAppStore } from '../../../redux/store';
+import { AssortmentItem } from '../../../redux/slices/assortment';
 
 import styles from './CartItem.module.scss';
 
 export const CartItem: React.FC<{ item: AssortmentItem }> = ({ item }) => {
-  const dispatch = useAppDispatch();
+  const { cartStore, modalStore, orderStore } = useAppStore()
+
+  const { removeFromCart, addToCart } = cartStore.actions
+  const { confirmAlert } = modalStore.actions
+  const { setOrderStatus } = orderStore.actions
+
+  const onRemoveClick = () => {
+    item.count > 1
+      ? removeFromCart(item.id)
+      :
+      confirmAlert({
+        message: `Удалить ${item.title} из корзины?`,
+        type: 'remove',
+        removeID: item.id,
+      })
+      ;
+  };
+  const onAddClick = () => {
+    addToCart(item);
+    setOrderStatus(FetchStatus.WAITING);
+  };
 
   return (
     <div className={styles.cart_item}>
@@ -18,22 +35,9 @@ export const CartItem: React.FC<{ item: AssortmentItem }> = ({ item }) => {
       </p>
       <span>{item.price * item.count}&#x20bd;</span>
       <div className={styles.item_count}>
-        <button
-          onClick={() => {
-            item.count > 1
-              ? dispatch(removeFromCart(item.id))
-              : dispatch(
-                  confirmAlert({
-                    message: `Удалить ${item.title} из корзины?`,
-                    type: 'remove',
-                    removeID: item.id,
-                  }),
-                );
-          }}>
-          -
-        </button>
+        <button onClick={onRemoveClick}>-</button>
         <span>{item.count}</span>
-        <button onClick={() => dispatch(addToCart(item))}>+</button>
+        <button onClick={onAddClick}>+</button>
       </div>
     </div>
   );

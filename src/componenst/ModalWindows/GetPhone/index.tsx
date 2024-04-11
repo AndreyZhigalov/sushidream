@@ -1,29 +1,29 @@
 import { Field, Form, Formik } from 'formik';
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { getOrder } from '../../../redux/slices/cartSlice';
-import { closeAlert, modalSelector } from '../../../redux/slices/modalWindowSlice';
-import { setPhone } from '../../../redux/slices/userSlice';
 import { BigButton } from '../../BigButton';
-import { phoneRegExp } from '../../RegisterForm';
+
 
 import styles from '../ModalWindow.module.scss';
+import { useAppStore } from '../../../redux/store';
+import { PHONE_NUMBER_REGEXP } from '../../RegisterForm/constants';
 
 const GetPhone = () => {
-  const dispatch = useAppDispatch();
-  const { showGetPhoneModal } = useAppSelector(modalSelector);
+  const { modalStore, orderStore, userStore } = useAppStore()
+  const { closeAlert } = modalStore.actions
+  const { showGetPhoneModal } = modalStore.getters
+  const { getOrder } = orderStore.actions
+  const { setPhone } = userStore.actions
 
   const phoneValidation = yup.object().shape({
     phoneNumber: yup
       .string()
-      .matches(phoneRegExp, 'Некорректный номер телефона')
+      .matches(PHONE_NUMBER_REGEXP, 'Некорректный номер телефона')
       .required('Обязательное поле'),
   });
 
   const closeModal = () => {
-    setTimeout(() => dispatch(closeAlert()), 500);
+    setTimeout(() => closeAlert(), 500);
   };
 
   return (
@@ -35,9 +35,9 @@ const GetPhone = () => {
             phoneNumber: '',
           }}
           onSubmit={(values) => {
-            dispatch(setPhone(values.phoneNumber));
-            dispatch(getOrder());
-            dispatch(closeAlert());
+            setPhone(values.phoneNumber);
+            getOrder();
+            closeAlert();
           }}
           validationSchema={phoneValidation}>
           {({

@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { closeAlert, modalSelector } from '../../../redux/slices/modalWindowSlice';
+
 import { BigButton } from '../../BigButton';
 
 import styles from '../ModalWindow.module.scss';
+import { useAppStore } from '../../../redux/store';
 
 const Alert = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const { alertMessage } = useAppSelector(modalSelector);
-  const dispatch = useAppDispatch();
+  const { actions: { closeAlert }, getters: { alertMessage } } = useAppStore().modalStore
 
   useEffect(() => {
     alertMessage && setShowModal(true);
@@ -16,7 +15,7 @@ const Alert = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    setTimeout(() => dispatch(closeAlert()), 500);
+    setTimeout(() => closeAlert(), 500);
   };
 
   return (

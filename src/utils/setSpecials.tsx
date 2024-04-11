@@ -1,4 +1,5 @@
-import { AssortmentItem } from '../redux/slices/assortmentSlice';
+import { AssortmentItem } from "../redux/slices/assortment";
+
 
 export const setSpecials = (item: AssortmentItem, specials: string[]) => {
   if (item?.specifics[0]) {

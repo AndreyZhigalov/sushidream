@@ -1,29 +1,28 @@
-import React from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
-import { selectFilters, setSort } from '../../redux/slices/filtersSlice';
-import { sortItems } from '../../redux/slices/assortmentSlice';
-
+import { useEffect, useRef, useState } from 'react';
 import styles from './Sort.module.scss';
+import { useAppStore } from '../../redux/store';
 
 type SortParams = {
-  ruTitle: string;
-  engTitle: string;
+  name: string;
+  value: string;
 };
 
 export const Sort: React.FC = () => {
-  const [visibility, setVisibility] = React.useState(false);
-  const { currentSortType, currentCategory, sortTypes } = useAppSelector(selectFilters);
-  const dispatch = useAppDispatch();
-  const sortRef = React.useRef<HTMLDivElement>(null);
+  const [visibility, setVisibility] = useState(false);
+  const { filtersStore, assortmentStore } = useAppStore()
+  const { currentSortType, sortTypes } = filtersStore.getters;
+  const { setSort } = filtersStore.actions;
+  const { sortItems } = assortmentStore.actions;
+  const sortRef = useRef<HTMLDivElement>(null);
 
   const switchSortType = (sortType: SortParams) => {
-    dispatch(setSort(sortType));
+    setSort(sortType);
     setVisibility(!visibility);
-    dispatch(sortItems([sortType.engTitle, currentCategory.engTitle]));
+    sortItems(sortType.value);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickSort = (event: MouseEvent) => {
       if (sortRef.current && !event.composedPath().includes(sortRef.current)) setVisibility(false);
     };
@@ -34,7 +33,7 @@ export const Sort: React.FC = () => {
   return (
     <div ref={sortRef} className={styles.sort}>
       Сортировка по{' '}
-      <span onClick={() => setVisibility(!visibility)}>{currentSortType.ruTitle}</span>
+      <span onClick={() => setVisibility(!visibility)}>{currentSortType.name}</span>
       <svg
         onClick={() => setVisibility(!visibility)}
         width="15"
@@ -49,9 +48,9 @@ export const Sort: React.FC = () => {
           {sortTypes.map((type) => (
             <p
               onClick={() => switchSortType(type)}
-              className={currentSortType.engTitle === type.engTitle ? styles.active : ''}
-              key={type.engTitle}>
-              {type.ruTitle}
+              className={currentSortType.value === type.value ? styles.active : ''}
+              key={type.value}>
+              {type.name}
             </p>
           ))}
         </div>

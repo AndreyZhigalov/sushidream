@@ -1,35 +1,34 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
 import deliveryBoy from '../../../assets/icons/deliveryBoy.svg';
-import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { getOrder, OrderStatus, selectCart } from '../../../redux/slices/cartSlice';
-import { selectDelivery } from '../../../redux/slices/deliverySlice';
-import { showGetPhone } from '../../../redux/slices/modalWindowSlice';
+import { FetchStatus } from '../../../models';
+import { useAppStore } from '../../../redux/store';
 
 import styles from './OrderButton.module.scss';
 
+
 export const OrderButton: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const phone = useAppSelector((state) => state.user.phoneNumber);
-  const { orderStatus } = useAppSelector(selectCart);
-  const { currentRegion } = useAppSelector(selectDelivery);
+  const { deliveryStore, orderStore, modalStore, userStore } = useAppStore()
+  const { phoneNumber } = userStore.getters;
+  const { getters: { status }, actions: { getOrder } } = orderStore;
+  const { currentRegion } = deliveryStore.getters;
+  const { showGetPhone } = modalStore.actions
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const orderButtonClass =
-    orderStatus === OrderStatus.SENDING
+    status === FetchStatus.LOADING
       ? styles.order_button + ` ` + styles.sending_order
       : styles.order_button;
 
   const onClickOrder = pathname.includes('cart')
     ? () => {
-        if (phone) {
-          dispatch(getOrder());
-        } else {
-          dispatch(showGetPhone());
-        }
+      if (phoneNumber) {
+        getOrder();
+      } else {
+        showGetPhone();
       }
+    }
     : () => navigate('cart');
 
   return (

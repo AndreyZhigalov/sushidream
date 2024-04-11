@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
@@ -7,11 +6,11 @@ import styles from './ForgotPasswordForm.module.scss';
 import { BigButton } from '../BigButton';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { useAppDispatch } from '../../Hooks/hooks';
-import { setAlert } from '../../redux/slices/modalWindowSlice';
+import { useAppStore } from '../../redux/store';
+
 
 const ForgotPasswordForm = () => {
-    const dispatch = useAppDispatch()
+  const { setAlert } = useAppStore().modalStore.actions
   const formValidation = yup.object().shape({
     email: yup.string().email('Некорректный Email').required('Обязательное поле'),
   });
@@ -25,12 +24,12 @@ const ForgotPasswordForm = () => {
         onSubmit={(values) => {
           sendPasswordResetEmail(auth, values.email)
             .then(() => {
-              dispatch(setAlert('Пиьсмо отправлено на почту'));
+              setAlert('Пиьсмо отправлено на почту');
             })
             .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
-              dispatch(setAlert("Не удалось отправить письмо"));
+              setAlert("Не удалось отправить письмо");
               throw new Error(errorMessage)
             });
         }}

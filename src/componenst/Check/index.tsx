@@ -1,25 +1,26 @@
-import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../Hooks/hooks';
-
+import { memo, useEffect } from 'react';
 import trash from '../../assets/icons/trash.svg';
-import { selectCart, CartStatus, fetchCart } from '../../redux/slices/cartSlice';
 import { TotalCost } from './TotalCost';
 import { OrderButton } from './OrderButton';
+import { FetchStatus } from '../../models';
+import { useAppStore } from '../../redux/store';
 import { CartItemsBlock } from './CartItemsBlock';
-import { fetchRegion, selectDelivery } from '../../redux/slices/deliverySlice';
 
 import styles from './Check.module.scss';
-import { confirmAlert } from '../../redux/slices/modalWindowSlice';
 
-export const Check: React.FC = React.memo(() => {
-  const dispatch = useAppDispatch();
-  const { count, cartStatus } = useAppSelector(selectCart);
-  const { currentRegion } = useAppSelector(selectDelivery);
+export const Check: React.FC = memo(() => {
+  const { cartStore, deliveryStore, modalStore } = useAppStore();
+  const { count, cartStatus } = cartStore.getters;
+  const { fetchCart } = cartStore.actions;
+  const { currentRegion } = deliveryStore.getters;
+  const { fetchRegion, getAddresses } = deliveryStore.actions;
+  const { confirmAlert } = modalStore.actions;
 
-  React.useEffect(() => {
-    if (cartStatus === CartStatus.LOADING) {
-      dispatch(fetchCart());
-      dispatch(fetchRegion());
+  useEffect(() => {
+    if (cartStatus === FetchStatus.LOADING) {
+      fetchCart();
+      fetchRegion();
+      getAddresses();
     }
   }, []);
 
@@ -29,7 +30,7 @@ export const Check: React.FC = React.memo(() => {
         <img
           src={trash}
           alt="Clear cart"
-          onClick={() => dispatch(confirmAlert({ message: 'Отчистить корзину?' , type: "clear"}))}
+          onClick={() => confirmAlert({ message: 'Отчистить корзину?', type: 'clear' })}
         />
       )}
       <h2>ВАШ ЗАКАЗ</h2>

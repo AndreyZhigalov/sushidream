@@ -2,11 +2,10 @@ import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { LoadingWarning } from './componenst/';
 import ForgotPasswordForm from './componenst/ForgotPasswordForm';
-import { useAppDispatch } from './Hooks/hooks';
-import { setDiscount } from './redux/slices/cartSlice';
-import { getuser_data } from './redux/slices/userSlice';
 
 import MainLayout from './layouts/MainLayout';
+import { useAppStore } from './redux/store';
+import { AssortmentService } from './redux/slices/assortment';
 
 const Menu = React.lazy(() => import(/* webpackChunkName: "Menu" */ './pages/Menu'));
 const Cart = React.lazy(() => import(/* webpackChunkName: "Cart" */ './pages/Cart'));
@@ -19,9 +18,7 @@ const ServiceCourse = React.lazy(
 );
 const Franchise = React.lazy(() => import(/* webpackChunkName: "Franchise" */ './pages/Franchise'));
 const Profile = React.lazy(() => import(/* webpackChunkName: "Profile" */ './pages/Profile'));
-const UserPage = React.lazy(
-  () => import(/* webpackChunkName: "UserPage" */ './pages/Profile/UserPage'),
-);
+const UserPage = React.lazy(() => import(/* webpackChunkName: "UserPage" */ './pages/UserPage'));
 const AuthForm = React.lazy(
   () => import(/* webpackChunkName: "AuthForm" */ './componenst/AuthForm'),
 );
@@ -31,20 +28,28 @@ const RegisterForm = React.lazy(
 const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/NotFound'));
 
 const App: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const {
+    cartStore: {
+      actions: { setDiscount },
+    },
+    userStore: {
+      actions: { fetchUserData },
+    },
+  } = useAppStore();
 
-  React.useEffect(() => {   
-    let email = localStorage.getItem('email');
-    if (email) {
-      dispatch(setDiscount());
-      dispatch(getuser_data());
+  React.useEffect(() => {
+    let uid = localStorage.getItem('uid');
+    if (uid) {
+      setDiscount();
+      fetchUserData(uid);
+    } else {
     }
   }, []);
 
   return (
     <Suspense fallback={<LoadingWarning />}>
       <Routes>
-        <Route path="sushidream" element={<MainLayout />}>
+        <Route path="" element={<MainLayout />}>
           <Route path="" element={<Menu />} />
           <Route path="restaurants" element={<Restaurants />} />
           <Route path="loyalty" element={<Loyalty />} />

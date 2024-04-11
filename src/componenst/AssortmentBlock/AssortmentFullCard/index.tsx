@@ -1,37 +1,37 @@
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import qs from 'qs';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-
-import { AssortmentItem, selectAssortment, Status } from '../../../redux/slices/assortmentSlice';
-import { addToCart } from '../../../redux/slices/cartSlice';
-import { selectFilters } from '../../../redux/slices/filtersSlice';
 import { setSpecials } from '../../../utils/setSpecials';
 import CloseButton from '../../CloseButton';
+import { FetchStatus } from '../../../models';
+import { useAppStore } from '../../../redux/store';
+import { AssortmentItem } from '../../../redux/slices/assortment';
 
 import styles from './AssortmentFullCard.module.scss';
 
 export const AssortmentFullCard: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { searchedItem, specials, status } = useAppSelector(selectAssortment);
-  const { currentCategory, currentSortType } = useAppSelector(selectFilters);
-  const [additionalInfo, setAdditionalInfo] = React.useState(searchedItem?.contents);
+
+  const { cartStore, assortmentStore, filtersStore } = useAppStore()
+  const { addToCart } = cartStore.actions
+  const { searchedItem, specials, status } = assortmentStore.getters;
+  const { currentCategory, currentSortType } = filtersStore.getters;
+  const [additionalInfo, setAdditionalInfo] = useState(searchedItem?.contents);
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const item = searchedItem;
-  const overlayRef = React.useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const previousSearch = qs.stringify({
-    category: currentCategory.engTitle,
-    sortBy: currentSortType.engTitle,
+    category: currentCategory.value,
+    sortBy: currentSortType.value,
   });
 
   const onClickAdd = (obj: AssortmentItem) => {
     if (pathname.includes('cart')) {
-      dispatch(addToCart(obj));
+      addToCart(obj);
       navigate(pathname);
     } else {
-      dispatch(addToCart(obj));
+      addToCart(obj);
       navigate(`?${previousSearch}`);
     }
   };
@@ -44,7 +44,7 @@ export const AssortmentFullCard: React.FC = () => {
     setAdditionalInfo(text);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const overlayHandler = (event: MouseEvent) => {
       if (overlayRef.current === event.target) {
         onClickClose();
@@ -58,10 +58,10 @@ export const AssortmentFullCard: React.FC = () => {
     <div
       ref={overlayRef}
       className={`${styles.overlay} ${
-        status === Status.SUCCESS && search.includes('item=') ? styles.show : ''
+        status === FetchStatus.SUCCESS && search.includes('item=') ? styles.show : ''
       }`}>
       <div className={styles.card}>
-        <CloseButton handleClick={onClickClose} />
+        <CloseButton onClick={onClickClose} className={styles.close} />
         <img src={item?.dishPhoto} alt={item?.title} />
         <div className={styles.description_block}>
           <h3>{item?.title}</h3>

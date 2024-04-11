@@ -1,34 +1,33 @@
-import React from 'react';
 import qs from 'qs';
 import { useNavigate, useLocation } from 'react-router-dom';
-
-import { useAppSelector, useAppDispatch } from '../../Hooks/hooks';
-import {
-  sortItems,
-  fetchAssortment,
-  selectAssortment,
-  AssortmentItem,
-  findItem,
-  Status,
-} from '../../redux/slices/assortmentSlice';
-import {
-  CurrentSortState,
-  selectFilters,
-  setCategory,
-  setSearchedItemId,
-  setSort,
-  setSubcategory,
-} from '../../redux/slices/filtersSlice';
 import { AssortmentCard } from './AssortmentCard';
 import { LoadingCard } from '../LoadingCard';
 import { FetchError } from './FetchError';
+import { FetchStatus, SortItem } from '../../models';
+import { useAppStore } from '../../redux/store';
+import { AssortmentItem } from '../../redux/slices/assortment';
+import { useEffect } from 'react';
 
 import styles from './AssortmentBlock.module.scss';
 
 export const AccortmentBlock: React.FC = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { search } = useLocation();
+
+  const { assortmentStore, filtersStore } = useAppStore()
+  const {
+    findItem,
+    getAll,
+    getByCategory,
+    sortItems
+  } = assortmentStore.actions
+  const { status, items } = assortmentStore.getters;
+  const {
+    setCategory,
+    setSubcategory,
+    setSort,
+    setSearchedItemId,
+  } = filtersStore.actions
   const {
     currentSortType,
     currentCategory,
@@ -37,72 +36,79 @@ export const AccortmentBlock: React.FC = () => {
     searchedItemId,
     currentSubcategory,
     subcategories,
-  } = useAppSelector(selectFilters);
-  const { assortment, status } = useAppSelector(selectAssortment);
+  } = filtersStore.getters;
 
-  React.useEffect(() => {
-    if (status === Status.SUCCESS && searchedItemId) {
-      dispatch(findItem(searchedItemId));
+  useEffect(() => {
+    if (status === FetchStatus.SUCCESS && searchedItemId) {
+      findItem(searchedItemId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (search) {
       let searchParameters = qs.parse(search.substring(1).replace('(asc)', '%2B'));
-      let category = categories.find(
-        (obj: CurrentSortState) => obj.engTitle === searchParameters.category,
-      );
+      let category = categories.find((obj: SortItem) => obj.value === searchParameters.category);
       let subcategory = subcategories.find(
-        (obj: CurrentSortState) => obj.engTitle === searchParameters.subcategory,
+        (obj: SortItem) => obj.value === searchParameters.subcategory,
       );
-      let sort = sortTypes.find(
-        (obj: CurrentSortState) => obj.engTitle === searchParameters.sortBy,
-      );
+      let sort = sortTypes.find((obj: SortItem) => obj.value === searchParameters.sortBy);
       let item = searchParameters.item;
-      if (category) dispatch(setCategory(category));
-      if (subcategory) dispatch(setSubcategory(subcategory));
-      if (sort) dispatch(setSort(sort));
-      if (item) dispatch(setSearchedItemId(+item as number));
+      if (category) setCategory(category);
+      if (subcategory) setSubcategory(subcategory);
+      if (sort) setSort(sort);
+      if (item) setSearchedItemId(+item as number);
     } else {
-      dispatch(setSort(sortTypes[3]));
-      dispatch(setCategory(categories[0]));
+      setSort(sortTypes[3]);
+      setCategory(categories[0]);
     }
-    if (status === Status.LOADING) dispatch(fetchAssortment());
+    if (status === FetchStatus.LOADING) getAll(currentCategory.value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  React.useEffect(() => {
-    if (status === Status.SUCCESS)
-      dispatch(sortItems([currentSortType.engTitle, currentCategory.engTitle]));
+  useEffect(() => {
+    if (status === FetchStatus.SUCCESS)
+      sortItems(currentSortType.value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, status]);
 
-  React.useEffect(() => {
-    if (status === Status.SUCCESS) {
+  useEffect(() => {
+    if (status === FetchStatus.SUCCESS) {
       let filterParameter = qs.stringify(
-        currentCategory.engTitle === 'drinkables'
+        currentCategory.value === 'drinkables'
           ? {
-              category: currentCategory.engTitle,
-              subcategory: currentSubcategory.engTitle,
-              sortBy: currentSortType.engTitle,
-            }
+            category: currentCategory.value,
+            subcategory: currentSubcategory.value,
+            sortBy: currentSortType.value,
+          }
           : {
-              category: currentCategory.engTitle,
-              sortBy: currentSortType.engTitle,
-            },
+            category: currentCategory.value,
+            sortBy: currentSortType.value,
+          },
       );
       navigate(`?${filterParameter.replace('%2B', '(asc)')}`);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSortType, currentCategory, currentSubcategory]);
 
+  useEffect(() => {
+    if (status === FetchStatus.SUCCESS) {
+      getByCategory(currentCategory.value)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCategory, currentSubcategory])
+
   const showAssortment = (status: string) => {
-    if (status === Status.LOADING) {
+    if (status === FetchStatus.LOADING) {
       return [...Array(6)].map((_, i) => <LoadingCard key={i} />);
-    } else if (status === Status.ERROR) {
+    } else if (status === FetchStatus.ERROR) {
       return <FetchError />;
     } else {
-      return assortment[currentCategory.engTitle].map((item: AssortmentItem) => {
-        if (currentCategory.engTitle === 'drinkables') {
+      // return assortment[currentCategory.value].map((item: AssortmentItem) => {
+      return items?.map((item: AssortmentItem) => {
+        if (currentCategory.value === 'drinkables') {
           return (
-            item.subcategory === currentSubcategory.ruTitle && (
+            item.subcategory === currentSubcategory.name && (
               <AssortmentCard key={item.id} item={item} />
             )
           );

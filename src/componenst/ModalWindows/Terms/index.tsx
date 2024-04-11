@@ -1,20 +1,16 @@
-import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { modalSelector, toggleTerms } from '../../../redux/slices/modalWindowSlice';
-
+import { useAppStore } from '../../../redux/store';
 import CloseButton from '../../CloseButton';
 
 import styles from '../ModalWindow.module.scss';
 
-const Terms  = () => {
-  const dispatch = useAppDispatch();
-  const { showTerms } = useAppSelector(modalSelector);
+const Terms = () => {
+  const { actions: { toggleTerms }, getters: { showTerms } } = useAppStore().modalStore
 
   return (
     <div className={`${styles.overlay} ${showTerms ? styles.showModal : ''}`}>
       <div className={styles.terms_container}>
         <div className={styles.text_block}>
-          <CloseButton handleClick={() => dispatch(toggleTerms())} />
+          <CloseButton onClick={() => toggleTerms()} />
           <h2>Пользовательское соглашение (Образец)</h2>
           <p>
             Настоящий документ «Пользовательское соглашение» представляет собой предложение ООО

@@ -1,13 +1,10 @@
-import React from 'react';
-import { useAppSelector } from '../../../Hooks/hooks';
-import { selectCart } from '../../../redux/slices/cartSlice';
-import { selectDelivery } from '../../../redux/slices/deliverySlice';
-
 import styles from './TotalCost.module.scss';
+import { useAppStore } from '../../../redux/store';
 
 export const TotalCost: React.FC = () => {
-  const { currentCost } = useAppSelector(selectDelivery);
-  const { totalPrice, discount } = useAppSelector(selectCart);
+  const { deliveryStore, cartStore } = useAppStore()
+  const { currentCost } = deliveryStore.getters
+  const { totalPrice, discount } = cartStore.getters
   const finalDiscount = (10e10 * (((totalPrice + currentCost) / 100) * 30)) / 10e10;
 
   return (

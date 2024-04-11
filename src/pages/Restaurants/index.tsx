@@ -1,14 +1,14 @@
-import { doc, getDoc, limit } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import { firestoreDB } from '../../firebase';
-import { setAlert } from '../../redux/slices/modalWindowSlice';
-import { useAppDispatch } from '../../Hooks/hooks';
 
 import star from '../../assets/icons/star.svg';
+import logo from '../../assets/logo-primary.svg';
 
 import styles from './Restaurants.module.scss';
 import LoadingRestaurant from '../../componenst/LoadingRestaurant';
+import { useAppStore } from '../../redux/store';
 
 interface Restaurant {
   id: number;
@@ -25,7 +25,7 @@ interface FetchedRestuarants {
 }
 
 const Restaurants: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const { actions: { setAlert } } = useAppStore().modalStore
   const [restaurants, setRestaurants] = useState<Restaurant[]>();
   const [coordinates, setCoordinates] = useState<number[]>([]);
   const zoom = 17;
@@ -38,7 +38,7 @@ const Restaurants: React.FC = () => {
         setRestaurants(rests);
       })
       .catch((error) => {
-        dispatch(setAlert('Не удалось получить список ресторанов'));
+        setAlert('Не удалось получить список ресторанов');
         throw new Error(error);
       });
   }, []);
@@ -48,28 +48,28 @@ const Restaurants: React.FC = () => {
       <ul className={styles.addressies}>
         {!restaurants
           ? Array(4)
-              .fill(1)
-              .map((item) => (
-                <li>
-                  <LoadingRestaurant />
-                </li>
-              ))
-          : restaurants.map((rest) => (
-              <li
-                key={rest.coordinate[0]}
-                className={styles.address_card}
-                onClick={() => setCoordinates(rest.coordinate ?? [])}>
-                <h3 className={styles.title}>{rest.title}</h3>
-                <p className={styles.address}>Адрес: {`${rest.street}, ${rest.city}`}</p>
-                <span className={styles.rating}>
-                  <img src={star} alt="" />
-                  <div>{rest.rating}</div>
-                </span>
-                <span className={styles.workingTime}>
-                  {`с ${rest.workingTime[0]} до ${rest.workingTime[1]}`}
-                </span>
+            .fill(1)
+            .map((item) => (
+              <li>
+                <LoadingRestaurant />
               </li>
-            ))}
+            ))
+          : restaurants.map((rest) => (
+            <li
+              key={rest.coordinate[0]}
+              className={styles.address_card}
+              onClick={() => setCoordinates(rest.coordinate ?? [])}>
+              <h3 className={styles.title}>{rest.title}</h3>
+              <p className={styles.address}>Адрес: {`${rest.street}, ${rest.city}`}</p>
+              <span className={styles.rating}>
+                <img src={star} alt="" />
+                <div>{rest.rating}</div>
+              </span>
+              <span className={styles.workingTime}>
+                {`с ${rest.workingTime[0]} до ${rest.workingTime[1]}`}
+              </span>
+            </li>
+          ))}
       </ul>
       {coordinates[0] && (
         <YMaps>
@@ -77,7 +77,18 @@ const Restaurants: React.FC = () => {
             className={styles.map_wrapper}
             defaultState={{ center: [0, 0], zoom }}
             state={{ center: coordinates, zoom }}>
-            <Placemark geometry={coordinates} />
+            {restaurants?.map(({ id, coordinate }) => (
+              <Placemark
+                key={id}
+                geometry={coordinate}
+                options={{
+                  iconImageHref: logo,
+                  iconLayout: 'default#image',
+                  iconImageSize: [50, 50],
+                  iconImageOffset: [-25, -25],
+                }}
+              />
+            ))}
           </Map>
         </YMaps>
       )}

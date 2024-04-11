@@ -1,6 +1,6 @@
 @import '../../scss/variables.scss';
 
-.delivery_region {
+.region {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,7 +27,7 @@
     transform: rotate(180deg);
     cursor: pointer;
   }
-  .options_list {
+  .list {
     position: absolute;
     top: calc(100%);
     left: 0px;
@@ -37,8 +37,7 @@
     animation: popUp 0.2s ease-out;
     user-select: none;
     max-height: calc(26 * 4);
-    overflow: auto;
-    p {
+    .option {
       padding: 10px;
       margin: 0;
       font-size: 16px;

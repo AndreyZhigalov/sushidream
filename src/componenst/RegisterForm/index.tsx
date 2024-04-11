@@ -1,75 +1,19 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../Hooks/hooks';
-import { auth, firestoreDB } from '../../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import * as yup from 'yup';
-
-import { setAlert, toggleTerms } from '../../redux/slices/modalWindowSlice';
 import { Field, Form, Formik } from 'formik';
 import Terms from '../ModalWindows/Terms';
 import { BigButton } from '../../componenst';
+import { RegisterFormValidation } from './constants';
+import { createUser } from '../../Hooks/createUser';
+import { useAppStore } from '../../redux/store';
 
 import styles from './RegisterForm.module.scss';
-import { doc, setDoc } from 'firebase/firestore';
-
-type CreateAccountForm = {
-  gender: string;
-  name: string;
-  lastName: string;
-  phoneNumber: string;
-  day: string;
-  month: string;
-  year: string;
-  email: string;
-  pass: string;
-  confirmPass: string;
-  terms: boolean;
-  loyalty: boolean;
-  news: boolean;
-};
-
-export const phoneRegExp =
-  /^(\+7|7|8)?[\s\\-]?\(?[489][0-9]{2}\)?[\s\\-]?[0-9]{3}[\s\\-]?[0-9]{2}[\s\\-]?[0-9]{2}$/;
 
 const RegisterForm: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const RegisterFormValidation = yup.object().shape({
-    gender: yup.string().required('Выберите пол'),
-    name: yup
-      .string()
-      .matches(/\D/i, 'Не может содержать символы и цифры')
-      .required('Обязательное поле'),
-    lastName: yup
-      .string()
-      .matches(/\D/i, 'Не может содержать символы и цифры')
-      .required('Обязательное поле'),
-    phoneNumber: yup
-      .string()
-      .matches(phoneRegExp, 'Некорректный номер телефона')
-      .required('Обязательное поле'),
-    day: yup.string().required('Выберите день'),
-    month: yup.string().required('Выберите месяц'),
-    year: yup.string().required('Выберите год'),
-    email: yup.string().email('Некорректный email').required('Обязательное поле'),
-    pass: yup
-      .string()
-      .min(8, `от 8 символов`)
-      .matches(/[A-ZА-ЯЁ]+/u, 'Минимум одна заглавная буква')
-      .matches(/[a-zа-яё]+/u, 'Минимум одна строчная буква')
-      .matches(/\W+/, 'Минимум один символ "!"№;%:?*()_+{}[]<>?/.,"')
-      .required('Обязательное поле'),
-    confirmPass: yup.string().oneOf([yup.ref('pass')], 'Пароли не совпадают'),
-    terms: yup
-      .bool()
-      .oneOf([true], 'Согласие с условиями создания аккаунта обязательно.')
-      .required('Обязательно'),
-  });
-
+  const { toggleTerms } = useAppStore().modalStore.actions
   const fullYear = React.useRef(new Date().getFullYear());
-
+  const navigate = useNavigate()
+  const { setAlert } = useAppStore().modalStore.actions
   const days: string[] = [];
   while (days.length < 31) days.push(`${days.length + 1}`);
 
@@ -79,48 +23,30 @@ const RegisterForm: React.FC = () => {
   let years: string[] = [];
   while (years.length < 100) years.push(`${fullYear.current - 18 - years.length}`);
 
+  const formInitialValues = {
+    gender: '',
+    name: '',
+    lastName: '',
+    phoneNumber: '',
+    day: '',
+    month: '',
+    year: '',
+    email: '',
+    pass: '',
+    confirmPass: '',
+    terms: false,
+    loyalty: false,
+    news: false,
+  };
+
   return (
     <div className={styles.create_account__form}>
       <Terms />
       <h2>СОЗДАТЬ АККАУНТ</h2>
       <p>Создайте аккаунт и присоединитесь к нашему сообществу любителей суши</p>
       <Formik
-        initialValues={{
-          gender: '',
-          name: '',
-          lastName: '',
-          phoneNumber: '',
-          day: '',
-          month: '',
-          year: '',
-          email: '',
-          pass: '',
-          confirmPass: '',
-          terms: false,
-          loyalty: false,
-          news: false,
-        }}
-        onSubmit={(values: CreateAccountForm) => {
-          createUserWithEmailAndPassword(auth, values.email, values.pass)
-            .then((userCredential) => {
-
-              setDoc(doc(firestoreDB, 'users', userCredential.user.uid), {
-                ...values,
-                uid: userCredential.user.uid,
-                birthDay: values.day + '.' + values.month + '.' + values.year,
-              }).then(() => {
-                navigate('../auth');
-              }).catch(error => {
-                dispatch(setAlert('Не удалось сохранить ваши данные. Попробуйте ещё раз'));
-                throw new Error(error)
-              });
-
-            })
-            .catch((error) => {
-              dispatch(setAlert('Ошибка регистрации. Попробуйте ещё раз'));
-              throw new Error(error);
-            });
-        }}
+        initialValues={formInitialValues}
+        onSubmit={(values) => createUser(values, navigate, setAlert)}
         validationSchema={RegisterFormValidation}>
         {({ values, handleBlur, handleChange, handleSubmit, errors, touched, isValid, dirty }) => (
           <Form>
@@ -275,7 +201,7 @@ const RegisterForm: React.FC = () => {
               <div>
                 <p>
                   Я прочёл и согласен с{' '}
-                  <span className={styles.terms_link} onClick={() => dispatch(toggleTerms())}>
+                  <span className={styles.terms_link} onClick={() => toggleTerms()}>
                     условиями создания аккаунта
                   </span>
                 </p>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentPropsWithRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Outlet } from 'react-router-dom';
 
@@ -8,12 +8,14 @@ import Confirm from '../componenst/ModalWindows/Confirm';
 import GetPhone from '../componenst/ModalWindows/GetPhone';
 
 import styles from '../scss/index.module.scss';
+import { Modal } from '../componenst/Modal';
 
 export type OutletContextType = {
   isHeaderInView: boolean;
 };
+type LayoutProps = ComponentPropsWithRef<'div'>;
 
-const MainLayout: React.FC = () => {
+const MainLayout: React.FC = ({ children, ...props }: LayoutProps) => {
   const { ref: inViewRef, inView } = useInView();
 
   const setRef = (node: HTMLElement) => {

@@ -58,3 +58,32 @@
     }
   }
 }
+.submenu_container {
+  cursor: pointer;
+  position: relative;
+}
+.submenu[data-is-shown='true'] {
+  opacity: 1;
+}
+.submenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  place-content: start center;
+  gap: 5px;
+  font-weight: 800;
+  background: $background-second;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  & a {
+    display: block;
+    padding: 0 20px;
+  }
+  & a:hover {
+    background-color: $text-second;
+    color: $background-main;
+  }
+}

@@ -1,22 +1,22 @@
 import { useLocation } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
-import { CurrentSortState, selectFilters, setSubcategory } from '../../redux/slices/filtersSlice';
-
 import styles from './Subcategories.module.scss';
+import { SortItem } from '../../models';
+import { useAppStore } from '../../redux/store';
 
 export const Subcategories = () => {
-  const dispatch = useAppDispatch();
-  const { currentSubcategory, subcategories } = useAppSelector(selectFilters);
+  const { filtersStore } = useAppStore()
+  const { currentSubcategory, subcategories } = filtersStore.getters;
+  const { setSubcategory } = filtersStore.actions;
   const { pathname } = useLocation();
 
-  const setClass = (category: CurrentSortState, location: string) => {
+  const setClass = (category: SortItem, location: string) => {
     if (location.includes('cart')) {
-      return currentSubcategory.engTitle === category.engTitle
+      return currentSubcategory.value === category.value
         ? `${styles.active} ${styles.subcategory_cart}`
         : styles.subcategory_cart;
     } else {
-      return currentSubcategory.engTitle === category.engTitle ? styles.active : '';
+      return currentSubcategory.value === category.value ? styles.active : '';
     }
   };
 
@@ -24,12 +24,12 @@ export const Subcategories = () => {
     <ul className={styles.subcategories}>
       {subcategories.map((category: any) => (
         <li
-          key={category.engTitle}
+          key={category.value}
           onClick={() => {
-            dispatch(setSubcategory(category));
+            setSubcategory(category);
           }}
           className={setClass(category, pathname)}>
-          {category.ruTitle}
+          {category.name}
         </li>
       ))}
     </ul>

@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
-import { clearCart, removeFromCart } from '../../../redux/slices/cartSlice';
-import { closeAlert, modalSelector } from '../../../redux/slices/modalWindowSlice';
+import { useEffect, useState } from 'react';
+
 import { BigButton } from '../../BigButton';
 
 import styles from '../ModalWindow.module.scss';
+import { useAppStore } from '../../../redux/store';
 
 const Confirm = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const { confirmMessage, removeID, type } = useAppSelector(modalSelector);
-  const dispatch = useAppDispatch();
+  const { modalStore, cartStore } = useAppStore()
+  const { confirmMessage, removeID, type } = modalStore.getters
+  const { closeAlert } = modalStore.actions
+
+  const { removeFromCart, clearCart } = cartStore.actions
 
   useEffect(() => {
     confirmMessage && setShowModal(true);
@@ -20,17 +22,17 @@ const Confirm = () => {
 
     switch (type) {
       case 'clear':
-        dispatch(clearCart());
+        clearCart();
         break;
       case 'remove':
-        if (removeID) dispatch(removeFromCart(removeID));
+        if (removeID) removeFromCart(removeID);
         break;
     }
   };
 
   const closeModal = () => {
     setShowModal(false);
-    setTimeout(() => dispatch(closeAlert()), 500);
+    setTimeout(() => closeAlert(), 500);
   };
 
   return (
