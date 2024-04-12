@@ -2,7 +2,6 @@ import { firestoreDB } from '../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { FetchData } from './models/assortmentFetchData.interface';
-import { modalSlice } from '../modal';
 import { cartSlice } from '../cart';
 import { AssortmentItem } from './models/assortmentItem.interface';
 import { AssortmentList } from '../../../models/assortment/assortmentList.interface';
@@ -29,7 +28,7 @@ export class AssortmentService {
                 ] as FetchData;
 
             } catch (error) {
-                Thunk.dispatch(modalSlice.actions.setAlert('Ошибка при получении списка товаров'))
+                console.error('Ошибка при получении списка товаров')
             }
             return [[], {}, []]
         },
@@ -41,7 +40,7 @@ export class AssortmentService {
                 const data = res.get(category)
                 return data as AssortmentItem[]
             }).catch(error => {
-                Thunk.dispatch(modalSlice.actions.setAlert('Ошибка при получении списка товаров'));
+                console.error('Ошибка при получении списка товаров');
                 throw new Error(error)
             })
     })

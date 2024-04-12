@@ -6,54 +6,63 @@ import styles from './ForgotPasswordForm.module.scss';
 import { BigButton } from '../BigButton';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { useAppStore } from '../../redux/store';
-
+import { Modal } from '../Modal';
+import { useState } from 'react';
 
 const ForgotPasswordForm = () => {
-  const { setAlert } = useAppStore().modalStore.actions
+  const [showModal, setSHowModal] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>('');
   const formValidation = yup.object().shape({
     email: yup.string().email('Некорректный Email').required('Обязательное поле'),
   });
 
   return (
-    <div className={styles.forgot_password_wrapper}>
-      <h2>Восстановление пароля</h2>
-      <p>Введите имейл от вашей учётной записи</p>
-      <Formik
-        initialValues={{ email: '' }}
-        onSubmit={(values) => {
-          sendPasswordResetEmail(auth, values.email)
-            .then(() => {
-              setAlert('Пиьсмо отправлено на почту');
-            })
-            .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              setAlert("Не удалось отправить письмо");
-              throw new Error(errorMessage)
-            });
-        }}
-        validationSchema={formValidation}>
-        {({ handleChange, values, handleBlur, errors, touched, isValid, submitForm }) => (
-          <Form>
-            <input
-              type="email"
-              id="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-              name="email"
-              placeholder="myemail@mail.ru"
-            />
-            {errors.email && touched.email && <p className={styles.error}>{errors.email}</p>}
-            <BigButton text={'Восстановить пароль'} anyFunc={submitForm} isFormValid={isValid} />
-          </Form>
-        )}
-      </Formik>
-      <Link to={'../auth'} className={styles.return_link}>
-        Назад
-      </Link>
-    </div>
+    <>
+      <Modal open={showModal}>
+        <h2>{alertMessage}</h2>
+        <BigButton text="ok" />
+      </Modal>
+      <div className={styles.forgot_password_wrapper}>
+        <h2>Восстановление пароля</h2>
+        <p>Введите имейл от вашей учётной записи</p>
+        <Formik
+          initialValues={{ email: '' }}
+          onSubmit={(values) => {
+            sendPasswordResetEmail(auth, values.email)
+              .then(() => {
+                setAlertMessage('Пиьсмо отправлено на почту');
+                setSHowModal(true);
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setAlertMessage('Не удалось отправить письмо');
+                setSHowModal(true);
+                console.error(errorMessage);
+              });
+          }}
+          validationSchema={formValidation}>
+          {({ handleChange, values, handleBlur, errors, touched, isValid, submitForm }) => (
+            <Form>
+              <input
+                type="email"
+                id="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                name="email"
+                placeholder="myemail@mail.ru"
+              />
+              {errors.email && touched.email && <p className={styles.error}>{errors.email}</p>}
+              <BigButton text={'Восстановить пароль'} onClick={submitForm} isFormValid={isValid} />
+            </Form>
+          )}
+        </Formik>
+        <Link to={'../auth'} className={styles.return_link}>
+          Назад
+        </Link>
+      </div>
+    </>
   );
 };
 

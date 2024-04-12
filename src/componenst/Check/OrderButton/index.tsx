@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import deliveryBoy from '../../../assets/icons/deliveryBoy.svg';
 import { FetchStatus } from '../../../models';
 import { useAppStore } from '../../../redux/store';
+import GetPhone from '../../Modal/GetPhone';
 
 import styles from './OrderButton.module.scss';
 
-
 export const OrderButton: React.FC = () => {
-  const { deliveryStore, orderStore, modalStore, userStore } = useAppStore()
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const { deliveryStore, orderStore, userStore } = useAppStore();
   const { phoneNumber } = userStore.getters;
-  const { getters: { status }, actions: { getOrder } } = orderStore;
+  const {
+    getters: { status },
+    actions: { getOrder },
+  } = orderStore;
   const { currentRegion } = deliveryStore.getters;
-  const { showGetPhone } = modalStore.actions
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -23,18 +26,21 @@ export const OrderButton: React.FC = () => {
 
   const onClickOrder = pathname.includes('cart')
     ? () => {
-      if (phoneNumber) {
-        getOrder();
-      } else {
-        showGetPhone();
+        if (phoneNumber) {
+          getOrder();
+        } else {
+          setShowModal(true);
+        }
       }
-    }
     : () => navigate('cart');
 
   return (
-    <button className={orderButtonClass} onClick={onClickOrder}>
-      {currentRegion === 'Самовывоз' ? 'Оформить заказ' : 'Оформить доставку'}
-      {currentRegion !== 'Самовывоз' && <img height={30} src={deliveryBoy} alt="deliveryBoy" />}
-    </button>
+    <>
+      <GetPhone isOpen={showModal} />
+      <button className={orderButtonClass} onClick={onClickOrder}>
+        {currentRegion === 'Самовывоз' ? 'Оформить заказ' : 'Оформить доставку'}
+        {currentRegion !== 'Самовывоз' && <img height={30} src={deliveryBoy} alt="deliveryBoy" />}
+      </button>
+    </>
   );
 };

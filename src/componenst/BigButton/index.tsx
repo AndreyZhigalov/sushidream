@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { ComponentPropsWithRef } from 'react';
 
 import styles from './BigButton.module.scss';
 
-type BigButtonType = {
+type BigButtonType = ComponentPropsWithRef<'button'> & {
   text: string;
-  anyFunc?: () => any;
   isFormValid?: boolean;
 };
 
-export const BigButton: React.FC<BigButtonType> = ({ text, anyFunc, isFormValid }) => {
+export const BigButton: React.FC<BigButtonType> = ({
+  text,
+  onClick,
+  className,
+  isFormValid,
+  ...props
+}) => {
   return (
-    <button className={styles.button} type={'button'} onClick={anyFunc}>
+    <button
+      className={`${styles.button} ${className ? className : ''}`}
+      onClick={onClick}
+      {...props}>
       {text}
     </button>
   );

@@ -4,7 +4,6 @@ import { assortmentSlice, useAssortmentActions, useAssortmentGetters } from './s
 import { cartSlice, useCartActions, useCartGetters } from './slices/cart';
 import { deliverySlice, useDeliveryActions, useDeliveryGetters } from './slices/delivery';
 import { filtersSlice, useFiltersActions, useFiltersGetters } from './slices/filters';
-import { modalSlice, useModalActions, useModalGetters } from './slices/modal';
 import { navbarSlice, useNavbarActions, useNavbarGetters } from './slices/navbar';
 import { orderSlice, useOrderActions, useOrderGetters } from './slices/order';
 import { useUserActions, useUserGetters } from './slices/user/user.store';
@@ -16,7 +15,6 @@ export const store = configureStore({
     cart: cartSlice.reducer,
     delivery: deliverySlice.reducer,
     filters: filtersSlice.reducer,
-    modal: modalSlice.reducer,
     navbar: navbarSlice.reducer,
     order: orderSlice.reducer,
     user: userSlice.reducer
@@ -40,10 +38,6 @@ export const useAppStore = (): RootStore => {
     filtersStore: {
       actions: useFiltersActions(),
       getters: useFiltersGetters()
-    },
-    modalStore: {
-      actions: useModalActions(),
-      getters: useModalGetters()
     },
     navbarStore: {
       actions: useNavbarActions(),

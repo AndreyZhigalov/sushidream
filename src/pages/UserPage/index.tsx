@@ -48,7 +48,7 @@ const UserPage = () => {
             </p>
           </div>
           <div className={styles.button_wrapper}>
-            <BigButton text={'Выйти из аккаунта'} anyFunc={removeUserData} />
+            <BigButton text={'Выйти из аккаунта'} onClick={removeUserData} />
           </div>
         </div>
       )}

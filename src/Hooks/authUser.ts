@@ -6,10 +6,7 @@ import { AuthFormData } from "../models";
 import { NavigateFunction } from "react-router-dom";
 
 type Actions = {
-    setAlert: (message: string) => {
-        payload: string;
-        type: string;
-    },
+    setAlert: (message: string) => void,
     setDiscount: () => {
         payload: undefined;
         type: string;
@@ -35,12 +32,12 @@ export const authUser = async (values: AuthFormData, navigate: NavigateFunction,
                 }
             }).catch(error => {
                 setAlert('Пользователь с такими данными не найден. Обратитесь в поддержку');
-                throw new Error(error);
+                console.error(error);
             })
 
         })
         .catch((error) => {
             setAlert('Неверный логин или пароль')
-            throw new Error(error);
+            console.error(error);
         });
 }

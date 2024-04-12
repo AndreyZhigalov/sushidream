@@ -4,12 +4,7 @@ import { auth, firestoreDB } from "../firebase";
 import { CreateAccountFormData } from "../models";
 import { type NavigateFunction } from "react-router-dom";
 
-type SetAlertType = (message: string) => {
-    payload: string;
-    type: string;
-}
-
-export const createUser = async (values: CreateAccountFormData, navigate: NavigateFunction, setAlert: SetAlertType) => {
+export const createUser = async (values: CreateAccountFormData, navigate: NavigateFunction) => {
     return createUserWithEmailAndPassword(auth, values.email, values.pass)
         .then((userCredential) => {
             setDoc(doc(firestoreDB, 'users', userCredential.user.uid), {
@@ -21,12 +16,12 @@ export const createUser = async (values: CreateAccountFormData, navigate: Naviga
                     navigate('../auth');
                 })
                 .catch((error) => {
-                    setAlert('Не удалось сохранить ваши данные. Попробуйте ещё раз');
+                    console.error('Не удалось сохранить ваши данные. Попробуйте ещё раз');
                     throw new Error(error);
                 });
         })
         .catch((error) => {
-            setAlert('Ошибка регистрации. Попробуйте ещё раз');
+            console.error('Ошибка регистрации. Попробуйте ещё раз');
             throw new Error(error);
         });
 }

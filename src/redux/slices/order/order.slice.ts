@@ -17,7 +17,8 @@ export const orderSlice = createSlice({
     builder.addCase(getOrder.pending, (state) => {
       state.status = FetchStatus.LOADING;
     });
-    builder.addCase(getOrder.fulfilled, (state, action: PayloadAction<string>) => {
+    builder.addCase(getOrder.fulfilled, (state, action: PayloadAction<string | void>) => {
+      if (!action.payload) return
       state.status = FetchStatus.SUCCESS;
       state.orderId = action.payload;
 

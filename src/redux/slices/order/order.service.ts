@@ -4,10 +4,9 @@ import { getDoc, setDoc, doc } from "firebase/firestore";
 import { firestoreDB } from "../../../firebase";
 import { OrderItem } from "./models/orderItem.interface";
 import { cartSlice } from "../cart";
-import { modalSlice } from "../modal";
 
 export class OrderService {
-    public getOrder = createAsyncThunk('cart/getOrder', async (_, Thunk) => {
+    public getOrder = createAsyncThunk<string | void>('cart/getOrder', async (_, Thunk) => {
 
         const {
             cart: { cartItems, totalPrice, discount },
@@ -58,8 +57,7 @@ export class OrderService {
                 return orderID;
             })
             .catch((error) => {
-                Thunk.dispatch(modalSlice.actions.setAlert('Ошибка при отправке заказа. Попробуйте ещё раз'));
-                throw new Error(error);
+                console.error('Ошибка при отправке заказа. Попробуйте ещё раз');
             });
     });
 

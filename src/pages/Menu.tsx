@@ -1,9 +1,13 @@
 import useScreenSize from '../Hooks/useScreenSize';
-import { useOutletContext } from 'react-router-dom';
-
-import { AccortmentBlock, CategoryList, Check, Sort, DeliveryRegion } from '../componenst';
+import {
+  AccortmentBlock,
+  CategoryList,
+  Check,
+  Sort,
+  DeliveryRegion,
+  AssortmentFullCard,
+} from '../componenst';
 import ScrollTopButton from '../componenst/ScrollTopButton';
-import { OutletContextType } from '../layouts/MainLayout';
 
 import bannerLoader from '../assets/banner_loader.webp';
 
@@ -11,13 +15,14 @@ import styles from '../scss/index.module.scss';
 import { FetchStatus } from '../models';
 import { useAppStore } from '../redux/store';
 import { useEffect } from 'react';
+import { useNavbarGetters } from '../redux/slices/navbar';
 
 const Menu: React.FC = () => {
   const screenSize = useScreenSize();
   const { assortmentStore, filtersStore } = useAppStore();
   const { currentCategory } = filtersStore.getters;
   const { banners, status } = assortmentStore.getters;
-  const { isHeaderInView } = useOutletContext<OutletContextType>();
+  const { inView } = useNavbarGetters();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,6 +47,7 @@ const Menu: React.FC = () => {
 
   return (
     <>
+      <AssortmentFullCard />
       <div className={styles.banner_wrapper}>
         {status !== FetchStatus.ERROR && (
           <img
@@ -54,12 +60,12 @@ const Menu: React.FC = () => {
         )}
       </div>
       <div className={styles.menu_wrapper}>
-        <CategoryList navRange={[0, -2]} isFixed={!isHeaderInView} />
+        <CategoryList navRange={[0, -2]} isFixed={!inView} />
         <Sort />
         <AccortmentBlock />
-        <ScrollTopButton isShown={!isHeaderInView} />
+        <ScrollTopButton isShown={!inView} />
         {screenSize.width > 1024 && (
-          <div className={`${styles.check_wrapper} ${!isHeaderInView ? styles.fixed : ''}`}>
+          <div className={`${styles.check_wrapper} ${!inView ? styles.fixed : ''}`}>
             <DeliveryRegion />
             <Check />
           </div>

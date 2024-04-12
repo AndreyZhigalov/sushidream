@@ -8,8 +8,6 @@ import logo from '../../assets/logo-primary.svg';
 
 import styles from './Restaurants.module.scss';
 import LoadingRestaurant from '../../componenst/LoadingRestaurant';
-import { useAppStore } from '../../redux/store';
-
 interface Restaurant {
   id: number;
   street: string;
@@ -25,7 +23,6 @@ interface FetchedRestuarants {
 }
 
 const Restaurants: React.FC = () => {
-  const { actions: { setAlert } } = useAppStore().modalStore
   const [restaurants, setRestaurants] = useState<Restaurant[]>();
   const [coordinates, setCoordinates] = useState<number[]>([]);
   const zoom = 17;
@@ -38,7 +35,7 @@ const Restaurants: React.FC = () => {
         setRestaurants(rests);
       })
       .catch((error) => {
-        setAlert('Не удалось получить список ресторанов');
+        console.error('Не удалось получить список ресторанов');
         throw new Error(error);
       });
   }, []);
