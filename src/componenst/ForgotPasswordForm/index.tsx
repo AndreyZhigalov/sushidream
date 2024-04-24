@@ -18,9 +18,9 @@ const ForgotPasswordForm = () => {
 
   return (
     <>
-      <Modal open={showModal}>
+      <Modal open={showModal} style={{ maxWidth: 500 }} onClose={() => setSHowModal(false)}>
         <h2>{alertMessage}</h2>
-        <BigButton text="ok" />
+        <BigButton text="ok" onClick={() => setSHowModal(false)} />
       </Modal>
       <div className={styles.forgot_password_wrapper}>
         <h2>Восстановление пароля</h2>

@@ -10,7 +10,7 @@ import styles from './OrderButton.module.scss';
 export const OrderButton: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const { deliveryStore, orderStore, userStore } = useAppStore();
-  const { phoneNumber } = userStore.getters;
+  const { phoneNumber, email } = userStore.getters;
   const {
     getters: { status },
     actions: { getOrder },
@@ -26,7 +26,7 @@ export const OrderButton: React.FC = () => {
 
   const onClickOrder = pathname.includes('cart')
     ? () => {
-        if (phoneNumber) {
+        if (phoneNumber ?? email) {
           getOrder();
         } else {
           setShowModal(true);

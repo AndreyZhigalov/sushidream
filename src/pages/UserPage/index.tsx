@@ -8,7 +8,10 @@ import { useAppStore } from '../../redux/store';
 
 const UserPage = () => {
   const navigate = useNavigate();
-  const { getters: user, actions: { removeUserData } } = useAppStore().userStore
+  const {
+    getters: user,
+    actions: { removeUserData },
+  } = useAppStore().userStore;
   let uid = localStorage.getItem('uid');
 
   useEffect(() => {
@@ -17,22 +20,24 @@ const UserPage = () => {
     }
   }, [uid]);
 
+  const [name, lastname] = user.displayName?.split(' ') ?? [];
+
   return (
     <>
       {uid && (
         <div className={styles.user_page__wrapper}>
           <div className={styles.header}>
-            <h1>Здравствуйте, {user.name}!</h1>
+            <h1>Здравствуйте, {user.displayName}!</h1>
           </div>
           <CreditCard user={user} />
           <div className={styles.user_data}>
             <p>
               <span>Имя: </span>
-              {user.name}
+              {name}
             </p>
             <p>
               <span>Фамилия: </span>
-              {user.lastName}
+              {lastname}
             </p>
             <p>
               <span>Номер телефона: </span>
@@ -41,10 +46,6 @@ const UserPage = () => {
             <p>
               <span>Почта: </span>
               {user.email}
-            </p>
-            <p>
-              <span>День рождения: </span>
-              {user.birthDay}
             </p>
           </div>
           <div className={styles.button_wrapper}>

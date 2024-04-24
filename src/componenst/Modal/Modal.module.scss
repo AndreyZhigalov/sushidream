@@ -16,9 +16,10 @@
   padding: 0;
   width: 100%;
   background: $background-second;
-  border: none;
+  border: 3px solid $highlighted;
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0px 0px 30px $highlighted;
 }
 
 .wrapper {
@@ -56,6 +57,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 500px;
+    max-width: 80%;
   }
 }

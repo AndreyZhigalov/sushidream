@@ -2,13 +2,12 @@ import * as yup from 'yup';
 import { BigButton } from '../../componenst';
 import { Formik, Field, Form } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
-import { authUser } from '../../Hooks/authUser';
-
-import styles from './AuthForm.module.scss';
 import { AuthFormData } from '../../models';
-import { useAppStore } from '../../redux/store';
 import { useState } from 'react';
 import { Modal } from '../Modal';
+import { useUserActions } from '../../redux/slices/user/user.store';
+
+import styles from './AuthForm.module.scss';
 
 const AuthForm: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -16,11 +15,8 @@ const AuthForm: React.FC = () => {
   const formValidation = yup.object().shape({
     authEmail: yup.string().email('Некорректный Email').required('Обязательное поле'),
   });
-  const { cartStore, userStore } = useAppStore();
-  const { setDiscount } = cartStore.actions;
-  const { setUserData } = userStore.actions;
+  const { authUser } = useUserActions();
   const navigate = useNavigate();
-
   const setAlert = (message: string) => {
     setAlertMessage(message);
   };
@@ -42,7 +38,9 @@ const AuthForm: React.FC = () => {
           validateOnBlur
           validationSchema={formValidation}
           onSubmit={(values: AuthFormData) =>
-            authUser(values, navigate, { setAlert, setDiscount, setUserData })
+            authUser(values)
+              .then(() => navigate('/profile'))
+              .catch(() => setAlert('Ошибка авторизации'))
           }>
           {({
             values,

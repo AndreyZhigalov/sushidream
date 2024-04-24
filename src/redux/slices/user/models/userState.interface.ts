@@ -1,10 +1,5 @@
-export interface UserState {
-  birthDay: string;
-  uid: string;
-  gender: string;
-  name: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
+import { UserInfo } from 'firebase/auth';
+
+export type UserState = UserInfo & {
   loyalty: boolean;
-}
+};

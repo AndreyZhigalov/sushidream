@@ -5,27 +5,25 @@ import { UserState } from '../../redux/slices/user';
 
 const CreditCard: React.FC<{ user: UserState }> = ({ user }) => {
   return (
-    <figure className={styles.card_container}>
-      <h3 className={styles.card_title}>sushidream</h3>
-      <ul className={styles.card_number}>
-        <li className={styles.card_number_part}>5436</li>
-        <li className={styles.card_number_part}>2623</li>
-        <li className={styles.card_number_part}>7754</li>
-        <li className={styles.card_number_part}>1347</li>
+    <figure className={styles.container}>
+      <h3 className={styles.title}>sushidream</h3>
+      <ul className={styles.number}>
+        <li className={styles.number_part}>5436</li>
+        <li className={styles.number_part}>2623</li>
+        <li className={styles.number_part}>7754</li>
+        <li className={styles.number_part}>1347</li>
       </ul>
-      <div className={styles.card_data_wrapper}>
-        <div className={styles.card_data}>
-          <small className={styles.card_data_header}>Владелец</small>
+      <div className={styles.wrapper}>
+        <div className={styles.data}>
+          <small className={styles.header}>Владелец</small>
           <p>
-            <span className={styles.card_name}>{user.name}</span>{' '}
-            <span className={styles.card_surname}>{user.lastName}</span>
+            <span className={styles.name}>{user.displayName}</span>{' '}
           </p>
         </div>
-        <div className={styles.card_data}>
-          <small className={styles.card_data_header}>Срок</small>
+        <div className={styles.data}>
+          <small className={styles.header}>Срок</small>
           <p>
-            <span className={styles.card_month}>09</span>/
-            <span className={styles.card_year}>26</span>
+            <span className={styles.month}>09</span>/<span className={styles.year}>26</span>
           </p>
         </div>
       </div>

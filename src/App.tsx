@@ -9,7 +9,7 @@ const App: React.FC = () => {
       actions: { setDiscount },
     },
     userStore: {
-      actions: { fetchUserData },
+      actions: { getUser },
     },
   } = useAppStore();
 
@@ -17,7 +17,7 @@ const App: React.FC = () => {
     let uid = localStorage.getItem('uid');
     if (uid) {
       setDiscount();
-      fetchUserData(uid);
+      getUser();
     } else {
     }
   }, []);
