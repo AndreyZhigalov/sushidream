@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import qs from 'qs';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { setSpecials } from '../../../utils/setSpecials';
@@ -10,9 +10,8 @@ import { AssortmentItem } from '../../../redux/slices/assortment';
 import styles from './AssortmentFullCard.module.scss';
 
 export const AssortmentFullCard: React.FC = () => {
-
-  const { cartStore, assortmentStore, filtersStore } = useAppStore()
-  const { addToCart } = cartStore.actions
+  const { cartStore, assortmentStore, filtersStore } = useAppStore();
+  const { addToCart } = cartStore.actions;
   const { searchedItem, specials, status } = assortmentStore.getters;
   const { currentCategory, currentSortType } = filtersStore.getters;
   const [additionalInfo, setAdditionalInfo] = useState(searchedItem?.contents);
@@ -36,9 +35,9 @@ export const AssortmentFullCard: React.FC = () => {
     }
   };
 
-  const onClickClose = () => {
+  const onClickClose = useCallback(() => {
     return pathname.includes('cart') ? navigate(pathname) : navigate(`?${previousSearch}`);
-  };
+  }, [pathname, navigate, previousSearch]);
 
   const switchInfo = (text: string) => {
     setAdditionalInfo(text);
@@ -52,7 +51,7 @@ export const AssortmentFullCard: React.FC = () => {
     };
     document.body.addEventListener('click', overlayHandler);
     return () => document.body.removeEventListener('click', overlayHandler);
-  }, []);
+  }, [onClickClose]);
 
   return (
     <div

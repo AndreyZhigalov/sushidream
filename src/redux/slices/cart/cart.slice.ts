@@ -1,4 +1,3 @@
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AssortmentItem } from '../assortment';
 import { CartState } from './models/cartState.interface';
@@ -23,8 +22,8 @@ export const cartSlice = createSlice({
       state.discount = Number(localStorage.getItem('discount')) ?? 0;
     },
     addToCart(state, action: PayloadAction<AssortmentItem>) {
-      let cart: AssortmentItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
-      let findItem = state.cartItems.find((obj) => obj.id === action.payload.id);
+      const cart: AssortmentItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
+      const findItem = state.cartItems.find((obj) => obj.id === action.payload.id);
 
       if (!findItem) {
         state.cartItems = [...state.cartItems, action.payload];
@@ -57,7 +56,7 @@ export const cartSlice = createSlice({
     removeFromCart(state, action: PayloadAction<number>) {
       let cart: AssortmentItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
 
-      let findItem = state.cartItems.find((obj) => obj.id === action.payload);
+      const findItem = state.cartItems.find((obj) => obj.id === action.payload);
 
       if (findItem && findItem.count > 1) {
         state.count = --state.count;

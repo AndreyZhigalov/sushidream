@@ -17,7 +17,7 @@ export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => 
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  let itemLink: string = pathname.includes('cart')
+  const itemLink: string = pathname.includes('cart')
     ? qs.stringify({
         item: item.id,
       })

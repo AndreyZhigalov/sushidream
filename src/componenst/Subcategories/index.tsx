@@ -5,7 +5,7 @@ import { SortItem } from '../../models';
 import { useAppStore } from '../../redux/store';
 
 export const Subcategories = () => {
-  const { filtersStore } = useAppStore()
+  const { filtersStore } = useAppStore();
   const { currentSubcategory, subcategories } = filtersStore.getters;
   const { setSubcategory } = filtersStore.actions;
   const { pathname } = useLocation();
@@ -22,7 +22,7 @@ export const Subcategories = () => {
 
   return (
     <ul className={styles.subcategories}>
-      {subcategories.map((category: any) => (
+      {subcategories.map((category) => (
         <li
           key={category.value}
           onClick={() => {

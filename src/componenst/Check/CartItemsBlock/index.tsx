@@ -12,7 +12,7 @@ export const CartItemsBlock: React.FC = () => {
   return (
     <div className={styles.items_block}>
       {cartItems.length > 0 ? (
-        cartItems.map((item: any) => <CartItem item={item} key={item.id} />)
+        cartItems.map((item) => <CartItem item={item} key={item.id} />)
       ) : status === FetchStatus.SUCCESS ? (
         <OrderedWarning />
       ) : (

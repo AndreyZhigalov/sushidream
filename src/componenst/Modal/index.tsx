@@ -9,7 +9,7 @@ type ModalPropsType = ComponentPropsWithRef<'dialog'> & {
   onClose?: () => unknown;
 };
 
-export const Modal = ({ children, open, header, onClose, ...props }: ModalPropsType) => {
+export const Modal = ({ children, open, header, onClose, className, ...props }: ModalPropsType) => {
   if (!open) return null;
 
   return (
@@ -18,7 +18,7 @@ export const Modal = ({ children, open, header, onClose, ...props }: ModalPropsT
       onClick={(e) => {
         if (e.currentTarget === e.target) onClose?.();
       }}>
-      <dialog className={styles.modal} {...props} open={open}>
+      <dialog className={styles.modal + ` ${className ? className : ''}`} {...props} open={open}>
         <header className={styles.header}>
           <span>{header}</span>
           <CloseButton onClick={() => onClose?.()} />

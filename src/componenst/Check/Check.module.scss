@@ -11,20 +11,26 @@
   flex-direction: column;
   border-radius: 5px;
   padding: 0 10px;
-  img[alt='Clear cart'] {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    height: 24px;
-    opacity: 50%;
-    transition: opacity 0.2s ease-in;
-    cursor: pointer;
-    &:hover {
-      opacity: 100%;
-    }
-  }
+
   h2 {
     text-shadow: $textShadow;
     text-indent: 15px;
   }
+}
+
+.trash {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 24px;
+  opacity: 50%;
+  transition: opacity 0.2s ease-in;
+  cursor: pointer;
+  &:hover {
+    opacity: 100%;
+  }
+}
+
+.modal {
+  max-width: 500px;
 }

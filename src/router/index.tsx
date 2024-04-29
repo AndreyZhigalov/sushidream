@@ -1,4 +1,4 @@
-import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
+import { lazy, ReactElement, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ForgotPasswordForm from '../componenst/ForgotPasswordForm';
 import { LoadingWarning } from '../componenst';
@@ -20,6 +20,7 @@ const Signin = lazy(() => import(/* webpackChunkName: "Signin" */ '../pages/Sign
 const Signup = lazy(() => import(/* webpackChunkName: "Signup" */ '../pages/Signup'));
 const NotFound = lazy(() => import(/* webpackChunkName: "NotFound" */ '../pages/NotFound'));
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type RedirectRouteProps = { path: string; element: ReactElement<any, any> };
 
 const PrivateRoute = ({ path, element }: RedirectRouteProps) => {
@@ -45,6 +46,7 @@ export const AppRouter = () => {
       setDiscount();
       getUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [FIREBASE_AUTH.currentUser]);
 
   return (

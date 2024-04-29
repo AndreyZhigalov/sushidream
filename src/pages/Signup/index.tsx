@@ -1,8 +1,7 @@
 import RegisterForm from '../../componenst/RegisterForm';
 import styles from './Signup.module.scss';
-type Props = {};
 
-const Signup = (props: Props) => {
+const Signup = () => {
   return (
     <div className={styles.wrapper}>
       <RegisterForm />

@@ -23,7 +23,10 @@ const GetPhone = ({ isOpen }: { isOpen: boolean }) => {
   const closeModal = () => setShowModal(false);
 
   return (
-    <Modal open={showModal} header={'Оставьте номер телефона, чтобы мы могли связаться с вами'}>
+    <Modal
+      open={showModal}
+      header={'Оставьте номер телефона, чтобы мы могли связаться с вами'}
+      style={{ maxWidth: 500 }}>
       <Formik
         initialValues={{
           phoneNumber: '',
@@ -34,7 +37,7 @@ const GetPhone = ({ isOpen }: { isOpen: boolean }) => {
           closeModal();
         }}
         validationSchema={phoneValidation}>
-        {({ values, handleBlur, handleChange, handleSubmit, errors, touched, isValid, dirty }) => {
+        {({ values, handleBlur, handleChange, handleSubmit, errors, touched, isValid }) => {
           return (
             <Form>
               <Field

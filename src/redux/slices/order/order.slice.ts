@@ -18,7 +18,7 @@ export const orderSlice = createSlice({
       state.status = FetchStatus.LOADING;
     });
     builder.addCase(getOrder.fulfilled, (state, action: PayloadAction<string | void>) => {
-      if (!action.payload) return
+      if (!action.payload) return;
       state.status = FetchStatus.SUCCESS;
       state.orderId = action.payload;
 
@@ -27,10 +27,10 @@ export const orderSlice = createSlice({
       localStorage.removeItem('discount');
       localStorage.removeItem('totalPrice');
     });
-    builder.addCase(getOrder.rejected, (state, action) => {
+    builder.addCase(getOrder.rejected, (state) => {
       state.status = FetchStatus.ERROR;
     });
   },
 });
 
-const getOrder = new OrderService().getOrder
+const getOrder = new OrderService().getOrder;

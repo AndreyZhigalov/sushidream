@@ -18,10 +18,11 @@ const MainLayout = ({ children, ...props }: LayoutProps) => {
 
   useEffect(() => {
     inView && setInView(inView);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} {...props}>
       <PagesNavigation />
       <Header setRef={setRef} />
       <main className={styles.main_container}>{children}</main>

@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { BigButton } from '../../componenst';
-import CreditCard from '../../componenst/CreditCard';
 import { useAppStore } from '../../redux/store';
 
 import styles from './Profile.module.scss';

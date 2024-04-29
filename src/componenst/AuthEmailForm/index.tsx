@@ -9,12 +9,13 @@ import { useUserActions } from '../../redux/slices/user/user.store';
 
 import styles from './AuthEmailForm.module.scss';
 
+const FORM_VALIDATION = yup.object().shape({
+  authEmail: yup.string().email('Некорректный Email').required('Обязательное поле'),
+});
+
 const AuthEmailForm: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>('');
-  const formValidation = yup.object().shape({
-    authEmail: yup.string().email('Некорректный Email').required('Обязательное поле'),
-  });
   const { authUser } = useUserActions();
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ const AuthEmailForm: React.FC = () => {
 
   return (
     <>
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
+      <Modal open={showModal} onClose={() => setShowModal(false)} style={{ maxWidth: 500 }}>
         <h2>{alertMessage}</h2>
         <BigButton text="Понятно" onClick={() => setShowModal(false)} />
       </Modal>
@@ -36,7 +37,7 @@ const AuthEmailForm: React.FC = () => {
             password: '',
           }}
           validateOnBlur
-          validationSchema={formValidation}
+          validationSchema={FORM_VALIDATION}
           onSubmit={(values: AuthFormData) =>
             authUser(values)
               .then(() => navigate('/profile'))

@@ -35,7 +35,6 @@ const ForgotPasswordForm = () => {
                 setSHowModal(true);
               })
               .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
                 setAlertMessage('Не удалось отправить письмо');
                 setSHowModal(true);

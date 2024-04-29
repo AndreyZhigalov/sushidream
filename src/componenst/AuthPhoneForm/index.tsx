@@ -6,20 +6,22 @@ import { useCallback, useState } from 'react';
 import { Modal } from '../Modal';
 import { useUserActions } from '../../redux/slices/user/user.store';
 
-import styles from './AuthPhoneForm.module.scss';
 import { PHONE_NUMBER_REGEXP } from '../RegisterForm/constants';
 import { ConfirmationResult } from 'firebase/auth';
+
+import styles from './AuthPhoneForm.module.scss';
+
+const PHONE_VALIDATION = yup.object().shape({
+  phoneNumber: yup.string().matches(PHONE_NUMBER_REGEXP, 'Неверный формат номера телефона'),
+});
+const CODE_VALIDATION = yup.object().shape({
+  code: yup.string(),
+});
 
 const AuthPhoneForm: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>('');
   const [confirmResult, setConfirmResult] = useState<ConfirmationResult>();
-  const phoneValidation = yup.object().shape({
-    phoneNumber: yup.string().matches(PHONE_NUMBER_REGEXP, 'Неверный формат номера телефона'),
-  });
-  const codeValidation = yup.object().shape({
-    code: yup.string(),
-  });
   const { authUserWithPhone, confirmAuthUserWithPhone } = useUserActions();
   const navigate = useNavigate();
 
@@ -29,7 +31,7 @@ const AuthPhoneForm: React.FC = () => {
 
   return (
     <>
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
+      <Modal open={showModal} onClose={() => setShowModal(false)} style={{ maxWidth: 500 }}>
         <h2>{alertMessage}</h2>
         <BigButton text="Понятно" onClick={() => setShowModal(false)} />
       </Modal>
@@ -41,7 +43,7 @@ const AuthPhoneForm: React.FC = () => {
               phoneNumber: '',
             }}
             validateOnBlur
-            validationSchema={phoneValidation}
+            validationSchema={PHONE_VALIDATION}
             onSubmit={(values: { phoneNumber: string }) =>
               authUserWithPhone(values.phoneNumber)
                 .then((confirm) => {
@@ -90,7 +92,7 @@ const AuthPhoneForm: React.FC = () => {
               code: '',
             }}
             validateOnBlur
-            validationSchema={codeValidation}
+            validationSchema={CODE_VALIDATION}
             onSubmit={({ code }: { code: string }) =>
               confirmAuthUserWithPhone({ code, confirmResult })
                 .then(() => navigate('/profile'))

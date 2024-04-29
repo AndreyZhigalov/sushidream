@@ -1,5 +1,5 @@
 import { doc, getDoc } from 'firebase/firestore';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import { FIREBASE_DB } from '../../firebase';
 
@@ -27,7 +27,7 @@ const Restaurants: React.FC = () => {
   const [coordinates, setCoordinates] = useState<number[]>([]);
   const zoom = 17;
 
-  React.useEffect(() => {
+  useEffect(() => {
     getDoc(doc(FIREBASE_DB, 'restaurants', 'addresses'))
       .then((res) => {
         const rests = Object.values(res.data() as FetchedRestuarants);
@@ -45,28 +45,28 @@ const Restaurants: React.FC = () => {
       <ul className={styles.addressies}>
         {!restaurants
           ? Array(4)
-            .fill(1)
-            .map((item) => (
-              <li>
-                <LoadingRestaurant />
-              </li>
-            ))
+              .fill(1)
+              .map(() => (
+                <li>
+                  <LoadingRestaurant />
+                </li>
+              ))
           : restaurants.map((rest) => (
-            <li
-              key={rest.coordinate[0]}
-              className={styles.address_card}
-              onClick={() => setCoordinates(rest.coordinate ?? [])}>
-              <h3 className={styles.title}>{rest.title}</h3>
-              <p className={styles.address}>Адрес: {`${rest.street}, ${rest.city}`}</p>
-              <span className={styles.rating}>
-                <img src={star} alt="" />
-                <div>{rest.rating}</div>
-              </span>
-              <span className={styles.workingTime}>
-                {`с ${rest.workingTime[0]} до ${rest.workingTime[1]}`}
-              </span>
-            </li>
-          ))}
+              <li
+                key={rest.coordinate[0]}
+                className={styles.address_card}
+                onClick={() => setCoordinates(rest.coordinate ?? [])}>
+                <h3 className={styles.title}>{rest.title}</h3>
+                <p className={styles.address}>Адрес: {`${rest.street}, ${rest.city}`}</p>
+                <span className={styles.rating}>
+                  <img src={star} alt="" />
+                  <div>{rest.rating}</div>
+                </span>
+                <span className={styles.workingTime}>
+                  {`с ${rest.workingTime[0]} до ${rest.workingTime[1]}`}
+                </span>
+              </li>
+            ))}
       </ul>
       {coordinates[0] && (
         <YMaps>

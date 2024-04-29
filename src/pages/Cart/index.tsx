@@ -34,6 +34,7 @@ const Cart: React.FC = () => {
   useEffect(() => {
     setCategory(categories[16]);
     getByCategory(categories[16].value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const showAssortment = () => {

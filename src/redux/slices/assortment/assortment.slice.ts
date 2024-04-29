@@ -23,7 +23,7 @@ export const assortmentSlice = createSlice({
       state.specials = action.payload[2];
     },
     sortItems(state, action: PayloadAction<string>) {
-      let sortType = action.payload;
+      const sortType = action.payload;
 
       switch (sortType) {
         case 'title':
@@ -39,14 +39,12 @@ export const assortmentSlice = createSlice({
           state.items.sort((a, b) => b['rating'] - a['rating']);
           break;
         case 'cheapest':
-          state.items.sort(
-            (a, b) => a['price'] / a['portion'] - b['price'] / b['portion'],
-          );
+          state.items.sort((a, b) => a['price'] / a['portion'] - b['price'] / b['portion']);
           break;
       }
     },
     findItem(state, action: PayloadAction<number>) {
-      let item = state.items.find((item) => item.id === action.payload);
+      const item = state.items.find((item) => item.id === action.payload);
       if (item) {
         state.searchedItem = item;
       }
@@ -71,7 +69,7 @@ export const assortmentSlice = createSlice({
     });
     builder.addCase(getByCategory.fulfilled, (state, action: PayloadAction<AssortmentItem[]>) => {
       state.status = FetchStatus.SUCCESS;
-      state.items = action.payload
+      state.items = action.payload;
     });
     builder.addCase(getByCategory.rejected, (state, action) => {
       state.status = FetchStatus.ERROR;
@@ -80,5 +78,4 @@ export const assortmentSlice = createSlice({
   },
 });
 
-const { getAll, getByCategory } = new AssortmentService()
-
+const { getAll, getByCategory } = new AssortmentService();

@@ -27,7 +27,7 @@ export const CategoryList: React.FC<{ navRange: number[]; isFixed: boolean }> = 
   return (
     <nav className={styles.category_list}>
       <ul className={isFixed ? mainStyles.fixed : ''}>
-        {categories.slice(navRange[0], navRange[1]).map((category: any) => (
+        {categories.slice(navRange[0], navRange[1]).map((category) => (
           <li
             key={category.value}
             onClick={() => {

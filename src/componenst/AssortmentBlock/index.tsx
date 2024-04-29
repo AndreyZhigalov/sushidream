@@ -4,30 +4,25 @@ import { AssortmentCard } from './AssortmentCard';
 import { LoadingCard } from '../LoadingCard';
 import { FetchError } from './FetchError';
 import { FetchStatus, SortItem } from '../../models';
-import { useAppStore } from '../../redux/store';
-import { AssortmentItem } from '../../redux/slices/assortment';
+
+import {
+  AssortmentItem,
+  useAssortmentActions,
+  useAssortmentGetters,
+} from '../../redux/slices/assortment';
+
 import { useEffect } from 'react';
 
 import styles from './AssortmentBlock.module.scss';
+import { useFiltersActions, useFiltersGetters } from '../../redux/slices/filters';
 
 export const AccortmentBlock: React.FC = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
 
-  const { assortmentStore, filtersStore } = useAppStore()
-  const {
-    findItem,
-    getAll,
-    getByCategory,
-    sortItems
-  } = assortmentStore.actions
-  const { status, items } = assortmentStore.getters;
-  const {
-    setCategory,
-    setSubcategory,
-    setSort,
-    setSearchedItemId,
-  } = filtersStore.actions
+  const { findItem, getAll, getByCategory, sortItems } = useAssortmentActions();
+  const { status, items } = useAssortmentGetters();
+  const { setCategory, setSubcategory, setSort, setSearchedItemId } = useFiltersActions();
   const {
     currentSortType,
     currentCategory,
@@ -36,7 +31,7 @@ export const AccortmentBlock: React.FC = () => {
     searchedItemId,
     currentSubcategory,
     subcategories,
-  } = filtersStore.getters;
+  } = useFiltersGetters();
 
   useEffect(() => {
     if (status === FetchStatus.SUCCESS && searchedItemId) {
@@ -47,13 +42,13 @@ export const AccortmentBlock: React.FC = () => {
 
   useEffect(() => {
     if (search) {
-      let searchParameters = qs.parse(search.substring(1).replace('(asc)', '%2B'));
-      let category = categories.find((obj: SortItem) => obj.value === searchParameters.category);
-      let subcategory = subcategories.find(
+      const searchParameters = qs.parse(search.substring(1).replace('(asc)', '%2B'));
+      const category = categories.find((obj: SortItem) => obj.value === searchParameters.category);
+      const subcategory = subcategories.find(
         (obj: SortItem) => obj.value === searchParameters.subcategory,
       );
-      let sort = sortTypes.find((obj: SortItem) => obj.value === searchParameters.sortBy);
-      let item = searchParameters.item;
+      const sort = sortTypes.find((obj: SortItem) => obj.value === searchParameters.sortBy);
+      const item = searchParameters.item;
       if (category) setCategory(category);
       if (subcategory) setSubcategory(subcategory);
       if (sort) setSort(sort);
@@ -67,24 +62,23 @@ export const AccortmentBlock: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (status === FetchStatus.SUCCESS)
-      sortItems(currentSortType.value);
+    if (status === FetchStatus.SUCCESS) sortItems(currentSortType.value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, status]);
 
   useEffect(() => {
     if (status === FetchStatus.SUCCESS) {
-      let filterParameter = qs.stringify(
+      const filterParameter = qs.stringify(
         currentCategory.value === 'drinkables'
           ? {
-            category: currentCategory.value,
-            subcategory: currentSubcategory.value,
-            sortBy: currentSortType.value,
-          }
+              category: currentCategory.value,
+              subcategory: currentSubcategory.value,
+              sortBy: currentSortType.value,
+            }
           : {
-            category: currentCategory.value,
-            sortBy: currentSortType.value,
-          },
+              category: currentCategory.value,
+              sortBy: currentSortType.value,
+            },
       );
       navigate(`?${filterParameter.replace('%2B', '(asc)')}`);
     }
@@ -93,10 +87,10 @@ export const AccortmentBlock: React.FC = () => {
 
   useEffect(() => {
     if (status === FetchStatus.SUCCESS) {
-      getByCategory(currentCategory.value)
+      getByCategory(currentCategory.value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCategory, currentSubcategory])
+  }, [currentCategory, currentSubcategory]);
 
   const showAssortment = (status: string) => {
     if (status === FetchStatus.LOADING) {

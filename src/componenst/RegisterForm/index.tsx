@@ -9,28 +9,20 @@ import styles from './RegisterForm.module.scss';
 import { Modal } from '../Modal';
 import { useUserActions } from '../../redux/slices/user/user.store';
 
+const INITIAL_VALUES = {
+  name: '',
+  lastname: '',
+  email: '',
+  phoneNumber: '',
+  pass: '',
+  confirmPass: '',
+};
+
 const RegisterForm: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const fullYear = React.useRef(new Date().getFullYear());
-  const { createUser } = useUserActions();
   const navigate = useNavigate();
-  const days: string[] = [];
-  while (days.length < 31) days.push(`${days.length + 1}`);
 
-  const months: string[] = [];
-  while (months.length < 12) months.push(`${months.length + 1}`);
-
-  let years: string[] = [];
-  while (years.length < 100) years.push(`${fullYear.current - 18 - years.length}`);
-
-  const formInitialValues = {
-    name: '',
-    lastname: '',
-    email: '',
-    phoneNumber: '',
-    pass: '',
-    confirmPass: '',
-  };
+  const { createUser } = useUserActions();
 
   return (
     <>
@@ -41,19 +33,10 @@ const RegisterForm: React.FC = () => {
         <h2>СОЗДАТЬ АККАУНТ</h2>
         <p>Создайте аккаунт и присоединитесь к нашему сообществу любителей суши</p>
         <Formik
-          initialValues={formInitialValues}
+          initialValues={INITIAL_VALUES}
           onSubmit={(values) => createUser(values).then(() => navigate('/profile'))}
           validationSchema={RegisterFormValidation}>
-          {({
-            values,
-            handleBlur,
-            handleChange,
-            handleSubmit,
-            errors,
-            touched,
-            isValid,
-            dirty,
-          }) => (
+          {({ values, handleBlur, handleChange, handleSubmit, errors, touched, isValid }) => (
             <Form>
               <label htmlFor="name">
                 Имя
@@ -93,20 +76,6 @@ const RegisterForm: React.FC = () => {
                 />
                 {touched.email && errors.email && <p className={styles.error}>{errors.email}</p>}
               </label>
-              {/* <label htmlFor="phoneNumber">
-                Телефон
-                <Field
-                  type="text"
-                  name="phoneNumber"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                  placeholder="myawesomeemail@email.com"
-                />
-                {touched.phoneNumber && errors.phoneNumber && (
-                  <p className={styles.error}>{errors.phoneNumber}</p>
-                )}
-              </label> */}
               <label htmlFor="pass">
                 Пароль
                 <Field
