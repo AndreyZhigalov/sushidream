@@ -1,4 +1,4 @@
-import { firestoreDB } from '../../../firebase';
+import { FIREBASE_DB } from '../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { FetchData } from './models/assortmentFetchData.interface';
@@ -11,9 +11,9 @@ export class AssortmentService {
     public getAll = createAsyncThunk<FetchData, string>(
         'assortment/getAll',
         async (categoryName, Thunk) => {
-            const assortRef = doc(firestoreDB, 'assortment/catalog');
-            const bannersRef = doc(firestoreDB, 'assortment/banners');
-            const specificsRef = doc(firestoreDB, 'assortment/specifics');
+            const assortRef = doc(FIREBASE_DB, 'assortment/catalog');
+            const bannersRef = doc(FIREBASE_DB, 'assortment/banners');
+            const specificsRef = doc(FIREBASE_DB, 'assortment/specifics');
             try {
                 const [assortment, banners, specifics] = await Promise.all([
                     getDoc<AssortmentList>(assortRef),
@@ -34,7 +34,7 @@ export class AssortmentService {
         },
     );
     public getByCategory = createAsyncThunk<AssortmentItem[], string>("assortment/getByCategory", async (category, Thunk) => {
-        const assortRef = doc(firestoreDB, `assortment/catalog`);
+        const assortRef = doc(FIREBASE_DB, `assortment/catalog`);
         return await getDoc<AssortmentList>(assortRef)
             .then((res) => {
                 const data = res.get(category)

@@ -10,7 +10,7 @@ export const Header: React.FC<{ setRef: (node: HTMLElement) => void }> = ({ setR
 
   useEffect(() => {
    ref.current && setRef(ref.current);
-  }, [ref]);
+  }, [ref, setRef]);
 
   return (
     <header ref={ref} className={styles.header}>

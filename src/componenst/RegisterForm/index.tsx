@@ -24,7 +24,10 @@ const RegisterForm: React.FC = () => {
   while (years.length < 100) years.push(`${fullYear.current - 18 - years.length}`);
 
   const formInitialValues = {
+    name: '',
+    lastname: '',
     email: '',
+    phoneNumber: '',
     pass: '',
     confirmPass: '',
   };
@@ -52,6 +55,32 @@ const RegisterForm: React.FC = () => {
             dirty,
           }) => (
             <Form>
+              <label htmlFor="name">
+                Имя
+                <Field
+                  type="text"
+                  name="name"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.name}
+                  placeholder="Алёна"
+                />
+                {touched.name && errors.name && <p className={styles.error}>{errors.name}</p>}
+              </label>
+              <label htmlFor="lastname">
+                Фамилия
+                <Field
+                  type="text"
+                  name="lastname"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.lastname}
+                  placeholder="Петрова"
+                />
+                {touched.lastname && errors.lastname && (
+                  <p className={styles.error}>{errors.lastname}</p>
+                )}
+              </label>
               <label htmlFor="email">
                 Email
                 <Field
@@ -64,6 +93,20 @@ const RegisterForm: React.FC = () => {
                 />
                 {touched.email && errors.email && <p className={styles.error}>{errors.email}</p>}
               </label>
+              {/* <label htmlFor="phoneNumber">
+                Телефон
+                <Field
+                  type="text"
+                  name="phoneNumber"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  placeholder="myawesomeemail@email.com"
+                />
+                {touched.phoneNumber && errors.phoneNumber && (
+                  <p className={styles.error}>{errors.phoneNumber}</p>
+                )}
+              </label> */}
               <label htmlFor="pass">
                 Пароль
                 <Field
@@ -101,7 +144,7 @@ const RegisterForm: React.FC = () => {
           )}
         </Formik>
         <h3>
-          или <Link to="../auth">авторизуйтесь</Link>
+          или <Link to="../signin">авторизуйтесь</Link>
         </h3>
       </div>
     </>

@@ -1,6 +1,18 @@
 import * as yup from 'yup';
+// import { PHONE_NUMBER_REGEXP } from './phoneNumberRegexp';
 
 export const RegisterFormValidation = yup.object().shape({
+  name: yup
+    .string()
+    .min(2, 'От двух букв')
+    .max(35, 'Слишком длинное имя')
+    .required('Обязательное поле'),
+  lastname: yup
+    .string()
+    .min(2, 'От двух букв')
+    .max(35, 'Слишком длинная фамилия')
+    .required('Обязательное поле'),
+  // phoneNumber: yup.string().matches(PHONE_NUMBER_REGEXP),
   email: yup.string().email('Некорректный email').required('Обязательное поле'),
   pass: yup
     .string()

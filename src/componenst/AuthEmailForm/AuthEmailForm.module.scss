@@ -1,0 +1,52 @@
+@import '../../scss/variables.scss';
+
+.auth_form {
+  display: grid;
+  height: max-content;
+  grid-template-columns: 360px;
+  grid-template-rows: repeat(auto-fit, max-content);
+  h2 {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+  p:nth-of-type(1) {
+    margin: 0 0 10px;
+  }
+
+  @media (max-width: 420px) {
+    grid-template-columns: 330px;
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, max-content);
+  grid-gap: 15px;
+  margin-bottom: 15px;
+}
+
+.input {
+  background-color: $background-main;
+  box-shadow: $boxShadow;
+  border: none;
+  outline: none;
+  height: 35px;
+  width: 100%;
+  font-size: 16px;
+  border-bottom: 2px solid $text-second;
+}
+.label {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.forgot_password {
+  margin-bottom: 20px;
+  width: max-content;
+  justify-self: end;
+}
+.error {
+  color: red;
+  margin: 10px 0 0 0;
+}

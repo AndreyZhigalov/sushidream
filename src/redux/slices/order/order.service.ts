@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { getDoc, setDoc, doc } from "firebase/firestore";
-import { firestoreDB } from "../../../firebase";
+import { FIREBASE_DB } from "../../../firebase";
 import { OrderItem } from "./models/orderItem.interface";
 import { cartSlice } from "../cart";
 
@@ -25,7 +25,7 @@ export class OrderService {
             .toLocaleUpperCase();
 
         const orderslist =
-            (await getDoc(doc(firestoreDB, 'orders', userID)).then(
+            (await getDoc(doc(FIREBASE_DB, 'orders', userID)).then(
                 (res) => res.data() as { orderslist: OrderItem[] },
             )) ?? ({} as { orderslist: OrderItem[] });
 
@@ -47,7 +47,7 @@ export class OrderService {
         };
 
         return await setDoc(
-            doc(firestoreDB, 'orders', userID),
+            doc(FIREBASE_DB, 'orders', userID),
             orderslist.orderslist
                 ? { orderslist: [...orderslist.orderslist, newOrder], phone: phoneNumber }
                 : { orderslist: [newOrder], phone: phoneNumber },

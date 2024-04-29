@@ -1,15 +1,15 @@
 import * as yup from 'yup';
-import { BigButton } from '../../componenst';
+import { BigButton } from '..';
 import { Formik, Field, Form } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthFormData } from '../../models';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Modal } from '../Modal';
 import { useUserActions } from '../../redux/slices/user/user.store';
 
-import styles from './AuthForm.module.scss';
+import styles from './AuthEmailForm.module.scss';
 
-const AuthForm: React.FC = () => {
+const AuthEmailForm: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>('');
   const formValidation = yup.object().shape({
@@ -17,9 +17,10 @@ const AuthForm: React.FC = () => {
   });
   const { authUser } = useUserActions();
   const navigate = useNavigate();
-  const setAlert = (message: string) => {
+
+  const setAlert = useCallback((message: string) => {
     setAlertMessage(message);
-  };
+  }, []);
 
   return (
     <>
@@ -29,7 +30,6 @@ const AuthForm: React.FC = () => {
       </Modal>
       <div className={styles.auth_form}>
         <h2>АВТОРИЗАЦИЯ</h2>
-        <p>Введите ваш Email и пароль, чтобы войти в аккаунт</p>
         <Formik
           initialValues={{
             authEmail: '',
@@ -50,12 +50,13 @@ const AuthForm: React.FC = () => {
             touched,
             handleBlur,
             isValid,
-            dirty,
+            isSubmitting,
           }) => (
-            <Form>
-              <label htmlFor="email">
+            <Form className={styles.form}>
+              <label htmlFor="email" className={styles.label}>
                 Email
                 <Field
+                  className={styles.input}
                   type="email"
                   name="authEmail"
                   id="email"
@@ -69,9 +70,10 @@ const AuthForm: React.FC = () => {
                   <p className={styles.error}>{errors.authEmail}</p>
                 )}
               </label>
-              <label htmlFor="password">
+              <label htmlFor="password" className={styles.label}>
                 Пароль
                 <Field
+                  className={styles.input}
                   type="password"
                   name="password"
                   id="password"
@@ -88,16 +90,14 @@ const AuthForm: React.FC = () => {
                 text={'Авторизоваться'}
                 onClick={() => handleSubmit()}
                 isFormValid={isValid}
+                className={isSubmitting ? 'shining' : ''}
               />
             </Form>
           )}
         </Formik>
-        <h3>
-          или <Link to="../signup">зарегистрируйтесь</Link>
-        </h3>
       </div>
     </>
   );
 };
 
-export default AuthForm;
+export default AuthEmailForm;

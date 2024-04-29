@@ -16,6 +16,7 @@ export const BigButton: React.FC<BigButtonType> = ({
 }) => {
   return (
     <button
+      disabled={isFormValid !== undefined && !isFormValid}
       className={`${styles.button} ${className ? className : ''}`}
       onClick={onClick}
       {...props}>

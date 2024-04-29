@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import styles from './ForgotPasswordForm.module.scss';
 import { BigButton } from '../BigButton';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { FIREBASE_AUTH } from '../../firebase';
 import { Modal } from '../Modal';
 import { useState } from 'react';
 
@@ -22,13 +22,14 @@ const ForgotPasswordForm = () => {
         <h2>{alertMessage}</h2>
         <BigButton text="ok" onClick={() => setSHowModal(false)} />
       </Modal>
+
       <div className={styles.forgot_password_wrapper}>
         <h2>Восстановление пароля</h2>
         <p>Введите имейл от вашей учётной записи</p>
         <Formik
           initialValues={{ email: '' }}
           onSubmit={(values) => {
-            sendPasswordResetEmail(auth, values.email)
+            sendPasswordResetEmail(FIREBASE_AUTH, values.email)
               .then(() => {
                 setAlertMessage('Пиьсмо отправлено на почту');
                 setSHowModal(true);
@@ -58,7 +59,7 @@ const ForgotPasswordForm = () => {
             </Form>
           )}
         </Formik>
-        <Link to={'../auth'} className={styles.return_link}>
+        <Link to={'../signin'} className={styles.return_link}>
           Назад
         </Link>
       </div>

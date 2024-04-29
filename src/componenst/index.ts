@@ -19,6 +19,6 @@ export * from './PagesNavigation';
 export * from './Sort';
 export * from './LoadingWarning';
 export * from './BigButton';
-export * from './AuthForm';
+export * from './AuthEmailForm';
 export * from './RegisterForm';
-export * from '../pages/UserPage';
+export * from '../pages/Profile';

@@ -1,7 +1,7 @@
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
-import { firestoreDB } from '../../firebase';
+import { FIREBASE_DB } from '../../firebase';
 
 import star from '../../assets/icons/star.svg';
 import logo from '../../assets/logo-primary.svg';
@@ -28,7 +28,7 @@ const Restaurants: React.FC = () => {
   const zoom = 17;
 
   React.useEffect(() => {
-    getDoc(doc(firestoreDB, 'restaurants', 'addresses'))
+    getDoc(doc(FIREBASE_DB, 'restaurants', 'addresses'))
       .then((res) => {
         const rests = Object.values(res.data() as FetchedRestuarants);
         setCoordinates(rests[0].coordinate);
