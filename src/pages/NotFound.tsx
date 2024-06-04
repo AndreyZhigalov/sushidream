@@ -1,6 +1,6 @@
 import React from 'react';
 
-import notFoundImage from '../assets/notFound.svg';
+import NotFoundImage from '../assets/notFound.svg?react';
 
 const NotFound: React.FC = () => {
   return (
@@ -15,13 +15,7 @@ const NotFound: React.FC = () => {
         textAlign: 'center',
         margin: '20px',
       }}>
-      <img
-        src={notFoundImage}
-        alt="Page is not found"
-        style={{
-          height: '200px',
-        }}
-      />
+      <NotFoundImage width={200} />
       <h1>СТРАНИЦА НЕ НАЙДЕНА</h1>
     </div>
   );

@@ -3,7 +3,10 @@
 .overlay {
   z-index: 9999;
   position: fixed;
-  inset: 0 0 0 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: $background-trans;
 }
 
@@ -16,10 +19,11 @@
   padding: 0;
   width: 100%;
   background: $background-second;
-  border: 3px solid $highlighted;
+  border: none;
+  // border: 3px solid $highlighted;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0px 0px 30px $highlighted;
+  box-shadow: 2px 2px 0px $highlighted;
 }
 
 .wrapper {
@@ -27,7 +31,7 @@
 }
 
 .header {
-  padding: 5px 10px;
+  padding: 10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;

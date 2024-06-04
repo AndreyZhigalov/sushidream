@@ -1,39 +1,33 @@
 import { useLocation } from 'react-router-dom';
-
 import { Subcategories } from '../Subcategories';
-
 import mainStyles from '../../scss/index.module.scss';
-import styles from './CategoryList.module.scss';
-import { SortItem } from '../../models';
 import { useAppStore } from '../../redux/store';
+import classNames from 'classnames';
+
+import styles from './CategoryList.module.scss';
 
 export const CategoryList: React.FC<{ navRange: number[]; isFixed: boolean }> = ({
   navRange,
   isFixed,
 }) => {
-  const { filtersStore } = useAppStore()
-  const { currentCategory, categories, } = filtersStore.getters;
-  const { setCategory, } = filtersStore.actions;
+  const { filtersStore } = useAppStore();
+  const { currentCategory, categories } = filtersStore.getters;
+  const { setCategory } = filtersStore.actions;
   const { pathname } = useLocation();
 
-  const setClass = (category: SortItem, location: string) => {
-    if (currentCategory.value === category.value) {
-      return location.includes('cart') ? styles.active : styles.active + ' ' + styles.li_margin;
-    } else {
-      return location.includes('cart') ? '' : '' + styles.li_margin;
-    }
-  };
-
   return (
-    <nav className={styles.category_list}>
-      <ul className={isFixed ? mainStyles.fixed : ''}>
+    <nav className={styles.container}>
+      <ul className={classNames(styles.list, { [mainStyles.fixed]: isFixed })}>
         {categories.slice(navRange[0], navRange[1]).map((category) => (
           <li
             key={category.value}
             onClick={() => {
               setCategory(category);
             }}
-            className={setClass(category, pathname)}>
+            className={classNames(styles.item, {
+              [styles.active]: currentCategory.value === category.value,
+              [styles.margin]: !pathname.includes('cart'),
+            })}>
             {category.name}
             {category.value === 'drinkables' && currentCategory.value === 'drinkables' && (
               <Subcategories />

@@ -1,0 +1,33 @@
+@import '../../../scss/variables.scss';
+
+.wrapper {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, max-content);
+  grid-gap: 15px;
+  margin-bottom: 15px;
+  &~ p {
+    margin: 0;
+  }
+}
+.buttons_container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+.input {
+  background-color: $background-main;
+  box-shadow: $boxShadow;
+  border: none;
+  outline: none;
+  height: 35px;
+  width: 100%;
+  font-size: 24px;
+  border-bottom: 2px solid $text-second;
+}

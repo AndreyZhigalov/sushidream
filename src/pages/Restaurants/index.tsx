@@ -47,7 +47,7 @@ const Restaurants: React.FC = () => {
           ? Array(4)
               .fill(1)
               .map(() => (
-                <li>
+                <li className={styles.address_card}>
                   <LoadingRestaurant />
                 </li>
               ))

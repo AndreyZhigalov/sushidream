@@ -11,6 +11,8 @@ import {
   signInWithPhoneNumber,
   signInWithPopup,
   updateProfile,
+  updatePhoneNumber,
+  PhoneAuthProvider,
 } from 'firebase/auth';
 import { AuthFormData, CreateAccountFormData } from '../../../models';
 import { ConfirmAuthWithPhoneProps } from './models/userService.interface';
@@ -27,7 +29,7 @@ export class UserService {
         const { user } = await createUserWithEmailAndPassword(
           FIREBASE_AUTH,
           values.email,
-          values.pass,
+          values.password,
         );
         if (!user?.uid) throw new Error('Ошибка регистрации. Попробуйте ещё раз');
 
@@ -72,8 +74,12 @@ export class UserService {
         },
         FIREBASE_AUTH,
       );
-
-      return await signInWithPhoneNumber(FIREBASE_AUTH, number, appVerifire);
+      if (FIREBASE_AUTH.currentUser) {
+        const provider = new PhoneAuthProvider(FIREBASE_AUTH);
+        return await provider.verifyPhoneNumber(number, appVerifire);
+      } else {
+        return await signInWithPhoneNumber(FIREBASE_AUTH, number, appVerifire);
+      }
     } catch (error) {
       console.error(error);
       return null;
@@ -82,10 +88,18 @@ export class UserService {
 
   public confirmAuthUserWithPhone = createAsyncThunk<UserInfo | null, ConfirmAuthWithPhoneProps>(
     'user/confirmAuthUserWithPhone',
-    async ({ code, confirmResult }) => {
+    async ({ code, confirmResult, providerId }) => {
       try {
-        const user = (await confirmResult.confirm(code)).user;
-        return getUserData(user);
+        if (FIREBASE_AUTH.currentUser && providerId) {
+          const phoneCredential = PhoneAuthProvider.credential(providerId, code);
+          await updatePhoneNumber(FIREBASE_AUTH.currentUser, phoneCredential);
+          return getUserData(FIREBASE_AUTH.currentUser);
+        } else if (confirmResult) {
+          const user = (await confirmResult.confirm(code)).user;
+          return getUserData(user);
+        } else {
+          throw new Error('Ошибка при подтверждении номера телефона');
+        }
       } catch (error) {
         console.error(error);
         return null;

@@ -1,17 +1,21 @@
 @import '../../scss/variables.scss';
 
+.wrapper {
+  position: relative;
+  z-index: 6;
+}
+
 .region {
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   grid-column: 3/4;
   grid-row: 1/2;
-  position: relative;
   height: 40px;
   width: 300px;
   font-weight: 800;
   font-size: 14px;
-  padding: 0 10px;
   color: $text-main;
   user-select: none;
   background-color: $highlighted;
@@ -20,38 +24,53 @@
     grid-row: auto;
   }
   cursor: pointer;
-  z-index: 6;
-  svg {
-    margin-left: 5px;
-    height: 15px;
-    transform: rotate(180deg);
-    cursor: pointer;
+}
+
+.address {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-style: normal;
+}
+
+.chevrone {
+  margin-left: 5px;
+  height: 15px;
+  min-width: 15px;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: calc(100%);
+  left: 0px;
+  width: 100%;
+  background-color: $background-second;
+  transform-origin: top;
+  animation: popUp 0.2s ease-out;
+  user-select: none;
+  max-height: calc(26 * 4);
+}
+
+.option {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  font-size: 16px;
+  height: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: $highlighted;
   }
-  .list {
-    position: absolute;
-    top: calc(100%);
-    left: 0px;
-    width: 100%;
-    background-color: $background-second;
-    transform-origin: top;
-    animation: popUp 0.2s ease-out;
-    user-select: none;
-    max-height: calc(26 * 4);
-    .option {
-      padding: 10px;
-      margin: 0;
-      font-size: 16px;
-      height: 100%;
-      cursor: pointer;
-      &:hover {
-        background-color: $highlighted;
-      }
-    }
-    .active {
-      background-color: $highlighted;
-      transition: 0.2s ease-in-out;
-    }
-  }
+}
+
+.active {
+  background-color: $highlighted;
+  transition: 0.2s ease-in-out;
 }
 
 @keyframes popUp {
@@ -63,4 +82,8 @@
     opacity: 100%;
     transform: scaleY(100%);
   }
+}
+
+.hide {
+  display: none;
 }

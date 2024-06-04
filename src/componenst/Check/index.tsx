@@ -9,6 +9,7 @@ import { CartItemsBlock } from './CartItemsBlock';
 import styles from './Check.module.scss';
 import { Modal } from '../Modal';
 import { BigButton } from '../BigButton';
+import classNames from 'classnames';
 
 export const Check: React.FC = memo(() => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -35,18 +36,21 @@ export const Check: React.FC = memo(() => {
   return (
     <>
       <Modal open={showModal} onClose={() => setShowModal(false)} style={{ maxWidth: 500 }}>
-        <h2>Отчистить корзину?</h2>
-        <div style={{ display: 'flex', gap: '20px' }}>
-          <BigButton text="Да" onClick={onAccept} />
-          <BigButton text="Нет" onClick={() => setShowModal(false)} />
+        <h2 className={styles.modal_title}>Отчистить корзину?</h2>
+        <div className={styles.modal_content}>
+          <BigButton children="Да" onClick={onAccept} />
+          <BigButton children="Нет" onClick={() => setShowModal(false)} />
         </div>
       </Modal>
       <div className={styles.check}>
-        {count > 0 && <TrashCan onClick={() => setShowModal(true)} className={styles.trash} />}
-        <h2>ВАШ ЗАКАЗ</h2>
+        <TrashCan
+          onClick={() => setShowModal(true)}
+          className={classNames(styles.trash, { [styles.hide]: !(count > 0) })}
+        />
+        <h2 className={styles.title}>ВАШ ЗАКАЗ</h2>
         <CartItemsBlock />
         <TotalCost />
-        {count > 0 && currentRegion && <OrderButton />}
+        <OrderButton className={classNames({ [styles.hide]: !(count > 0 && currentRegion) })} />
       </div>
     </>
   );

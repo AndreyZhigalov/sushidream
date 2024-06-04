@@ -14,23 +14,25 @@
   visibility: hidden;
   transform: scaleY(0%);
   transition: visibility 0.2s ease-in-out, transform 0.2s ease-out;
-  img {
-    width: min-content;
-  }
-  img[alt='close'] {
-    position: absolute;
-    top: 10%;
-    right: 10%;
-    cursor: pointer;
-  }
-  a {
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: 600;
-    text-shadow: $boxShadow;
-    &:first-of-type {
-      text-shadow: $textShadow;
-    }
+}
+.image {
+  width: min-content;
+}
+
+.close_icon {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 600;
+  text-shadow: $boxShadow;
+  &:first-of-type {
+    text-shadow: $textShadow;
   }
 }
 .open_menu {

@@ -24,19 +24,19 @@ const Signin = () => {
   return (
     <div className={styles.wrapper}>
       {authType === AuthType.email && <AuthEmailForm />}
-      {authType === AuthType.phone && <AuthPhoneForm />}
-      <h4 className={styles.auth_methods}>
-        <span>Войти через:</span>
+      {authType === AuthType.phone && <AuthPhoneForm hasRedirect={true} />}
+      <div className={styles.auth_methods}>
+        <div>Войти через:</div>
         <EmailIcon onClick={() => setAuthType(AuthType.email)} className={styles.icon} />
         <PhoneIcon onClick={() => setAuthType(AuthType.phone)} className={styles.icon} />
         <GoogleIcon
           className={styles.icon}
           onClick={() => authUserWithGoogle().then(() => navigate('/profile'))}
         />
-      </h4>
-      <h4>
-        или <Link to="../signup">зарегистрируйтесь</Link>
-      </h4>
+      </div>
+      <div className={styles.hint}>
+        или <Link to="../signup" className={styles.link}>зарегистрируйтесь</Link>
+      </div>
     </div>
   );
 };

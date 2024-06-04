@@ -29,16 +29,16 @@ const Profile = () => {
           </p>
           <p>
             <span>Номер телефона: </span>
-            {user.phoneNumber}
+            {user.phoneNumber ?? 'Не указан'}
           </p>
           <p>
             <span>Почта: </span>
-            {user.email}
+            {user.email ?? 'Не указана'}
           </p>
         </div>
         <div className={styles.button_wrapper}>
           <BigButton
-            text={'Выйти из аккаунта'}
+            children={'Выйти из аккаунта'}
             onClick={() => signOutUser().then(() => navigate('/'))}
           />
         </div>

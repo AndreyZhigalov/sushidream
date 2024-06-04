@@ -1,26 +1,31 @@
 import React, { ComponentPropsWithRef } from 'react';
 
 import styles from './BigButton.module.scss';
+import classNames from 'classnames';
 
 type BigButtonType = ComponentPropsWithRef<'button'> & {
-  text: string;
-  isFormValid?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
 };
 
 export const BigButton: React.FC<BigButtonType> = ({
-  text,
   onClick,
   className,
-  isFormValid,
+  isDisabled,
+  isLoading,
+  children,
   ...props
 }) => {
   return (
     <button
-      disabled={isFormValid !== undefined && !isFormValid}
-      className={`${styles.button} ${className ? className : ''}`}
-      onClick={onClick}
+      disabled={!!isDisabled}
+      className={classNames(styles.button, {
+        [className ?? '']: !!className,
+        [styles.shining]: !!isLoading,
+      })}
+      onClick={(e) => !isLoading && onClick?.(e)}
       {...props}>
-      {text}
+      {children}
     </button>
   );
 };

@@ -4,6 +4,8 @@ import { getDoc, setDoc, doc } from 'firebase/firestore';
 import { FIREBASE_DB } from '../../../firebase';
 import { OrderItem } from './models/orderItem.interface';
 import { cartSlice } from '../cart';
+import { orderSlice } from '../order';
+import { FetchStatus } from '../../../models';
 
 export class OrderService {
   public getOrder = createAsyncThunk<string | void>('cart/getOrder', async (_, Thunk) => {
@@ -12,6 +14,8 @@ export class OrderService {
       delivery: { currentRegion, currentCost },
       user: { uid, phoneNumber },
     } = Thunk.getState() as RootState;
+
+    Thunk.dispatch(orderSlice.actions.setOrderStatus(FetchStatus.LOADING));
 
     const userID = uid
       ? uid
@@ -53,9 +57,11 @@ export class OrderService {
     )
       .then(() => {
         Thunk.dispatch(cartSlice.actions.clearCart());
+        Thunk.dispatch(orderSlice.actions.setOrderStatus(FetchStatus.SUCCESS));
         return orderID;
       })
       .catch(() => {
+        Thunk.dispatch(orderSlice.actions.setOrderStatus(FetchStatus.ERROR));
         console.error('Ошибка при отправке заказа. Попробуйте ещё раз');
       });
   });

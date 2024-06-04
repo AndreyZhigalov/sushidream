@@ -5,30 +5,37 @@ import closeIcon from '../../assets/icons/close.svg';
 
 import styles from './PagesNavigation.module.scss';
 import { useAppStore } from '../../redux/store';
+import classNames from 'classnames';
 
 export const PagesNavigation = () => {
-  const { navbarStore: { actions: { openNavbar }, getters: { isOpened } } } = useAppStore()
-  const onLinkClick = () => openNavbar(false)
+  const {
+    navbarStore: {
+      actions: { openNavbar },
+      getters: { isOpened },
+    },
+  } = useAppStore();
+  
+  const onClick = () => openNavbar(false);
 
   return (
-    <div className={`${styles.menu} ${isOpened ? styles.open_menu : ''}`}>
-      <img src={logo} alt="Логотип" className="logo" />
-      <Link to="./" onClick={onLinkClick}>
+    <div className={classNames(styles.menu, { [styles.open_menu]: isOpened })}>
+      <img className={classNames(styles.image, 'logo')} src={logo} alt="Логотип" />
+      <Link className={styles.link} to="./" onClick={onClick}>
         МЕНЮ
       </Link>
-      <Link to="restaurants" onClick={onLinkClick}>
+      <Link className={styles.link} to="restaurants" onClick={onClick}>
         РЕСТОРАНЫ
       </Link>
-      <Link to="loyalty" onClick={onLinkClick}>
+      <Link className={styles.link} to="loyalty" onClick={onClick}>
         ПРОГРАММА ЛОЯЛЬНОСТИ
       </Link>
-      <Link to="course" onClick={onLinkClick}>
+      <Link className={styles.link} to="course" onClick={onClick}>
         КУРС ПО ПОДАЧЕ БЛЮД
       </Link>
-      <Link to="franchise" onClick={onLinkClick}>
+      <Link className={styles.link} to="franchise" onClick={onClick}>
         ФРАНШИЗА
       </Link>
-      <img src={closeIcon} alt="close" onClick={onLinkClick} />
+      <img className={styles.close_icon} src={closeIcon} alt="close" onClick={onClick} />
     </div>
   );
 };

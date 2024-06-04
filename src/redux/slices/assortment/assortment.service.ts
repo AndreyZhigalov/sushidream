@@ -14,20 +14,26 @@ export class AssortmentService {
       const assortRef = doc(FIREBASE_DB, 'assortment/catalog');
       const bannersRef = doc(FIREBASE_DB, 'assortment/banners');
       const specificsRef = doc(FIREBASE_DB, 'assortment/specifics');
+
       try {
         const [assortment, banners, specifics] = await Promise.all([
           getDoc<AssortmentList>(assortRef),
           getDoc<Banners>(bannersRef),
           getDoc<Record<string, string>>(specificsRef),
         ]);
+
+        if ([assortment, banners, specifics].some((val) => val.exists() !== true))
+          throw new Error('Ошибка при получении списка товаров');
+
         Thunk.dispatch(cartSlice.actions.fetchCart());
+
         return [
           assortment.data()?.[categoryName] ?? [],
           banners.data() ?? {},
           Object.values(specifics.data() ?? {}),
         ] as FetchData;
       } catch (error) {
-        console.error('Ошибка при получении списка товаров');
+        console.error(error);
       }
       return [[], {}, []];
     },

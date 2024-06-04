@@ -6,12 +6,27 @@
   height: max-content;
   border-top: 2px solid $text-main;
   font-size: 14px;
-  p {
-    position: relative;
-    margin: 10px 0%;
-    span {
-      position: absolute;
-      right: 0;
-    }
-  }
+}
+
+.row {
+  margin: 10px 0%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  align-items: flex-end;
+}
+.fullPrice {
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.hide {
+  display: none;
 }

@@ -22,7 +22,7 @@ const CreditCard: React.FC<{ user: UserState }> = ({ user }) => {
         </div>
         <div className={styles.data}>
           <small className={styles.header}>Срок</small>
-          <p>
+          <p className={styles.date}>
             <span className={styles.month}>09</span>/<span className={styles.year}>26</span>
           </p>
         </div>

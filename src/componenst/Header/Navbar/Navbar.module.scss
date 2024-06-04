@@ -1,6 +1,6 @@
 @import '../../../scss/variables.scss';
 
-.header_links {
+.links {
   position: relative;
   display: flex;
   align-items: center;
@@ -9,62 +9,50 @@
   @media (max-width: 490px) {
     gap: 20px;
   }
-  a {
-    text-decoration: none;
-    span {
-      position: absolute;
-      top: 20px;
-      left: 13px;
-      text-align: center;
-      border-radius: 50%;
-      background-color: $highlighted;
-      width: 20px;
-      font-size: 14px;
-    }
-  }
-  img[alt='корзина'] {
-    width: 50px;
-    height: 50px;
-    filter: $iconShadow;
-  }
-  img[alt='профиль'] {
-    width: 35px;
-    height: 35px;
-    filter: $iconShadow;
-  }
-  img[alt='меню'] {
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    filter: $iconShadow;
-  }
   @media (max-width: 360px) {
     gap: 10px;
-    img[alt='корзина'] {
+  }
+}
+
+.icon {
+  cursor: pointer;
+  filter: $iconShadow;
+  width: 35px;
+  height: 35px;
+  &[alt='корзина'] {
+    width: 50px;
+    height: 50px;
+  }
+  @media (max-width: 360px) {
+    width: 30px;
+    height: 30px;
+    &[alt='корзина'] {
       width: 40px;
       height: 40px;
-      filter: $iconShadow;
-    }
-    img[alt='профиль'] {
-      width: 30px;
-      height: 30px;
-      filter: $iconShadow;
-    }
-    img[alt='меню'] {
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      filter: $iconShadow;
     }
   }
 }
+
+.link {
+  text-decoration: none;
+}
+
+.counter {
+  position: absolute;
+  top: 20px;
+  left: 13px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: $highlighted;
+  width: 20px;
+  font-size: 14px;
+}
+
 .submenu_container {
   cursor: pointer;
   position: relative;
 }
-.submenu[data-is-shown='true'] {
-  opacity: 1;
-}
+
 .submenu {
   position: absolute;
   top: 100%;
@@ -78,12 +66,18 @@
   background: $background-second;
   opacity: 0;
   transition: opacity 0.1s ease-in-out;
-  & a {
-    display: block;
-    padding: 0 20px;
-  }
-  & a:hover {
-    background-color: $text-second;
-    color: $background-main;
-  }
+}
+
+.submenu_link {
+  display: block;
+  padding: 0 20px;
+}
+
+.submenu_link:hover {
+  background-color: $text-second;
+  color: $background-main;
+}
+
+.show {
+  opacity: 1;
 }

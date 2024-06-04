@@ -1,9 +1,9 @@
-import { lazy, ReactElement, Suspense, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import ForgotPasswordForm from '../componenst/ForgotPasswordForm';
+import { lazy, Suspense, useEffect } from 'react';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { LoadingWarning } from '../componenst';
 import { FIREBASE_AUTH } from '../firebase';
-import { useAppStore } from '../redux/store';
+import { useCartActions } from '../redux/slices/cart';
+import { useUserActions } from '../redux/slices/user/user.store';
 
 const Menu = lazy(() => import(/* webpackChunkName: "Menu" */ '../pages/Menu'));
 const Cart = lazy(() => import(/* webpackChunkName: "Cart" */ '../pages/Cart'));
@@ -17,34 +17,31 @@ const ServiceCourse = lazy(
 const Franchise = lazy(() => import(/* webpackChunkName: "Franchise" */ '../pages/Franchise'));
 const Profile = lazy(() => import(/* webpackChunkName: "Profile" */ '../pages/Profile'));
 const Signin = lazy(() => import(/* webpackChunkName: "Signin" */ '../pages/Signin'));
+const ForgotPassword = lazy(
+  () => import(/* webpackChunkName: "Signin" */ '../pages/ForgotPassword'),
+);
 const Signup = lazy(() => import(/* webpackChunkName: "Signup" */ '../pages/Signup'));
 const NotFound = lazy(() => import(/* webpackChunkName: "NotFound" */ '../pages/NotFound'));
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type RedirectRouteProps = { path: string; element: ReactElement<any, any> };
 
-const PrivateRoute = ({ path, element }: RedirectRouteProps) => {
-  return FIREBASE_AUTH.currentUser ? element : <Navigate to={path} />;
+const PrivateRoute = ({ path }: { path: string }) => {
+  return FIREBASE_AUTH.currentUser ? <Outlet /> : <Navigate to={path} />;
 };
 
-const PublicRoute = ({ path, element }: RedirectRouteProps) => {
-  return !FIREBASE_AUTH.currentUser ? element : <Navigate to={path} />;
+const ProtectedRoute = ({ path }: { path: string }) => {
+  return !FIREBASE_AUTH.currentUser ? <Outlet /> : <Navigate to={path} />;
 };
 
 export const AppRouter = () => {
-  const {
-    cartStore: {
-      actions: { setDiscount },
-    },
-    userStore: {
-      actions: { getUser },
-    },
-  } = useAppStore();
+  const { setDiscount } = useCartActions();
+  const { getUser } = useUserActions();
 
   useEffect(() => {
     if (!FIREBASE_AUTH.currentUser) {
-      setDiscount();
       getUser();
+    } else {
+      setDiscount();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [FIREBASE_AUTH.currentUser]);
@@ -52,7 +49,6 @@ export const AppRouter = () => {
   return (
     <Suspense fallback={<LoadingWarning />}>
       <Routes>
-        {/* Общие страницы */}
         <Route path="" element={<Menu />} />
         <Route path="restaurants" element={<Restaurants />} />
         <Route path="loyalty" element={<Loyalty />} />
@@ -60,15 +56,16 @@ export const AppRouter = () => {
         <Route path="franchise" element={<Franchise />} />
         <Route path="cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
-        {/* Только для авторизованных пользователей */}
-        <Route path="profile" element={<PrivateRoute path={'/signin'} element={<Profile />} />} />
-        {/* Только при отсутствии авторизации */}
-        <Route path="signin" element={<PublicRoute path={'/'} element={<Signin />} />} />
-        <Route path="signup" element={<PublicRoute path={'/'} element={<Signup />} />} />
-        <Route
-          path="forgot-password"
-          element={<PublicRoute path={'/'} element={<ForgotPasswordForm />} />}
-        />
+
+        <Route element={<PrivateRoute path="/signin" />}>
+          <Route path="profile" element={<Profile />} />
+        </Route>
+
+        <Route element={<ProtectedRoute path="/" />}>
+          <Route path="signin" element={<Signin />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+        </Route>
       </Routes>
     </Suspense>
   );

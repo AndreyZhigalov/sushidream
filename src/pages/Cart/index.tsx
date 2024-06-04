@@ -5,20 +5,24 @@ import {
   DeliveryRegion,
   LoadingCard,
   CategoryList,
+  AssortmentFullCard,
 } from '../../componenst';
 
 import { FetchStatus } from '../../models';
 import { useEffect } from 'react';
-import { useAppStore } from '../../redux/store';
-import { AssortmentItem } from '../../redux/slices/assortment';
+import {
+  AssortmentItem,
+  useAssortmentActions,
+  useAssortmentGetters,
+} from '../../redux/slices/assortment';
 import styles from './Cart.module.scss';
+import { useFiltersActions, useFiltersGetters } from '../../redux/slices/filters';
 
 const Cart: React.FC = () => {
-  const { filtersStore, assortmentStore } = useAppStore();
-  const { currentCategory, categories, currentSubcategory } = filtersStore.getters;
-  const { setCategory } = filtersStore.actions;
-  const { items, status } = assortmentStore.getters;
-  const { getByCategory } = assortmentStore.actions;
+  const { currentCategory, categories, currentSubcategory } = useFiltersGetters();
+  const { setCategory } = useFiltersActions();
+  const { items, status, searchedItem } = useAssortmentGetters();
+  const { getByCategory } = useAssortmentActions();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,19 +63,22 @@ const Cart: React.FC = () => {
   };
 
   return (
-    <div className={styles.cart}>
-      <div>
-        <DeliveryRegion />
-        <Check />
-      </div>
-      <div className={styles.categories}>
-        <h3>ДОБАВИТЬ ЧТО-ТО ЕЩЁ?</h3>
+    <>
+      <AssortmentFullCard isOpen={!!searchedItem} />
+      <div className={styles.cart}>
         <div>
-          <CategoryList navRange={[-4, categories.length]} isFixed={false} />
+          <DeliveryRegion />
+          <Check />
         </div>
+        <div className={styles.categories}>
+          <h3 className={styles.title}>ДОБАВИТЬ ЧТО-ТО ЕЩЁ?</h3>
+          <div>
+            <CategoryList navRange={[-4, categories.length]} isFixed={false} />
+          </div>
+        </div>
+        <div className={styles.items}>{showAssortment()}</div>
       </div>
-      <div className={styles.items}>{showAssortment()}</div>
-    </div>
+    </>
   );
 };
 

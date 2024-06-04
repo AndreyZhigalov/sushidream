@@ -1,12 +1,17 @@
 @import '../../scss/variables.scss';
 
-.scroll_top_button {
+.button {
   position: fixed;
   bottom: 10%;
   right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
   background-color: $highlighted;
-  padding: 23px 20px;
   border-radius: 50%;
+  border: none;
   opacity: 0;
   transform: translateY(20px);
   transition-property: opacity transform;
@@ -17,4 +22,10 @@
 .show {
   opacity: 1;
   transform: translateY(0px);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }

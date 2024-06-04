@@ -47,9 +47,9 @@ const setUserData: CaseReducer<UserState, PayloadAction<UserInfo | null>> = (sta
   if (!action.payload) return;
   const userData = action.payload;
   state.uid = userData.uid;
-  state.displayName = userData.displayName ?? "Гость";
-  state.phoneNumber = userData.phoneNumber ?? "Не указан";
-  state.email = userData.email ?? 'Не указан';
+  state.displayName = userData.displayName ?? 'Гость';
+  state.phoneNumber = userData.phoneNumber;
+  state.email = userData.email;
   state.photoURL = userData.photoURL;
   state.providerId = userData.providerId;
 };
@@ -62,5 +62,6 @@ const clearState: CaseReducer<UserState> = (state) => {
   state.loyalty = false;
   state.photoURL = '';
   state.providerId = '';
+
   localStorage.removeItem('discount');
 };

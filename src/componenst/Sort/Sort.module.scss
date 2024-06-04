@@ -11,44 +11,51 @@
   margin: 10px auto;
   @media (max-width: 1024px) {
     height: min-content;
-    top: 50px;   
+    top: 50px;
   }
-  svg {
-    margin-left: 5px;
+}
+
+.label {
+  color: $text-main;
+  cursor: pointer;
+  border-bottom: dashed 2px $text-second;
+}
+
+.icon {
+  margin-left: 5px;
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+.options_list {
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  width: max-content;
+  background-color: $background-second;
+  border-radius: 20px;
+  overflow: hidden;
+  transform-origin: top;
+  animation: popUp 0.2s ease-out;
+  user-select: none;
+  p {
+    padding: 10px;
+    margin: 0;
+    font-size: 16px;
+    height: 100%;
     cursor: pointer;
-    transform: rotate(180deg);
-  }
-  span {
-    color: $text-main;
-    cursor: pointer;
-    border-bottom: dashed 2px $text-second;
-  }
-  .options_list {
-    position: absolute;
-    top: 30px;
-    right: 0px;
-    width: max-content;
-    background-color: $background-second;
-    border-radius: 20px;
-    overflow: hidden;
-    transform-origin: top;
-    animation: popUp 0.2s ease-out;
-    user-select: none;
-    p {
-      padding: 10px;
-      margin: 0;
-      font-size: 16px;
-      height: 100%;
-      cursor: pointer;
-      &:hover {
-        background-color: $highlighted;
-      }
-    }
-    .active {
+    &:hover {
       background-color: $highlighted;
-      transition: 0.2s ease-in-out;
     }
   }
+}
+
+.active {
+  background-color: $highlighted;
+  transition: 0.2s ease-in-out;
+}
+
+.hide {
+  display: none;
 }
 
 @keyframes popUp {

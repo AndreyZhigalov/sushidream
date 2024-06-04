@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
+import React, { ComponentPropsWithRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import deliveryBoy from '../../../assets/icons/deliveryBoy.svg';
 import { FetchStatus } from '../../../models';
-import { useAppStore } from '../../../redux/store';
 import GetPhone from '../../Modal/GetPhone';
-
 import styles from './OrderButton.module.scss';
+import { useOrderActions, useOrderGetters } from '../../../redux/slices/order';
+import { useUserGetters } from '../../../redux/slices/user/user.store';
+import { useDeliveryGetters } from '../../../redux/slices/delivery';
+import classNames from 'classnames';
+import { BigButton } from '../../BigButton';
 
-export const OrderButton: React.FC = () => {
+export const OrderButton: React.FC<ComponentPropsWithRef<'button'>> = ({ className, ...props }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const { deliveryStore, orderStore, userStore } = useAppStore();
-  const { phoneNumber, email } = userStore.getters;
-  const {
-    getters: { status },
-    actions: { getOrder },
-  } = orderStore;
-  const { currentRegion } = deliveryStore.getters;
+
+  const { phoneNumber } = useUserGetters();
+  const { getOrder } = useOrderActions();
+  const { status } = useOrderGetters();
+  const { currentRegion } = useDeliveryGetters();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const orderButtonClass =
-    status === FetchStatus.LOADING
-      ? styles.order_button + ` ` + styles.sending_order
-      : styles.order_button;
-
   const onClickOrder = pathname.includes('cart')
     ? () => {
-        if (phoneNumber ?? email) {
+        if (phoneNumber) {
           getOrder();
+          setShowModal(false);
         } else {
           setShowModal(true);
         }
@@ -36,11 +33,22 @@ export const OrderButton: React.FC = () => {
 
   return (
     <>
-      <GetPhone isOpen={showModal} />
-      <button className={orderButtonClass} onClick={onClickOrder}>
+      <GetPhone open={showModal} onClose={() => setShowModal(false)} handler={onClickOrder} />
+      <BigButton
+        className={classNames(styles.button, className)}
+        isLoading={status === FetchStatus.LOADING}
+        onClick={onClickOrder}
+        {...props}>
         {currentRegion === 'Самовывоз' ? 'Оформить заказ' : 'Оформить доставку'}
-        {currentRegion !== 'Самовывоз' && <img height={30} src={deliveryBoy} alt="deliveryBoy" />}
-      </button>
+        <img
+          className={classNames(styles.button_icon, {
+            [styles.hide]: currentRegion === 'Самовывоз',
+          })}
+          height={30}
+          src={deliveryBoy}
+          alt="deliveryBoy"
+        />
+      </BigButton>
     </>
   );
 };

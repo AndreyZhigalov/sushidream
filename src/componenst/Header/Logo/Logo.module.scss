@@ -1,35 +1,39 @@
 @import '../../../scss/variables.scss';
 
-.logo_container {
+.container {
   cursor: pointer;
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    img[alt='Логотип'] {
-      height: 55px;
-      width: 55px;
-      
-    }
-    .company_name {
-      margin: 0%;
-      font-size: 24px;
-      font-weight: 600;
-      text-shadow: $boxShadow;
-      span {
-        position: relative;
-        font-size: 22px;
-        &::after {
-          content: '.';
-          position: absolute;
-          top: -2.3px;
-          right: -0.5px;
-          color: $highlighted;
-          font-size: 30px;
-          line-height: 0%;
-        }
-      }
-    }
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .company_name {
+    margin: 0%;
+    font-size: 24px;
+    font-weight: 600;
+    text-shadow: $boxShadow;
   }
+}
+
+.hightlight {
+  position: relative;
+  font-size: 22px;
+  &::after {
+    content: '.';
+    position: absolute;
+    top: -3px;
+    right: -1.2px;
+    color: $highlighted;
+    font-size: 30px;
+    line-height: 0%;
+  }
+}
+
+.logo {
+  object-fit: contain;
+  height: 55px;
+  width: 55px;
 }

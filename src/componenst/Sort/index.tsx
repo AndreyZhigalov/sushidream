@@ -1,7 +1,7 @@
-
 import { useEffect, useRef, useState } from 'react';
 import styles from './Sort.module.scss';
 import { useAppStore } from '../../redux/store';
+import classNames from 'classnames';
 
 type SortParams = {
   name: string;
@@ -10,7 +10,7 @@ type SortParams = {
 
 export const Sort: React.FC = () => {
   const [visibility, setVisibility] = useState(false);
-  const { filtersStore, assortmentStore } = useAppStore()
+  const { filtersStore, assortmentStore } = useAppStore();
   const { currentSortType, sortTypes } = filtersStore.getters;
   const { setSort } = filtersStore.actions;
   const { sortItems } = assortmentStore.actions;
@@ -32,9 +32,9 @@ export const Sort: React.FC = () => {
 
   return (
     <div ref={sortRef} className={styles.sort}>
-      Сортировка по{' '}
-      <span onClick={() => setVisibility(!visibility)}>{currentSortType.name}</span>
+      Сортировка по <span className={styles.label} onClick={() => setVisibility(!visibility)}>{currentSortType.name}</span>
       <svg
+        className={styles.icon}
         onClick={() => setVisibility(!visibility)}
         width="15"
         height="10"
@@ -43,18 +43,16 @@ export const Sort: React.FC = () => {
         xmlns="http://www.w3.org/2000/svg">
         <path d="M2.5 19L15 4L27.5 19" stroke="white" strokeWidth="4" strokeLinecap="round" />
       </svg>
-      {visibility && (
-        <div className={styles.options_list}>
-          {sortTypes.map((type) => (
-            <p
-              onClick={() => switchSortType(type)}
-              className={currentSortType.value === type.value ? styles.active : ''}
-              key={type.value}>
-              {type.name}
-            </p>
-          ))}
-        </div>
-      )}
+      <div className={classNames(styles.options_list, { [styles.hide]: !visibility })}>
+        {sortTypes.map((type) => (
+          <p
+            className={classNames({ [styles.active]: currentSortType.value === type.value })}
+            onClick={() => switchSortType(type)}
+            key={type.value}>
+            {type.name}
+          </p>
+        ))}
+      </div>
     </div>
   );
 };

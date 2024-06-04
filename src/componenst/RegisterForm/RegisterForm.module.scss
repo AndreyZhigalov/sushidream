@@ -1,117 +1,49 @@
 @import '../../scss/variables.scss';
 
-.create_account__form {
+.container {
   display: grid;
   height: max-content;
   grid-template-columns: 360px;
   grid-template-rows: repeat(auto-fit, max-content);
-  h2 {
-    margin: 0 0 20px;
-    text-align: center;
-  }
-  p:nth-of-type(1) {
-    margin: 0 0 10px;
-  }
-  form {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fit, max-content);
-    grid-gap: 15px;
-    margin-bottom: 15px;
-    input[type='email'],
-    input[type='text'],
-    input[type='password'],
-    option,
-    select {
-      background-color: $background-main;
-      box-shadow: $boxShadow;
-      border: none;
-      outline: none;
-      height: 35px;
-      width: 100%;
-      font-size: 16px;
-      border-bottom: 2px solid $text-second;
-    }
-    label {
-      cursor: pointer;
-      font-size: 14px;
-    }
-    .gender_block {
-      display: grid;
-      width: 100%;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      label {
-        display: flex;
-        align-items: center;
-        input[type='radio'] {
-          position: relative;
-          margin-right: 10px;
-          width: 20px;
-          height: 20px;
-          accent-color: $highlighted;
-        }
-      }
-    }
-    .date_block {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(3, 30%);
-      justify-content: space-between;
-      span {
-        grid-column: 1/-1;
-      }
-      select {
-        width: 100%;
-      }
-    }
-    label[for='pass'] {
-      div {
-        margin-top: 15px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-gap: 10px;
-        span {
-          font-size: 14px;
-          cursor: default;
-          color: $highlighted;
-          opacity: 95%;
-        }
-      }
-    }
-    .divider {
-      width: 100%;
-      border-bottom: 2px solid $text-main;
-    }
-    .terms_link {
-      color: $highlighted;
-    }
-    label[for='terms'],
-    label[for='news'],
-    label[for='loyalty'] {
-      display: grid;
-      grid-template-columns: 8% 92%;
-      grid-template-rows: 1fr;
-      grid-gap: 0 10px;
-      input[type='checkbox'] {
-        &:checked {
-          accent-color: $highlighted;
-        }
-      }
-      div {
-        p {
-          margin: 0;
-          font-size: 14px;
-        }
-      }
-    }
-    .error {
-      color: red;
-      margin: 10px 0 0 0;
-    }
-  }
+
   @media (max-width: 420px) {
     grid-template-columns: 330px;
   }
+}
+
+.title {
+  margin: 0 0 20px;
+  text-align: center;
+}
+.subtitle {
+  margin: 0 0 10px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, max-content);
+  grid-gap: 15px;
+  margin-bottom: 15px;
+}
+
+.input {
+  background-color: $background-main;
+  box-shadow: $boxShadow;
+  border: none;
+  outline: none;
+  height: 35px;
+  width: 100%;
+  font-size: 16px;
+  border-bottom: 2px solid $text-second;
+}
+
+.label {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.error {
+  color: red;
+  margin: 10px 0 0 0;
 }

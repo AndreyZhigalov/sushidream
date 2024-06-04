@@ -1,6 +1,7 @@
 import { ComponentPropsWithRef } from 'react';
 
 import closeIcon from '../../assets/icons/close.svg';
+import classNames from 'classnames';
 
 import styles from './CloseButton.module.scss';
 
@@ -8,7 +9,7 @@ const CloseButton = ({ className, onClick, ...props }: ComponentPropsWithRef<'im
   return (
     <img
       src={closeIcon}
-      className={`${styles.close_button} ${className ? className : ''}`}
+      className={classNames(styles.close_button, className)}
       onClick={onClick}
       {...props}
     />

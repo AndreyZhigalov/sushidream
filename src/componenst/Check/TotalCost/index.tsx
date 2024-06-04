@@ -1,29 +1,33 @@
+import classNames from 'classnames';
+import { useCartGetters } from '../../../redux/slices/cart';
+import { useDeliveryGetters } from '../../../redux/slices/delivery';
+import { localPrice } from '../../../utils/localPrice';
+
 import styles from './TotalCost.module.scss';
-import { useAppStore } from '../../../redux/store';
 
 export const TotalCost: React.FC = () => {
-  const { deliveryStore, cartStore } = useAppStore()
-  const { currentCost } = deliveryStore.getters
-  const { totalPrice, discount } = cartStore.getters
-  const finalDiscount = (10e10 * (((totalPrice + currentCost) / 100) * 30)) / 10e10;
+  const { currentCost: deliveryCost } = useDeliveryGetters();
+  const { totalPrice, discount } = useCartGetters();
+  const finalDiscount = (10e10 * (((totalPrice + deliveryCost) / 100) * discount)) / 10e10;
 
+  const total =
+    discount > 0 && totalPrice > 0
+      ? totalPrice + deliveryCost - finalDiscount
+      : totalPrice + deliveryCost;
+  const fullPrice = totalPrice + deliveryCost;
   return (
     <div className={styles.total}>
-      <p>
-        Доставка <span>{currentCost}&#x20bd;</span>
+      <p className={styles.row}>
+        Доставка <span>{localPrice(deliveryCost)}</span>
       </p>
-      {discount > 0 && totalPrice > 0 && (
-        <p>
-          Скидка <span>{finalDiscount}&#x20bd;</span>
-        </p>
-      )}
-      <p>
-        ИТОГО{' '}
-        <span>
-          {discount > 0 && totalPrice > 0
-            ? totalPrice + currentCost - finalDiscount
-            : totalPrice + currentCost}
-          &#x20bd;
+      <p className={classNames(styles.row, { [styles.hide]: !(discount > 0 && totalPrice > 0) })}>
+        Скидка <span>{localPrice(finalDiscount)}</span>
+      </p>
+      <p className={styles.row}>
+        ИТОГО
+        <span className={styles.price}>
+          <span className={styles.fullPrice}>{localPrice(fullPrice)}</span>
+          <span>{localPrice(total)}</span>
         </span>
       </p>
     </div>

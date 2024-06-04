@@ -97,8 +97,8 @@ export const cartSlice = createSlice({
     },
 
     setDiscount(state) {
-      state.discount = 30;
-      localStorage.setItem('discount', `30`);
+      state.discount = 10;
+      localStorage.setItem('discount', '10');
     },
   },
 });

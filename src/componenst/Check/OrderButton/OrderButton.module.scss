@@ -1,6 +1,6 @@
 @import '../../../scss/variables.scss';
 
-.order_button {
+.button {
   position: relative;
   width: 100%;
   height: 40px;
@@ -15,23 +15,30 @@
     transform: translateY(2px);
   }
   &:hover {
-    img {
-      right: 20px;
-    }
     box-shadow: 0px 0px 30px $highlighted;
     transition: 0.2s ease-out;
   }
-  img {
-    position: absolute;
-    top: 5px;
-    right: 30px;
-    transform: scaleX(-100%);
-    transition: right 0.2s ease-out;
-  }
 }
-.sending_order {
+
+.button_icon {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  transform: scaleX(-100%);
+  transition: right 0.2s ease-out;
+}
+
+.button:hover .button_icon {
+  right: 20px;
+}
+
+.sending {
   box-shadow: 0px 0px 30px $highlighted;
   animation: buttonShining 2s ease-in-out infinite;
+}
+
+.hide {
+  display: none;
 }
 
 @keyframes buttonShining {
@@ -48,3 +55,4 @@
     box-shadow: 0px 0px 30px $highlighted;
   }
 }
+

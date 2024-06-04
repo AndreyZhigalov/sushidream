@@ -3,35 +3,28 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { AssortmentCard } from './AssortmentCard';
 import { LoadingCard } from '../LoadingCard';
 import { FetchError } from './FetchError';
-import { FetchStatus, SortItem } from '../../models';
+import { FetchStatus } from '../../models';
 
 import {
   AssortmentItem,
   useAssortmentActions,
   useAssortmentGetters,
 } from '../../redux/slices/assortment';
+import { useFiltersGetters } from '../../redux/slices/filters';
+import { useFilterParams } from '../../Hooks/useFilterParams';
 
 import { useEffect } from 'react';
 
 import styles from './AssortmentBlock.module.scss';
-import { useFiltersActions, useFiltersGetters } from '../../redux/slices/filters';
 
 export const AccortmentBlock: React.FC = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
 
-  const { findItem, getAll, getByCategory, sortItems } = useAssortmentActions();
+  const { findItem, getByCategory, sortItems } = useAssortmentActions();
   const { status, items } = useAssortmentGetters();
-  const { setCategory, setSubcategory, setSort, setSearchedItemId } = useFiltersActions();
-  const {
-    currentSortType,
-    currentCategory,
-    categories,
-    sortTypes,
-    searchedItemId,
-    currentSubcategory,
-    subcategories,
-  } = useFiltersGetters();
+  const { currentSortType, currentCategory, searchedItemId, currentSubcategory } =
+    useFiltersGetters();
 
   useEffect(() => {
     if (status === FetchStatus.SUCCESS && searchedItemId) {
@@ -39,27 +32,6 @@ export const AccortmentBlock: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
-
-  useEffect(() => {
-    if (search) {
-      const searchParameters = qs.parse(search.substring(1).replace('(asc)', '%2B'));
-      const category = categories.find((obj: SortItem) => obj.value === searchParameters.category);
-      const subcategory = subcategories.find(
-        (obj: SortItem) => obj.value === searchParameters.subcategory,
-      );
-      const sort = sortTypes.find((obj: SortItem) => obj.value === searchParameters.sortBy);
-      const item = searchParameters.item;
-      if (category) setCategory(category);
-      if (subcategory) setSubcategory(subcategory);
-      if (sort) setSort(sort);
-      if (item) setSearchedItemId(+item as number);
-    } else {
-      setSort(sortTypes[3]);
-      setCategory(categories[0]);
-    }
-    if (status === FetchStatus.LOADING) getAll(currentCategory.value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     if (status === FetchStatus.SUCCESS) sortItems(currentSortType.value);
@@ -92,6 +64,7 @@ export const AccortmentBlock: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, currentSubcategory]);
 
+  useFilterParams(search);
   const showAssortment = (status: string) => {
     if (status === FetchStatus.LOADING) {
       return [...Array(6)].map((_, i) => <LoadingCard key={i} />);

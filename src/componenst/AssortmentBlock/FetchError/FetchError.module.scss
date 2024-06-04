@@ -1,4 +1,4 @@
-.fetch_block {
+.container {
   height: 100%;
   width: 320px;
   display: grid;
@@ -6,10 +6,11 @@
   justify-items: center;
   align-items: center;
   text-align: center;
-  img {
-    align-self: flex-end;
-  }
-  h2 {
-    align-self: flex-start;
-  }
+}
+
+.icon {
+  align-self: flex-end;
+}
+.title {
+  align-self: flex-start;
 }

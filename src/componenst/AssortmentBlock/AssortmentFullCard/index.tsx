@@ -1,31 +1,36 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import qs from 'qs';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { setSpecials } from '../../../utils/setSpecials';
 import CloseButton from '../../CloseButton';
 import { FetchStatus } from '../../../models';
-import { useAppStore } from '../../../redux/store';
-import { AssortmentItem } from '../../../redux/slices/assortment';
+import { AssortmentItem, useAssortmentGetters } from '../../../redux/slices/assortment';
+import { localPrice } from '../../../utils/localPrice';
+import { useCartActions } from '../../../redux/slices/cart';
+import { useFiltersGetters } from '../../../redux/slices/filters';
+import classNames from 'classnames';
 
 import styles from './AssortmentFullCard.module.scss';
+import { ASSORTMENT_BACKGROUND_IMAGE } from '../../../constants/assortmentBackgroundImage';
 
-export const AssortmentFullCard: React.FC = () => {
-  const { cartStore, assortmentStore, filtersStore } = useAppStore();
-  const { addToCart } = cartStore.actions;
-  const { searchedItem, specials, status } = assortmentStore.getters;
-  const { currentCategory, currentSortType } = filtersStore.getters;
+type AssortmentFullCardProps = {
+  isOpen: boolean;
+};
+
+export const AssortmentFullCard: React.FC<AssortmentFullCardProps> = ({ isOpen }) => {
+  const { addToCart } = useCartActions();
+  const { searchedItem, specials, status } = useAssortmentGetters();
+  const { currentCategory, currentSortType } = useFiltersGetters();
   const [additionalInfo, setAdditionalInfo] = useState(searchedItem?.contents);
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
-  const item = searchedItem;
-  const overlayRef = useRef<HTMLDivElement>(null);
 
   const previousSearch = qs.stringify({
     category: currentCategory.value,
     sortBy: currentSortType.value,
   });
 
-  const onClickAdd = (obj: AssortmentItem) => {
+  const onClickAdd = useCallback((obj: AssortmentItem) => {
     if (pathname.includes('cart')) {
       addToCart(obj);
       navigate(pathname);
@@ -33,58 +38,65 @@ export const AssortmentFullCard: React.FC = () => {
       addToCart(obj);
       navigate(`?${previousSearch}`);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const onClickClose = useCallback(() => {
+  const onClickClose = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.target !== event.currentTarget) return;
     return pathname.includes('cart') ? navigate(pathname) : navigate(`?${previousSearch}`);
-  }, [pathname, navigate, previousSearch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const switchInfo = (text: string) => {
-    setAdditionalInfo(text);
-  };
-
-  useEffect(() => {
-    const overlayHandler = (event: MouseEvent) => {
-      if (overlayRef.current === event.target) {
-        onClickClose();
-      }
-    };
-    document.body.addEventListener('click', overlayHandler);
-    return () => document.body.removeEventListener('click', overlayHandler);
-  }, [onClickClose]);
+  if (!isOpen) return null;
 
   return (
     <div
-      ref={overlayRef}
-      className={`${styles.overlay} ${
-        status === FetchStatus.SUCCESS && search.includes('item=') ? styles.show : ''
-      }`}>
+      onClick={onClickClose}
+      className={classNames(styles.overlay, {
+        [styles.show]: status === FetchStatus.SUCCESS && search.includes('item='),
+      })}>
       <div className={styles.card}>
-        <CloseButton onClick={onClickClose} className={styles.close} />
-        <img src={item?.dishPhoto} alt={item?.title} />
+        <CloseButton onPointerDown={onClickClose} className={styles.close_button} />
+        <img
+          src={searchedItem?.dishPhoto}
+          alt={searchedItem?.title}
+          style={{ backgroundImage: `URL(${ASSORTMENT_BACKGROUND_IMAGE})` }}
+          loading="lazy"
+          decoding="async"
+          className={styles.card_image}
+        />
         <div className={styles.description_block}>
-          <h3>{item?.title}</h3>
+          <h3 className={styles.description_block_title}>{searchedItem?.title}</h3>
           <div className={styles.add_block}>
-            <div>
-              <p>КОЛ-ВО: {item?.portion}</p>
-              <span>{item?.price}&#x20bd;</span>
+            <div className={styles.item}>
+              <p className={styles.item_text}>КОЛ-ВО: {searchedItem?.portion}</p>
+              <span className={styles.item_value}>
+                {searchedItem?.price && localPrice(searchedItem?.price)}
+              </span>
             </div>
-            {item?.specifics[0] && (
-              <div className={styles.specials}>{setSpecials(item, specials)}</div>
-            )}
-            <button onClick={() => searchedItem && onClickAdd(searchedItem)} className={styles.add}>
+
+            <div
+              className={classNames(styles.specials, {
+                [styles.hide]: searchedItem?.specifics[0],
+              })}>
+              {setSpecials(searchedItem, specials)}
+            </div>
+
+            <button
+              onClick={() => searchedItem && onClickAdd(searchedItem)}
+              className={styles.add_button}>
               ДОБАВИТЬ В КОРЗИНУ
             </button>
           </div>
-          <p className={styles.description}>{item?.description}</p>
+          <p className={styles.description}>{searchedItem?.description}</p>
           <button
             className={styles.info_button}
-            onClick={() => (item?.contents ? switchInfo(item.contents) : false)}>
+            onClick={() => searchedItem?.contents && setAdditionalInfo(searchedItem.contents)}>
             Состав
           </button>
           <button
             className={styles.info_button}
-            onClick={() => (item?.allergens ? switchInfo(item?.allergens) : false)}>
+            onClick={() => searchedItem?.allergens && setAdditionalInfo(searchedItem?.allergens)}>
             Аллергены
           </button>
           <p className={styles.description}>{additionalInfo}</p>

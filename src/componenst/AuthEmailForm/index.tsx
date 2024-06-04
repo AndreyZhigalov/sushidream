@@ -6,6 +6,7 @@ import { AuthFormData } from '../../models';
 import { useCallback, useState } from 'react';
 import { Modal } from '../Modal';
 import { useUserActions } from '../../redux/slices/user/user.store';
+import classNames from 'classnames';
 
 import styles from './AuthEmailForm.module.scss';
 
@@ -27,10 +28,10 @@ const AuthEmailForm: React.FC = () => {
     <>
       <Modal open={showModal} onClose={() => setShowModal(false)} style={{ maxWidth: 500 }}>
         <h2>{alertMessage}</h2>
-        <BigButton text="Понятно" onClick={() => setShowModal(false)} />
+        <BigButton children="Понятно" onClick={() => setShowModal(false)} />
       </Modal>
       <div className={styles.auth_form}>
-        <h2>АВТОРИЗАЦИЯ</h2>
+        <h2 className={styles.title}>АВТОРИЗАЦИЯ</h2>
         <Formik
           initialValues={{
             authEmail: '',
@@ -67,9 +68,12 @@ const AuthEmailForm: React.FC = () => {
                   placeholder="myawesomeemail@email.com"
                   required
                 />
-                {touched.authEmail && errors.authEmail && (
-                  <p className={styles.error}>{errors.authEmail}</p>
-                )}
+                <p
+                  className={classNames(styles.error, {
+                    [styles.hide]: !(touched.authEmail && errors.authEmail),
+                  })}>
+                  {errors.authEmail}
+                </p>
               </label>
               <label htmlFor="password" className={styles.label}>
                 Пароль
@@ -88,10 +92,10 @@ const AuthEmailForm: React.FC = () => {
                 Забыли пароль?
               </Link>
               <BigButton
-                text={'Авторизоваться'}
+                children={'Авторизоваться'}
                 onClick={() => handleSubmit()}
-                isFormValid={isValid}
-                className={isSubmitting ? 'shining' : ''}
+                isDisabled={!isValid}
+                className={classNames({ shining: isSubmitting })}
               />
             </Form>
           )}

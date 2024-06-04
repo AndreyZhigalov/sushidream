@@ -11,11 +11,11 @@
   flex-direction: column;
   border-radius: 5px;
   padding: 0 10px;
+}
 
-  h2 {
-    text-shadow: $textShadow;
-    text-indent: 15px;
-  }
+.title {
+  text-shadow: $textShadow;
+  text-indent: 15px;
 }
 
 .trash {
@@ -33,4 +33,13 @@
 
 .modal {
   max-width: 500px;
+}
+
+.modal_content {
+  display: flex;
+  gap: 20px;
+}
+
+.hide {
+  display: none;
 }

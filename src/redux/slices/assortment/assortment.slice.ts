@@ -44,10 +44,7 @@ export const assortmentSlice = createSlice({
       }
     },
     findItem(state, action: PayloadAction<number>) {
-      const item = state.items.find((item) => item.id === action.payload);
-      if (item) {
-        state.searchedItem = item;
-      }
+      state.searchedItem = state.items.find((item) => item.id === action.payload) || null;
     },
   },
   extraReducers: (builder) => {
@@ -55,7 +52,11 @@ export const assortmentSlice = createSlice({
       state.status = FetchStatus.LOADING;
     });
     builder.addCase(getAll.fulfilled, (state, action: PayloadAction<FetchData>) => {
-      state.status = FetchStatus.SUCCESS;
+      if (action.payload[0].length === 0) {
+        state.status = FetchStatus.ERROR;
+      } else {
+        state.status = FetchStatus.SUCCESS;
+      }
       state.items = action.payload[0];
       state.banners = action.payload[1];
       state.specials = action.payload[2];

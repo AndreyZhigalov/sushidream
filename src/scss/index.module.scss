@@ -30,12 +30,15 @@
   -moz-osx-font-smoothing: grayscale;
   background-color: $background-main;
 }
+
 button {
   cursor: pointer;
 }
+
 a {
   text-decoration: none;
 }
+
 .wrapper {
   position: relative;
   width: 100%;
@@ -44,57 +47,55 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
-  .main_container {
-    width: 100%;
-    height: 100%;
-    .banner_wrapper {
-      width: 100%;
-      height: 150px;
-      // @media (max-width: 450px) {
-      //   height: 200px;
-      //   height: 140px; //Вариант с отключением банера
-      //   opacity: 0;   // Вариант с отключением банера
-      // }
-      .menu_banner {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        // @media (max-width: 450px) {
-        //   height: 200px;
-        // }
-      }
-    }
+.main_container {
+  width: 100%;
+  height: 100%;
+}
 
-    .menu_wrapper {
-      position: relative;
-      margin: auto;
-      max-width: 1440px;
-      padding: 0 20px;
-      height: 100%;
-      display: grid;
-      grid-template-columns: 1fr 3fr 1fr;
-      .check_wrapper {
-        margin: 0;
-        position: relative;
-        width: 300px;
-        height: max-content;
-        box-shadow: $boxShadow;
-        grid-column: 3 / 4;
-        grid-row: 2 / 3;
-        @media (max-width: 1024px) {
-          grid-column: 1/2;
-          grid-row: auto;
-        }
-      }
-      .fixed {
-        position: sticky;
-        top: 50px;
-      }
-      @media (max-width: 1024px) {
-        grid-template-columns: 1fr;
-        padding: 0;
-      }
-    }
+.banner_wrapper {
+  width: 100%;
+  height: 150px;
+}
+
+.menu_banner {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.menu_wrapper {
+  position: relative;
+  margin: auto;
+  max-width: 1440px;
+  padding: 0 20px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    padding: 0;
   }
+}
+
+.check_wrapper {
+  display: block;
+  margin: 0;
+  position: relative;
+  width: 300px;
+  height: max-content;
+  box-shadow: $boxShadow;
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  @media (max-width: 1024px) {
+    display: none;
+    grid-column: 1/2;
+    grid-row: auto;
+  }
+}
+
+.fixed {
+  position: sticky;
+  top: 50px;
 }

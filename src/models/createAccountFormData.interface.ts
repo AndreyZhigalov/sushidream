@@ -3,6 +3,6 @@ export interface CreateAccountFormData {
   lastname: string;
   email: string;
   phoneNumber: string;
-  pass: string;
+  password: string;
   confirmPass: string;
 }

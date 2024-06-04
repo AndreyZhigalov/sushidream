@@ -20,12 +20,12 @@ const ForgotPasswordForm = () => {
     <>
       <Modal open={showModal} style={{ maxWidth: 500 }} onClose={() => setSHowModal(false)}>
         <h2>{alertMessage}</h2>
-        <BigButton text="ok" onClick={() => setSHowModal(false)} />
+        <BigButton children="ok" onClick={() => setSHowModal(false)} />
       </Modal>
 
-      <div className={styles.forgot_password_wrapper}>
-        <h2>Восстановление пароля</h2>
-        <p>Введите имейл от вашей учётной записи</p>
+      <div className={styles.wrapper}>
+        <h2 className={styles.title}>Восстановление пароля</h2>
+        <p className={styles.subtitle}>Введите имейл от вашей учётной записи</p>
         <Formik
           initialValues={{ email: '' }}
           onSubmit={(values) => {
@@ -43,8 +43,9 @@ const ForgotPasswordForm = () => {
           }}
           validationSchema={formValidation}>
           {({ handleChange, values, handleBlur, errors, touched, isValid, submitForm }) => (
-            <Form>
+            <Form className={styles.form}>
               <input
+                className={styles.email}
                 type="email"
                 id="email"
                 onChange={handleChange}
@@ -54,7 +55,11 @@ const ForgotPasswordForm = () => {
                 placeholder="myemail@mail.ru"
               />
               {errors.email && touched.email && <p className={styles.error}>{errors.email}</p>}
-              <BigButton text={'Восстановить пароль'} onClick={submitForm} isFormValid={isValid} />
+              <BigButton
+                children={'Восстановить пароль'}
+                onClick={submitForm}
+                isDisabled={!isValid}
+              />
             </Form>
           )}
         </Formik>

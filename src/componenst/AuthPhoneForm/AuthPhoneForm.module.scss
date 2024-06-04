@@ -5,15 +5,19 @@
   height: max-content;
   grid-template-columns: 360px;
   grid-template-rows: repeat(auto-fit, max-content);
-  h2 {
-    margin: 0 0 20px;
-    text-align: center;
-  }
-  p:nth-of-type(1) {
-    margin: 0 0 10px;
-  }
+}
 
-  @media (max-width: 420px) {
+.title {
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.second_title {
+  margin: 0 0 10px;
+}
+
+@media (max-width: 420px) {
+  .auth_form {
     grid-template-columns: 330px;
   }
 }
@@ -27,6 +31,7 @@
 }
 
 .input {
+  padding-left: 10px;
   background-color: $background-main;
   box-shadow: $boxShadow;
   border: none;
@@ -36,6 +41,7 @@
   font-size: 16px;
   border-bottom: 2px solid $text-second;
 }
+
 .label {
   cursor: pointer;
   font-size: 14px;
@@ -44,12 +50,11 @@
   gap: 5px;
 }
 
-.forgot_password {
-  margin-bottom: 20px;
-  width: max-content;
-  justify-self: end;
-}
 .error {
   color: red;
   margin: 10px 0 0 0;
+}
+
+.hide {
+  display: none;
 }
