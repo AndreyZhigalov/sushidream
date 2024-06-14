@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksushidream=self.webpackChunksushidream||[]).push([[609],{275:function(e,n,s){s.r(n);s(2791);var t=s(184);n.default=function(){return(0,t.jsx)("div",{style:{display:"flex",justifyContent:"center",alignItems:"center",height:"100vh",fontSize:"70px"},children:"Franchise"})}}}]);
-//# sourceMappingURL=Franchise.620f1335.chunk.js.map

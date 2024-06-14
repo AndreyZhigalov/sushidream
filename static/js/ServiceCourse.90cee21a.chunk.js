@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksushidream=self.webpackChunksushidream||[]).push([[619],{1702:function(e,s,t){t.r(s);t(2791);var n=t(184);s.default=function(){return(0,n.jsx)("div",{style:{display:"flex",justifyContent:"center",alignItems:"center",height:"100vh",fontSize:"6vh"},children:"ServiceCourse"})}}}]);
-//# sourceMappingURL=ServiceCourse.90cee21a.chunk.js.map

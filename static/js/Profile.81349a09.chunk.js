@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksushidream=self.webpackChunksushidream||[]).push([[97],{8075:function(e,r,s){s.r(r),s.d(r,{default:function(){return a}});s(2791);var u=s(6871),n="Profile_profile_wrapper__N-C9T",i=s(184),a=function(){return(0,i.jsx)("div",{className:n,children:(0,i.jsx)(u.j3,{})})}}}]);
-//# sourceMappingURL=Profile.81349a09.chunk.js.map
