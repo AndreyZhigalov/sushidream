@@ -33,6 +33,8 @@ const ProtectedRoute = ({ path }: { path: string }) => {
   return !FIREBASE_AUTH.currentUser ? <Outlet /> : <Navigate to={path} />;
 };
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export const AppRouter = () => {
   const { setDiscount } = useCartActions();
   const { getUser } = useUserActions();
@@ -49,7 +51,7 @@ export const AppRouter = () => {
   return (
     <Suspense fallback={<LoadingWarning />}>
       <Routes>
-        <Route path="" element={<Menu />} />
+        <Route path={BASE_URL} element={<Menu />} />
         <Route path="restaurants" element={<Restaurants />} />
         <Route path="loyalty" element={<Loyalty />} />
         <Route path="course" element={<ServiceCourse />} />
