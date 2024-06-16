@@ -1,0 +1,1 @@
+import{j as e}from"./index-BGSqN6pr.js";const n=()=>e.jsx("div",{style:{display:"flex",justifyContent:"center",alignItems:"center",height:"100vh",fontSize:"70px"},children:"Franchise"});export{n as default};
