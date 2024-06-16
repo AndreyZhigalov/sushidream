@@ -6,6 +6,7 @@ import { RegisterFormValidation } from './constants';
 
 import styles from './RegisterForm.module.scss';
 import { useUserActions } from '../../redux/slices/user/user.store';
+import { ROUTES } from '../../constants/routes';
 
 const INITIAL_VALUES = {
   name: '',
@@ -29,7 +30,9 @@ const RegisterForm: React.FC = () => {
       </p>
       <Formik
         initialValues={INITIAL_VALUES}
-        onSubmit={(values) => createUser(values).then(() => navigate('/profile'))}
+        onSubmit={(values) =>
+          createUser(values).then(() => navigate(`${ROUTES.base}${ROUTES.profile}`))
+        }
         validationSchema={RegisterFormValidation}>
         {({ values, handleBlur, handleChange, handleSubmit, errors, touched, isValid }) => (
           <Form className={styles.form}>
@@ -115,7 +118,8 @@ const RegisterForm: React.FC = () => {
         )}
       </Formik>
       <h3 className={styles.hint}>
-        или <Link to="../signin">авторизуйтесь</Link>
+        <span style={{ marginRight: 10 }}>Либо</span>
+        <Link to={`${ROUTES.base}${ROUTES.signin}`}>авторизуйтесь</Link>
       </h3>
     </div>
   );

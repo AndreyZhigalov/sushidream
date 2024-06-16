@@ -1,21 +1,17 @@
 @import '../../../scss/variables.scss';
 
 .container {
-  cursor: pointer;
-}
-
-.link {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
 
-  .company_name {
-    margin: 0%;
-    font-size: 24px;
-    font-weight: 600;
-    text-shadow: $boxShadow;
-  }
+.company_name {
+  margin: 0%;
+  font-size: 24px;
+  font-weight: 600;
+  text-shadow: $boxShadow;
 }
 
 .hightlight {

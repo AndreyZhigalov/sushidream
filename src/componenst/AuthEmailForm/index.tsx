@@ -9,12 +9,13 @@ import { useUserActions } from '../../redux/slices/user/user.store';
 import classNames from 'classnames';
 
 import styles from './AuthEmailForm.module.scss';
+import { ROUTES } from '../../constants/routes';
 
 const FORM_VALIDATION = yup.object().shape({
   authEmail: yup.string().email('Некорректный Email').required('Обязательное поле'),
 });
 
-const AuthEmailForm: React.FC = () => {
+const AuthEmailForm: React.FC<{ title?: string }> = ({ title }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>('');
   const { authUser } = useUserActions();
@@ -31,7 +32,7 @@ const AuthEmailForm: React.FC = () => {
         <BigButton children="Понятно" onClick={() => setShowModal(false)} />
       </Modal>
       <div className={styles.auth_form}>
-        <h2 className={styles.title}>АВТОРИЗАЦИЯ</h2>
+        <h2 className={classNames(styles.title, { [styles.hide]: !title })}>{title}</h2>
         <Formik
           initialValues={{
             authEmail: '',
@@ -41,7 +42,7 @@ const AuthEmailForm: React.FC = () => {
           validationSchema={FORM_VALIDATION}
           onSubmit={(values: AuthFormData) =>
             authUser(values)
-              .then(() => navigate('/profile'))
+              .then(() => navigate(`${ROUTES.base}${ROUTES.profile}`))
               .catch(() => setAlert('Ошибка авторизации'))
           }>
           {({
@@ -88,7 +89,9 @@ const AuthEmailForm: React.FC = () => {
                   placeholder="*******"
                   required></Field>
               </label>
-              <Link to={'../forgot-password'} className={styles.forgot_password}>
+              <Link
+                to={`${ROUTES.base}${ROUTES.forgotPassword}`}
+                className={styles.forgot_password}>
                 Забыли пароль?
               </Link>
               <BigButton

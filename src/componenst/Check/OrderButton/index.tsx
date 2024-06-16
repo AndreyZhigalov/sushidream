@@ -9,6 +9,7 @@ import { useUserGetters } from '../../../redux/slices/user/user.store';
 import { useDeliveryGetters } from '../../../redux/slices/delivery';
 import classNames from 'classnames';
 import { BigButton } from '../../BigButton';
+import { ROUTES } from '../../../constants/routes';
 
 export const OrderButton: React.FC<ComponentPropsWithRef<'button'>> = ({ className, ...props }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -20,7 +21,7 @@ export const OrderButton: React.FC<ComponentPropsWithRef<'button'>> = ({ classNa
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const onClickOrder = pathname.includes('cart')
+  const onClickOrder = pathname.includes(ROUTES.cart)
     ? () => {
         if (phoneNumber) {
           getOrder();
@@ -29,7 +30,7 @@ export const OrderButton: React.FC<ComponentPropsWithRef<'button'>> = ({ classNa
           setShowModal(true);
         }
       }
-    : () => navigate('cart');
+    : () => navigate(`${ROUTES.base}${ROUTES.cart}`);
 
   return (
     <>

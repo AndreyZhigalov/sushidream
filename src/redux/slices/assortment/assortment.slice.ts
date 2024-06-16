@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AssortmentState } from './models/assortmentState.interface';
-import { FetchStatus } from '../../../models';
+import { Banners, FetchStatus } from '../../../models';
 import { FetchData } from './models/assortmentFetchData.interface';
 import { AssortmentService } from './assortment.service';
 import { AssortmentItem } from './models/assortmentItem.interface';
@@ -48,35 +48,31 @@ export const assortmentSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getAll.pending, (state) => {
-      state.status = FetchStatus.LOADING;
+    builder.addCase(getBanners.pending, handlePending);
+    builder.addCase(getSpecificsIcons.pending, handlePending);
+    builder.addCase(get.pending, handlePending);
+    builder.addCase(getBanners.fulfilled, (state, action: PayloadAction<Banners>) => {
+      state.banners = action.payload;
     });
-    builder.addCase(getAll.fulfilled, (state, action: PayloadAction<FetchData>) => {
-      if (action.payload[0].length === 0) {
-        state.status = FetchStatus.ERROR;
-      } else {
-        state.status = FetchStatus.SUCCESS;
-      }
-      state.items = action.payload[0];
-      state.banners = action.payload[1];
-      state.specials = action.payload[2];
+    builder.addCase(getSpecificsIcons.fulfilled, (state, action: PayloadAction<string[]>) => {
+      state.specials = action.payload;
     });
-    builder.addCase(getAll.rejected, (state, action) => {
-      state.status = FetchStatus.ERROR;
-      console.error(action);
-    });
-    builder.addCase(getByCategory.pending, (state) => {
-      state.status = FetchStatus.LOADING;
-    });
-    builder.addCase(getByCategory.fulfilled, (state, action: PayloadAction<AssortmentItem[]>) => {
+    builder.addCase(get.fulfilled, (state, action: PayloadAction<AssortmentItem[]>) => {
       state.status = FetchStatus.SUCCESS;
       state.items = action.payload;
     });
-    builder.addCase(getByCategory.rejected, (state, action) => {
-      state.status = FetchStatus.ERROR;
-      console.error(action);
-    });
+    builder.addCase(getBanners.rejected, handleError);
+    builder.addCase(getSpecificsIcons.rejected, handleError);
+    builder.addCase(get.rejected, handleError);
   },
 });
 
-const { getAll, getByCategory } = new AssortmentService();
+const { getBanners, get, getSpecificsIcons } = new AssortmentService();
+
+const handleError: CaseReducer = (state, action) => {
+  state.status = FetchStatus.ERROR;
+  console.error(action);
+};
+const handlePending: CaseReducer = (state) => {
+  state.status = FetchStatus.LOADING;
+};

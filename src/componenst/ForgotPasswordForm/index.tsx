@@ -8,6 +8,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../../firebase';
 import { Modal } from '../Modal';
 import { useState } from 'react';
+import { ROUTES } from '../../constants/routes';
 
 const ForgotPasswordForm = () => {
   const [showModal, setSHowModal] = useState<boolean>(false);
@@ -63,7 +64,7 @@ const ForgotPasswordForm = () => {
             </Form>
           )}
         </Formik>
-        <Link to={'../signin'} className={styles.return_link}>
+        <Link to={`${ROUTES.base}${ROUTES.signin}`} className={styles.return_link}>
           Назад
         </Link>
       </div>

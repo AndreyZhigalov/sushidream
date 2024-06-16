@@ -3,6 +3,7 @@ import { BigButton } from '../../componenst';
 import { useAppStore } from '../../redux/store';
 
 import styles from './Profile.module.scss';
+import { ROUTES } from '../../constants/routes';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Profile = () => {
         <div className={styles.button_wrapper}>
           <BigButton
             children={'Выйти из аккаунта'}
-            onClick={() => signOutUser().then(() => navigate('/'))}
+            onClick={() => signOutUser().then(() => navigate(`${ROUTES.base}${ROUTES.main}`))}
           />
         </div>
       </div>

@@ -1,8 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { Subcategories } from '../Subcategories';
 import mainStyles from '../../scss/index.module.scss';
-import { useAppStore } from '../../redux/store';
 import classNames from 'classnames';
+import { useFiltersActions, useFiltersGetters } from '../../redux/slices/filters';
+import { ROUTES } from '../../constants/routes';
 
 import styles from './CategoryList.module.scss';
 
@@ -10,9 +11,8 @@ export const CategoryList: React.FC<{ navRange: number[]; isFixed: boolean }> = 
   navRange,
   isFixed,
 }) => {
-  const { filtersStore } = useAppStore();
-  const { currentCategory, categories } = filtersStore.getters;
-  const { setCategory } = filtersStore.actions;
+  const { currentCategory, categories } = useFiltersGetters();
+  const { setCategory } = useFiltersActions();
   const { pathname } = useLocation();
 
   return (
@@ -26,7 +26,7 @@ export const CategoryList: React.FC<{ navRange: number[]; isFixed: boolean }> = 
             }}
             className={classNames(styles.item, {
               [styles.active]: currentCategory.value === category.value,
-              [styles.margin]: !pathname.includes('cart'),
+              [styles.margin]: !pathname.includes(ROUTES.cart),
             })}>
             {category.name}
             {category.value === 'drinkables' && currentCategory.value === 'drinkables' && (

@@ -20,11 +20,12 @@ import styles from './AssortmentBlock.module.scss';
 export const AccortmentBlock: React.FC = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
-
-  const { findItem, getByCategory, sortItems } = useAssortmentActions();
+  const { findItem, get, sortItems } = useAssortmentActions();
   const { status, items } = useAssortmentGetters();
   const { currentSortType, currentCategory, searchedItemId, currentSubcategory } =
     useFiltersGetters();
+
+  useFilterParams(search);
 
   useEffect(() => {
     if (status === FetchStatus.SUCCESS && searchedItemId) {
@@ -59,12 +60,11 @@ export const AccortmentBlock: React.FC = () => {
 
   useEffect(() => {
     if (status === FetchStatus.SUCCESS) {
-      getByCategory(currentCategory.value);
+      get(currentCategory.value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, currentSubcategory]);
 
-  useFilterParams(search);
   const showAssortment = (status: string) => {
     if (status === FetchStatus.LOADING) {
       return [...Array(6)].map((_, i) => <LoadingCard key={i} />);

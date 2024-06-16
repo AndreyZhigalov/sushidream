@@ -4,6 +4,7 @@ import { LoadingWarning } from '../componenst';
 import { FIREBASE_AUTH } from '../firebase';
 import { useCartActions } from '../redux/slices/cart';
 import { useUserActions } from '../redux/slices/user/user.store';
+import { ROUTES } from '../constants/routes';
 
 const Menu = lazy(() => import(/* webpackChunkName: "Menu" */ '../pages/Menu'));
 const Cart = lazy(() => import(/* webpackChunkName: "Cart" */ '../pages/Cart'));
@@ -33,8 +34,6 @@ const ProtectedRoute = ({ path }: { path: string }) => {
   return !FIREBASE_AUTH.currentUser ? <Outlet /> : <Navigate to={path} />;
 };
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-
 export const AppRouter = () => {
   const { setDiscount } = useCartActions();
   const { getUser } = useUserActions();
@@ -51,22 +50,24 @@ export const AppRouter = () => {
   return (
     <Suspense fallback={<LoadingWarning />}>
       <Routes>
-        <Route path={BASE_URL} element={<Menu />} />
-        <Route path="restaurants" element={<Restaurants />} />
-        <Route path="loyalty" element={<Loyalty />} />
-        <Route path="course" element={<ServiceCourse />} />
-        <Route path="franchise" element={<Franchise />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path={`${ROUTES.base}`}>
+          <Route path={`${ROUTES.base}${ROUTES.main}`} element={<Menu />} />
+          <Route path={`${ROUTES.base}${ROUTES.restaurants}`} element={<Restaurants />} />
+          <Route path={`${ROUTES.base}${ROUTES.loyalty}`} element={<Loyalty />} />
+          <Route path={`${ROUTES.base}${ROUTES.course}`} element={<ServiceCourse />} />
+          <Route path={`${ROUTES.base}${ROUTES.franchise}`} element={<Franchise />} />
+          <Route path={`${ROUTES.base}${ROUTES.cart}`} element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
 
-        <Route element={<PrivateRoute path="/signin" />}>
-          <Route path="profile" element={<Profile />} />
-        </Route>
+          <Route element={<PrivateRoute path={`${ROUTES.base}${ROUTES.signin}`} />}>
+            <Route path={`${ROUTES.base}${ROUTES.profile}`} element={<Profile />} />
+          </Route>
 
-        <Route element={<ProtectedRoute path="/" />}>
-          <Route path="signin" element={<Signin />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route element={<ProtectedRoute path={`${ROUTES.base}${ROUTES.main}`} />}>
+            <Route path={`${ROUTES.base}${ROUTES.signin}`} element={<Signin />} />
+            <Route path={`${ROUTES.base}${ROUTES.signup}`} element={<Signup />} />
+            <Route path={`${ROUTES.base}${ROUTES.forgotPassword}`} element={<ForgotPassword />} />
+          </Route>
         </Route>
       </Routes>
     </Suspense>

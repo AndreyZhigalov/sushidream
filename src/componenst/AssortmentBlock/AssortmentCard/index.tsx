@@ -13,6 +13,7 @@ import { useCallback } from 'react';
 import { ASSORTMENT_BACKGROUND_IMAGE } from '../../../constants/assortmentBackgroundImage';
 
 import styles from './AssortmentCard.module.scss';
+import { ROUTES } from '../../../constants/routes';
 
 export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => {
   const { findItem } = useAssortmentActions();
@@ -22,7 +23,7 @@ export const AssortmentCard: React.FC<{ item: AssortmentItem }> = ({ item }) => 
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const itemLink: string = pathname.includes('cart')
+  const itemLink: string = pathname.includes(ROUTES.cart)
     ? qs.stringify({
         item: item.id,
       })

@@ -12,6 +12,7 @@ import classNames from 'classnames';
 
 import styles from './AssortmentFullCard.module.scss';
 import { ASSORTMENT_BACKGROUND_IMAGE } from '../../../constants/assortmentBackgroundImage';
+import { ROUTES } from '../../../constants/routes';
 
 type AssortmentFullCardProps = {
   isOpen: boolean;
@@ -31,7 +32,7 @@ export const AssortmentFullCard: React.FC<AssortmentFullCardProps> = ({ isOpen }
   });
 
   const onClickAdd = useCallback((obj: AssortmentItem) => {
-    if (pathname.includes('cart')) {
+    if (pathname.includes(ROUTES.cart)) {
       addToCart(obj);
       navigate(pathname);
     } else {
@@ -43,7 +44,7 @@ export const AssortmentFullCard: React.FC<AssortmentFullCardProps> = ({ isOpen }
 
   const onClickClose = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) return;
-    return pathname.includes('cart') ? navigate(pathname) : navigate(`?${previousSearch}`);
+    return pathname.includes(ROUTES.cart) ? navigate(pathname) : navigate(`?${previousSearch}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

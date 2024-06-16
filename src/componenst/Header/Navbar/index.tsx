@@ -1,35 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import cart from '../../../assets/icons/cart.svg';
 import menu from '../../../assets/icons/menu.svg';
 import user from '../../../assets/icons/user.svg';
+import { ROUTES } from '../../../constants/routes';
+import { useNavbarActions } from '../../../redux/slices/navbar';
+import { useCartGetters } from '../../../redux/slices/cart';
 
 import styles from './Navbar.module.scss';
 
-import { FetchStatus } from '../../../models';
-import { useAppStore } from '../../../redux/store';
 import classNames from 'classnames';
 
 export const Navbar: React.FC = () => {
-  const { cartStore, navbarStore, assortmentStore } = useAppStore();
-  const {
-    actions: { fetchCart },
-    getters: { count },
-  } = cartStore;
-  const { status } = assortmentStore.getters;
-  const { openNavbar } = navbarStore.actions;
+  const { count } = useCartGetters();
+  const { openNavbar } = useNavbarActions();
   const [showSubmenu, setShowSubmenu] = useState(false);
-
-  useEffect(() => {
-    status === FetchStatus.LOADING && fetchCart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
 
   return (
     <nav className={styles.links}>
-      <Link to="cart" className={styles.link}>
+      <Link to={`${ROUTES.base}${ROUTES.cart}`} className={styles.link}>
         <img className={styles.icon} src={cart} alt="корзина" />
         <span className={styles.counter}>{count > 0 ? count : ''}</span>
       </Link>
@@ -43,13 +34,13 @@ export const Navbar: React.FC = () => {
         <div className={classNames(styles.submenu, { [styles.show]: showSubmenu })}>
           <Link
             className={styles.submenu_link}
-            to="profile"
+            to={`${ROUTES.base}${ROUTES.profile}`}
             onClick={() => setShowSubmenu(() => false)}>
             Профиль
           </Link>
           <Link
             className={styles.submenu_link}
-            to="notifications"
+            to={`${ROUTES.base}${ROUTES.notification}`}
             onClick={() => setShowSubmenu(() => false)}>
             Уведомления
           </Link>

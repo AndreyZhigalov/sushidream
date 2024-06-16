@@ -9,6 +9,7 @@ import PhoneIcon from '../../assets/icons/phone.svg?react';
 
 import styles from './Signin.module.scss';
 import { useUserActions } from '../../redux/slices/user/user.store';
+import { ROUTES } from '../../constants/routes';
 
 enum AuthType {
   email = 'EMAIL',
@@ -23,19 +24,24 @@ const Signin = () => {
 
   return (
     <div className={styles.wrapper}>
-      {authType === AuthType.email && <AuthEmailForm />}
-      {authType === AuthType.phone && <AuthPhoneForm hasRedirect={true} />}
+      {authType === AuthType.email && <AuthEmailForm title="Авторизация" />}
+      {authType === AuthType.phone && <AuthPhoneForm title="Авторизация" hasRedirect={true} />}
       <div className={styles.auth_methods}>
         <div>Войти через:</div>
         <EmailIcon onClick={() => setAuthType(AuthType.email)} className={styles.icon} />
         <PhoneIcon onClick={() => setAuthType(AuthType.phone)} className={styles.icon} />
         <GoogleIcon
           className={styles.icon}
-          onClick={() => authUserWithGoogle().then(() => navigate('/profile'))}
+          onClick={() =>
+            authUserWithGoogle().then(() => navigate(`${ROUTES.base}${ROUTES.profile}`))
+          }
         />
       </div>
       <div className={styles.hint}>
-        или <Link to="../signup" className={styles.link}>зарегистрируйтесь</Link>
+        <span style={{ marginRight: 10 }}>Либо</span>
+        <Link to={`${ROUTES.base}${ROUTES.signup}`} className={styles.link}>
+          зарегистрируйтесь
+        </Link>
       </div>
     </div>
   );

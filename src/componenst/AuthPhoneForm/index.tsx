@@ -10,6 +10,7 @@ import { ConfirmationResult } from 'firebase/auth';
 import classNames from 'classnames';
 
 import styles from './AuthPhoneForm.module.scss';
+import { ROUTES } from '../../constants/routes';
 
 const PHONE_VALIDATION = yup.object().shape({
   phoneNumber: yup.string().matches(PHONE_NUMBER_REGEXP, 'Неверный формат номера телефона'),
@@ -21,9 +22,10 @@ const CODE_VALIDATION = yup.object().shape({
 type AuthPhoneFormProps = {
   hasRedirect?: boolean;
   handler?: () => unknown;
+  title?: string;
 };
 
-const AuthPhoneForm: React.FC<AuthPhoneFormProps> = ({ hasRedirect, handler }) => {
+const AuthPhoneForm: React.FC<AuthPhoneFormProps> = ({ hasRedirect, handler, title }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>('');
   const [confirmResult, setConfirmResult] = useState<ConfirmationResult | string>();
@@ -58,7 +60,7 @@ const AuthPhoneForm: React.FC<AuthPhoneFormProps> = ({ hasRedirect, handler }) =
           await confirmAuthUserWithPhone({ code, confirmResult: confirmResult });
         }
         handler?.();
-        hasRedirect && navigate('/profile');
+        hasRedirect && navigate(`${ROUTES.base}${ROUTES.profile}`);
       } catch (error) {
         console.error(error);
         setAlert('Неверный код');
@@ -75,7 +77,7 @@ const AuthPhoneForm: React.FC<AuthPhoneFormProps> = ({ hasRedirect, handler }) =
       </Modal>
 
       <div className={classNames(styles.auth_form, { [styles.hide]: !!confirmResult })}>
-        <h2 className={styles.title}>АВТОРИЗАЦИЯ</h2>
+        <h2 className={classNames(styles.title, { [styles.hide]: !title })}>{title}</h2>
         <Formik
           initialValues={{
             phoneNumber: '',

@@ -22,7 +22,7 @@ const Cart: React.FC = () => {
   const { currentCategory, categories, currentSubcategory } = useFiltersGetters();
   const { setCategory } = useFiltersActions();
   const { items, status, searchedItem } = useAssortmentGetters();
-  const { getByCategory } = useAssortmentActions();
+  const { get, getSpecificsIcons } = useAssortmentActions();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,14 +30,15 @@ const Cart: React.FC = () => {
 
   useEffect(() => {
     if (status === FetchStatus.SUCCESS) {
-      getByCategory(currentCategory.value);
+      get(currentCategory.value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, currentSubcategory]);
 
   useEffect(() => {
     setCategory(categories[16]);
-    getByCategory(categories[16].value);
+    get(categories[16].value);
+    getSpecificsIcons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
