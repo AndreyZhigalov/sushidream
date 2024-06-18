@@ -1,33 +1,58 @@
 @import '../../scss/variables.scss';
 
-.overlay {
-  z-index: 9999;
+.overlay,
+.background {
+  z-index: 90;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  pointer-events: none;
+}
+
+.background {
+  position: absolute;
+  z-index: 95;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
   background-color: $background-trans;
+}
+
+.show {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .modal {
   position: absolute;
-  bottom: 0;
+  z-index: 100;
+  bottom: -100%;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 80%;
   background: $background-second;
   border: none;
   // border: 3px solid $highlighted;
-  border-radius: 20px;
   overflow: hidden;
   box-shadow: 2px 2px 0px $highlighted;
+  transition: bottom 0.5s ease-in-out;
 }
 
 .wrapper {
   padding: 20px;
+}
+
+.showModal {
+  bottom: 0%;
+  visibility: visible;
 }
 
 .header {
@@ -62,5 +87,12 @@
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 80%;
+    border-radius: 20px;
+    visibility: hidden;
+    height: max-content;
+  }
+  .showModal {
+    bottom: unset;
+    visibility: visible;
   }
 }

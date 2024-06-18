@@ -26,8 +26,11 @@ export const CartItem: React.FC<{ item: AssortmentItem }> = ({ item }) => {
 
   return (
     <>
-      <Modal open={showModal} onClose={() => setShowModal(false)} style={{ maxWidth: 500 }}>
-        <p>{`Удалить ${item.title} из корзины?`}</p>
+      <Modal
+        open={showModal}
+        header={`Удалить ${item.title} из корзины?`}
+        onClose={() => setShowModal(false)}
+        style={{ maxWidth: 500 }}>
         <div style={{ display: 'flex', gap: '20px' }}>
           <BigButton children="OK" onClick={() => removeFromCart(item.id)} />
           <BigButton children="Отмена" onClick={() => setShowModal(false)} />

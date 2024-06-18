@@ -2,12 +2,13 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import { FIREBASE_DB } from '../../firebase';
+import classNames from 'classnames';
+import LoadingRestaurant from '../../componenst/LoadingRestaurant';
 
 import star from '../../assets/icons/star.svg';
 import logo from '../../assets/logo-primary.svg';
 
 import styles from './Restaurants.module.scss';
-import LoadingRestaurant from '../../componenst/LoadingRestaurant';
 interface Restaurant {
   id: number;
   street: string;
@@ -54,7 +55,9 @@ const Restaurants: React.FC = () => {
           : restaurants.map((rest) => (
               <li
                 key={rest.coordinate[0]}
-                className={styles.address_card}
+                className={classNames(styles.address_card, {
+                  [styles.active]: coordinates[0] === rest.coordinate[0],
+                })}
                 onClick={() => setCoordinates(rest.coordinate ?? [])}>
                 <h3 className={styles.title}>{rest.title}</h3>
                 <p className={styles.address}>Адрес: {`${rest.street}, ${rest.city}`}</p>

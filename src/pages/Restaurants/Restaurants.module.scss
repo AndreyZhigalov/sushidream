@@ -33,6 +33,10 @@
   background-color: $background-second;
 }
 
+.active {
+  box-shadow: 5px 5px 0 $highlighted;
+}
+
 .title {
   grid-area: 1 / 1 / 2 / 4;
   margin: 0;

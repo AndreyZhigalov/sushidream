@@ -2,6 +2,7 @@ import { ComponentPropsWithRef, ReactNode } from 'react';
 import CloseButton from '../CloseButton';
 
 import styles from './Modal.module.scss';
+import classNames from 'classnames';
 
 type ModalPropsType = ComponentPropsWithRef<'dialog'> & {
   header?: string | ReactNode;
@@ -10,15 +11,17 @@ type ModalPropsType = ComponentPropsWithRef<'dialog'> & {
 };
 
 export const Modal = ({ children, open, header, onClose, className, ...props }: ModalPropsType) => {
-  if (!open) return null;
-
   return (
     <div
-      className={styles.overlay}
+      className={classNames(styles.overlay, { [styles.show]: open })}
       onClick={(e) => {
         if (e.currentTarget === e.target) onClose?.();
       }}>
-      <dialog className={styles.modal + ` ${className ? className : ''}`} {...props} open={open}>
+      <div className={classNames(styles.background, { [styles.show]: open })}></div>
+      <dialog
+        className={classNames(styles.modal, { [styles.showModal]: open }, className)}
+        {...props}
+        open={true}>
         <header className={styles.header}>
           <span>{header}</span>
           <CloseButton onClick={() => onClose?.()} />
