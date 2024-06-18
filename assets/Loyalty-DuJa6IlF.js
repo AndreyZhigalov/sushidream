@@ -1,0 +1,1 @@
+import{j as t}from"./index-DF4WTWj_.js";const n=()=>t.jsx("div",{style:{display:"flex",justifyContent:"center",alignItems:"center",height:"100vh",fontSize:"70px"},children:"Loyalty"});export{n as default};
